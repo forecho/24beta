@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.USER_LIBRARY/jQuery"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

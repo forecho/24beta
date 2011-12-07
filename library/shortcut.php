@@ -73,6 +73,18 @@ function l($text, $url = '#', $htmlOptions = array())
 {
     return CHtml::link($text, $url, $htmlOptions);
 }
+
+/**
+ * This is the shortcut to CHtml::image()
+ * @param string $src 图片url
+ * @param string $alt img标签alt属性
+ * @param array $htmlOptions <img>标签附加属性
+ * @return string <img>html代码
+ */
+function image($src, $alt='', $htmlOptions=array())
+{
+    return CHtml::image($src, $alt, $htmlOptions);
+}
  
 /**
  * This is the shortcut to Yii::t() with default category = 'stay'
@@ -135,12 +147,24 @@ function user()
  * @param string $url
  * @return string Yii::app()->theme->baseUrl
  */
-function tbu($url = null)
+function tbu($url = null, $useDefault = true)
 {
-    static $themeBaseUrl = null;
-    if ($themeBaseUrl === null)
+    if (empty(Yii::app()->theme))
+        return sbu($url);
+    
+    static $themeBasePath;
+    static $themeBaseUrl;
+    $themeBasePath = rtrim(param('themeResourceBasePath'), DS) . DS . Yii::app()->theme->name . DS;
+    $filename = realpath($themeBasePath . $url);
+    if (file_exists($filename)) {
         $themeBaseUrl = rtrim(Yii::app()->theme->baseUrl, '/') . '/';
-    return $url === null ? $themeBaseUrl : $themeBaseUrl . ltrim($url, '/');
+        return ($url === null) ? $themeBaseUrl : $themeBaseUrl . ltrim($url, '/');
+    }
+    elseif ($useDefault) {
+        return sbu($url);
+    }
+    else
+        return 'javascript:void(0);';
 }
 
 /**

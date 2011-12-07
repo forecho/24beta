@@ -3,22 +3,10 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        echo __FILE__;
-        echo $this->createAbsoluteUrl('site/aaa');
-    }
-    
-    public function actionAaa()
-    {
-        $this->render('aaa', array('data'=>time()));
-        print_r(app()->params['abc']);
+        echo tbu('styles/a.css') . '<br />';
+        echo tbu('styles') . '<br />';
         
-        echo Cdc::t('cdc', 'asdfasdf{aa}sadf{cccc}', array('{aa}'=>111111, '{cccc}'=>22222));
-        echo '<hr />';
-        
-        $d = new CDbCriteria();
-        $d->select = 'a,b,c';
-        $d->addBetweenCondition('a', 100, 500);
-        echo (string)$d->condition;
+        $this->render('index');
     }
     
     public function actionTop()
