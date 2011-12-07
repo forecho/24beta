@@ -1,0 +1,11 @@
+#
+# robots.txt for meiapps.com
+#
+
+User-agent: *
+Disallow: /admin/
+Disallow: /oauth/
+Disallow: /test/
+
+Sitemap: http://meiapps.com/sitemap/posts.xml
+Sitemap: http://meiapps.com/rss/posts.xml
