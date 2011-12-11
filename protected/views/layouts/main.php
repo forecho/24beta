@@ -12,7 +12,6 @@
 <body>
 <h1>layout</h1>
 <?php echo $content;?>
-
 </body>
 </html>
 

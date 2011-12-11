@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "{{user}}".
+ * This is the model class for table "{{topic}}".
  *
- * The followings are the available columns in table '{{user}}':
- * @property integer $id
- * @property string $email
+ * The followings are the available columns in table '{{topic}}':
+ * @property string $id
+ * @property string $parent_id
  * @property string $name
- * @property string $password
- * @property integer $create_time
- * @property string $create_ip
- * @property integer $state
- * @property string $token
+ * @property string $post_nums
+ * @property string $icon
+ * @property string $orderid
  */
-class User extends CActiveRecord
+class Topic extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return User the static model class
+	 * @return Topic the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -29,7 +27,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{user}}';
+		return '{{topic}}';
 	}
 
 	/**
@@ -40,18 +38,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-	        array('email, name, password', 'required'),
-            array('email', 'unique'),
-            array('name', 'unique'),
-	        array('create_time, state', 'numerical', 'integerOnly'=>true),
-			array('email', 'length', 'max'=>100),
-	        array('email', 'email'),
+	        array('name', 'required'),
+	        array('name', 'unique'),
+	        array('parent_id, post_nums, orderid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
-			array('password', 'length', 'max'=>32, 'min'=>'5'),
-			array('create_ip', 'length', 'max'=>15, 'min'=>7),
+			array('icon', 'length', 'max'=>250),
+			array('icon', 'file', 'allowEmpty'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, email, name, password, create_time, create_ip, state, token', 'safe', 'on'=>'search'),
+			array('id, parent_id, name, post_nums, icon, orderid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,13 +68,11 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'email' => 'Email',
+			'parent_id' => 'Parent',
 			'name' => 'Name',
-			'password' => 'Password',
-			'create_time' => 'Create Time',
-			'create_ip' => 'Create Ip',
-			'state' => 'State',
-			'token' => 'Token',
+			'post_nums' => 'Post Nums',
+			'icon' => 'Icon',
+			'orderid' => 'Orderid',
 		);
 	}
 
@@ -96,21 +89,17 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('email',$this->email,true);
+		$criteria->compare('parent_id',$this->parent_id,true);
 
 		$criteria->compare('name',$this->name,true);
 
-		$criteria->compare('password',$this->password,true);
+		$criteria->compare('post_nums',$this->post_nums,true);
 
-		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('icon',$this->icon,true);
 
-		$criteria->compare('create_ip',$this->create_ip,true);
+		$criteria->compare('orderid',$this->orderid,true);
 
-		$criteria->compare('state',$this->state);
-
-		$criteria->compare('token',$this->token,true);
-
-		return new CActiveDataProvider('User', array(
+		return new CActiveDataProvider('Topic', array(
 			'criteria'=>$criteria,
 		));
 	}

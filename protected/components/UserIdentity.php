@@ -8,13 +8,12 @@
 class UserIdentity extends CUserIdentity
 {
     private $_id;
+    private $_name;
 
 	public function authenticate()
 	{
-	    if ($this->isAuthenticated) return true;
-	    
-		$name = strtolower($this->username);
-	    $user = User::model()->find('LOWER(`username`) = ?', array($name));
+	    $email = strtolower($this->username);
+	    $user = User::model()->find('email = ?', array($email));
 
 		if ($user === null)
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
@@ -23,7 +22,7 @@ class UserIdentity extends CUserIdentity
 		else {
 			$this->errorCode = self::ERROR_NONE;
 			$this->_id = $user->id;
-			
+			$this->_name = $user->name;
 			$this->cacheUserData($user);
 		}
 		return !$this->errorCode;
@@ -33,6 +32,16 @@ class UserIdentity extends CUserIdentity
 	{
 	    return $this->_id;
 	}
+	
+	public function getEmail()
+	{
+	    return $this->username;
+	}
+	
+	public function getName()
+	{
+	    return $this->_name;
+	}
 
 	/**
 	 * 设置用户资料，放入session中
@@ -40,6 +49,6 @@ class UserIdentity extends CUserIdentity
 	 */
 	private function cacheUserData($u)
 	{
-	    
+	    $s = app()->session;
 	}
 }
