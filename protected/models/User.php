@@ -12,6 +12,7 @@
  * @property string $create_ip
  * @property integer $state
  * @property string $token
+ * @property string $createTime
  */
 class User extends CActiveRecord
 {
@@ -49,9 +50,6 @@ class User extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>32, 'min'=>'5'),
 			array('create_ip', 'length', 'max'=>15, 'min'=>7),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, email, name, password, create_time, create_ip, state, token', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,9 +58,15 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+	        'postCount' => array(self::STAT, 'Post', 'user_id'),
+	        'commentCount' => array(self::STAT, 'Comment', 'user_id'),
+	        'latestPosts' => array(self::HAS_MANY, 'Post', 'user_id',
+                'limit' => 10,
+            ),
+	        'latestComments' => array(self::HAS_MANY, 'Comment', 'user_id',
+                'limit' => 10,
+            ),
 		);
 	}
 
@@ -82,36 +86,23 @@ class User extends CActiveRecord
 			'token' => 'Token',
 		);
 	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
+	
+	public function getCreateTime($format = null)
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-
-		$criteria->compare('email',$this->email,true);
-
-		$criteria->compare('name',$this->name,true);
-
-		$criteria->compare('password',$this->password,true);
-
-		$criteria->compare('create_time',$this->create_time,true);
-
-		$criteria->compare('create_ip',$this->create_ip,true);
-
-		$criteria->compare('state',$this->state);
-
-		$criteria->compare('token',$this->token,true);
-
-		return new CActiveDataProvider('User', array(
-			'criteria'=>$criteria,
-		));
+	    if  (null === $format)
+	        $format = param('formatShortDateTime');
+	
+	    return date($format, $this->create_time);
 	}
+	
+	protected function beforeSave()
+	{
+	    if ($this->getIsNewRecord()) {
+	        $this->create_time = $_SERVER['REQUEST_TIME'];
+	        $this->create_ip = request()->getUserHostAddress();
+	        $this->state = !param('userRequiredEmailVerfiy');
+	    }
+	    return true;
+	}
+
 }

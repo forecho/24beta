@@ -13,12 +13,18 @@
  * @property string $create_ip
  * @property integer $score
  * @property integer $score_nums
- * @property string $comment_nums
+ * @property integer $comment_nums
  * @property integer $user_id
  * @property string $user_name
  * @property string $source
  * @property string $tags
  * @property integer $state
+ * @property string $filterContent
+ * @property string $crateTime
+ * @property string $authorName
+ * @property string $authorLink
+ * @property float $rating
+ * @property string $sourceLink
  */
 class Post extends CActiveRecord
 {
@@ -53,9 +59,6 @@ class Post extends CActiveRecord
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name', 'length', 'max'=>50),
 			array('content', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, category_id, topic_id, title, content, create_time, create_ip, score, score_nums, comment_nums, user_id, user_name, source, tags, state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +70,8 @@ class Post extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+	        'category'=>array(self::BELONGS_TO, 'Category', 'category_id'),
+	        'topic'=>array(self::BELONGS_TO, 'Topic', 'topic_id'),
 		);
 	}
 
@@ -94,47 +99,90 @@ class Post extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
+	public function getFilterContent()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-
-		$criteria->compare('category_id',$this->category_id,true);
-
-		$criteria->compare('topic_id',$this->topic_id,true);
-
-		$criteria->compare('title',$this->title,true);
-
-		$criteria->compare('content',$this->content,true);
-
-		$criteria->compare('create_time',$this->create_time,true);
-
-		$criteria->compare('create_ip',$this->create_ip,true);
-
-		$criteria->compare('score',$this->score,true);
-
-		$criteria->compare('score_nums',$this->score_nums,true);
-
-		$criteria->compare('comment_nums',$this->comment_nums,true);
-
-		$criteria->compare('user_id',$this->user_id,true);
-
-		$criteria->compare('user_name',$this->user_name,true);
-
-		$criteria->compare('tags',$this->tags,true);
-
-		$criteria->compare('state',$this->state,true);
-
-		return new CActiveDataProvider('Post', array(
-			'criteria'=>$criteria,
-		));
+	    return nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a>'));
+	}
+	
+	public function getCreateTime($format = null)
+	{
+	    if  (null === $format)
+	        $format = param('formatShortDateTime');
+	
+	    return date($format, $this->create_time);
+	}
+	
+	public function getAuthorName()
+	{
+	    static $name;
+	
+	    if (null !== $name) return $name;
+	
+	    if ($this->user_name)
+	        $name = $this->user_name;
+	    elseif ($this->user_id)
+	    $name = $this->user->name;
+	    else
+	        $name = t('guest_name');
+	
+	    return $name;
+	}
+	
+	public function getAuthorLink()
+	{
+	    // @todo 暂时没用 添加 postmeta表后修改
+	    $name = $this->getAuthorName();
+	    return $this->user_site ? l($name, $this->user_site, array('target'=>'_blank')) : $name;
+	}
+	
+	public function getRating()
+	{
+	    $nums = $this->score_nums ? $this->score_nums : 1;
+	    return sprintf('.1f', $this->score / $nums);
+	}
+	
+	public function getSourceLink()
+	{
+	    if (strpos($this->source, 'http://') === false && strpos($this->source, 'https://') === false)
+	        return $this->source;
+	    else
+	        return l($this->source, $this->source, array('target'=>'_blank', array('class'=>'post-source')));
+	}
+	
+	protected function beforeSave()
+	{
+	    if ($this->getIsNewRecord()) {
+	        $this->title = strip_tags($this->title);
+	        $this->create_time = $_SERVER['REQUEST_TIME'];
+	        $this->create_ip = request()->getUserHostAddress();
+	        $this->source = strip_tags(trim($this->source));
+	    }
+	    return true;
+	}
+	
+	protected function afterSave()
+	{
+	    $counters = array('post_nums' => 1);
+	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
+	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
+	    
+	    // @todo 此处还要处理tag的保存
+	}
+	
+	protected function afterDelete()
+	{
+	    $counters = array('post_nums' => -1);
+	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
+	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
+	    
+	    $comments = Comment::model()->findAll('post_id = :pid', array(':pid'=>$this->id));
+	    foreach ($comments as $c) $c->delete();
+	    
+	    app()->db->createCommand()
+	        ->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
+	    
+	    // @todo 此处删除文章后对应的图片也应该删除
 	}
 }
+
+

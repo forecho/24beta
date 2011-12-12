@@ -1,5 +1,7 @@
 <?php
 $params = require(dirname(__FILE__) . DS . 'params.php');
+$setting = require(dirname(__FILE__) . DS . 'setting.php');
+$params = array_merge($setting, $params);
 return array(
     'id' => $params['domain'],
     'name' => $params['sitename'],
@@ -36,7 +38,6 @@ return array(
         'user' => array(
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
-            'guestName' => $params['guestName'],
         ),
         'db' => array(
             'class' => 'CDbConnection',
@@ -48,15 +49,17 @@ return array(
 		    'tablePrefix' => 'cd_',
             'enableParamLogging' => true,
             'enableProfiling' => true,
-// 		    'schemaCacheID' => 'fcache',
-// 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
-// 		    'queryCacheID' => 'cache',
-// 		    'queryCachingDuration' => 60,
+		    'schemaCacheID' => 'fcache',
+		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
+		    'queryCacheID' => 'cache',
+		    'queryCachingDuration' => 60,
         ),
         'cache' => array(
+            'class' => 'CFileCache',
+            'directoryLevel' => 2,
         ),
         'fcache' => array(
-		    'class' => 'CdcFileCache',
+		    'class' => 'CFileCache',
 		    'directoryLevel' => 2,
 		),
         'assetManager' => array(

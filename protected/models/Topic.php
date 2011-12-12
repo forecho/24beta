@@ -4,15 +4,17 @@
  * This is the model class for table "{{topic}}".
  *
  * The followings are the available columns in table '{{topic}}':
- * @property string $id
- * @property string $parent_id
+ * @property integer $id
+ * @property integer $parent_id
  * @property string $name
- * @property string $post_nums
+ * @property integer $post_nums
  * @property string $icon
- * @property string $orderid
+ * @property integer $orderid
  */
 class Topic extends CActiveRecord
 {
+    const ROOT_PARENT_ID = 0;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Topic the static model class
@@ -44,9 +46,7 @@ class Topic extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			array('icon', 'length', 'max'=>250),
 			array('icon', 'file', 'allowEmpty'=>true),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, parent_id, name, post_nums, icon, orderid', 'safe', 'on'=>'search'),
+	        array('name', 'filter', 'filter'=>'strip_tags'),
 		);
 	}
 
@@ -55,9 +55,11 @@ class Topic extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+	        'postCount' => array(self::STAT, 'Post', 'topic_id'),
+	        'subCount' => array(self::STAT, 'Topic', 'parent_id'),
+	        'subs' => array(self::HAS_MANY, 'Topic', 'parent_id'),
+	        'parent' => array(self::BELONGS_TO, 'Topic', 'parent_id'),
 		);
 	}
 
@@ -76,31 +78,42 @@ class Topic extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
+	
+	public static function fetchRootList()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-
-		$criteria->compare('parent_id',$this->parent_id,true);
-
-		$criteria->compare('name',$this->name,true);
-
-		$criteria->compare('post_nums',$this->post_nums,true);
-
-		$criteria->compare('icon',$this->icon,true);
-
-		$criteria->compare('orderid',$this->orderid,true);
-
-		return new CActiveDataProvider('Topic', array(
-			'criteria'=>$criteria,
-		));
+	    $models = self::fetchSubList(self::ROOT_PARENT_ID);
+	    return $models;
+	}
+	
+	public static function fetchSubList($tid)
+	{
+	    $tid = (int)$tid;
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('parent_id'=>$tid));
+	    $criteria->order = 'order asc, id asc';
+	    $models = self::model()->find($criteria);
+	
+	    return $models;
+	}
+	
+	protected function beforeSave()
+	{
+	    if ($this->getIsNewRecord()) {
+	        $this->orderid = $this->post_nums = 0;
+	    }
+	
+	    return true;
+	}
+	
+	protected function beforeDelete()
+	{
+	    if ($this->subCount > 0)
+	        $this->addError('name', t('topic_has_subcategory'));
+	    if ($this->postCount > 0)
+	        $this->addError('name', t('topic_has_post'));
+	
+	    return $this->hasErrors('name');
 	}
 }
+
+

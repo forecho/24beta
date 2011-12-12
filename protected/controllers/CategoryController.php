@@ -1,20 +1,20 @@
 <?php
-class TopicController extends Controller
+class CategoryController extends Controller
 {
-    public function actionPosts($tid)
+    public function actionPosts($cid)
     {
-        $tid = (int)$tid;
-        $data = self::fetchTopicPosts($tid);
+        $cid = (int)$cid;
+        $data = self::fetchTopicPosts($cid);
         
         $this->render('posts', $data);
     }
     
-    private static function fetchTopicPosts($tid)
+    private static function fetchCategoryPosts($cid)
     {
         $criteria = new CDbCriteria();
         $criteria->order = 't.state desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->addColumnCondition(array('topic_id' => $tid))
+        $criteria->addColumnCondition(array('category_id' => $cid))
             ->addCondition('t.state != :state');
     
         $count = Post::model()->count($criteria, array(':state'=>POST_DISABLED));
@@ -27,16 +27,5 @@ class TopicController extends Controller
             'posts' => $posts,
             'pages' => $pages,
         );
-    }
-
-    public function actionList()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->order = 'id asc';
-        $topics = Topic::model()->findAll($criteria);
-        
-        $this->render('list', array(
-            'topics' => $topics,
-        ));
     }
 }

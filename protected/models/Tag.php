@@ -39,9 +39,6 @@ class Tag extends CActiveRecord
 	        array('name', 'unique'),
 	        array('post_nums', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, post_nums', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,25 +65,4 @@ class Tag extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-
-		$criteria->compare('name',$this->name,true);
-
-		$criteria->compare('post_nums',$this->post_nums,true);
-
-		return new CActiveDataProvider('Tag', array(
-			'criteria'=>$criteria,
-		));
-	}
 }

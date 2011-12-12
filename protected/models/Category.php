@@ -12,6 +12,8 @@
  */
 class Category extends CActiveRecord
 {
+    const ROOT_PARENT_ID = 0;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Category the static model class
@@ -41,9 +43,7 @@ class Category extends CActiveRecord
 	        array('name', 'unique'),
 	        array('parent_id, post_nums, orderid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, parent_id, name, post_nums, orderid', 'safe', 'on'=>'search'),
+	        array('name', 'filter', 'filter'=>'strip_tags'),
 		);
 	}
 
@@ -55,6 +55,10 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+	        'postCount' => array(self::STAT, 'Post', 'category_id'),
+	        'subCount' => array(self::STAT, 'Category', 'parent_id'),
+	        'subs' => array(self::HAS_MANY, 'Category', 'parent_id'),
+	        'parent' => array(self::BELONGS_TO, 'Category', 'parent_id'),
 		);
 	}
 
@@ -72,29 +76,40 @@ class Category extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-
-		$criteria->compare('parent_id',$this->parent_id,true);
-
-		$criteria->compare('name',$this->name,true);
-
-		$criteria->compare('post_nums',$this->post_nums,true);
-
-		$criteria->compare('orderid',$this->orderid,true);
-
-		return new CActiveDataProvider('Category', array(
-			'criteria'=>$criteria,
-		));
-	}
+    public static function fetchRootList()
+    {
+        $models = self::fetchSubList(self::ROOT_PARENT_ID);
+        return $models;
+    }
+    
+    public static function fetchSubList($pid)
+    {
+        $pid = (int)$pid;
+        $criteria = new CDbCriteria();
+        $criteria->addColumnCondition(array('parent_id'=>$pid));
+        $criteria->order = 'order asc, id asc';
+        $models = self::model()->find($criteria);
+        
+        return $models;
+    }
+    
+    protected function beforeSave()
+    {
+        if ($this->getIsNewRecord()) {
+            $this->orderid = $this->post_nums = 0;
+        }
+        
+        return true;
+    }
+    
+    protected function beforeDelete()
+    {
+        if ($this->subCount > 0)
+            $this->addError('name', t('cateogry_has_subcategory'));
+        if ($this->postCount > 0)
+            $this->addError('name', t('cateogry_has_post'));
+        
+        return $this->hasErrors('name');
+    }
 }
+
