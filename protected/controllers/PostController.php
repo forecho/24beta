@@ -4,7 +4,7 @@ class PostController extends Controller
     public function actionShow($id)
     {
         $id = (int)$id;
-        $post = Post::model()->findByPk($id, array('state != :state'), array(':state'=>POST_DISABLED));
+        $post = Post::model()->findByPk($id, array('state != :state'), array(':state'=>Post::STATE_DISABLED));
         
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));

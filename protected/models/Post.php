@@ -28,6 +28,10 @@
  */
 class Post extends CActiveRecord
 {
+    const STATE_DISABLED = 0;
+    const STATE_ENABLED = 10;
+    const STATE_TOP = 20;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Post the static model class

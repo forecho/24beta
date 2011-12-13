@@ -3,8 +3,8 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        echo user()->guestName;exit;
-        $data = self::fetchLatestPosts();
+        echo user()->guestName;
+        //$data = self::fetchLatestPosts();
         
         $this->render('index', $data);
     }
@@ -14,13 +14,14 @@ class SiteController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 't.state desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->addCondition('t.state != ' . POST_DISABLED);
+        $criteria->addCondition('t.state != :state');
+        $params = array(':state'=>Post::STATE_DISABLED);
         
-        $count = Post::model()->count($criteria);
+        $count = Post::model()->count($criteria, $params);
         $pages = new CPagination($count);
         $pages->setPageSize(param('postCountOfPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->findAll($criteria);
+        $posts = Post::model()->with('category', 'topic')->findAll($criteria, $params);
 
         return array(
             'posts' => $posts,

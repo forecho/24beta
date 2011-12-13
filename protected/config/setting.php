@@ -3,13 +3,6 @@
  * 此文件为默认配置文件，请勿修改
  */
 
-define('POST_DISABLED', 0);
-define('POST_ENABLED', 10);
-define('POST_TOP', 20);
-
-define('COMMENT_DISABLED', 0);
-define('COMMENT_ENABLED', 1);
-
 return array(
     // 网站名称
     'sitename' => '24beta',

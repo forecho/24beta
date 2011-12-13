@@ -1,4 +1,6 @@
 <?php
+defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+
 $params = require(dirname(__FILE__) . DS . 'params.php');
 $setting = require(dirname(__FILE__) . DS . 'setting.php');
 $params = array_merge($setting, $params);
@@ -19,6 +21,12 @@ return array(
         'application.helpers.*',
         'application.libs.*',
 	),
+        
+    'modules' => array(
+        'admin' => array(
+            'layout' => 'main',
+        ),
+    ),
     'preload' => array('log'),
     'components' => array(
         'log' => array(
@@ -71,7 +79,7 @@ return array(
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
         'urlManager' => array(
-            'urlFormat' => 'get',
+            'urlFormat' => 'path',
 		    'showScriptName' => false,
             'cacheID' => 'fcache',
             'rules' => array(

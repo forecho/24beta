@@ -4,7 +4,7 @@ class CommentController extends Controller
     public function actionList($pid)
     {
         $pid = (int)$pid;
-        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>POST_DISABLED));
+        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::POST_DISABLED));
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
         
@@ -22,7 +22,7 @@ class CommentController extends Controller
         $criteria->limit = param('commentCountOfPage');
         $criteria->addColumnCondition(array(
                 'post_id' => $pid,
-                'state' => COMMENT_ENABLED,
+                'state' => Comment::STATE_ENABLED,
             ));
         
         $comments = Comment::model()->findAll($criteria);
@@ -33,7 +33,7 @@ class CommentController extends Controller
     public function actionHotlist($pid)
     {
         $pid = (int)$pid;
-        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>POST_DISABLED));
+        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::STATE_DISABLED));
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
         
@@ -53,7 +53,7 @@ class CommentController extends Controller
         $criteria->limit = param('commentCountOfPage');
         $criteria->addColumnCondition(array(
                 'post_id' => $pid,
-                'state' => COMMENT_ENABLED,
+                'state' => Comment::STATE_ENABLED,
             ))
             ->addCondition('up_nums > :hot_nums');
     

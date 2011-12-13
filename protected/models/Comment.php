@@ -24,6 +24,10 @@
  */
 class Comment extends CActiveRecord
 {
+    
+    const STATE_DISABLED = 0;
+    const STATE_ENABLED = 1;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Comment the static model class

@@ -17,11 +17,11 @@ class TopicController extends Controller
         $criteria->addColumnCondition(array('topic_id' => $tid))
             ->addCondition('t.state != :state');
     
-        $count = Post::model()->count($criteria, array(':state'=>POST_DISABLED));
+        $count = Post::model()->count($criteria, array(':state'=>Post::STATE_DISABLED));
         $pages = new CPagination($count);
         $pages->setPageSize(param('postCountOfPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->findAll($criteria, array(':state'=>POST_DISABLED));
+        $posts = Post::model()->with('category', 'topic')->findAll($criteria, array(':state'=>Post::STATE_DISABLED));
     
         return array(
             'posts' => $posts,
