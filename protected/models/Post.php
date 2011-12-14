@@ -85,21 +85,21 @@ class Post extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'category_id' => 'Category',
-			'topic_id' => 'Topic',
-			'title' => 'Title',
-			'content' => 'Content',
-			'create_time' => 'Create Time',
-			'create_ip' => 'Create Ip',
-			'score' => 'Score',
-			'score_nums' => 'Score Nums',
-			'comment_nums' => 'Comment Nums',
-			'user_id' => 'User',
-			'user_name' => 'User Name',
-	        'source' => 'Source',
-			'tags' => 'Tags',
-			'state' => 'State',
+			'id' => 'ID',
+			'category_id' => t('category'),
+			'topic_id' => t('topic'),
+			'title' => t('title'),
+			'content' => t('content'),
+			'create_time' => t('create_time'),
+			'create_ip' => t('create_ip'),
+			'score' => t('score'),
+			'score_nums' => t('score_nums'),
+			'comment_nums' => t('comment_nums'),
+			'user_id' => t('user'),
+			'user_name' => t('user_name'),
+	        'source' => t('source'),
+			'tags' => t('tags'),
+			'state' => t('state'),
 		);
 	}
 

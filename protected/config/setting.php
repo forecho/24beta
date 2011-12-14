@@ -48,4 +48,16 @@ return array(
     'formatDate' => 'Y-m-d',
     'formatTime' => 'H:i:s',
     'formatShortTime' => 'H:i',
+    
+    
+    
+    /*
+     * 管理后台相关配置
+     */
+    // 文章列表每页显示的文章数量
+    'adminPostCountOfPage' => 30,
+    // 每页显示的评论数量
+    'adminCommentCountOfPage' => 0,
+
 );
+
