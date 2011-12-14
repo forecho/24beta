@@ -36,11 +36,11 @@ return array(
                     'class'=>'CFileLogRoute',
                     'categories'=>'system.db.*',
                 ),
-                array(
+                /* array(
                     'class'=>'CWebLogRoute',
                     'levels'=>'trace,info,error,notic',
                     'categories'=>'system.db.*',
-                ),
+                ), */
             ),
         ),
         'user' => array(
