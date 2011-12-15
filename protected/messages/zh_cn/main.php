@@ -7,6 +7,8 @@ return array(
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
         
+    'view_detail' => '查看详情',
+    'post_toolbar_text' => '已有%d个评论&nbsp;&nbsp;|&nbsp;&nbsp;%d次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:%s分',
         
     /*
      * model Post attributeLabels
@@ -14,7 +16,6 @@ return array(
     'category' => '分类',
     'topic' => '主题',
     'title' => '标题',
-    'content' => '内容',
     'create_time' => '添加时间',
     'create_ip' => 'IP',
     'score' => '评分',
@@ -25,4 +26,6 @@ return array(
     'source' => '来源',
     'tags' => '标签',
     'state' => '状态',
+    'summary' => '简述',
+    'content' => '内容',
 );

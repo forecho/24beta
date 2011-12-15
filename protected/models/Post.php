@@ -8,7 +8,6 @@
  * @property integer $category_id
  * @property integer $topic_id
  * @property string $title
- * @property string $content
  * @property integer $create_time
  * @property string $create_ip
  * @property integer $score
@@ -19,12 +18,18 @@
  * @property string $source
  * @property string $tags
  * @property integer $state
+ * @property string $summary
+ * @property string $content
  * @property string $filterContent
  * @property string $crateTime
  * @property string $authorName
  * @property string $authorLink
  * @property float $rating
  * @property string $sourceLink
+ * @property string $url
+ * @property string $absoluteUrl
+ * @property string $relativeUrl
+ * @property string $titleLink
  */
 class Post extends CActiveRecord
 {
@@ -62,7 +67,7 @@ class Post extends CActiveRecord
 			array('source, title, tags', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name', 'length', 'max'=>50),
-			array('content', 'safe'),
+			array('summary, content', 'safe'),
 		);
 	}
 
@@ -89,7 +94,6 @@ class Post extends CActiveRecord
 			'category_id' => t('category'),
 			'topic_id' => t('topic'),
 			'title' => t('title'),
-			'content' => t('content'),
 			'create_time' => t('create_time'),
 			'create_ip' => t('create_ip'),
 			'score' => t('score'),
@@ -100,6 +104,8 @@ class Post extends CActiveRecord
 	        'source' => t('source'),
 			'tags' => t('tags'),
 			'state' => t('state'),
+			'summary' => t('summary'),
+			'content' => t('content'),
 		);
 	}
 
@@ -142,7 +148,7 @@ class Post extends CActiveRecord
 	public function getRating()
 	{
 	    $nums = $this->score_nums ? $this->score_nums : 1;
-	    return sprintf('.1f', $this->score / $nums);
+	    return sprintf('%.1f', $this->score / $nums);
 	}
 	
 	public function getSourceLink()
@@ -153,6 +159,26 @@ class Post extends CActiveRecord
 	        return l($this->source, $this->source, array('target'=>'_blank', array('class'=>'post-source')));
 	}
 	
+	public function getUrl($absolute = false)
+	{
+	    return $absolute ? aurl('post/show', array('id'=>$this->id)) : url('post/show', array('id'=>$this->id));
+	}
+	
+	public function getAbsoluteUrl()
+	{
+	    return $this->getUrl(true);
+	}
+	
+	public function getRelativeUrl()
+	{
+	    return $this->getUrl(false);
+	}
+	
+	public function getTitleLink($target = '_blank')
+	{
+	    return l($this->title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -160,6 +186,8 @@ class Post extends CActiveRecord
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
+	        if (empty($this->summary))
+	            $this->summary = mb_substr($this->content, 0, param('subSummaryLen'), app()->charset);
 	    }
 	    return true;
 	}
@@ -186,6 +214,16 @@ class Post extends CActiveRecord
 	        ->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
 	    
 	    // @todo 此处删除文章后对应的图片也应该删除
+	}
+
+	protected function afterFind()
+	{
+	    if (empty($this->summary)) {
+	        $content = strip_tags($this->content);
+	        $this->summary = mb_substr($content, 0, param('subSummaryLen'), app()->charset);
+	    }
+	    else
+	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
 	}
 }
 

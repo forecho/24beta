@@ -1,1 +1,19 @@
 @CHARSET "UTF-8";
+.beta-container {background:#FFFFFF; padding-top:10px;}
+.beta-header {margin-bottom:10px;}
+.beta-sidebar {width:338px; float:right;}
+.beta-content {width:597px; float:left;}
+.beta-pages {font-size:14px;}
+.beta-pages a {font-size:14px;}
+
+
+.post-item {border:1px solid gray; margin-bottom:10px;}
+.post-item dt, .post-item dd {padding:0 10px;}
+.post-item h1 {font-size:18px; margin-top:5px;}
+.post-item .post-extra {font-size:12px;}
+.post-item .post-summary {margin:10px 0px;}
+.post-item .post-item-toolbar {font-size:12px; line-height:28px; height:28px; padding:0 10px; background:lightgray;}
+
+.beta-sidebar-block {border:1px solid gray; margin-bottom:10px;}
+.beta-sidebar-block h2 {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:lightgray;}
+.beta-sidebar-block .content {margin:10px;}

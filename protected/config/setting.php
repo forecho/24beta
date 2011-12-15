@@ -58,6 +58,11 @@ return array(
     'adminPostCountOfPage' => 30,
     // 每页显示的评论数量
     'adminCommentCountOfPage' => 0,
-
+    // 如果简述没写，则截取内容的长度
+    'subSummaryLen' => 200,
+    
+    
+    // 简述中可以使用的html标签
+    'summaryHtmlTags' => '<b><strong><a>',
 );
 

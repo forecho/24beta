@@ -6,12 +6,22 @@
     <meta name="author" content="24beta.com" />
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-global.css');?>" />
     <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-main.css');?>" />
     <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.1.min.js');?>"></script>
 </head>
 <body>
-<h1>layout</h1>
-<?php echo $content;?>
+<div class="container beta-container">
+    <div class="beta-header">
+        <div class="beta-logo"><img src="<?php echo tbu('images/logo.png');?>" alt="<?php echo app()->name;?> LOGO" /></div>
+    </div>
+    <div class="beta-entry">
+        <?php echo $content;?>
+    </div>
+    <div class="beta-footer">
+        footer
+    </div>
+</div>
 </body>
 </html>
 
