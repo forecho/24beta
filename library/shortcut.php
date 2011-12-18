@@ -176,6 +176,19 @@ function auth()
     return Yii::app()->authManager;
 }
 
+/**
+ * 此函数返回附件地址相对于BasePath的物理路径
+ * @param string $file 附件文件相对path地址
+ * @return string
+ */
+function fbp($file = null)
+{
+    static $uploadBasePath = null;
+    if ($uploadBasePath === null)
+        $uploadBasePath = rtrim(param('uploadBasePath'), DS) . DS;
+
+    return $file === null ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
+}
 
 /**
  * 此函数返回附件地址的BaseUrl
@@ -188,7 +201,24 @@ function fbu($url = null)
     if ($uploadBaseUrl === null)
         $uploadBaseUrl = rtrim(param('uploadBaseUrl'), '/') . '/';
     
-    return $url === null ? $uploadBaseUrl : $uploadBaseUrl . ltrim($url, '/');
+    if ($url === null)
+        return $uploadBaseUrl;
+    else
+        return (stripos($url, 'http://') === false) ? $uploadBaseUrl . ltrim($url, '/') : $url;
+}
+
+/**
+ * 此函数返回附件地址相对于BasePath的物理路径
+ * @param string $file 附件文件相对path地址
+ * @return string
+ */
+function sbp($file = null)
+{
+    static $resourcePath = null;
+    if ($resourcePath === null)
+        $resourcePath = rtrim(param('resourcePath'), DS) . DS;
+
+    return $file === null ? $resourcePath : $resourcePath . ltrim($file, DS);
 }
 
 /**
@@ -202,7 +232,10 @@ function sbu($url = null)
     if ($resourceBaseUrl === null)
         $resourceBaseUrl = rtrim(param('resourceBaseUrl'), '/') . '/';
     
-    return $url === null ? $resourceBaseUrl : $resourceBaseUrl . ltrim($url, '/');
+    if ($url === null)
+        return $resourceBaseUrl;
+    else
+        return (stripos($url, 'http://') === false) ? $resourceBaseUrl . ltrim($url, '/') : $url;
 }
 
 /**
