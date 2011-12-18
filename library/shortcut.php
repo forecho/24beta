@@ -187,7 +187,7 @@ function fbp($file = null)
     if ($uploadBasePath === null)
         $uploadBasePath = rtrim(param('uploadBasePath'), DS) . DS;
 
-    return $file === null ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
+    return empty($url) ? $uploadBasePath : $uploadBasePath . ltrim($file, DS);
 }
 
 /**
@@ -201,7 +201,7 @@ function fbu($url = null)
     if ($uploadBaseUrl === null)
         $uploadBaseUrl = rtrim(param('uploadBaseUrl'), '/') . '/';
     
-    if ($url === null)
+    if (empty($url))
         return $uploadBaseUrl;
     else
         return (stripos($url, 'http://') === false) ? $uploadBaseUrl . ltrim($url, '/') : $url;
@@ -218,7 +218,7 @@ function sbp($file = null)
     if ($resourcePath === null)
         $resourcePath = rtrim(param('resourcePath'), DS) . DS;
 
-    return $file === null ? $resourcePath : $resourcePath . ltrim($file, DS);
+    return empty($url) ? $resourcePath : $resourcePath . ltrim($file, DS);
 }
 
 /**
@@ -232,7 +232,7 @@ function sbu($url = null)
     if ($resourceBaseUrl === null)
         $resourceBaseUrl = rtrim(param('resourceBaseUrl'), '/') . '/';
     
-    if ($url === null)
+    if (empty($url))
         return $resourceBaseUrl;
     else
         return (stripos($url, 'http://') === false) ? $resourceBaseUrl . ltrim($url, '/') : $url;
