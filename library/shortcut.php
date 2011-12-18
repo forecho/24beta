@@ -204,7 +204,7 @@ function fbu($url = null)
     if (empty($url))
         return $uploadBaseUrl;
     else
-        return (stripos($url, 'http://') === false) ? $uploadBaseUrl . ltrim($url, '/') : $url;
+        return (stripos($url, 'http://') === 0) ? $url : $uploadBaseUrl . ltrim($url, '/');
 }
 
 /**
@@ -235,7 +235,7 @@ function sbu($url = null)
     if (empty($url))
         return $resourceBaseUrl;
     else
-        return (stripos($url, 'http://') === false) ? $resourceBaseUrl . ltrim($url, '/') : $url;
+        return (stripos($url, 'http://') === 0) ? $url : $resourceBaseUrl . ltrim($url, '/');
 }
 
 /**
