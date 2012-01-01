@@ -1,16 +1,5 @@
 <div class="beta-content">
-    <?php foreach ($posts as $p):?>
-    <dl class="post-item">
-        <dt><h1><?php echo $p->titleLink;?></h1></dt>
-        <dd class="post-extra">ugmbbc发布于 2011-12-15 14:01:26 | 2029 次阅读 | 2次推荐</dd>
-        <dd class="post-summary"><?php echo $p['summary'];?></dd>
-        <dd class="post-item-toolbar">
-            <strong><?php echo l(t('view_detail'), $p->url, array('target'=>'_blank'));?></strong>
-            <?php printf(t('post_toolbar_text'), $p->comment_nums, $p->score_nums, $p->rating);?>
-        </dd>
-    </dl>
-    <?php endforeach;?>
-    <div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages));?></div>
+    <?php $this->renderPartial('/post/_summary_list', array('posts'=>$posts, 'pages'=>$pages));?>
 </div>
 <div class="beta-sidebar">
     <div class="beta-sidebar-block">

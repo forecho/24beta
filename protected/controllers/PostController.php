@@ -9,10 +9,10 @@ class PostController extends Controller
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
 
-        
-        
+        $comments = range(0, 10);
         $this->render('show', array(
             'post' => $post,
+            'comments' => $comments,
         ));
     }
     
