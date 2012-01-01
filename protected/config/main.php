@@ -49,18 +49,18 @@ return array(
         ),
         'db' => array(
             'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=localhost; port=3306; dbname=cd_24beta',
+			'connectionString' => 'mysql:host=127.0.0.1; port=3306; dbname=cd_24beta',
 			'username' => 'root',
 		    'password' => '123',
 		    'charset' => 'utf8',
 		    'persistent' => true,
 		    'tablePrefix' => 'cd_',
-            'enableParamLogging' => true,
-            'enableProfiling' => true,
-		    'schemaCacheID' => 'fcache',
-		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
-		    'queryCacheID' => 'cache',
-		    'queryCachingDuration' => 60,
+//             'enableParamLogging' => true,
+//             'enableProfiling' => true,
+// 		    'schemaCacheID' => 'fcache',
+// 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
+// 		    'queryCacheID' => 'cache',
+// 		    'queryCachingDuration' => 60,
         ),
         'cache' => array(
             'class' => 'CFileCache',
