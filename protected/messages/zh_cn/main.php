@@ -7,8 +7,6 @@ return array(
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
         
-    'view_detail' => '查看详情',
-    'post_toolbar_text' => '已有%d个评论&nbsp;&nbsp;|&nbsp;&nbsp;%d次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:%s分',
         
     /*
      * model Post attributeLabels
@@ -28,4 +26,17 @@ return array(
     'state' => '状态',
     'summary' => '简述',
     'content' => '内容',
+    
+    'post_comment' => '发表评论',
+    'view_detail' => '查看详情',
+    'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:{score}分',
+    'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;{visit}次阅读&nbsp;&nbsp;{digg}次推荐',
+    'comment_list' => '评论列表',
+    'hot_comment_list' => '热门评论',
+    'have_no_comments' => '当前暂无热门评论',
+    'comment_extra' => '第&nbsp;<b>{floor}</b>&nbsp;楼&nbsp;{author}&nbsp;发表于&nbsp;{time}',
+    'reply_comment' => '回复',
+    'support_comment' => '支持({n})',
+    'against_comment' => '反对({n})',
+    'report_comment' => '举报',
 );

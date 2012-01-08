@@ -55,8 +55,8 @@ return array(
 		    'charset' => 'utf8',
 		    'persistent' => true,
 		    'tablePrefix' => 'cd_',
-//             'enableParamLogging' => true,
-//             'enableProfiling' => true,
+            'enableParamLogging' => true,
+            'enableProfiling' => true,
 // 		    'schemaCacheID' => 'fcache',
 // 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
 // 		    'queryCacheID' => 'cache',

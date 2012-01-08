@@ -108,7 +108,21 @@ class Post extends CActiveRecord
 			'content' => t('content'),
 		);
 	}
-
+	
+	public function scopes()
+	{
+	    return array(
+            'published' => array(
+                'condition' => 'state != ' . self::STATE_DISABLED,
+            ),
+            'recently' => array(
+                'condition' => 'state = ' . self::STATE_ENABLED,
+                'order' => 'id desc',
+                'limit' => 10,
+            ),
+	    );
+	}
+	
 	public function getFilterContent()
 	{
 	    return nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a>'));
@@ -177,6 +191,18 @@ class Post extends CActiveRecord
 	public function getTitleLink($target = '_blank')
 	{
 	    return l($this->title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
+	}
+	
+	public function getPostToolbar()
+	{
+	    // @todo 此处authorName最终应该为authorLink
+	    return array('{comment_nums}'=>$this->comment_nums, '{score_nums}'=>$this->score_nums, '{score}'=>$this->rating);
+	}
+	
+	public function getPostExtra()
+	{
+	    // @todo 此处authorName最终应该为authorLink
+	    return array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>0, '{digg}'=>0);
 	}
 	
 	protected function beforeSave()

@@ -13,13 +13,13 @@ class SiteController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 't.state desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->addCondition('t.state != ' . Post::STATE_DISABLED);
+        $criteria->scopes = 'published';
 
-        $count = Post::model()->count($criteria, $params);
+        $count = Post::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->setPageSize(param('postCountOfPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->findAll($criteria, $params);
+        $posts = Post::model()->with('category', 'topic')->together()->findAll($criteria);
 
         return array(
             'posts' => $posts,

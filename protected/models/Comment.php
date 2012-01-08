@@ -96,6 +96,16 @@ class Comment extends CActiveRecord
 			'state' => 'State',
 		);
 	}
+	
+	public function scopes()
+	{
+	    return array(
+            'recently' => array(
+                'order' => 'id desc',
+                'limit' => 10,
+            ),
+        );
+	}
 
 	public function getFilterContent()
 	{
@@ -130,6 +140,41 @@ class Comment extends CActiveRecord
 	{
 	    $name = $this->getAuthorName();
 	    return $this->user_site ? l($name, $this->user_site, array('target'=>'_blank')) : $name;
+	}
+	
+	public static function fetchList($postid, $page = 1)
+	{
+	    $postid = (int)$postid;
+	    $criteria = new CDbCriteria();
+	    $criteria->order = 'id desc';
+	    $criteria->limit = param('commentCountOfPage');
+	    $offset = ($page - 1) * $criteria->limit;
+	    $criteria->offset = $offset;
+	    $criteria->addColumnCondition(array(
+            'post_id' => $postid,
+            'state' => self::STATE_ENABLED,
+	    ));
+	
+	    $comments = Comment::model()->findAll($criteria);
+	    return $comments;
+	}
+	
+	public static function fetchHotList($postid, $page = 1)
+	{
+	    $postid = (int)$postid;
+	    $criteria = new CDbCriteria();
+	    $criteria->order = 'id desc';
+	    $criteria->limit = param('hotCommentCountOfPage');
+	    $offset = ($page - 1) * $criteria->limit;
+	    $criteria->offset = $offset;
+	    $criteria->addColumnCondition(array(
+	            'post_id' => $postid,
+                'state' => self::STATE_ENABLED)
+            )
+            ->addCondition('up_nums > ' . param('upNumsOfCommentIsHot'));
+	
+	    $comments = Comment::model()->findAll($criteria);
+	    return $comments;
 	}
 	
 	protected function beforeSave()

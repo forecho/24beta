@@ -1,64 +1,33 @@
 <?php
 class CommentController extends Controller
 {
-    public function actionList($pid)
+    public function actionList($postid, $page = 1)
     {
-        $pid = (int)$pid;
+        $postid = (int)$postid;
         $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::POST_DISABLED));
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
         
-        $comments = self::fetchList($pid);
+        $comments = Comment::fetchList($postid, $page);
         
         $this->renderPartial('list', array(
             'comments' => $comments,
         ));
     }
     
-    private static function fetchList($pid)
+    public function actionHotlist($pid, $page = 1)
     {
-        $criteria = new CDbCriteria();
-        $criteria->order = 'id desc';
-        $criteria->limit = param('commentCountOfPage');
-        $criteria->addColumnCondition(array(
-                'post_id' => $pid,
-                'state' => Comment::STATE_ENABLED,
-            ));
-        
-        $comments = Comment::model()->findAll($criteria);
-        
-        return $comments;
-    }
-    
-    public function actionHotlist($pid)
-    {
-        $pid = (int)$pid;
+        $postid = (int)$postid;
         $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::STATE_DISABLED));
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
         
-        $comments = self::fetchHotList($pid);
+        $comments = Comment::fetchHotList($postid, $page);
         
         $this->renderPartial('list', array(
             'comments' => $comments,
         ));
     }
     
-    private static function fetchHotList($pid)
-    {
-        if (null === $criteria)
-            $criteria = new CDbCriteria();
     
-        $criteria->order = 'id desc';
-        $criteria->limit = param('commentCountOfPage');
-        $criteria->addColumnCondition(array(
-                'post_id' => $pid,
-                'state' => Comment::STATE_ENABLED,
-            ))
-            ->addCondition('up_nums > :hot_nums');
-    
-        $comments = Comment::model()->findAll($criteria, array(':hot_nums'=>param('upNumsOfCommentIsHot')));
-    
-        return $comments;
-    }
 }
