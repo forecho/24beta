@@ -31,7 +31,7 @@
 .beta-comment-item:last-child {border-bottom:0px;}
 .beta-comment-item dt, .beta-comment-item dd {padding:0px 10px;}
 .beta-comment-item dt {padding-top:10px; font-weight:normal;}
-.post-extra span {border-bottom:1px solid lightgray; padding:5px 0;}
+.post-extra span {border-bottom:1px solid lightgray; padding:5px 0; color:#555555;}
 .beta-comment-item .comment-content {padding:10px; line-height:22px;}
 .beta-comment-item .comment-toolbar {height:24px; line-height:24px; background:lightgray;}
 .beta-comment-item .comment-toolbar a {margin-right:10px;}

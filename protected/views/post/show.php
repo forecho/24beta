@@ -14,23 +14,6 @@
     <div class="beta-sidebar-block beta-hot-comment">
         <?php $this->renderPartial('/comment/_hot_list', array('comments'=>$hotComments));?>
     </div>
-    <div class="beta-sidebar-block">
-        <h2>最近发表文章</h2>
-        <ul class="content unstyled">
-            <li>惠普决定保留webOS系统 转向开源项目(122)</li>
-            <li>《时代周报》:失控的腾讯帝国 (121)</li>
-            <li>雷军：用互联网的思想重造手机(118)</li>
-            <li>[组图+视频]惠普公司新版“四道杠”LO...(115)</li>
-        </ul>
-    </div>
-    <div class="beta-sidebar-block">
-        <h2>最近发表文章</h2>
-        <ul class="content unstyled">
-            <li>惠普决定保留webOS系统 转向开源项目(122)</li>
-            <li>《时代周报》:失控的腾讯帝国 (121)</li>
-            <li>雷军：用互联网的思想重造手机(118)</li>
-            <li>[组图+视频]惠普公司新版“四道杠”LO...(115)</li>
-        </ul>
-    </div>
+    <?php $this->widget('BetaLatestPosts', array('title'=>t('relate_posts'), 'tid'=>$post->topic_id));?>
 </div>
 <div class="clear"></div>

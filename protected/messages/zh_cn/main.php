@@ -19,6 +19,8 @@ return array(
     'score' => '评分',
     'score_nums' => '评分次数',
     'comment_nums' => '评论数',
+    'digg_nums' => '支持数',
+    'visit_nums' => '浏览数',
     'user_id' => '用户ID',
     'user_name' => '用户名',
     'source' => '来源',
@@ -39,4 +41,9 @@ return array(
     'support_comment' => '支持({n})',
     'against_comment' => '反对({n})',
     'report_comment' => '举报',
+        
+    'hottest_posts' => '热门文章排行',
+    'latest_posts' => '最新发布文章',
+    'relate_posts' => '相关文章',
+    'no_posts' => '当前暂无文章',
 );

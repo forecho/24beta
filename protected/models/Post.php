@@ -13,6 +13,8 @@
  * @property integer $score
  * @property integer $score_nums
  * @property integer $comment_nums
+ * @property integer $digg_nums
+ * @property integer $visit_nums
  * @property integer $user_id
  * @property string $user_name
  * @property string $source
@@ -63,7 +65,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, user_id, create_time, state', 'numerical', 'integerOnly'=>true),
+	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state', 'numerical', 'integerOnly'=>true),
 			array('source, title, tags', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name', 'length', 'max'=>50),
@@ -99,6 +101,8 @@ class Post extends CActiveRecord
 			'score' => t('score'),
 			'score_nums' => t('score_nums'),
 			'comment_nums' => t('comment_nums'),
+			'digg_nums' => t('digg_nums'),
+			'visit_nums' => t('visit_nums'),
 			'user_id' => t('user'),
 			'user_name' => t('user_name'),
 	        'source' => t('source'),
@@ -188,9 +192,11 @@ class Post extends CActiveRecord
 	    return $this->getUrl(false);
 	}
 	
-	public function getTitleLink($target = '_blank')
+	public function getTitleLink($len = 0, $target = '_blank')
 	{
-	    return l($this->title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
+	    $len = (int)$len;
+	    $title = ($len === 0) ? $this->title : $this->subTitle($len);
+	    return l($title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
 	}
 	
 	public function getPostToolbar()
@@ -201,8 +207,12 @@ class Post extends CActiveRecord
 	
 	public function getPostExtra()
 	{
-	    // @todo 此处authorName最终应该为authorLink
-	    return array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>0, '{digg}'=>0);
+	    return array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums);
+	}
+	
+	public function subTitle($len)
+	{
+	    return mb_strimwidth($this->title, 0, $len, '...', app()->charset);
 	}
 	
 	protected function beforeSave()

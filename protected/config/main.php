@@ -20,6 +20,7 @@ return array(
         'application.extensions.*',
         'application.helpers.*',
         'application.libs.*',
+        'application.widgets.*',
 	),
         
     'modules' => array(

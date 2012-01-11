@@ -13,7 +13,7 @@
 <body>
 <div class="container beta-container">
     <div class="beta-header">
-        <div class="beta-logo"><img src="<?php echo tbu('images/logo.png');?>" alt="<?php echo app()->name;?> LOGO" /></div>
+        <div class="beta-logo"><a href="<?php echo abu();?>"><img src="<?php echo tbu('images/logo.png');?>" alt="<?php echo app()->name;?> LOGO" /></a></div>
     </div>
     <div class="beta-entry">
         <?php echo $content;?>
