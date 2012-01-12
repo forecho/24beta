@@ -14,6 +14,7 @@ class CdImage
     private $_image;
     private $_original;
     private $_imageType = IMAGETYPE_GIF;
+    private $_lastSaveFile;
     
     private static $_createFunctions = array(
         IMAGETYPE_GIF => 'imagecreatefromgif',
@@ -59,7 +60,7 @@ class CdImage
     /**
      * 从文件地址载入图像
      * @param string $data 图像路径或图像数据
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function load($data)
     {
@@ -134,7 +135,7 @@ class CdImage
     
     /**
      * 将图片数据还原为初始值
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function revert()
     {
@@ -169,7 +170,7 @@ class CdImage
      * 保存图像到一个文件中
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function save($filename, $mode = null)
     {
@@ -178,6 +179,8 @@ class CdImage
         self::saveAlpha($this->_image);
         if (!$func($this->_image, $filename))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
@@ -188,13 +191,15 @@ class CdImage
      * 将图像保存为gif类型
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function saveAsGif($filename, $mode = null)
     {
         $filename .= image_type_to_extension(IMAGETYPE_GIF);
         if (!imagegif($this->_image, $filename))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
@@ -206,33 +211,37 @@ class CdImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $quality 图像质量，取值为0-100
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
-    public function saveAsJpeg($filename, $quality = 100, $mode = null)
+    public function saveAsJpeg($filename, $quality = 75, $mode = null)
     {
         $filename .= image_type_to_extension(IMAGETYPE_JPEG);
         if (!imagejpeg($this->_image, $filename, $quality))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
-        return $this;
+        return $filename;
     }
 
 	/**
      * 将图像保存为png类型
      * @param string $filename 图片文件路径，不带扩展名
-     * @param integer $quality 图像质量，取值为0-100
+     * @param integer $quality 图像质量，取值为0-9
      * @param integer $filters PNG图像过滤器，取值参考imagepng函数
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
-    public function saveAsPng($filename, $quality = 100, $filters = 0, $mode = null)
+    public function saveAsPng($filename, $quality = 9, $filters = 0, $mode = null)
     {
         $filename .= image_type_to_extension(IMAGETYPE_PNG);
         self::saveAlpha($this->_image);
         if (!imagepng($this->_image, $filename, $quality, $filters))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
@@ -244,13 +253,15 @@ class CdImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $foreground 前景色，取值为imagecolorallocate()的返回的颜色标识符
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function saveAsWbmp($filename, $foreground  = 0, $mode = null)
     {
         $filename .= image_type_to_extension(IMAGETYPE_WBMP);
-        if (!imagewbmp($this->_image, $filename))
+        if (!imagewbmp($this->_image, $filename, $foreground))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
@@ -262,17 +273,24 @@ class CdImage
      * @param string $filename 图片文件路径，不带扩展名
      * @param integer $foreground 前景色，取值为imagecolorallocate()的返回的颜色标识符
      * @param integer $mode 图像文件的权限
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function saveAsXbm($filename, $foreground  = 0, $mode = null)
     {
         $filename .= image_type_to_extension(IMAGETYPE_XBM);
-        if (!imagexbm($this->_image, $filename))
+        if (!imagexbm($this->_image, $filename, $foreground))
             return false;
+        
+        $this->_lastSaveFile = $filename;
         if ($mode !== null) {
             chmod($filename, $mode);
         }
         return $this;
+    }
+    
+    public function filename()
+    {
+        return $this->_lastSaveFile ? basename($this->_lastSaveFile) : '';
     }
 
     /**
@@ -298,19 +316,21 @@ class CdImage
     /**
      * 以jpge类型输出图像数据
      */
-    public function outputJpeg($quality = 100)
+    public function outputJpeg($quality = 75)
     {
         header('Content-Type: ' . image_type_to_mime_type(IMAGETYPE_JPEG));
-        imagejpeg($this->_image);
+        imagejpeg($this->_image, $quality);
     }
 
     /**
      * 以png类型输出图像数据
+     * @param integer $quality 图像质量，取值为0-9
+     * @param integer $filters PNG图像过滤器，取值参考imagepng函数
      */
-    public function outputPng($quality = 100, $filters = 0)
+    public function outputPng($quality = 9, $filters = 0)
     {
         header('Content-Type: ' . image_type_to_mime_type(IMAGETYPE_PNG));
-        imagepng($this->_image);
+        imagepng($this->_image, $quality, $filters);
     }
     
     /**
@@ -319,7 +339,7 @@ class CdImage
     public function outputWbmp($foreground  = 0)
     {
         header('Content-Type: ' . image_type_to_mime_type(IMAGETYPE_WBMP));
-        imagewbmp($this->_image);
+        imagewbmp($this->_image, $foreground);
     }
     
     /**
@@ -328,7 +348,7 @@ class CdImage
     public function outputXbm($foreground  = 0)
     {
         header('Content-Type: ' . image_type_to_mime_type(IMAGETYPE_XBM));
-        imagewxbm($this->_image);
+        imagewxbm($this->_image, $foreground);
     }
     
     public function outputRaw()
@@ -353,16 +373,16 @@ class CdImage
     public function outputRawJpeg($quality = 100)
     {
         ob_start();
-        imagejpeg($this->_image);
+        imagejpeg($this->_image, null, $quality);
         $content = ob_get_contents();
         ob_end_clean();
         return $content;
     }
     
-    public function outputRawPng($quality = 100, $filters = 0)
+    public function outputRawPng($quality = 9, $filters = 0)
     {
         ob_start();
-        imagepng($this->_image);
+        imagepng($this->_image, null, $quality, $filters);
         $content = ob_get_contents();
         ob_end_clean();
         return $content;
@@ -371,7 +391,7 @@ class CdImage
     public function outputRawWbmp($foreground  = 0)
     {
         ob_start();
-        imagewbmp($this->_image);
+        imagewbmp($this->_image, null, $foreground);
         $content = ob_get_contents();
         ob_end_clean();
         return $content;
@@ -380,7 +400,7 @@ class CdImage
     public function outputRawXbm($foreground  = 0)
     {
         ob_start();
-        imagewxbm($this->_image);
+        imagewxbm($this->_image, null, $foreground);
         $content = ob_get_contents();
         ob_end_clean();
         return $content;
@@ -389,7 +409,7 @@ class CdImage
     /**
      * 等比例绽放图像
      * @param integer $scale 绽放值，取值为0-100
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function scale($scale)
     {
@@ -402,7 +422,7 @@ class CdImage
     /**
      * 根据设定高度等比例绽放图像
      * @param integer $height 图像高度
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function resizeToHeight($height)
     {
@@ -417,7 +437,7 @@ class CdImage
 	/**
      * 根据设定宽度等比例绽放图像
      * @param integer $width 图像宽度
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function resizeToWidth($width)
     {
@@ -433,7 +453,7 @@ class CdImage
      * 改变图像大小
      * @param integer $width 图像宽度
      * @param integer $height 图像高度
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function resize($width, $height)
     {
@@ -449,7 +469,7 @@ class CdImage
      * 裁剪图像
      * @param integer $width 图像宽度
      * @param integer $height 图像高度
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function crop($width, $height)
     {
@@ -483,7 +503,7 @@ class CdImage
     /**
      * 顺时针旋转图片
      * @param integer $degree 取值为0-360
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function rotate($degree = 90)
     {
@@ -494,7 +514,7 @@ class CdImage
     
     /**
      * 将图像转换为灰度的
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function gray()
     {
@@ -504,7 +524,7 @@ class CdImage
     
     /**
      * 将图像颜色反转
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function negate()
     {
@@ -515,7 +535,7 @@ class CdImage
     /**
      * 调整图像亮度
      * @param integer $bright 亮度值
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function brightness($bright)
     {
@@ -527,7 +547,7 @@ class CdImage
     /**
      * 调整图像对比度
      * @param integer $contrast 对比度值
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function contrast($contrast)
     {
@@ -538,7 +558,7 @@ class CdImage
     
     /**
      * 将图像浮雕化
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function emboss()
     {
@@ -549,7 +569,7 @@ class CdImage
     /**
      * 让图像柔滑
      * @param integer $smooth 柔滑度值
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function smooth($smooth)
     {
@@ -560,7 +580,7 @@ class CdImage
 
     /**
      * 将图像使用高斯模糊
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function blur()
     {
@@ -576,7 +596,7 @@ class CdImage
      * @param string $font 字体文件路径
      * @param integer $size 文字大小
      * @param integer $color 颜色值
-     * @return CdcImage CdcImage对象本身
+     * @return CdImage CdImage对象本身
      */
     public function text($text, $opacity = 0.5, $position = 0, $font, $size, $color)
     {
