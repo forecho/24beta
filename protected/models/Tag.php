@@ -64,5 +64,17 @@ class Tag extends CActiveRecord
 			'post_nums' => 'Post Nums',
 		);
 	}
+	
+	public static function filterTags($tags)
+	{
+	    if (empty($tags)) return '';
+	
+	    $tags = preg_replace('/(\s+|，|　)/i', ',', $tags);
+	    $tags = explode(',', $tags);
+	    foreach ((array)$tags as $key => $tag)
+	        $tags[$key] = strip_tags(trim($tag));
+	    
+	    return implode(',', $tags);
+	}
 
 }

@@ -20,6 +20,7 @@
  * @property string $source
  * @property string $tags
  * @property integer $state
+ * @property integer $istop
  * @property string $summary
  * @property string $content
  * @property string $filterContent
@@ -65,7 +66,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state', 'numerical', 'integerOnly'=>true),
+	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop', 'numerical', 'integerOnly'=>true),
 			array('source, title, tags', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name', 'length', 'max'=>50),
@@ -108,6 +109,7 @@ class Post extends CActiveRecord
 	        'source' => t('source'),
 			'tags' => t('tags'),
 			'state' => t('state'),
+			'istop' => t('istop'),
 			'summary' => t('summary'),
 			'content' => t('content'),
 		);
@@ -117,10 +119,10 @@ class Post extends CActiveRecord
 	{
 	    return array(
             'published' => array(
-                'condition' => 'state != ' . self::STATE_DISABLED,
+                'condition' => 'state > 0',
             ),
             'recently' => array(
-                'condition' => 'state = ' . self::STATE_ENABLED,
+                'condition' => 'state > 0',
                 'order' => 'id desc',
                 'limit' => 10,
             ),
@@ -171,10 +173,14 @@ class Post extends CActiveRecord
 	
 	public function getSourceLink()
 	{
+	    if (empty($this->source)) return '';
+	    
 	    if (strpos($this->source, 'http://') === false && strpos($this->source, 'https://') === false)
-	        return $this->source;
+	        $source = $this->source;
 	    else
-	        return l($this->source, $this->source, array('target'=>'_blank', array('class'=>'post-source')));
+	        $source = l($this->source, $this->source, array('target'=>'_blank', 'class'=>'post-source'));
+	    
+	    return $source;
 	}
 	
 	public function getUrl($absolute = false)
@@ -195,7 +201,11 @@ class Post extends CActiveRecord
 	public function getTitleLink($len = 0, $target = '_blank')
 	{
 	    $len = (int)$len;
-	    $title = ($len === 0) ? $this->title : $this->subTitle($len);
+	    if ($this->istop == BETA_YES)
+	        $this->title = '[' . t('istop') . ']' . $this->title;
+	    $title = ($len === 0) ? $this->title : $this->getSubTitle($len);
+	    if ($this->istop == BETA_YES)
+	        $title = '<strong>' . $title . '</strong>';
 	    return l($title, $this->getUrl(), array('class'=>'post-title', 'target'=>$target));
 	}
 	
@@ -210,10 +220,11 @@ class Post extends CActiveRecord
 	    return array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums);
 	}
 	
-	public function subTitle($len)
+	public function getSubTitle($len = 40)
 	{
 	    return mb_strimwidth($this->title, 0, $len, '...', app()->charset);
 	}
+	
 	
 	protected function beforeSave()
 	{
@@ -261,6 +272,33 @@ class Post extends CActiveRecord
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
 	}
+	
+	/**
+	 * 获取标签的数组形式
+	 * @return array
+	 */
+	public function getTagArray()
+	{
+	    static $tags = array();
+	    
+	    if ($tags) return $tags;
+	    if (empty($this->tags)) return array();
+	
+	    $data = Tag::filterTags($this->tags);
+	    return $tags = explode(',', $data);
+	}
+	
+	public function getTagLinks($operator = '&nbsp;&nbsp;', $target = '_blank', $class='label')
+	{
+	    $tags = $this->getTagArray();
+	    if (empty($tags)) return '';
+	
+	    foreach ($tags as $tag)
+	        $data[] = l($tag, aurl('tag/posts', array('name'=>urlencode($tag))), array('target'=>$target, 'class'=>$class));
+	    
+	    return implode($operator, $data);
+	}
+
 }
 
 

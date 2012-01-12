@@ -11,7 +11,7 @@ class SiteController extends Controller
     private static function fetchLatestPosts()
     {
         $criteria = new CDbCriteria();
-        $criteria->order = 't.state desc, t.create_time desc, t.id desc';
+        $criteria->order = 't.istop desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
         $criteria->scopes = 'published';
 

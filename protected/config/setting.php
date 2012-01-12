@@ -13,7 +13,7 @@ return array(
     // 使用的时区
     'timezone' => 'Asia/Shanghai',
     // 当前theme
-    'theme' => 'cnbeta',
+    'theme' => null,
     // 记住用户登录状态的cookie时间
     'autoLoginDuration' => 3600 * 24 * 7,
         
@@ -29,15 +29,15 @@ return array(
     'upNumsOfCommentIsHot' => 10,
 
     // 缓存数据目录
-    'dataPath' => dirname(__FILE__) . DS . '..' . DS . 'data' . DS,
+    'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,
     // 上传文件保存目录及基本url地址，url后面要带/
-    'uploadBasePath' => dirname(__FILE__) . DS . '..' . DS . '..' . DS . 'uploads' . DS,
+    'uploadBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'uploads' . DS,
     'uploadBaseUrl' => 'http://f.24beta.cn/',
     // 静态资源文件保存目录及基本url地址，url后面要带/
-    'resourceBasePath' => dirname(__FILE__) . DS . '..' . DS . '..' . DS . 'resources' . DS,
+    'resourceBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'resources' . DS,
     'resourceBaseUrl' => 'http://s.24beta.cn/',
     // theme静态资源文件保存目录及基本url地址，url后面要带/
-    'themeResourceBasePath' => dirname(__FILE__) . DS . '..' . DS . '..' . DS . 'resources' . DS . 'themes' . DS,
+    'themeResourceBasePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'resources' . DS . 'themes' . DS,
     'themeResourceBaseUrl' => 'http://s.24beta.cn/themes/',
 
     /*

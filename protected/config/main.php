@@ -1,13 +1,16 @@
 <?php
+define('BETA_CONFIG_ROOT', dirname(__FILE__));
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+define('BETA_YES', 1);
+define('BETA_NO', 0);
 
-$params = require(dirname(__FILE__) . DS . 'params.php');
-$setting = require(dirname(__FILE__) . DS . 'setting.php');
+$params = require(BETA_CONFIG_ROOT . DS . 'params.php');
+$setting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
 $params = array_merge($setting, $params);
 return array(
     'id' => $params['domain'],
     'name' => $params['sitename'],
-    'basePath' => dirname(__FILE__) . DS . '..',
+    'basePath' => BETA_CONFIG_ROOT . DS . '..',
     'charset' => 'utf-8',
     'language' => $params['language'],
     'layout' => 'main',
@@ -76,7 +79,7 @@ return array(
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
         ),
         'themeManager' => array(
-            'basePath' => dirname(__FILE__) . DS . '..' . DS . '..' . DS . 'themes',
+            'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
         'urlManager' => array(
@@ -92,6 +95,9 @@ return array(
                 'lifetime' => $params['autoLoginDuration'],
                 'domain' => $params['domain'],
             ),
+        ),
+        'widgetFactory'=>array(
+            'enableSkin'=>true,
         ),
     ),
 
