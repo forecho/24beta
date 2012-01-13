@@ -1,4 +1,4 @@
-<div class="beta-sidebar-block">
+<div class="beta-sidebar-block beta-radius3px">
     <h2><?php echo $this->title;?></h2>
     <ul class="content unstyled">
     <?php foreach($models as $model):?>

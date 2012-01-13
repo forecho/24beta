@@ -36,7 +36,7 @@ return array(
     'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;{visit}次阅读&nbsp;&nbsp;{digg}次推荐',
     'comment_list' => '评论列表',
     'hot_comment_list' => '热门评论',
-    'have_no_comments' => '当前暂无热门评论',
+    'have_no_comments' => '当前暂无评论',
     'comment_extra' => '第&nbsp;<b>{floor}</b>&nbsp;楼&nbsp;{author}&nbsp;发表于&nbsp;{time}',
     'reply_comment' => '回复',
     'support_comment' => '支持({n})',

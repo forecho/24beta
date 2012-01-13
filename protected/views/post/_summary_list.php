@@ -1,5 +1,5 @@
 <?php foreach ((array)$posts as $model):?>
-<dl class="beta-post-item">
+<dl class="beta-post-item beta-radius3px">
     <dt><h1><?php echo $model->titleLink;?></h1></dt>
     <dd class="post-extra"><span><?php echo t('post_extra_text', 'main', $model->postExtra);?></span></d>
     <dd class="post-summary"><?php echo $model['summary'];?></dd>
