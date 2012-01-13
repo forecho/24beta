@@ -2,7 +2,7 @@
 class BetaLatestPosts extends CWidget
 {
     const DEFAULT_POST_COUNT = 10;
-    const DEFAULT_TITLE_LEN = 45;
+    const DEFAULT_TITLE_LEN = 42;
     
     /**
      * posts count
@@ -72,13 +72,11 @@ class BetaLatestPosts extends CWidget
         $criteria->select = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state');
         $criteria->order = 'create_time desc, id desc';
         $criteria->limit = $this->count;
-        $criteria->addCondition('state != :state');
+        $criteria->addCondition('state > 0');
         if ($this->cid)
             $criteria->addColumnCondition(array('category_id'=>$this->cid));
         if ($this->tid)
             $criteria->addColumnCondition(array('topic_id'=>$this->tid));
-        
-        $criteria->params = array_merge($criteria->params, array(':state'=>Post::STATE_DISABLED));
         
         $models = Post::model()->findAll($criteria);
         return (array)$models;

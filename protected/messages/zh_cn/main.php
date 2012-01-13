@@ -26,6 +26,7 @@ return array(
     'source' => '来源',
     'tags' => '标签',
     'state' => '状态',
+    'istop' => '置顶',
     'summary' => '简述',
     'content' => '内容',
     
@@ -46,4 +47,10 @@ return array(
     'latest_posts' => '最新发布文章',
     'relate_posts' => '相关文章',
     'no_posts' => '当前暂无文章',
+        
+    'source_label' => '来源',
+    'tag_label' => '标签',
+    'prev_page_label' => '&lt;上一页',
+    'next_page_label' => '下一页&gt;',
 );
+

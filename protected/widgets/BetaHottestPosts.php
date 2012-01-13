@@ -3,7 +3,7 @@ class BetaHottestPosts extends CWidget
 {
     const DEFAULT_POST_COUNT = 10;
     const DEFAULT_DAYS = 7;
-    const DEFAULT_TITLE_LEN = 45;
+    const DEFAULT_TITLE_LEN = 40;
     
     /**
      * posts count
@@ -83,7 +83,7 @@ class BetaHottestPosts extends CWidget
         $criteria->select = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state');
         $criteria->order = 'comment_nums desc, id desc';
         $criteria->limit = $this->count;
-        $criteria->addCondition('state != :state');
+        $criteria->addCondition('state > 0');
         if ($this->cid)
             $criteria->addColumnCondition(array('category_id'=>$this->cid));
         if ($this->tid)
@@ -91,7 +91,7 @@ class BetaHottestPosts extends CWidget
         
         $criteria->addCondition('create_time > :createtime');
         $createtime = $_SERVER['REQUEST_TIME'] - 3600 * 24 * $this->days;
-        $criteria->params = array_merge($criteria->params, array(':createtime'=>$createtime, ':state'=>Post::STATE_DISABLED));
+        $criteria->params = array_merge($criteria->params, array(':createtime'=>$createtime));
         
         $models = Post::model()->findAll($criteria);
         return (array)$models;
