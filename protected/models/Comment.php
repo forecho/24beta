@@ -81,19 +81,19 @@ class Comment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'post_id' => 'Post',
-			'content' => 'Content',
-			'create_time' => 'Create Time',
-			'create_ip' => 'Create Ip',
-			'up_nums' => 'Up Nums',
-			'down_nums' => 'Down Nums',
-			'report_nums' => 'Report Nums',
-			'user_id' => 'User Id',
-			'user_name' => 'User Name',
-			'user_email' => 'User Email',
-			'user_site' => 'User Site',
-			'state' => 'State',
+			'id' => 'ID',
+			'post_id' => t('post_id'),
+			'content' => t('content'),
+			'create_time' => t('create_time'),
+			'create_ip' => t('create_ip'),
+			'up_nums' => t('up_nums'),
+			'down_nums' => t('down_nums'),
+			'report_nums' => t('report_nums'),
+			'user_id' => t('user_id'),
+			'user_name' => t('user_name'),
+			'user_email' => t('user_email'),
+			'user_site' => t('user_site'),
+			'state' => t('state'),
 		);
 	}
 	

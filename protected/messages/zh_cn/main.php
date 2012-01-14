@@ -7,6 +7,7 @@ return array(
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
         
+    'refresh_captcha' => '看不清，换一张',
         
     /*
      * model Post attributeLabels
@@ -27,8 +28,20 @@ return array(
     'tags' => '标签',
     'state' => '状态',
     'istop' => '置顶',
+    'disable_comment' => '禁止评论',
     'summary' => '简述',
     'content' => '内容',
+
+    /*
+     * model Comment attributeLabels
+     */
+    'post_id' => '文章ID',
+    'up_nums' => '支持数',
+    'down_nums' => '反对数',
+    'report_nums' => '举报数',
+    'user_site' => '网站',
+    'user_email' => '邮箱',
+    'captcha' => '验证码',
     
     'post_comment' => '发表评论',
     'view_detail' => '查看详情',
@@ -52,5 +65,21 @@ return array(
     'tag_label' => '标签',
     'prev_page_label' => '&lt;上一页',
     'next_page_label' => '下一页&gt;',
+
+    /*
+     * post create form
+     */
+    'this_post_is_disable_comment' => '当前文章不允许评论',
+
+    /*
+     * comment create form
+     */
+    'your_name' => '大名',
+    'your_site' => '网站',
+    'your_email' => '邮箱',
+    'comment_content' => '内容',
+    'submit' => '递交',
+    'reset' => '重填',
+    'close' => '关闭',
 );
 

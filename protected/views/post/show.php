@@ -17,9 +17,11 @@
         <?php endif;?>
     </div>
     <div class="beta-mini-title"><?php echo t('post_comment');?></div>
-    <div class="beta-post-form">
-        the form
-    </div>
+    <?php if ($post->disable_comment):?>
+        <div class="disable_comment"><?php echo t('this_post_is_disable_comment');?></div>
+    <?php else:?>
+        <div class="beta-post-form"><?php $this->renderPartial('/comment/_create_form', array('comment'=>$comment));?></div>
+    <?php endif;?>
     <?php $this->renderPartial('/comment/list', array('comments'=>$comments));?>
 </div>
 <div class="beta-sidebar">

@@ -29,5 +29,10 @@ class CommentController extends Controller
         ));
     }
     
-    
+    public function actionCreate()
+    {
+        $model = new CommentForm();
+        $model->attributes = $_POST['CommentForm'];
+        $model->validate();
+    }
 }

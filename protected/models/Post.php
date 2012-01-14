@@ -21,6 +21,7 @@
  * @property string $tags
  * @property integer $state
  * @property integer $istop
+ * @property integer $disable_comment
  * @property string $summary
  * @property string $content
  * @property string $filterContent
@@ -66,7 +67,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop', 'numerical', 'integerOnly'=>true),
+	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment', 'numerical', 'integerOnly'=>true),
 			array('source, title, tags', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name', 'length', 'max'=>50),
@@ -110,6 +111,7 @@ class Post extends CActiveRecord
 			'tags' => t('tags'),
 			'state' => t('state'),
 			'istop' => t('istop'),
+		    'disable_comment' => t('disable_comment'),
 			'summary' => t('summary'),
 			'content' => t('content'),
 		);
