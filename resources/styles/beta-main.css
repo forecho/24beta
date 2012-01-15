@@ -9,7 +9,7 @@
 
 
 .beta-post-item {border:1px solid #AAAAAA; margin-bottom:10px;}
-.beta-post-item dt, .beta-post-item dd {padding:0 10px;}
+.beta-post-item dt, .beta-post-item dd {padding:0 10px; line-height:24px;}
 .beta-post-item h1 {font-size:16px; padding:10px 0 5px; line-height:22px;font-family:微软雅黑;}
 .beta-post-item h1 strong {color:darkred;}
 .beta-post-item .post-extra {font-size:12px;}
@@ -32,6 +32,7 @@
 .beta-post-detail .post-tags a:hover {text-decoration:none; color:#DFDFDF;}
 .beta-post-detail .post-source a {line-height:16px;}
 .beta-mini-title {font-size:12px; background:lightgray; text-indent:10px; height:24px; line-height:24px; font-weight:bold;}
+.beta-post-detail .post-content p {line-height:24px;}
 
 .beta-comment-item {font-size:12px; border-bottom:1px solid #AAAAAA;}
 .beta-comment-item:last-child {border-bottom:0px;}
@@ -50,7 +51,7 @@
 .comment-form .comment-clearfix {margin-bottom:3px;}
 .comment-form .comment-clearfix label {width:50px; font-size:12px;}
 .comment-form .input {margin-left:60px;}
-.comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:3px;}
+.comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:2px;}
 .comment-form {margin-bottom:10px;}
 .comment-form .actions {padding:10px 0px 10px 150px;}
 .comment-form input.beta-captcha {font-size:16px;}
