@@ -223,7 +223,7 @@ class CdImage
         if ($mode !== null) {
             chmod($filename, $mode);
         }
-        return $filename;
+        return $this;
     }
 
 	/**
