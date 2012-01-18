@@ -7,6 +7,8 @@
 .beta-pages {font-size:14px;}
 .beta-pages a {font-size:14px;}
 
+.beta-header .beta-logo {height:75px;}
+
 
 .beta-post-item {border:1px solid #AAAAAA; margin-bottom:10px;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; line-height:24px;}
@@ -20,7 +22,7 @@
 .beta-sidebar-block {border:1px solid #AAAAAA; margin-bottom:10px;}
 .beta-sidebar-block h2, .beta-sidebar-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:lightgray; border-bottom:1px solid #cccccc;}
 .beta-sidebar-block .content {margin:10px; font-size:14px;}
-.beta-sidebar-block .content li {margin-top:6px;}
+.beta-sidebar-block .content li {margin-top:5px;}
 
 
 .beta-post-show {border:1px solid #AAAAAA;}
@@ -48,10 +50,11 @@
 .beta-no-comments {font-size:12px; text-align:center; color:gray;}
 
 .disable_comment {font-size:12px; text-align:center; color:red; padding:5px;}
-.comment-form .comment-clearfix {margin-bottom:3px;}
+.comment-form .comment-clearfix {margin-bottom:2px;}
 .comment-form .comment-clearfix label {width:50px; font-size:12px;}
 .comment-form .input {margin-left:60px;}
 .comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:2px;}
 .comment-form {margin-bottom:10px;}
 .comment-form .actions {padding:10px 0px 10px 150px;}
 .comment-form input.beta-captcha {font-size:16px;}
+.comment-form .refresh-captcha {font-size:12px; margin-left:5px;}

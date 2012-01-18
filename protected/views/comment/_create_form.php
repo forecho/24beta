@@ -28,7 +28,7 @@
         <span class="help-block">评论内容不能少于10个字哦～～～</span>
     </div>
 </div>
-<div class="clearfix comment-clearfix">
+<div class="clearfix comment-clearfix comment-captcha">
     <label><?php echo t('captcha');?></label>
     <div class="input comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-captcha input-mini'));?>

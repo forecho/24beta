@@ -69,7 +69,7 @@ return array(
     /*
      * post create form
      */
-    'this_post_is_disable_comment' => '当前文章不允许评论',
+    'this_post_is_disable_comment' => '当前文章已经关闭评论',
 
     /*
      * comment create form
