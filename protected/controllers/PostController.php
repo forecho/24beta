@@ -12,10 +12,8 @@ class PostController extends Controller
         $comments = Comment::fetchList($id);
         $hotComments = Comment::fetchHotList($id);
         $comment = new CommentForm();
-        if (request()->getIsPostRequest()) {
-            $comment->attributes = $_POST['CommentForm'];
-            $comment->validate();
-        }
+        $comment->post_id = $id;
+        
         $this->render('show', array(
             'post' => $post,
             'comment' => $comment,

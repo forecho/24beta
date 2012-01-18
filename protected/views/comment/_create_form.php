@@ -1,4 +1,4 @@
-<?php echo CHtml::form('',  'post', array('id'=>'comment-form', 'class'=>'comment-form'));?>
+<?php echo CHtml::form(aurl('comment/create'),  'post', array('class'=>'comment-form'));?>
 <?php echo CHtml::activeHiddenField($comment, 'post_id');?>
 <div class="clearfix comment-clearfix">
     <label><?php echo t('your_name');?></label>
@@ -36,7 +36,13 @@
     </div>
 </div>
 <div class="actions">
-    <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn primary'));?>
+    <?php echo CHtml::submitButton(t('submit'), array('class'=>'submit-comment btn primary'));?>
     <?php echo CHtml::button(t('close'), array('class'=>'btn'));?>
 </div>
 <?php echo CHtml::endForm();?>
+
+<script type="text/javascript">
+$(function(){
+	$('.comment-form').on('submit', BetaComment.create);
+});
+</script>

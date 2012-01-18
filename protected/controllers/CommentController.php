@@ -33,6 +33,12 @@ class CommentController extends Controller
     {
         $model = new CommentForm();
         $model->attributes = $_POST['CommentForm'];
-        $model->validate();
+        if ($model->validate() && $model->save()) {
+            echo '1';
+        }
+        else {
+            echo '0';
+        }
+        exit(0);
     }
 }
