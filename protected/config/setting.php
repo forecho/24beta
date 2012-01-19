@@ -7,7 +7,7 @@ return array(
     // 网站名称
     'sitename' => '24beta',
     // 域名，与当前使用的域名一致
-    'domain' => '24beta.com',
+    'domain' => '24beta.cn',
     // 网站语言
     'language' => 'zh_cn',
     // 使用的时区
@@ -27,6 +27,8 @@ return array(
     'hotCommentCountOfPage' => 20,
     // 支持数达到多少才认为是热门评论
     'upNumsOfCommentIsHot' => 10,
+    // 评论内容最短长度
+    'commentMinLength' => 10,
 
     // 缓存数据目录
     'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,

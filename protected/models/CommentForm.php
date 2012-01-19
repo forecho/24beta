@@ -18,8 +18,8 @@ class CommentForm extends CFormModel
 	        array('user_email, user_site', 'length', 'max'=>250),
 	        array('user_email', 'email'),
 	        array('user_site', 'url'),
+            array('captcha', 'captcha', 'allowEmpty'=>$this->captchaAllowEmpty()),
 			array('content', 'safe'),
-            array('captcha', 'captcha', 'allowEmpty'=>$this->captchaAllowEmpty(), 'on'=>'insert')
         );
     }
     
@@ -32,6 +32,7 @@ class CommentForm extends CFormModel
             'user_name' => t('user_name'),
             'user_email' => t('user_email'),
             'user_site' => t('user_site'),
+            'captcha' => t('captcha'),
         );
     }
     

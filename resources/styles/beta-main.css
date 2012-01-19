@@ -55,6 +55,11 @@
 .comment-form .input {margin-left:60px;}
 .comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:2px;}
 .comment-form {margin-bottom:10px;}
-.comment-form .actions {padding:10px 0px 10px 150px;}
+.comment-form .actions {padding:10px 0px 10px 180px; margin:10px 0;}
 .comment-form input.beta-captcha {font-size:16px;}
 .comment-form .refresh-captcha {font-size:12px; margin-left:5px;}
+.comment-form .help-error {display:none;}
+
+.beta-alert-message {font-size:12px; padding:6px 12px; margin-bottom:0;}
+
+

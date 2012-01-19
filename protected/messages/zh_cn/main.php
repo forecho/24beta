@@ -7,7 +7,6 @@ return array(
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
         
-    'refresh_captcha' => '看不清，换一张',
         
     /*
      * model Post attributeLabels
@@ -42,7 +41,8 @@ return array(
     'user_site' => '网站',
     'user_email' => '邮箱',
     'captcha' => '验证码',
-    
+    'refresh_captcha' => '看不清，换一张',
+
     'post_comment' => '发表评论',
     'view_detail' => '查看详情',
     'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:{score}分',
@@ -81,5 +81,13 @@ return array(
     'submit' => '递交',
     'reset' => '重填',
     'close' => '关闭',
+
+    'ajax_send' => '发送数据中...',
+    'ajax_fail' => '请求错误.',
+
+    'ajax_comment_rules_invalid' => '请输入评论内容和验证码后再发布',
+    'ajax_comment_done' => '评论成功.',
+    'ajax_comment_error' => '评论失败, %s不正确',
+
 );
 
