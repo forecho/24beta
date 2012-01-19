@@ -1,4 +1,4 @@
-<?php echo CHtml::form(aurl('comment/create'),  'post', array('class'=>'comment-form'));?>
+<?php echo CHtml::form(aurl('post/comment'),  'post', array('class'=>'comment-form'));?>
 <?php echo CHtml::activeHiddenField($comment, 'post_id');?>
 <div class="clearfix comment-clearfix">
     <label><?php echo t('your_name');?></label>

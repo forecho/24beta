@@ -31,6 +31,7 @@ class CommentController extends Controller
     
     public function actionCreate()
     {
+        // @todo 暂时无用
         if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest())
             throw new CHttpException(500);
 
