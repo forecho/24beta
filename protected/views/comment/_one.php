@@ -1,5 +1,4 @@
-<div class="beta-mini-title" id="beta-comment-list"><?php echo t('comment_list');?></div>
-<?php foreach ((array)$comments as $key => $comment):?>
+<?php if ($comment):?>
 <dl class="beta-comment-item">
     <dt class="post-extra"><span><?php echo t('comment_extra', 'main', array('{floor}'=>$key+1, '{author}'=>$comment->authorLink, '{time}'=>$comment->createTime));?></span></dt>
     <dd class="comment-content"><?php echo $comment->filterContent;?></dd>
@@ -10,8 +9,4 @@
         <a href="#"><?php echo t('report_comment');?></a>
     </dd>
 </dl>
-<?php endforeach;?>
-
-<?php if (count($comments) === 0):?>
-<div class="beta-no-comments"><?php echo t('have_no_comments');?></div>
 <?php endif;?>

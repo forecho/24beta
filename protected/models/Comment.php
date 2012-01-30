@@ -146,7 +146,7 @@ class Comment extends CActiveRecord
 	{
 	    $postid = (int)$postid;
 	    $criteria = new CDbCriteria();
-	    $criteria->order = 'id desc';
+	    $criteria->order = 'id asc';
 	    $criteria->limit = param('commentCountOfPage');
 	    $offset = ($page - 1) * $criteria->limit;
 	    $criteria->offset = $offset;

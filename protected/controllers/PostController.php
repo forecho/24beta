@@ -33,7 +33,7 @@ class PostController extends Controller
         if ($model->validate() && ($comment = $model->save())) {
             $data['errno'] = 0;
             $data['text'] = t('ajax_comment_done');
-            $data['html'] = 'x'; // @todo 反回此条评论的html代码
+            $data['html'] = $this->renderPartial('/comment/_one', array('comment'=>$comment), true); // @todo 反回此条评论的html代码
         }
         else {
             $data['errno'] = 1;

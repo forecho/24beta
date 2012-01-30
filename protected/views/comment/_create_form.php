@@ -54,7 +54,6 @@
 
 <script type="text/javascript">
 $(function(){
-	$('.comment-form .comment-content').focus();
 	$('.comment-form').on('submit', BetaComment.create);
 	$('.comment-form .user-name').on('blur', BetaComment.usernameValidate);
 	$('.comment-form .user-site').on('blur', BetaComment.siteValidate);

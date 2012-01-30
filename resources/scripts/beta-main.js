@@ -21,6 +21,22 @@ var BetaComment = {
 			$('.beta-alert-message').removeClass('success').addClass('error').show();
 			return false;
 		}
+		else {
+			var contentEl = $(this).find('.comment-content');
+			var content = $.trim(contentEl.val());
+			var minlen = parseInt(contentEl.attr('minlen'));
+			minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
+			if (content.length < minlen) {
+				contentEl.focus();
+				return false;
+			}
+			var captchaEl = $(this).find('.beta-captcha');
+			var captcha = $.trim(captchaEl.val());
+			if (captcha.length != 4) {
+				captchaEl.focus();
+				return false;
+			}
+		}
 
 		var tthis = this;
 		var jqXhr = $.ajax({
@@ -41,6 +57,7 @@ var BetaComment = {
 				$(tthis).find('textarea').val('');
 				$(tthis).find('.comment-clearfix').removeClass('error').removeClass('success');
 				$('.beta-alert-message').removeClass('error').addClass('success').show();
+				$('#beta-comment-list').after(data.html);
 			}
 			else {
 				$('.beta-alert-message').removeClass('success').addClass('error').show();
