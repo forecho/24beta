@@ -51,6 +51,11 @@ return array(
     'formatTime' => 'H:i:s',
     'formatShortTime' => 'H:i',
     
+    /*
+     * 前台相关参数
+     */
+    // 默认评论是否需要审核
+    'defaultNewCommentState' => 1,
     
     
     /*

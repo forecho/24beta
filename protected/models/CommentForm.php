@@ -41,6 +41,7 @@ class CommentForm extends CFormModel
         $comment = new Comment();
         $comment->attributes = $this->attributes;
         $comment->user_id = (int)user()->id;
+        $comment->state = (int)param('defaultNewCommentState');
         $result = $comment->save();
         $this->afterSave();
         return $result;
