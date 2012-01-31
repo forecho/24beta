@@ -29,7 +29,7 @@ class CommentController extends Controller
         ));
     }
     
-    public function actionCreate()
+    public function actionCreate($id = 0)
     {
         // @todo 暂时无用
         if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest())
@@ -53,5 +53,44 @@ class CommentController extends Controller
         }
         echo json_encode($data);
         exit(0);
+    }
+
+    public function actionSupport($id)
+    {
+        self::rating('up_nums', $id);
+        exit(0);
+    }
+
+    public function actionAgainst($id)
+    {
+        self::rating('down_nums', $id);
+        exit(0);
+    }
+
+    public function actionReport($id)
+    {
+        self::rating('report_nums', $id);
+        exit(0);
+    }
+    
+    private static function rating($field, $id)
+    {
+//         sleep(2);
+        $id = (int)$id;
+        $field = strip_tags(trim($field));
+        if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest() || $id <= 0)
+            throw new CHttpException(500);
+        
+        $counters = array($field => 1);
+        try {
+            $nums = Comment::model()->updateCounters($counters, 'id = :commentid', array(':commentid'=>$id));
+            $data['errno'] = (int)($nums === 0);
+            $data['text'] = ($nums === 0) ? t('operation_error') : t('thank_your_join');
+            echo json_encode($data);
+            exit(0);
+        }
+        catch (Exception $e) {
+            throw new CHttpException(500);
+        }
     }
 }

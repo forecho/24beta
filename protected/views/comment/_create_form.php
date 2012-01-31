@@ -45,7 +45,7 @@
     <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
 </div>
 <?php echo CHtml::endForm();?>
-<div class="alert-message beta-alert-message hide"><a class="close" href="javascript:void(0);">×</a><span class="text"></span></div>
+<div class="alert-message beta-alert-message hide" id="beta-create-message"><a class="close" href="javascript:void(0);">×</a><span class="text">您的大名会显示在评论处</span></div>
 <div class="hide ajax-jsstr">
     <span class="ajax-send"><?php echo t('ajax_send');?></span>
     <span class="ajax-fail"><?php echo t('ajax_fail');?></span>

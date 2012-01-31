@@ -89,5 +89,8 @@ return array(
     'ajax_comment_done' => '评论成功.',
     'ajax_comment_error' => '评论失败, %s不正确',
 
+    'thank_your_join' => '感谢您的参与',
+    'operation_error' => '发生系统错误',
+
 );
 

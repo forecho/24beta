@@ -21,12 +21,19 @@
  * @property string $createTime
  * @property string $authorName
  * @property string $authorLink
+ * @property string $supportUrl
+ * @property string $againstUrl
+ * @property string $reportUrl
  */
 class Comment extends CActiveRecord
 {
     
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
+    
+    const RATING_SUPPORT = 1;
+    const RATING_AGAINST = 2;
+    const RATING_REPORT= 3;
     
 	/**
 	 * Returns the static model of the specified AR class.
@@ -109,7 +116,7 @@ class Comment extends CActiveRecord
 
 	public function getFilterContent()
 	{
-	    return nl2br(strip_tags($this->content));
+	    return nl2br(h($this->content));
 	}
 	
 	public function getCreateTime($format = null)
@@ -175,6 +182,21 @@ class Comment extends CActiveRecord
 	
 	    $comments = Comment::model()->findAll($criteria);
 	    return $comments;
+	}
+	
+	public function getSupportUrl()
+	{
+	    return aurl('comment/support', array('id'=>$this->id));
+	}
+	
+	public function getAgainstUrl()
+	{
+	    return aurl('comment/against', array('id'=>$this->id));
+	}
+	
+	public function getReportUrl()
+	{
+	    return aurl('comment/report', array('id'=>$this->id));
 	}
 	
 	protected function beforeSave()
