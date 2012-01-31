@@ -17,9 +17,3 @@
 <?php endif;?>
 
 <?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap-alerts.js'), CClientScript::POS_END);?>
-
-<script type="text/javascript">
-$(function(){
-	$(document).on('click', '.comment-rating', BetaComment.Rating);
-});
-</script>

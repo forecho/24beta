@@ -10,7 +10,12 @@ var Beta24 = {
 };
 
 var BetaPost = {
-
+	increaseVisitNums: function(id, url) {
+		if (id <= 0 || url.length == 0) return false;
+		var data = 'id=' + id;
+		var jqXhr = $.post(url, data, 'text');
+		jqXhr.done(function(data){});
+	}
 };
 
 var BetaComment = {
@@ -72,7 +77,7 @@ var BetaComment = {
 		});
 		return false;
 	},
-	Rating: function(event) { 
+	rating: function(event) {
 		event.preventDefault();
 		var tthis = this;
 		var url = $(this).attr('url');
@@ -143,7 +148,7 @@ var BetaComment = {
 		var url = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
 		var clearfix = $(this).parents('.comment-clearfix');
-		
+
 		if (url.length == 0) {
 			clearfix.removeClass('error').removeClass('success');
 			return true;
@@ -184,7 +189,7 @@ var BetaComment = {
 		var captcha = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
 		var clearfix = $(this).parents('.comment-clearfix');
-		
+
 		if (captcha.length == 4) {
 			help.hide();
 			clearfix.removeClass('error').addClass('success');

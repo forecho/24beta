@@ -31,3 +31,10 @@
     <?php $this->widget('BetaLatestPosts', array('title'=>t('relate_posts'), 'tid'=>$post->topic_id));?>
 </div>
 <div class="clear"></div>
+
+<script type="text/javascript">
+$(function(){
+	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
+	$(document).on('click', '.comment-rating', BetaComment.rating);
+});
+</script>
