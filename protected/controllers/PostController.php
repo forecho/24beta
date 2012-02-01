@@ -24,8 +24,9 @@ class PostController extends Controller
         ));
     }
     
-    public function actionVisit()
+    public function actionVisit($callback)
     {
+        $callback = strip_tags(trim($callback));
         $id = (int)$_POST['id'];
         if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest() || $id <= 0)
             throw new CHttpException(500);
@@ -35,18 +36,28 @@ class PostController extends Controller
             throw new CHttpException(404, t('post_is_not_found'));
         $post->visit_nums += 1;
         $post->update(array('visit_nums'));
-        echo $post->visit_nums;
+        echo $callback . '(' . $post->visit_nums . ')';
         exit(0);
     }
     
-    public function actionComment()
+    public function actionComment($callback, $id = 0)
     {
-        if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest())
+        $id = (int)$id;
+        $callback = strip_tags(trim($callback));
+        
+        if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest() || empty($callback))
             throw new CHttpException(500);
-    
+        
         $data = array();
         $model = new CommentForm();
         $model->attributes = $_POST['CommentForm'];
+        
+        if ($id > 0 && $quote = Comment::model()->findByPk($id)) {
+            $quoteTitle = sprintf(t('comment_quote_title'), $quote->authorName);
+            $html = '<fieldset class="beta-comment-quote"><legend>' . $quoteTitle . '</legend>' . $quote->filterContent . '</fieldset>';
+            $model->content = $html . h($model->content);
+        }
+        
         if ($model->validate() && ($comment = $model->save())) {
             $data['errno'] = 0;
             $data['text'] = t('ajax_comment_done');
@@ -60,7 +71,7 @@ class PostController extends Controller
             $errstr = join(' ', $labels);
             $data['text'] = sprintf(t('ajax_comment_error'), $errstr);
         }
-        echo json_encode($data);
+        echo $callback . '(' . json_encode($data) . ')';
         exit(0);
     }
     

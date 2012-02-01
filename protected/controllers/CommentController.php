@@ -29,7 +29,7 @@ class CommentController extends Controller
         ));
     }
     
-    public function actionCreate($id = 0)
+    public function actionCreate($id = 0, $callback)
     {
         // @todo 暂时无用
         if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest())
@@ -55,28 +55,29 @@ class CommentController extends Controller
         exit(0);
     }
 
-    public function actionSupport($id)
+    public function actionSupport($id, $callback)
     {
-        self::rating('up_nums', $id);
+        self::rating('up_nums', $id, $callback);
         exit(0);
     }
 
-    public function actionAgainst($id)
+    public function actionAgainst($id, $callback)
     {
-        self::rating('down_nums', $id);
+        self::rating('down_nums', $id, $callback);
         exit(0);
     }
 
-    public function actionReport($id)
+    public function actionReport($id, $callback)
     {
-        self::rating('report_nums', $id);
+        self::rating('report_nums', $id, $callback);
         exit(0);
     }
     
-    private static function rating($field, $id)
+    private static function rating($field, $id, $callback)
     {
 //         sleep(2);
         $id = (int)$id;
+        $callback = strip_tags(trim($callback));
         $field = strip_tags(trim($field));
         if (!request()->getIsAjaxRequest() || !request()->getIsPostRequest() || $id <= 0)
             throw new CHttpException(500);
@@ -86,7 +87,7 @@ class CommentController extends Controller
             $nums = Comment::model()->updateCounters($counters, 'id = :commentid', array(':commentid'=>$id));
             $data['errno'] = (int)($nums === 0);
             $data['text'] = ($nums === 0) ? t('operation_error') : t('thank_your_join');
-            echo json_encode($data);
+            echo $callback . '(' . json_encode($data) . ')';
             exit(0);
         }
         catch (Exception $e) {

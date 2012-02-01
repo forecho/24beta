@@ -116,7 +116,7 @@ class Comment extends CActiveRecord
 
 	public function getFilterContent()
 	{
-	    return nl2br(h($this->content));
+	    return nl2br($this->content);
 	}
 	
 	public function getCreateTime($format = null)

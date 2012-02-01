@@ -55,6 +55,7 @@ return array(
     'support_comment' => '支持({n})',
     'against_comment' => '反对({n})',
     'report_comment' => '举报',
+    'comment_quote_title' => '引用%s的评论:',
         
     'hottest_posts' => '热门文章排行',
     'latest_posts' => '最新发布文章',

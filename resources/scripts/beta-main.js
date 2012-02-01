@@ -13,7 +13,7 @@ var BetaPost = {
 	increaseVisitNums: function(id, url) {
 		if (id <= 0 || url.length == 0) return false;
 		var data = 'id=' + id;
-		var jqXhr = $.post(url, data, 'text');
+		var jqXhr = $.post(url, data, undefined, 'jsonp');
 		jqXhr.done(function(data){});
 	}
 };
@@ -21,7 +21,11 @@ var BetaPost = {
 var BetaComment = {
 	create: function(event){
 		event.preventDefault();
-		var msg = $('#beta-create-message');
+		var msg = $(this).next('.beta-alert-message');
+		if (msg.length == 0)
+			msg = $('#beta-create-message').clone().removeAttr('id');
+		$(this).after(msg);
+		
 		if ($(this).find('div.error').length > 0) {
 			msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('success').addClass('error').show();
@@ -33,12 +37,16 @@ var BetaComment = {
 			var minlen = parseInt(contentEl.attr('minlen'));
 			minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 			if (content.length < minlen) {
+				msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
+				msg.removeClass('success').addClass('error').show();
 				contentEl.focus();
 				return false;
 			}
 			var captchaEl = $(this).find('.beta-captcha');
 			var captcha = $.trim(captchaEl.val());
 			if (captcha.length != 4) {
+				msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
+				msg.removeClass('success').addClass('error').show();
 				captchaEl.focus();
 				return false;
 			}
@@ -49,7 +57,7 @@ var BetaComment = {
 			type: 'post',
 			url: $(tthis).attr('action'),
 			data: $(this).serialize(),
-			dataType: 'json',
+			dataType: 'jsonp',
 			cache: false,
 			beforeSend: function(jqXhr){
 				msg.find('.text').html($('.ajax-jsstr .ajax-send').text());
@@ -77,13 +85,25 @@ var BetaComment = {
 		});
 		return false;
 	},
+	reply: function() {
+		var form = $(this).parents('.beta-comment-item').next('form');
+		if (form.length == 0) {
+			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
+			$(this).parents('.beta-comment-item').after(form);
+		}
+		else if (form.filter(':visible').length == 0)
+			form.show();
+		else
+			form.hide();
+		
+	},
 	rating: function(event) {
 		event.preventDefault();
 		var tthis = this;
-		var url = $(this).attr('url');
+		var url = $(this).attr('data-url');
 		var jqXhr = $.ajax({
 			url: url,
-			dataType: 'json',
+			dataType: 'jsonp',
 			type: 'post',
 			cache: false,
 			beforeSend: function(jqXhr) {
@@ -126,19 +146,21 @@ var BetaComment = {
 	usernameValidate: function(event) {
 		var name = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
+		var helperror = $(this).parents('.comment-input').find('.help-error');
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (name.length == 0) {
+			helperror.hide();
 			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
+		help.hide();
 		if (name.length > 50) {
-			help.hide();
+			helperror.show();
 			$(this).parents('.comment-clearfix').removeClass('success').addClass('error');
 			return false;
 		}
 		else {
-			help.hide();
 			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
@@ -147,20 +169,22 @@ var BetaComment = {
 	siteValidate: function(event) {
 		var url = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
+		var helperror = $(this).parents('.comment-input').find('.help-error');
 		var clearfix = $(this).parents('.comment-clearfix');
 
 		if (url.length == 0) {
+			helperror.hide();
 			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
+		help.hide();
 		if (Beta24.urlValidate(url)) {
-			help.hide();
 			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			help.hide();
+			helperror.show();
 			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
@@ -168,19 +192,21 @@ var BetaComment = {
 	emailValidate: function(event){
 		var email = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
+		var helperror = $(this).parents('.comment-input').find('.help-error');
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (email.length == 0) {
+			helperror.hide();
 			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
+		help.hide();
 		if (Beta24.emailValidate(email)) {
-			help.hide();
 			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			help.hide();
+			helperror.show();
 			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
@@ -188,15 +214,16 @@ var BetaComment = {
 	captchaValidate: function(event){
 		var captcha = $.trim($(this).val());
 		var help = $(this).parents('.comment-input').find('.help-inline');
+		var helperror = $(this).parents('.comment-input').find('.help-error');
 		var clearfix = $(this).parents('.comment-clearfix');
 
+		help.hide();
 		if (captcha.length == 4) {
-			help.hide();
 			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			help.show();
+			helperror.show();
 			clearfix.removeClass('success').addClass('error');
 			return false;
 		}

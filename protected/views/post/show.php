@@ -22,11 +22,11 @@
     <?php else:?>
         <div class="beta-post-form"><?php $this->renderPartial('/comment/_create_form', array('comment'=>$comment));?></div>
     <?php endif;?>
-    <?php $this->renderPartial('/comment/list', array('comments'=>$comments));?>
+    <?php $this->renderPartial('/comment/list', array('comments'=>$comments, 'post'=>$post));?>
 </div>
 <div class="beta-sidebar">
     <div class="beta-sidebar-block beta-hot-comment beta-radius3px">
-        <?php $this->renderPartial('/comment/_hot_list', array('comments'=>$hotComments));?>
+        <?php $this->renderPartial('/comment/_hot_list', array('comments'=>$hotComments, 'post'=>$post));?>
     </div>
     <?php $this->widget('BetaLatestPosts', array('title'=>t('relate_posts'), 'tid'=>$post->topic_id));?>
 </div>
@@ -36,5 +36,6 @@
 $(function(){
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).on('click', '.comment-rating', BetaComment.rating);
+	$(document).on('click', '.comment-reply', BetaComment.reply);
 });
 </script>

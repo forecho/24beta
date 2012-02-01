@@ -37,7 +37,6 @@
 .beta-post-detail .post-content p {line-height:24px;}
 
 .beta-comment-item {font-size:12px; border-bottom:1px solid #AAAAAA;}
-.beta-comment-item:last-child {border-bottom:0px;}
 .beta-comment-item dt, .beta-comment-item dd {padding:0px 10px;}
 .beta-comment-item dt {padding-top:10px; font-weight:normal;}
 .post-extra span {border-bottom:1px solid lightgray; padding:5px 0; color:#555555;}
@@ -45,6 +44,9 @@
 .beta-comment-item .comment-toolbar {height:24px; line-height:24px; background:lightgray;}
 .beta-comment-item .comment-toolbar a {margin-right:10px;}
 .beta-comment-item .comment-toolbar a:last-child {margin-right:0;}
+.beta-comment-quote {border:1px solid lightgray; padding:8px; margin:0 0 10px;}
+.beta-comment-quote div {margin-bottom:10px; padding-left:10px;}
+.beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; padding:0 5px; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid lightgray;}
 
 .beta-hot-comment {border:1px solid #FC0; background:#FFE57F;}
 .beta-no-comments {font-size:12px; text-align:center; color:gray;}
@@ -54,11 +56,13 @@
 .comment-form .comment-clearfix label {width:50px; font-size:12px;}
 .comment-form .input {margin-left:60px;}
 .comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:2px;}
-.comment-form {margin-bottom:10px;}
+.comment-form {margin-bottom:0;}
 .comment-form .actions {padding:10px 0px 10px 180px; margin:10px 0;}
 .comment-form input.beta-captcha {font-size:16px;}
 .comment-form .refresh-captcha {font-size:12px; margin-left:5px;}
 .comment-form .help-error {display:none;}
+
+.comment-reply-form {margin-top:5px;}
 
 .beta-alert-message {font-size:12px; padding:2px 10px; margin-bottom:0; margin:2px;}
 

@@ -1,4 +1,5 @@
-<?php echo CHtml::form(aurl('post/comment'),  'post', array('class'=>'comment-form'));?>
+<div class="alert-message beta-alert-message hide" id="beta-create-message" data-alert="alert"><a class="close" href="javascript:void(0);">×</a><span class="text">您的大名会显示在评论处</span></div>
+<?php echo CHtml::form(aurl('post/comment'),  'post', array('class'=>'comment-form', 'id'=>'comment-form'));?>
 <?php echo CHtml::activeHiddenField($comment, 'post_id');?>
 <div class="clearfix comment-clearfix">
     <label><?php echo t('your_name');?></label>
@@ -45,7 +46,6 @@
     <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
 </div>
 <?php echo CHtml::endForm();?>
-<div class="alert-message beta-alert-message hide" id="beta-create-message"><a class="close" href="javascript:void(0);">×</a><span class="text">您的大名会显示在评论处</span></div>
 <div class="hide ajax-jsstr">
     <span class="ajax-send"><?php echo t('ajax_send');?></span>
     <span class="ajax-fail"><?php echo t('ajax_fail');?></span>
@@ -54,12 +54,12 @@
 
 <script type="text/javascript">
 $(function(){
-	$('.comment-form').on('submit', BetaComment.create);
-	$('.comment-form .user-name').on('blur', BetaComment.usernameValidate);
-	$('.comment-form .user-site').on('blur', BetaComment.siteValidate);
-	$('.comment-form .user-email').on('blur', BetaComment.emailValidate);
-	$('.comment-form .beta-captcha').on('blur', BetaComment.captchaValidate);
-	$('.comment-form .comment-content').on('blur', BetaComment.contentValidate);
+	$(document).on('submit', '.comment-form', BetaComment.create);
+	$(document).on('blur', '.comment-form .user-name', BetaComment.usernameValidate);
+	$(document).on('blur', '.comment-form .user-site', BetaComment.siteValidate);
+	$(document).on('blur', '.comment-form .user-email', BetaComment.emailValidate);
+	$(document).on('blur', '.comment-form .beta-captcha', BetaComment.captchaValidate);
+	$(document).on('blur', '.comment-form .comment-content', BetaComment.contentValidate);
 });
 </script>
 
