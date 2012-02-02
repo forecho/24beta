@@ -70,6 +70,6 @@ return array(
     
     
     // 简述中可以使用的html标签
-    'summaryHtmlTags' => '<b><strong><a>',
+    'summaryHtmlTags' => '<b><strong><a><img>',
 );
 

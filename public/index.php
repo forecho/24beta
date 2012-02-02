@@ -1,10 +1,9 @@
 <?php
 define('BETA_WEBROOT', dirname(__FILE__));
-defined('YII_PRODUCT') or define('YII_PRODUCT', false);
+defined('BETA_PRODUCT') or define('BETA_PRODUCT', false);
 defined('YII_DEBUG') or define('YII_DEBUG', true);
-!defined('YII_DEBUG') && error_reporting(0);
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-
+YII_DEBUG or error_reporting(0);
 
 $yii = dirname(__FILE__) . '/../library/framework/yii.php';
 $config = dirname(__FILE__) . '/../protected/config/main.php';

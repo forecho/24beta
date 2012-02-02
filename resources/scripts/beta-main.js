@@ -6,6 +6,12 @@ var Beta24 = {
 	emailValidate: function(email) {
 		var pattern = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/ig;
 		return pattern.test(email);
+	},
+	imageLazyLoad: function() {
+		for (i in arguments) {
+			if (arguments[i].is('img'))
+				arguments[i].lazyload({effect: 'fadeIn', threshold: 200});
+		}
 	}
 };
 
@@ -14,7 +20,9 @@ var BetaPost = {
 		if (id <= 0 || url.length == 0) return false;
 		var data = 'id=' + id;
 		var jqXhr = $.post(url, data, undefined, 'jsonp');
-		jqXhr.done(function(data){});
+		jqXhr.done(function(data){
+			$('.beta-post-detail .beta-visit-nums').text(data);
+		});
 	}
 };
 
@@ -24,10 +32,11 @@ var BetaComment = {
 		var msg = $(this).next('.beta-alert-message');
 		if (msg.length == 0)
 			msg = $('#beta-create-message').clone().removeAttr('id');
+		var msgtext = msg.find('.text');
 		$(this).after(msg);
 		
 		if ($(this).find('div.error').length > 0) {
-			msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
+			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('success').addClass('error').show();
 			return false;
 		}
@@ -37,7 +46,7 @@ var BetaComment = {
 			var minlen = parseInt(contentEl.attr('minlen'));
 			minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 			if (content.length < minlen) {
-				msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
+				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 				msg.removeClass('success').addClass('error').show();
 				contentEl.focus();
 				return false;
@@ -45,7 +54,7 @@ var BetaComment = {
 			var captchaEl = $(this).find('.beta-captcha');
 			var captcha = $.trim(captchaEl.val());
 			if (captcha.length != 4) {
-				msg.find('.text').html($('.ajax-jsstr .ajax-rules-invalid').text());
+				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 				msg.removeClass('success').addClass('error').show();
 				captchaEl.focus();
 				return false;
@@ -60,12 +69,12 @@ var BetaComment = {
 			dataType: 'jsonp',
 			cache: false,
 			beforeSend: function(jqXhr){
-				msg.find('.text').html($('.ajax-jsstr .ajax-send').text());
+				msgtext.html($('.ajax-jsstr .ajax-send').text());
 				msg.removeClass('error').addClass('success').show();
 			}
 		});
 		jqXhr.done(function(data){
-			msg.find('.text').html(data.text);
+			msgtext.html(data.text);
 			if (data.errno == 0) {
 				$(tthis).find('.beta-captcha').val('');
 				$(tthis).find('textarea').val('');
@@ -80,7 +89,7 @@ var BetaComment = {
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
 			jqXhr.abort();
-			msg.find('.text').html($('.ajax-jsstr .ajax-fail').text());
+			msgtext.html($('.ajax-jsstr .ajax-fail').text());
 			msg.removeClass('success').addClass('error').show();
 		});
 		return false;
@@ -99,6 +108,21 @@ var BetaComment = {
 	},
 	rating: function(event) {
 		event.preventDefault();
+		var commentItem = $(this).parents('.beta-comment-item');
+		var msg = commentItem.next('.beta-alert-message');
+		if (msg.length == 0)
+			msg = $('#beta-comment-message').clone().removeAttr('id');
+		var msgtext = msg.find('.text');
+		
+		if ($(this).attr('data-clicked')) {
+			msgtext.html($('.ajax-jsstr .ajax-has-joined').text());
+			if (msg.hasClass('success')) msg.removeClass('success');
+			if (!msg.hasClass('error')) msg.addClass('error');
+			commentItem.after(msg);
+			msg.show();
+			return false;
+		}
+		
 		var tthis = this;
 		var url = $(this).attr('data-url');
 		var jqXhr = $.ajax({
@@ -107,21 +131,18 @@ var BetaComment = {
 			type: 'post',
 			cache: false,
 			beforeSend: function(jqXhr) {
-				var msg = $(tthis).parents('.beta-comment-item').next('.beta-alert-message');
-				if (msg.length == 0)
-					msg = $('#beta-comment-message').clone().removeAttr('id');
-				msg.find('.text').html($('.ajax-jsstr .ajax-send').text());
+				msgtext.html($('.ajax-jsstr .ajax-send').text());
 				msg.removeClass('error').addClass('success');
-				$(tthis).parents('.beta-comment-item').after(msg);
+				commentItem.after(msg);
 				msg.show();
 			}
 		});
 		jqXhr.done(function(data){
-			var msg = $(tthis).parents('.beta-comment-item').next('.beta-alert-message');
-			if (msg.length == 0)
-				msg = $('#beta-comment-message').clone().removeAttr('id');
-			msg.find('.text').html(data.text);
 			if (data.errno == 0) {
+				var jqnums = $(tthis).find('.beta-comment-join-nums');
+				jqnums.text(parseInt(jqnums.text()) + 1);
+				$(tthis).attr('data-clicked', 1);
+				msgtext.html(data.text);
 				if (msg.hasClass('error')) msg.removeClass('error');
 				if (!msg.hasClass('success')) msg.addClass('success');
 			}
@@ -129,17 +150,14 @@ var BetaComment = {
 				if (msg.hasClass('success')) msg.removeClass('success');
 				if (!msg.hasClass('error')) msg.addClass('error');
 			}
-			$(tthis).parents('.beta-comment-item').after(msg);
+			commentItem.after(msg);
 			msg.show();
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
-			var msg = $(tthis).parents('.beta-comment-item').next('.beta-alert-message');
-			if (msg.length == 0)
-				msg = $('#beta-comment-message').clone().removeAttr('id');
-			msg.find('.text').html($('.ajax-jsstr .ajax-fail').text());
+			msgtext.html($('.ajax-jsstr .ajax-fail').text());
 			if (msg.hasClass('success')) msg.removeClass('success');
 			if (!msg.hasClass('error')) msg.addClass('error');
-			$(tthis).parents('.beta-comment-item').after(msg);
+			commentItem.after(msg);
 			msg.show();
 		});
 	},

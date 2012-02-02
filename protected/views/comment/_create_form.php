@@ -46,11 +46,6 @@
     <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
 </div>
 <?php echo CHtml::endForm();?>
-<div class="hide ajax-jsstr">
-    <span class="ajax-send"><?php echo t('ajax_send');?></span>
-    <span class="ajax-fail"><?php echo t('ajax_fail');?></span>
-    <span class="ajax-rules-invalid"><?php echo t('ajax_comment_rules_invalid');?></span>
-</div>
 
 <script type="text/javascript">
 $(function(){

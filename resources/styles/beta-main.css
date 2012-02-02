@@ -15,7 +15,8 @@
 .beta-post-item h1 {font-size:16px; padding:10px 0 5px; line-height:22px;font-family:微软雅黑;}
 .beta-post-item h1 strong {color:darkred;}
 .beta-post-item .post-extra {font-size:12px;}
-.beta-post-item .post-summary {margin:15px 0px;}
+.beta-post-item .post-summary {margin:15px 0px; overflow:hidden;}
+.beta-post-item .post-summary img, .beta-post-detail .post-content img {margin:10px 0px; max-width:570px;}
 .beta-post-item .post-item-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:lightgray; border-top:1px solid #cccccc;}
 .beta-post-item .post-item-toolbar strong {margin-right:10px;}
 
@@ -29,7 +30,7 @@
 .beta-post-detail, .beta-post-form {padding:10px;}
 .beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px; margin:5px 0 15px;}
 .beta-post-detail .post-extra {font-size:12px;}
-.beta-post-detail .post-content {margin:15px 0;}
+.beta-post-detail .post-content {margin:15px 0; overflow:hidden;}
 .beta-post-detail .post-tags {margin-bottom:5px;}
 .beta-post-detail .post-tags a:hover {text-decoration:none; color:#DFDFDF;}
 .beta-post-detail .post-source a {line-height:16px;}

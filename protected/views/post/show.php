@@ -32,8 +32,17 @@
 </div>
 <div class="clear"></div>
 
+<div class="hide ajax-jsstr">
+    <span class="ajax-send"><?php echo t('ajax_send');?></span>
+    <span class="ajax-fail"><?php echo t('ajax_fail');?></span>
+    <span class="ajax-rules-invalid"><?php echo t('ajax_comment_rules_invalid');?></span>
+    <span class="ajax-has-joined"><?php echo t('you_have_joined');?></span>
+</div>
+
+<?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
 <script type="text/javascript">
 $(function(){
+	Beta24.imageLazyLoad($('.beta-post-detail .post-content img.lazy'));
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).on('click', '.comment-rating', BetaComment.rating);
 	$(document).on('click', '.comment-reply', BetaComment.reply);

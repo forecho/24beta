@@ -46,14 +46,14 @@ return array(
     'post_comment' => '发表评论',
     'view_detail' => '查看详情',
     'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:{score}分',
-    'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;{visit}次阅读&nbsp;&nbsp;{digg}次推荐',
+    'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;<span class="beta-visit-nums">{visit}</span>次阅读&nbsp;&nbsp;{digg}次推荐',
     'comment_list' => '评论列表',
     'hot_comment_list' => '热门评论',
     'have_no_comments' => '当前暂无评论',
     'comment_extra' => '第&nbsp;<b>{floor}</b>&nbsp;楼&nbsp;{author}&nbsp;发表于&nbsp;{time}',
     'reply_comment' => '回复',
-    'support_comment' => '支持({n})',
-    'against_comment' => '反对({n})',
+    'support_comment' => '支持(<span class="beta-comment-join-nums">{n}</span>)',
+    'against_comment' => '反对(<span class="beta-comment-join-nums">{n}</span>)',
     'report_comment' => '举报',
     'comment_quote_title' => '引用%s的评论:',
         
@@ -91,6 +91,7 @@ return array(
     'ajax_comment_error' => '评论失败, %s不正确',
 
     'thank_your_join' => '感谢您的参与',
+    'you_have_joined' => '您已经参与过了，谢谢',
     'operation_error' => '发生系统错误',
 
 );
