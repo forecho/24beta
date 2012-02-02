@@ -1,7 +1,6 @@
 <?php
 class CommentForm extends CFormModel
 {
-    public $id;
     public $post_id;
     public $content;
     public $user_name;
@@ -13,7 +12,7 @@ class CommentForm extends CFormModel
     {
         return array(
             array('post_id, content', 'required'),
-            array('id, post_id', 'numerical', 'integerOnly'=>true),
+            array('post_id', 'numerical', 'integerOnly'=>true),
 			array('user_name', 'length', 'max'=>50),
 	        array('user_email, user_site', 'length', 'max'=>250),
 	        array('user_email', 'email'),
@@ -26,7 +25,6 @@ class CommentForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'id' => 'ID',
             'post_id' => t('post_id'),
             'content' => t('content'),
             'user_name' => t('user_name'),

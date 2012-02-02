@@ -75,5 +75,27 @@ class PostController extends Controller
         exit(0);
     }
     
+    public function actionCreate()
+    {
+        $form = new PostForm();
+        if (request()->getIsPostRequest() && isset($_POST['PostForm'])) {
+            $form->attributes = $_POST['PostForm'];
+            if ($form->validate() && ($post = $form->save())) {
+                $this->redirect(url('post/success', array('title'=>$form->title)));
+                exit(0);
+            }
+        }
+
+        $this->render('create', array(
+            'form' => $form,
+        ));
+    }
+    
+    public function actionSuccess($title)
+    {
+        $title = strip_tags(trim($title));
+        $this->render('create_success', array('title'=>$title));
+    }
+    
     
 }

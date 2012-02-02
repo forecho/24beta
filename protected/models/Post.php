@@ -24,10 +24,15 @@
  * @property integer $disable_comment
  * @property string $summary
  * @property string $content
+ * @property integer $contributor_id
+ * @property string $contributor
+ * @property string $contributor_site
+ * @property string $contributor_email
  * @property string $filterContent
  * @property string $crateTime
  * @property string $authorName
- * @property string $authorLink
+ * @property string $contributorName
+ * @property string $contributorLink
  * @property float $rating
  * @property string $sourceLink
  * @property string $url
@@ -67,10 +72,10 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment', 'numerical', 'integerOnly'=>true),
-			array('source, title, tags', 'length', 'max'=>250),
+	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id', 'numerical', 'integerOnly'=>true),
+			array('source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
-			array('user_name', 'length', 'max'=>50),
+			array('user_name, contributor', 'length', 'max'=>50),
 			array('summary, content', 'safe'),
 		);
 	}
@@ -114,6 +119,10 @@ class Post extends CActiveRecord
 		    'disable_comment' => t('disable_comment'),
 			'summary' => t('summary'),
 			'content' => t('content'),
+		    'contributor_id' => t('contributor_id'),
+		    'contributor' => t('contributor'),
+		    'contributor_site' => t('contributor_site'),
+		    'contributor_email' => t('contributor_email'),
 		);
 	}
 	
@@ -133,7 +142,8 @@ class Post extends CActiveRecord
 	
 	public function getFilterContent()
 	{
-	    return nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a>'));
+	    // @todo filter content
+	    return nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a><br>'));
 	}
 	
 	public function getCreateTime($format = null)
@@ -153,18 +163,22 @@ class Post extends CActiveRecord
 	    if ($this->user_name)
 	        $name = $this->user_name;
 	    elseif ($this->user_id)
-	    $name = $this->user->name;
+    	    $name = $this->user->name;
 	    else
 	        $name = t('guest_name');
 	
 	    return $name;
 	}
 	
-	public function getAuthorLink()
+	public function getContributorName()
 	{
-	    // @todo 暂时没用 添加 postmeta表后修改
-	    $name = $this->getAuthorName();
-	    return $this->user_site ? l($name, $this->user_site, array('target'=>'_blank')) : $name;
+	    return (empty($this->contributor)) ? t('guest_name') : $this->contributor;
+	}
+	
+	public function getcontributorLink()
+	{
+	    $name = $this->getContributorName();
+	    return $this->contributor_site ? l($name, $this->contributor_site, array('target'=>'_blank')) : $name;
 	}
 	
 	public function getRating()
@@ -235,8 +249,6 @@ class Post extends CActiveRecord
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
-	        if (empty($this->summary))
-	            $this->summary = mb_substr($this->content, 0, param('subSummaryLen'), app()->charset);
 	    }
 	    return true;
 	}
@@ -268,7 +280,7 @@ class Post extends CActiveRecord
 	protected function afterFind()
 	{
 	    if (empty($this->summary)) {
-	        $content = strip_tags($this->content);
+	        $content = strip_tags($this->content, param('summaryHtmlTags'));
 	        $this->summary = mb_substr($content, 0, param('subSummaryLen'), app()->charset);
 	    }
 	    else

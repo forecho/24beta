@@ -80,7 +80,12 @@ var BetaComment = {
 				$(tthis).find('textarea').val('');
 				$(tthis).find('.comment-clearfix').removeClass('error').removeClass('success');
 				msg.removeClass('error').addClass('success').show();
-				$('#beta-comment-list').after(data.html);
+				var lastComment = $('.beta-post-show .beta-comment-item:last');
+				if (lastComment.length == 0)
+					lastComment = $('#beta-comment-list');
+				lastComment.after(data.html);
+				if ($(tthis).attr('id') == undefined)
+					$(tthis).remove();
 			}
 			else {
 				msg.removeClass('success').addClass('error').show();

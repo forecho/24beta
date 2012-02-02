@@ -30,6 +30,10 @@ return array(
     'disable_comment' => '禁止评论',
     'summary' => '简述',
     'content' => '内容',
+    'contributor_id' => '投稿者ID',
+    'contributor' => '投稿者',
+    'contributor_site' => '投稿者网站',
+    'contributor_email' => '投稿者邮箱',
 
     /*
      * model Comment attributeLabels
