@@ -22,11 +22,13 @@
 
 .beta-sidebar-block {border:1px solid #AAAAAA; margin-bottom:10px;}
 .beta-sidebar-block h2, .beta-sidebar-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:lightgray; border-bottom:1px solid #cccccc;}
-.beta-sidebar-block .content {margin:10px; font-size:14px;}
-.beta-sidebar-block .content li {margin-top:5px;}
+.beta-sidebar-block .content {margin:10px 10px 10px 25px; font-size:14px;}
+.beta-sidebar-block .content.unstyled {margin-left:10px; font-size:14px;}
+.beta-sidebar-block .content li {margin-top:6px; line-height:18px;}
 .beta-sidebar-block.beta-small h2, .beta-sidebar-block.beta-small .beta-title {font-size:12px; line-height:22px; height:22px;}
-.beta-sidebar-block.beta-small .content {margin:5px 10px; font-size:12px;}
-.beta-sidebar-block.beta-small .content li {margin-top:0px;}
+.beta-sidebar-block.beta-small .content {margin:5px 10px 5px 25px; font-size:12px;}
+.beta-sidebar-block.beta-small .content.unstyled {margin-left:10px; font-size:12px;}
+.beta-sidebar-block.beta-small .content li {margin-top:3px;}
 
 .beta-post-show {border:1px solid #AAAAAA;}
 .beta-post-detail, .beta-post-form {padding:10px;}
@@ -60,19 +62,19 @@
 .comment-form .comment-input input, .comment-form textarea {font-size:12px; padding:2px;}
 .comment-form {margin-bottom:0;}
 .comment-form .actions {padding:10px 0px 10px 180px; margin:10px 0;}
-.comment-form input.beta-captcha {font-size:16px;}
-.comment-form .refresh-captcha {font-size:12px; margin-left:5px;}
 .comment-form .help-error {display:none;}
 .comment-reply-form {margin-top:5px;}
 .beta-alert-message {font-size:12px; padding:2px 10px; margin-bottom:0; margin:2px;}
-
 .post-form {margin:10px 0;}
-.post-form .post-clearfix {margin-bottom:7px;}
+.post-form .post-clearfix {margin-bottom:7px; margin-left:7px;}
 .post-form .post-clearfix label {width:100px; font-size:12px;}
 .post-form .post-input {margin-left:110px;}
 .post-form .post-input input, .post-form textarea {font-size:12px; padding:3px;}
+.post-form .captcha-clearfix label {text-align:left; width:auto;}
+.captcha-clearfix .input {margin-left:45px;}
 
-
+.comment-form input.beta-captcha, .post-form input.beta-captcha {font-size:16px;}
+.comment-form .refresh-captcha, .post-form .refresh-captcha {font-size:12px; margin-left:5px;}
 
 
 
