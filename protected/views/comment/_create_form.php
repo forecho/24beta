@@ -32,29 +32,32 @@
         <span class="help-info help-block">评论内容不能少于10个字哦～～～</span>
     </div>
 </div>
-<div class="clearfix comment-clearfix comment-captcha">
+<div class="clearfix comment-clearfix comment-captcha hide">
     <label><?php echo t('captcha');?></label>
     <div class="input comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-captcha input-mini'));?>
-        <?php $this->widget('BetaCaptcha');?>
+        <?php $this->widget('BetaCaptcha', array('skin'=>'comment'));?>
+        <a href="<?php echo url('post/captcha', array('refresh'=>1));?>" class="refresh-captcha"><?php echo t('refresh_captcha');?></a>
         <span class="help-info help-inline">4位纯数字</span>
         <span class="help-error help-inline">验证码不正确</span>
     </div>
 </div>
 <div class="actions">
-    <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn primary'));?>
+    <?php echo CHtml::button(t('submit'), array('class'=>'btn primary commit-submit'));?>
     <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
 </div>
 <?php echo CHtml::endForm();?>
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('submit', '.comment-form', BetaComment.create);
+	$(document).on('click', '.comment-form .commit-submit', BetaComment.create);
 	$(document).on('blur', '.comment-form .user-name', BetaComment.usernameValidate);
 	$(document).on('blur', '.comment-form .user-site', BetaComment.siteValidate);
 	$(document).on('blur', '.comment-form .user-email', BetaComment.emailValidate);
 	$(document).on('blur', '.comment-form .beta-captcha', BetaComment.captchaValidate);
 	$(document).on('blur', '.comment-form .comment-content', BetaComment.contentValidate);
+	$(document).on('focus', '.comment-form .comment-content', BetaComment.showCaptcha);
+	$(document).on('click', '.beta-captcha-img, .refresh-captcha', BetaComment.refreshCaptcha);
 });
 </script>
 

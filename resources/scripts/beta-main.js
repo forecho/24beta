@@ -73,19 +73,20 @@ var BetaPost = {
 var BetaComment = {
 	create: function(event){
 		event.preventDefault();
-		var msg = $(this).next('.beta-alert-message');
+		var form = $(this).parents('form');
+		var msg = form.next('.beta-alert-message');
 		if (msg.length == 0)
 			msg = $('#beta-create-message').clone().removeAttr('id');
 		var msgtext = msg.find('.text');
-		$(this).after(msg);
+		form.after(msg);
 
-		if ($(this).find('div.error').length > 0) {
+		if (form.find('div.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('success').addClass('error').show();
 			return false;
 		}
 		else {
-			var contentEl = $(this).find('.comment-content');
+			var contentEl = form.find('.comment-content');
 			var content = $.trim(contentEl.val());
 			var minlen = parseInt(contentEl.attr('minlen'));
 			minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
@@ -95,7 +96,7 @@ var BetaComment = {
 				contentEl.focus();
 				return false;
 			}
-			var captchaEl = $(this).find('.beta-captcha');
+			var captchaEl = form.find('.beta-captcha');
 			var captcha = $.trim(captchaEl.val());
 			if (captcha.length != 4) {
 				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
@@ -105,11 +106,10 @@ var BetaComment = {
 			}
 		}
 
-		var tthis = this;
 		var jqXhr = $.ajax({
 			type: 'post',
-			url: $(tthis).attr('action'),
-			data: $(this).serialize(),
+			url: form.attr('action'),
+			data: form.serialize(),
 			dataType: 'jsonp',
 			cache: false,
 			beforeSend: function(jqXhr){
@@ -119,22 +119,21 @@ var BetaComment = {
 		});
 		jqXhr.done(function(data){
 			msgtext.html(data.text);
+			form.find('.refresh-captcha').trigger('click');
 			if (data.errno == 0) {
-				$(tthis).find('.beta-captcha').val('');
-				$(tthis).find('textarea').val('');
-				$(tthis).find('.comment-clearfix').removeClass('error').removeClass('success');
+				form.find('.beta-captcha').val('');
+				form.find('textarea').val('');
+				form.find('.comment-clearfix').removeClass('error').removeClass('success');
 				msg.removeClass('error').addClass('success').show();
 				var lastComment = $('.beta-post-show .beta-comment-item:last');
 				if (lastComment.length == 0)
 					lastComment = $('#beta-comment-list');
 				lastComment.after(data.html);
-				if ($(tthis).attr('id') == undefined)
-					$(tthis).remove();
+				if (form.attr('id') == undefined)
+					form.remove();
 			}
-			else {
+			else
 				msg.removeClass('success').addClass('error').show();
-				$(tthis).find('.refresh-captcha').trigger('click');
-			}
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
 			jqXhr.abort();
@@ -147,6 +146,7 @@ var BetaComment = {
 		var form = $(this).parents('.beta-comment-item').next('form');
 		if (form.length == 0) {
 			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
+			form.find('.comment-captcha').hide();
 			$(this).parents('.beta-comment-item').after(form);
 		}
 		else if (form.filter(':visible').length == 0)
@@ -308,6 +308,30 @@ var BetaComment = {
 			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
+	},
+	showCaptcha: function(event) {
+		var captchaRow = $(this).parents('form').find('.comment-captcha:hidden');
+		if (captchaRow.length == 0) return false;
+
+		var captchaEl = $(this).parents('form').find('img.beta-captcha-img');
+		captchaEl.attr('src', captchaEl.attr('lazy-src'));
+		captchaEl.trigger('click');
+		captchaRow.fadeIn('fast');
+		$(this).focus();
+	},
+	refreshCaptcha: function(event) {
+		event.preventDefault();
+		var url = $(this).parents('.comment-input').find('.refresh-captcha').attr('href');
+		var jqXhr = $.ajax({
+			url: url,
+			dataType: 'json',
+			cache: false
+		});
+		jqXhr.done(function(data){
+			$('.beta-captcha-img').attr('src', data['url']);
+			$('body').data('captcha.hash', [data['hash1'], data['hash2']]);
+		});
+		return false;
 	}
 };
 
