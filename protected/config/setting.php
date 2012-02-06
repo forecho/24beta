@@ -28,7 +28,7 @@ return array(
     // 支持数达到多少才认为是热门评论
     'upNumsOfCommentIsHot' => 10,
     // 评论内容最短长度
-    'commentMinLength' => 10,
+    'commentMinLength' => 5,
 
     // 缓存数据目录
     'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,
@@ -70,6 +70,6 @@ return array(
     
     
     // 简述中可以使用的html标签
-    'summaryHtmlTags' => '<b><strong><a><img>',
+    'summaryHtmlTags' => '<b><strong><a><img><p>',
 );
 

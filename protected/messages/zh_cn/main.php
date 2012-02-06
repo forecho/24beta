@@ -98,5 +98,13 @@ return array(
     'you_have_joined' => '您已经参与过了，谢谢',
     'operation_error' => '发生系统错误',
 
+    /*
+     * post create
+     */
+    'post_title' => '文章标题',
+    'post_source' => '文章来源',
+    'post_contributor' => '您的大名',
+    'post_contributor_site' => '您的网站',
+    'post_contributor_email' => '您的邮箱',
 );
 

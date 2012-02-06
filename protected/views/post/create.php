@@ -1,57 +1,57 @@
 <div class="beta-content beta-post-show beta-radius3px">
     <?php echo CHtml::form('',  'post', array('class'=>'post-form', 'id'=>'post-form'));?>
     <div class="clearfix post-clearfix <?php if ($form->hasErrors('title')) echo 'error';?>">
-        <label><?php echo t('title');?></label>
+        <label><?php echo t('post_title');?></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'span7'));?>
+            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'span7', 'id'=>'post-title'));?>
             <span class="help-block"><?php echo $form->getError('title');?></span>
         </div>
     </div>
     <div class="clearfix post-clearfix <?php if ($form->hasErrors('source')) echo 'error';?>">
-        <label><?php echo t('source');?></label>
+        <label><?php echo t('post_source');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'source', array('class'=>'span6'));?>
             <span class="help-block"><?php echo $form->getError('source');?></span>
         </div>
     </div>
     <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor')) echo 'error';?>">
-        <label><?php echo t('contributor');?></label>
+        <label><?php echo t('post_contributor');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'span3'));?>
             <span class="help-block"><?php echo $form->getError('contributor');?></span>
         </div>
     </div>
     <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
-        <label><?php echo t('contributor_site');?></label>
+        <label><?php echo t('post_contributor_site');?></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'span6'));?>
+            <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'span6', 'id'=>'post-site'));?>
             <span class="help-block"><?php echo $form->getError('contributor_site');?></span>
         </div>
     </div>
     <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
-        <label><?php echo t('contributor_email');?></label>
+        <label><?php echo t('post_contributor_email');?></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'span6'));?>
+            <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'span6', 'id'=>'post-email'));?>
             <span class="help-block"><?php echo $form->getError('contributor_email');?></span>
         </div>
     </div>
     <div class="clearfix stacked post-clearfix <?php if ($form->hasErrors('summary')) echo 'error';?>">
         <label><?php echo t('summary');?>&nbsp;<span class="help-inline"><?php echo $form->getError('summary');?></span></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextArea($form, 'summary', array('class'=>'span10'));?>
+            <?php echo CHtml::activeTextArea($form, 'summary', array('class'=>'span10', 'id'=>'beta-summary'));?>
         </div>
     </div>
     <div class="clearfix stacked  post-clearfix <?php if ($form->hasErrors('content')) echo 'error';?>">
         <label><?php echo t('content');?>&nbsp;<span class="help-inline"><?php echo $form->getError('content');?></span></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextArea($form, 'content', array('class'=>'span10'));?>
+            <?php echo CHtml::activeTextArea($form, 'content', array('class'=>'span10', 'id'=>'beta-content'));?>
         </div>
     </div>
-    <div class="clearfix post-clearfix captcha-clearfix <?php if ($form->hasErrors('captcha')) echo 'error';?>">
+    <div class="clearfix post-clearfix captcha-clearfix <?php echo $captchaClass?>">
         <label><?php echo t('captcha');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha input-mini'));?>
-            <?php $this->widget('CCaptcha');?>
+            <?php echo $captchaWidget;?>
             <span class="help-inline"><?php echo $form->getError('captcha');?></span>
         </div>
     </div>
@@ -75,3 +75,19 @@
     </div>
 </div>
 <div class="clear"></div>
+
+<?php cs()->registerScriptFile(sbu('libs/kindeditor/kindeditor-min.js'), CClientScript::POS_END);?>
+<?php cs()->registerScriptFile(sbu('libs/kindeditor/config.js'), CClientScript::POS_END);?>
+
+<script type="text/javascript">
+$(function(){
+	$('#post-title').focus();
+	
+    KindEditor.ready(function(K) {
+    	var betaSummary = K.create('#beta-summary', KEConfig.mini);
+    	var betaContent = K.create('#beta-content', KEConfig.common);
+    	$('#post-form').on('submit', {content:betaContent}, BetaPost.create);
+    });
+});
+</script>
+

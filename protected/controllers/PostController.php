@@ -86,8 +86,12 @@ class PostController extends Controller
             }
         }
 
+        $captchaWidget = $form->hasErrors('captcha') ? $this->widget('BetaCaptcha', array(), true) : $this->widget('BetaCaptcha', array('skin'=>'defaultLazy'), true);
+        $captchaClass = $form->hasErrors('captcha') ? 'error' : 'hide';
         $this->render('create', array(
             'form' => $form,
+            'captchaClass' => $captchaClass,
+            'captchaWidget' => $captchaWidget,
         ));
     }
     

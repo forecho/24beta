@@ -66,16 +66,22 @@
 .comment-reply-form {margin-top:5px;}
 .beta-alert-message {font-size:12px; padding:2px 10px; margin-bottom:0; margin:2px;}
 .post-form {margin:10px 0;}
-.post-form .post-clearfix {margin-bottom:7px; margin-left:7px;}
-.post-form .post-clearfix label {width:100px; font-size:12px;}
-.post-form .post-input {margin-left:110px;}
+.post-form .post-clearfix {margin-bottom:7px; margin-left:6px;}
+.post-form .post-clearfix label {width:70px; font-size:12px;}
+.post-form .post-input {margin-left:80px;}
 .post-form .post-input input, .post-form textarea {font-size:12px; padding:3px;}
 .post-form .captcha-clearfix label {text-align:left; width:auto;}
 .captcha-clearfix .input {margin-left:45px;}
+.post-form #beta-summary {height:200px;}
+.post-form #beta-content {height:400px;}
 
 .comment-form input.beta-captcha, .post-form input.beta-captcha {font-size:16px;}
 .comment-form .refresh-captcha, .post-form .refresh-captcha {font-size:12px; margin-left:5px;}
 
+/*
+ * kind editor
+ */
+body.ke-content {padding:5px;}
 
 
 

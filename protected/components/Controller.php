@@ -9,7 +9,7 @@ class Controller extends CController
 	{
 		return array(
 			'captcha'=>array(
-				'class'=>'application.extensions.CdCaptcha.CdCaptchaAction',
+				'class'=>'application.extensions.BetaCaptchaAction.BetaCaptchaAction',
 				'backColor' => 0xFFFFFF,
 				'height' => 22,
 				'width' => 70,
