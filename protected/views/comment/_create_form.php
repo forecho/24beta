@@ -36,7 +36,7 @@
     <label><?php echo t('captcha');?></label>
     <div class="input comment-input">
         <?php echo CHtml::activeTextField($comment, 'captcha', array('class'=>'beta-captcha input-mini'));?>
-        <?php $this->widget('CCaptcha');?>
+        <?php $this->widget('BetaCaptcha');?>
         <span class="help-info help-inline">4位纯数字</span>
         <span class="help-error help-inline">验证码不正确</span>
     </div>

@@ -29,7 +29,7 @@ var BetaPost = {
 		var title = $.trim($('#post-title').val());
 		var site = $.trim($('#post-site').val());
 		var email = $.trim($('#post-email').val());
-		
+
 		if (title.length == 0) {
 			$(this).find('#post-title').parents('.post-clearfix').addClass('error');
 			$(this).find('#post-title').focus();
@@ -54,6 +54,7 @@ var BetaPost = {
 			var captchaEl = $(this).find('.captcha-clearfix img.beta-captcha-img');
 			captchaEl.attr('src', captchaEl.attr('lazy-src')).removeAttr('lazy-src');
 			$(this).find('.captcha-clearfix').fadeIn('fast');
+			$(this).find('.beta-captcha:visible').focus();
 			event.preventDefault();
 		}
 		else {
@@ -77,7 +78,7 @@ var BetaComment = {
 			msg = $('#beta-create-message').clone().removeAttr('id');
 		var msgtext = msg.find('.text');
 		$(this).after(msg);
-		
+
 		if ($(this).find('div.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('success').addClass('error').show();
@@ -132,7 +133,7 @@ var BetaComment = {
 			}
 			else {
 				msg.removeClass('success').addClass('error').show();
-				$(tthis).find('.refresh-captcha').click();
+				$(tthis).find('.refresh-captcha').trigger('click');
 			}
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
@@ -152,7 +153,7 @@ var BetaComment = {
 			form.show();
 		else
 			form.hide();
-		
+
 	},
 	rating: function(event) {
 		event.preventDefault();
@@ -161,7 +162,7 @@ var BetaComment = {
 		if (msg.length == 0)
 			msg = $('#beta-comment-message').clone().removeAttr('id');
 		var msgtext = msg.find('.text');
-		
+
 		if ($(this).attr('data-clicked')) {
 			msgtext.html($('.ajax-jsstr .ajax-has-joined').text());
 			if (msg.hasClass('success')) msg.removeClass('success');
@@ -170,7 +171,7 @@ var BetaComment = {
 			msg.show();
 			return false;
 		}
-		
+
 		var tthis = this;
 		var url = $(this).attr('data-url');
 		var jqXhr = $.ajax({
