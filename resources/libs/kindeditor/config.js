@@ -15,7 +15,7 @@ var KEConfig = {
 		allowFileManager: false,
 		allowUpload: false,
 		filterMode: true,
-		cssPath: ['http://s.24beta.cn/styles/beta-global.css', 'http://s.24beta.cn/styles/beta-main.css'],
+		cssPath: ['http://s.24beta.cn/libs/bootstrap/css/bootstrap.min.css', 'http://s.24beta.cn/styles/beta-main.css'],
 		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste',
 	        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
 	        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',

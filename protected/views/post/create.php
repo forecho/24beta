@@ -1,53 +1,53 @@
 <div class="beta-content beta-post-show beta-radius3px">
-    <?php echo CHtml::form('',  'post', array('class'=>'post-form', 'id'=>'post-form'));?>
-    <div class="clearfix post-clearfix <?php if ($form->hasErrors('title')) echo 'error';?>">
+    <?php echo CHtml::form('',  'post', array('class'=>'form-horizontal post-form', 'id'=>'post-form'));?>
+    <div class="control-group post-clearfix <?php if ($form->hasErrors('title')) echo 'error';?>">
         <label><?php echo t('post_title');?></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'span7', 'id'=>'post-title'));?>
-            <span class="help-block"><?php echo $form->getError('title');?></span>
+            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'span6', 'id'=>'post-title'));?>
+            <p class="help-block"><?php echo $form->getError('title');?></p>
         </div>
     </div>
-    <div class="clearfix post-clearfix <?php if ($form->hasErrors('source')) echo 'error';?>">
+    <div class="control-group post-clearfix <?php if ($form->hasErrors('source')) echo 'error';?>">
         <label><?php echo t('post_source');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'source', array('class'=>'span6'));?>
-            <span class="help-block"><?php echo $form->getError('source');?></span>
+            <p class="help-block"><?php echo $form->getError('source');?></p>
         </div>
     </div>
-    <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor')) echo 'error';?>">
+    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor')) echo 'error';?>">
         <label><?php echo t('post_contributor');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'span3'));?>
-            <span class="help-block"><?php echo $form->getError('contributor');?></span>
+            <p class="help-block"><?php echo $form->getError('contributor');?></p>
         </div>
     </div>
-    <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
+    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
         <label><?php echo t('post_contributor_site');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'span6', 'id'=>'post-site'));?>
-            <span class="help-block"><?php echo $form->getError('contributor_site');?></span>
+            <p class="help-block"><?php echo $form->getError('contributor_site');?></p>
         </div>
     </div>
-    <div class="clearfix post-clearfix <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
+    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
         <label><?php echo t('post_contributor_email');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'span6', 'id'=>'post-email'));?>
-            <span class="help-block"><?php echo $form->getError('contributor_email');?></span>
+            <p class="help-block"><?php echo $form->getError('contributor_email');?></p>
         </div>
     </div>
-    <div class="clearfix stacked post-clearfix <?php if ($form->hasErrors('summary')) echo 'error';?>">
+    <div class="control-group stacked post-clearfix <?php if ($form->hasErrors('summary')) echo 'error';?>">
         <label><?php echo t('summary');?>&nbsp;<span class="help-inline"><?php echo $form->getError('summary');?></span></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextArea($form, 'summary', array('class'=>'span10', 'id'=>'beta-summary'));?>
+            <?php echo CHtml::activeTextArea($form, 'summary', array('id'=>'beta-summary'));?>
         </div>
     </div>
-    <div class="clearfix stacked  post-clearfix <?php if ($form->hasErrors('content')) echo 'error';?>">
+    <div class="control-group stacked post-clearfix <?php if ($form->hasErrors('content')) echo 'error';?>">
         <label><?php echo t('content');?>&nbsp;<span class="help-inline"><?php echo $form->getError('content');?></span></label>
         <div class="input post-input">
-            <?php echo CHtml::activeTextArea($form, 'content', array('class'=>'span10', 'id'=>'beta-content'));?>
+            <?php echo CHtml::activeTextArea($form, 'content', array('id'=>'beta-content'));?>
         </div>
     </div>
-    <div class="clearfix post-clearfix captcha-clearfix <?php echo $captchaClass?>">
+    <div class="control-group post-clearfix captcha-clearfix <?php echo $captchaClass?>">
         <label><?php echo t('captcha');?></label>
         <div class="input post-input">
             <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha input-mini'));?>
@@ -55,8 +55,8 @@
             <span class="help-inline"><?php echo $form->getError('captcha');?></span>
         </div>
     </div>
-    <div class="actions">
-        <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn primary'));?>
+    <div class="form-actions">
+        <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
         <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
     </div>
     <?php echo CHtml::endForm();?>

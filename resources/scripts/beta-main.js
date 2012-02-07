@@ -25,28 +25,28 @@ var BetaPost = {
 		});
 	},
 	create: function(event) {
-		$(this).find('.post-clearfix').removeClass('error');
+		$(this).find('.post-clearfix').removeClass('alert-error');
 		var title = $.trim($('#post-title').val());
 		var site = $.trim($('#post-site').val());
 		var email = $.trim($('#post-email').val());
 
 		if (title.length == 0) {
-			$(this).find('#post-title').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-title').parents('.post-clearfix').addClass('alert-error');
 			$(this).find('#post-title').focus();
 			event.preventDefault();
 		}
 		else if (site.length > 0 && !Beta24.urlValidate(site)) {
-			$(this).find('#post-site').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-site').parents('.post-clearfix').addClass('alert-error');
 			$(this).find('#post-site').focus();
 			event.preventDefault();
 		}
 		else if (email.length > 0 && !Beta24.emailValidate(email)) {
-			$(this).find('#post-email').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-email').parents('.post-clearfix').addClass('alert-error');
 			$(this).find('#post-email').focus();
 			event.preventDefault();
 		}
 		else if (event.data.content.isEmpty()) {
-			$(this).find('#beta-content').parents('.post-clearfix').addClass('error');
+			$(this).find('#beta-content').parents('.post-clearfix').addClass('alert-error');
 			event.data.content.focus();
 			event.preventDefault();
 		}
@@ -60,7 +60,7 @@ var BetaPost = {
 		else {
 			var captcha = $.trim($(this).find('.beta-captcha').val());
 			if (captcha.length != 4) {
-				$(this).find('.beta-captcha').parents('.post-clearfix').addClass('error');
+				$(this).find('.beta-captcha').parents('.post-clearfix').addClass('alert-error');
 				$(this).find('.beta-captcha').focus();
 				event.preventDefault();
 			}
@@ -82,7 +82,7 @@ var BetaComment = {
 
 		if (form.find('div.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
-			msg.removeClass('success').addClass('error').show();
+			msg.removeClass('alert-success').addClass('alert-error').show();
 			return false;
 		}
 		else {
@@ -92,7 +92,7 @@ var BetaComment = {
 			minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 			if (content.length < minlen) {
 				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
-				msg.removeClass('success').addClass('error').show();
+				msg.removeClass('alert-success').addClass('alert-error').show();
 				contentEl.focus();
 				return false;
 			}
@@ -100,7 +100,7 @@ var BetaComment = {
 			var captcha = $.trim(captchaEl.val());
 			if (captcha.length != 4) {
 				msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
-				msg.removeClass('success').addClass('error').show();
+				msg.removeClass('alert-success').addClass('alert-error').show();
 				captchaEl.focus();
 				return false;
 			}
@@ -114,7 +114,7 @@ var BetaComment = {
 			cache: false,
 			beforeSend: function(jqXhr){
 				msgtext.html($('.ajax-jsstr .ajax-send').text());
-				msg.removeClass('error').addClass('success').show();
+				msg.removeClass('alert-error').addClass('alert-success').show();
 			}
 		});
 		jqXhr.done(function(data){
@@ -123,8 +123,8 @@ var BetaComment = {
 			if (data.errno == 0) {
 				form.find('.beta-captcha').val('');
 				form.find('textarea').val('');
-				form.find('.comment-clearfix').removeClass('error').removeClass('success');
-				msg.removeClass('error').addClass('success').show();
+				form.find('.comment-clearfix').removeClass('alert-error').removeClass('alert-success');
+				msg.removeClass('alert-error').addClass('alert-success').show();
 				var lastComment = $('.beta-post-show .beta-comment-item:last');
 				if (lastComment.length == 0)
 					lastComment = $('#beta-comment-list');
@@ -133,12 +133,12 @@ var BetaComment = {
 					form.remove();
 			}
 			else
-				msg.removeClass('success').addClass('error').show();
+				msg.removeClass('alert-success').addClass('alert-error').show();
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
 			jqXhr.abort();
 			msgtext.html($('.ajax-jsstr .ajax-fail').text());
-			msg.removeClass('success').addClass('error').show();
+			msg.removeClass('alert-success').addClass('alert-error').show();
 		});
 		return false;
 	},
@@ -148,9 +148,12 @@ var BetaComment = {
 			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
 			form.find('.comment-captcha').hide();
 			$(this).parents('.beta-comment-item').after(form);
+			form.find('.clearfix').removeClass('alert-error').removeClass('alert-success');
 		}
-		else if (form.filter(':visible').length == 0)
+		else if (form.filter(':visible').length == 0) {
 			form.show();
+			form.find('.comment-content').focus();
+		}
 		else
 			form.hide();
 
@@ -165,8 +168,8 @@ var BetaComment = {
 
 		if ($(this).attr('data-clicked')) {
 			msgtext.html($('.ajax-jsstr .ajax-has-joined').text());
-			if (msg.hasClass('success')) msg.removeClass('success');
-			if (!msg.hasClass('error')) msg.addClass('error');
+			if (msg.hasClass('alert-success')) msg.removeClass('alert-success');
+			if (!msg.hasClass('alert-error')) msg.addClass('alert-error');
 			commentItem.after(msg);
 			msg.show();
 			return false;
@@ -181,7 +184,7 @@ var BetaComment = {
 			cache: false,
 			beforeSend: function(jqXhr) {
 				msgtext.html($('.ajax-jsstr .ajax-send').text());
-				msg.removeClass('error').addClass('success');
+				msg.removeClass('alert-error').addClass('alert-success');
 				commentItem.after(msg);
 				msg.show();
 			}
@@ -192,20 +195,20 @@ var BetaComment = {
 				jqnums.text(parseInt(jqnums.text()) + 1);
 				$(tthis).attr('data-clicked', 1);
 				msgtext.html(data.text);
-				if (msg.hasClass('error')) msg.removeClass('error');
-				if (!msg.hasClass('success')) msg.addClass('success');
+				if (msg.hasClass('alert-error')) msg.removeClass('alert-error');
+				if (!msg.hasClass('alert-success')) msg.addClass('alert-success');
 			}
 			else {
-				if (msg.hasClass('success')) msg.removeClass('success');
-				if (!msg.hasClass('error')) msg.addClass('error');
+				if (msg.hasClass('alert-success')) msg.removeClass('alert-success');
+				if (!msg.hasClass('alert-error')) msg.addClass('alert-error');
 			}
 			commentItem.after(msg);
 			msg.show();
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
 			msgtext.html($('.ajax-jsstr .ajax-fail').text());
-			if (msg.hasClass('success')) msg.removeClass('success');
-			if (!msg.hasClass('error')) msg.addClass('error');
+			if (msg.hasClass('alert-success')) msg.removeClass('alert-success');
+			if (!msg.hasClass('alert-error')) msg.addClass('alert-error');
 			commentItem.after(msg);
 			msg.show();
 		});
@@ -217,18 +220,18 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (name.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			clearfix.removeClass('alert-error').removeClass('alert-success');
 			return true;
 		}
 
 		help.hide();
 		if (name.length > 50) {
 			helperror.show();
-			$(this).parents('.comment-clearfix').removeClass('success').addClass('error');
+			$(this).parents('.comment-clearfix').removeClass('alert-success').addClass('alert-error');
 			return false;
 		}
 		else {
-			clearfix.removeClass('error').addClass('success');
+			clearfix.removeClass('alert-error').addClass('alert-success');
 			return true;
 		}
 
@@ -241,18 +244,18 @@ var BetaComment = {
 
 		if (url.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			clearfix.removeClass('alert-error').removeClass('alert-success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.urlValidate(url)) {
-			clearfix.removeClass('error').addClass('success');
+			clearfix.removeClass('alert-error').addClass('alert-success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			clearfix.removeClass('alert-success').addClass('alert-error');
 			return false;
 		}
 	},
@@ -263,18 +266,18 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (email.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			clearfix.removeClass('alert-error').removeClass('alert-success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.emailValidate(email)) {
-			clearfix.removeClass('error').addClass('success');
+			clearfix.removeClass('alert-error').addClass('alert-success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			clearfix.removeClass('alert-success').addClass('alert-error');
 			return false;
 		}
 	},
@@ -286,12 +289,12 @@ var BetaComment = {
 
 		help.hide();
 		if (captcha.length == 4) {
-			clearfix.removeClass('error').addClass('success');
+			clearfix.removeClass('alert-error').addClass('alert-success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			clearfix.removeClass('alert-success').addClass('alert-error');
 			return false;
 		}
 	},
@@ -301,11 +304,11 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 		if (content.length > minlen) {
-			clearfix.removeClass('error').addClass('success');
+			clearfix.removeClass('alert-error').addClass('alert-success');
 			return true;
 		}
 		else {
-			clearfix.removeClass('success').addClass('error');
+			clearfix.removeClass('alert-success').addClass('alert-error');
 			return false;
 		}
 	},

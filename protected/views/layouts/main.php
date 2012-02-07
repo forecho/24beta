@@ -6,7 +6,7 @@
     <meta name="author" content="24beta.com" />
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-global.css');?>" />
+    <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('libs/bootstrap/css/bootstrap.min.css');?>" />
     <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-main.css');?>" />
     <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.1.min.js');?>"></script>
 </head>

@@ -13,9 +13,7 @@
     </dd>
 </dl>
 <?php endforeach;?>
-<div class="alert-message beta-alert-message hide" id="beta-comment-message" data-alert="alert"><a class="close" href="javascript:void(0);">×</a><span class="text"></span></div>
+<div class="alert beta-alert-message hide" id="beta-comment-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text"></span></div>
 <?php if (count($comments) === 0):?>
 <div class="beta-no-comments"><?php echo t('have_no_comments');?></div>
 <?php endif;?>
-
-<?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap-alerts.js'), CClientScript::POS_END);?>

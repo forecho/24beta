@@ -5,14 +5,14 @@
         <div class="post-content"><?php echo $post->content;?></div>
         <?php if ($post->tags):?>
         <div class="post-tags row">
-            <div class="span1"><span class="label success">&nbsp;&nbsp;<?php echo t('tag_label');?>&nbsp;&nbsp;</span></div>
-            <div class="span8"><?php echo $post->tagLinks;?></div>
+            <span class="label label-success">&nbsp;&nbsp;<?php echo t('tag_label');?>&nbsp;&nbsp;</span>
+            <div class="span6"><?php echo $post->tagLinks;?></div>
         </div>
         <?php endif;?>
         <?php if ($post->source):?>
         <div class="post-source row">
-            <div class="span1"><span class="label success">&nbsp;&nbsp;<?php echo t('source_label');?>&nbsp;&nbsp;</span></div>
-            <div class="span8"><?php echo $post->sourceLink;?></div>
+            <span class="label label-success">&nbsp;&nbsp;<?php echo t('source_label');?>&nbsp;&nbsp;</span>
+            <div class="span6"><?php echo $post->sourceLink;?></div>
         </div>
         <?php endif;?>
     </div>
@@ -40,6 +40,8 @@
 </div>
 
 <?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
+<?php cs()->registerScriptFile(sbu('libs/bootstrap/js/bootstrap.min.js'), CClientScript::POS_END);?>
+
 <script type="text/javascript">
 $(function(){
 	Beta24.imageLazyLoad($('.beta-post-detail .post-content img.lazy'));
