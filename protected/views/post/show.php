@@ -1,20 +1,14 @@
 <div class="beta-content beta-post-show beta-radius3px">
     <div class="beta-post-detail">
         <h1><?php echo $post->title;?></h1>
-        <div class="post-extra"><span><?php echo t('post_extra_text', 'main', $post->postExtra);?></span></div>
+        <div class="post-extra"><p><?php echo t('post_extra_text', 'main', $post->postExtra);?></p></div>
         <div class="thank-contributor"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
         <div class="post-content"><?php echo $post->content;?></div>
         <?php if ($post->tags):?>
-        <div class="post-tags row">
-            <span class="label label-success">&nbsp;&nbsp;<?php echo t('tag_label');?>&nbsp;&nbsp;</span>
-            <div class="span6"><?php echo $post->tagLinks;?></div>
-        </div>
+        <div class="post-tags"><?php echo $post->tagLinks;?></div>
         <?php endif;?>
         <?php if ($post->source):?>
-        <div class="post-source row">
-            <span class="label label-success">&nbsp;&nbsp;<?php echo t('source_label');?>&nbsp;&nbsp;</span>
-            <div class="span6"><?php echo $post->sourceLink;?></div>
-        </div>
+        <div class="post-source"><?php echo t('source_label');?><?php echo $post->sourceLink;?></div>
         <?php endif;?>
     </div>
     <div class="beta-mini-title"><?php echo t('post_comment');?></div>
