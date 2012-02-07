@@ -1,8 +1,11 @@
 <?php foreach ((array)$posts as $model):?>
 <dl class="beta-post-item beta-radius3px">
     <dt><h1><?php echo $model->titleLink;?></h1></dt>
-    <dd class="post-extra"><span><?php echo t('post_extra_text', 'main', $model->postExtra);?></span></d>
-    <dd class="post-summary"><?php echo $model->summary;?></dd>
+    <dd class="post-extra"><span><?php echo t('post_extra_text', 'main', $model->postExtra);?></span></dd>
+    <dd class="post-summary">
+        <div class="thank-contributor"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div>
+        <?php echo $model->summary;?>
+    </dd>
     <dd class="post-item-toolbar">
         <strong><?php echo l(t('view_detail'), $model->url, array('target'=>'_blank'));?></strong>
         <?php echo t('post_toolbar_text', 'main', $model->postToolbar);?>

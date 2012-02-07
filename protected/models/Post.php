@@ -175,7 +175,7 @@ class Post extends CActiveRecord
 	    return (empty($this->contributor)) ? t('guest_name') : $this->contributor;
 	}
 	
-	public function getcontributorLink()
+	public function getContributorLink()
 	{
 	    $name = $this->getContributorName();
 	    return $this->contributor_site ? l($name, $this->contributor_site, array('target'=>'_blank')) : $name;

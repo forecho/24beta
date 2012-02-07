@@ -2,6 +2,7 @@
     <div class="beta-post-detail">
         <h1><?php echo $post->title;?></h1>
         <div class="post-extra"><span><?php echo t('post_extra_text', 'main', $post->postExtra);?></span></div>
+        <div class="thank-contributor"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
         <div class="post-content"><?php echo $post->content;?></div>
         <?php if ($post->tags):?>
         <div class="post-tags row">

@@ -48,7 +48,7 @@ return array(
     'refresh_captcha' => '看不清，换一张',
 
     'post_comment' => '发表评论',
-    'view_detail' => '查看详情',
+    'view_detail' => '<i class="icon-eye-open"></i>查看详情',
     'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:{score}分',
     'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;<span class="beta-visit-nums">{visit}</span>次阅读&nbsp;&nbsp;{digg}次推荐',
     'comment_list' => '评论列表',
@@ -70,11 +70,12 @@ return array(
     'tag_label' => '标签',
     'prev_page_label' => '&lt;上一页',
     'next_page_label' => '下一页&gt;',
+    'this_post_is_disable_comment' => '当前文章已经关闭评论',
 
     /*
-     * post create form
+     * post show
      */
-    'this_post_is_disable_comment' => '当前文章已经关闭评论',
+    'thanks_contribute' => '<i class="icon-upload"></i>感谢{contributor}的投递',
 
     /*
      * comment create form

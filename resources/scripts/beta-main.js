@@ -25,28 +25,28 @@ var BetaPost = {
 		});
 	},
 	create: function(event) {
-		$(this).find('.post-clearfix').removeClass('alert-error');
+		$(this).find('.post-clearfix').removeClass('error');
 		var title = $.trim($('#post-title').val());
 		var site = $.trim($('#post-site').val());
 		var email = $.trim($('#post-email').val());
 
 		if (title.length == 0) {
-			$(this).find('#post-title').parents('.post-clearfix').addClass('alert-error');
+			$(this).find('#post-title').parents('.post-clearfix').addClass('error');
 			$(this).find('#post-title').focus();
 			event.preventDefault();
 		}
 		else if (site.length > 0 && !Beta24.urlValidate(site)) {
-			$(this).find('#post-site').parents('.post-clearfix').addClass('alert-error');
+			$(this).find('#post-site').parents('.post-clearfix').addClass('error');
 			$(this).find('#post-site').focus();
 			event.preventDefault();
 		}
 		else if (email.length > 0 && !Beta24.emailValidate(email)) {
-			$(this).find('#post-email').parents('.post-clearfix').addClass('alert-error');
+			$(this).find('#post-email').parents('.post-clearfix').addClass('error');
 			$(this).find('#post-email').focus();
 			event.preventDefault();
 		}
 		else if (event.data.content.isEmpty()) {
-			$(this).find('#beta-content').parents('.post-clearfix').addClass('alert-error');
+			$(this).find('#beta-content').parents('.post-clearfix').addClass('error');
 			event.data.content.focus();
 			event.preventDefault();
 		}
@@ -60,7 +60,7 @@ var BetaPost = {
 		else {
 			var captcha = $.trim($(this).find('.beta-captcha').val());
 			if (captcha.length != 4) {
-				$(this).find('.beta-captcha').parents('.post-clearfix').addClass('alert-error');
+				$(this).find('.beta-captcha').parents('.post-clearfix').addClass('error');
 				$(this).find('.beta-captcha').focus();
 				event.preventDefault();
 			}
@@ -156,7 +156,8 @@ var BetaComment = {
 		}
 		else
 			form.hide();
-
+		
+		form.next('.beta-alert-message:visible').hide();
 	},
 	rating: function(event) {
 		event.preventDefault();
@@ -220,18 +221,18 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (name.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('alert-error').removeClass('alert-success');
+			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
 		help.hide();
 		if (name.length > 50) {
 			helperror.show();
-			$(this).parents('.comment-clearfix').removeClass('alert-success').addClass('alert-error');
+			$(this).parents('.comment-clearfix').removeClass('success').addClass('error');
 			return false;
 		}
 		else {
-			clearfix.removeClass('alert-error').addClass('alert-success');
+			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 
@@ -244,18 +245,18 @@ var BetaComment = {
 
 		if (url.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('alert-error').removeClass('alert-success');
+			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.urlValidate(url)) {
-			clearfix.removeClass('alert-error').addClass('alert-success');
+			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('alert-success').addClass('alert-error');
+			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
 	},
@@ -266,18 +267,18 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		if (email.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('alert-error').removeClass('alert-success');
+			clearfix.removeClass('error').removeClass('success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.emailValidate(email)) {
-			clearfix.removeClass('alert-error').addClass('alert-success');
+			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('alert-success').addClass('alert-error');
+			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
 	},
@@ -289,12 +290,12 @@ var BetaComment = {
 
 		help.hide();
 		if (captcha.length == 4) {
-			clearfix.removeClass('alert-error').addClass('alert-success');
+			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('alert-success').addClass('alert-error');
+			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
 	},
@@ -304,11 +305,11 @@ var BetaComment = {
 		var clearfix = $(this).parents('.comment-clearfix');
 		minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 		if (content.length > minlen) {
-			clearfix.removeClass('alert-error').addClass('alert-success');
+			clearfix.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			clearfix.removeClass('alert-success').addClass('alert-error');
+			clearfix.removeClass('success').addClass('error');
 			return false;
 		}
 	},
