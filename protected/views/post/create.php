@@ -1,71 +1,71 @@
 <div class="beta-content beta-post-show beta-radius3px">
-    <?php echo CHtml::form('',  'post', array('class'=>'form-horizontal post-form', 'id'=>'post-form'));?>
-    <div class="control-group post-clearfix <?php if ($form->hasErrors('title')) echo 'error';?>">
-        <label><?php echo t('post_title');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'span6', 'id'=>'post-title'));?>
-            <p class="help-block"><?php echo $form->getError('title');?></p>
+    <?php echo CHtml::form('',  'post', array('class'=>'beta-form-horizontal beta-post-form', 'id'=>'post-form'));?>
+    <div class="beta-control-group <?php if ($form->hasErrors('title')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('post_title');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'title', array('class'=>'beta-text', 'id'=>'post-title'));?>
+            <p class="beta-help-block"><?php echo $form->getError('title');?></p>
         </div>
     </div>
-    <div class="control-group post-clearfix <?php if ($form->hasErrors('source')) echo 'error';?>">
-        <label><?php echo t('post_source');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'source', array('class'=>'span6'));?>
-            <p class="help-block"><?php echo $form->getError('source');?></p>
+    <div class="beta-control-group <?php if ($form->hasErrors('source')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('post_source');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'source', array('class'=>'beta-text'));?>
+            <p class="beta-help-block"><?php echo $form->getError('source');?></p>
         </div>
     </div>
-    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor')) echo 'error';?>">
-        <label><?php echo t('post_contributor');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'span3'));?>
-            <p class="help-block"><?php echo $form->getError('contributor');?></p>
+    <div class="beta-control-group <?php if ($form->hasErrors('contributor')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('post_contributor');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'beta-text'));?>
+            <p class="beta-help-block"><?php echo $form->getError('contributor');?></p>
         </div>
     </div>
-    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
-        <label><?php echo t('post_contributor_site');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'span6', 'id'=>'post-site'));?>
-            <p class="help-block"><?php echo $form->getError('contributor_site');?></p>
+    <div class="beta-control-group <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('post_contributor_site');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'beta-text', 'id'=>'post-site'));?>
+            <p class="beta-help-block"><?php echo $form->getError('contributor_site');?></p>
         </div>
     </div>
-    <div class="control-group post-clearfix <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
-        <label><?php echo t('post_contributor_email');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'span6', 'id'=>'post-email'));?>
-            <p class="help-block"><?php echo $form->getError('contributor_email');?></p>
+    <div class="beta-control-group <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('post_contributor_email');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'beta-text', 'id'=>'post-email'));?>
+            <p class="beta-help-block"><?php echo $form->getError('contributor_email');?></p>
         </div>
     </div>
-    <div class="control-group stacked post-clearfix <?php if ($form->hasErrors('summary')) echo 'error';?>">
-        <label><?php echo t('summary');?>&nbsp;<span class="help-inline"><?php echo $form->getError('summary');?></span></label>
-        <div class="input post-input">
+    <div class="beta-control-group stacked <?php if ($form->hasErrors('summary')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('summary');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('summary');?></span></label>
+        <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'summary', array('id'=>'beta-summary'));?>
         </div>
     </div>
-    <div class="control-group stacked post-clearfix <?php if ($form->hasErrors('content')) echo 'error';?>">
-        <label><?php echo t('content');?>&nbsp;<span class="help-inline"><?php echo $form->getError('content');?></span></label>
-        <div class="input post-input">
+    <div class="beta-control-group stacked <?php if ($form->hasErrors('content')) echo 'error';?>">
+        <label class="beta-control-label"><?php echo t('content');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('content');?></span></label>
+        <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'content', array('id'=>'beta-content'));?>
         </div>
     </div>
-    <div class="control-group post-clearfix captcha-clearfix <?php echo $captchaClass?>">
-        <label><?php echo t('captcha');?></label>
-        <div class="input post-input">
-            <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha input-mini'));?>
+    <div class="beta-control-group captcha-clearfix <?php echo $captchaClass?>">
+        <label class="beta-control-label"><?php echo t('captcha');?></label>
+        <div class="beta-controls">
+            <?php echo CHtml::activeTextField($form, 'captcha', array('class'=>'beta-captcha beta-text'));?>
             <?php echo $captchaWidget;?>
-            <span class="help-inline"><?php echo $form->getError('captcha');?></span>
+            <span class="beta-help-inline"><?php echo $form->getError('captcha');?></span>
         </div>
     </div>
-    <div class="form-actions">
-        <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
-        <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
+    <div class="beta-form-actions">
+        <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary'));?>
+        <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn'));?>
     </div>
     <?php echo CHtml::endForm();?>
 </div>
 
 <div class="beta-sidebar">
-    <div class="beta-sidebar-block beta-small beta-radius3px">
+    <div class="beta-block beta-small beta-radius3px">
         <h2>投稿必读</h2>
-        <ul class="content">
+        <ul class="beta-block-content">
             <li>欢迎原创及翻译文章，您的独家报料与独特视角是CB的宝贵财富</li>
             <li>非原创文章必须填写来源</li>
             <li>别忘了署名! 写上您的blog地址,带来意想不到的人气,也可能发现志同道合的CB访客</li>
@@ -82,7 +82,6 @@
 <script type="text/javascript">
 $(function(){
 	$('#post-title').focus();
-	
     KindEditor.ready(function(K) {
     	var betaSummary = K.create('#beta-summary', KEConfig.mini);
     	var betaContent = K.create('#beta-content', KEConfig.common);

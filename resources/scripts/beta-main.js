@@ -1,3 +1,5 @@
+!function(a){"use strict";var b='[data-dismiss="alert"]',c=function(c){a(c).on("click",b,this.close)};c.prototype={constructor:c,close:function(b){function f(){e.remove(),e.trigger("closed")}var c=a(this),d=c.attr("data-target"),e;d||(d=c.attr("href"),d=d&&d.replace(/.*(?=#[^\s]*$)/,"")),e=a(d),e.trigger("close"),b&&b.preventDefault(),e.length||(e=c.hasClass("beta-alert")?c:c.parent()),e.removeClass("in"),a.support.transition&&e.hasClass("fade")?e.on(a.support.transition.end,f):f()}},a.fn.alert=function(b){return this.each(function(){var d=a(this),e=d.data("alert");e||d.data("alert",e=new c(this)),typeof b=="string"&&e[b].call(d)})},a.fn.alert.Constructor=c,a(function(){a("body").on("click.alert.data-api",b,c.prototype.close)})}(window.jQuery);
+
 var Beta24 = {
 	urlValidate: function(url) {
 		var pattern = /http:\/\/[\w-]*(\.[\w-]*)+/ig;
@@ -25,28 +27,28 @@ var BetaPost = {
 		});
 	},
 	create: function(event) {
-		$(this).find('.post-clearfix').removeClass('error');
+		$(this).find('.beta-control-group').removeClass('error');
 		var title = $.trim($('#post-title').val());
 		var site = $.trim($('#post-site').val());
 		var email = $.trim($('#post-email').val());
 
 		if (title.length == 0) {
-			$(this).find('#post-title').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-title').parents('.beta-control-group').addClass('error');
 			$(this).find('#post-title').focus();
 			event.preventDefault();
 		}
 		else if (site.length > 0 && !Beta24.urlValidate(site)) {
-			$(this).find('#post-site').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-site').parents('.beta-control-group').addClass('error');
 			$(this).find('#post-site').focus();
 			event.preventDefault();
 		}
 		else if (email.length > 0 && !Beta24.emailValidate(email)) {
-			$(this).find('#post-email').parents('.post-clearfix').addClass('error');
+			$(this).find('#post-email').parents('.beta-control-group').addClass('error');
 			$(this).find('#post-email').focus();
 			event.preventDefault();
 		}
 		else if (event.data.content.isEmpty()) {
-			$(this).find('#beta-content').parents('.post-clearfix').addClass('error');
+			$(this).find('#beta-content').parents('.beta-control-group').addClass('error');
 			event.data.content.focus();
 			event.preventDefault();
 		}
@@ -60,7 +62,7 @@ var BetaPost = {
 		else {
 			var captcha = $.trim($(this).find('.beta-captcha').val());
 			if (captcha.length != 4) {
-				$(this).find('.beta-captcha').parents('.post-clearfix').addClass('error');
+				$(this).find('.beta-captcha').parents('.beta-control-group').addClass('error');
 				$(this).find('.beta-captcha').focus();
 				event.preventDefault();
 			}
@@ -80,7 +82,7 @@ var BetaComment = {
 		var msgtext = msg.find('.text');
 		form.after(msg);
 
-		if (form.find('div.error').length > 0) {
+		if (form.find('.control-group.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
 			return false;
@@ -121,9 +123,9 @@ var BetaComment = {
 			msgtext.html(data.text);
 			form.find('.refresh-captcha').trigger('click');
 			if (data.errno == 0) {
-				form.find('.beta-captcha').val('');
-				form.find('textarea').val('');
-				form.find('.comment-clearfix').removeClass('alert-error').removeClass('alert-success');
+				form.find(':text, textarea').val('');
+				form.find('.beta-control-group').removeClass('success error');
+				form.find('.beta-control-group').removeClass('alert-success alert-error');
 				msg.removeClass('alert-error').addClass('alert-success').show();
 				var lastComment = $('.beta-post-show .beta-comment-item:last');
 				if (lastComment.length == 0)
@@ -148,7 +150,7 @@ var BetaComment = {
 			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
 			form.find('.comment-captcha').hide();
 			$(this).parents('.beta-comment-item').after(form);
-			form.find('.clearfix').removeClass('alert-error').removeClass('alert-success');
+			form.find('.beta-control-group').removeClass('error success');
 		}
 		else if (form.filter(':visible').length == 0) {
 			form.show();
@@ -216,100 +218,100 @@ var BetaComment = {
 	},
 	usernameValidate: function(event) {
 		var name = $.trim($(this).val());
-		var help = $(this).parents('.comment-input').find('.help-inline');
-		var helperror = $(this).parents('.comment-input').find('.help-error');
-		var clearfix = $(this).parents('.comment-clearfix');
+		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
+		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
+		var group = $(this).parents('.beta-control-group');
 		if (name.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			group.removeClass('error success');
 			return true;
 		}
 
 		help.hide();
 		if (name.length > 50) {
 			helperror.show();
-			$(this).parents('.comment-clearfix').removeClass('success').addClass('error');
+			$(this).parents('.beta-control-group').removeClass('success').addClass('error');
 			return false;
 		}
 		else {
-			clearfix.removeClass('error').addClass('success');
+			group.removeClass('error').addClass('success');
 			return true;
 		}
 
 	},
 	siteValidate: function(event) {
 		var url = $.trim($(this).val());
-		var help = $(this).parents('.comment-input').find('.help-inline');
-		var helperror = $(this).parents('.comment-input').find('.help-error');
-		var clearfix = $(this).parents('.comment-clearfix');
+		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
+		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
+		var group = $(this).parents('.beta-control-group');
 
 		if (url.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			group.removeClass('error success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.urlValidate(url)) {
-			clearfix.removeClass('error').addClass('success');
+			group.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			group.removeClass('success').addClass('error');
 			return false;
 		}
 	},
 	emailValidate: function(event){
 		var email = $.trim($(this).val());
-		var help = $(this).parents('.comment-input').find('.help-inline');
-		var helperror = $(this).parents('.comment-input').find('.help-error');
-		var clearfix = $(this).parents('.comment-clearfix');
+		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
+		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
+		var group = $(this).parents('.beta-control-group');
 		if (email.length == 0) {
 			helperror.hide();
-			clearfix.removeClass('error').removeClass('success');
+			group.removeClass('error success');
 			return true;
 		}
 
 		help.hide();
 		if (Beta24.emailValidate(email)) {
-			clearfix.removeClass('error').addClass('success');
+			group.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			group.removeClass('success').addClass('error');
 			return false;
 		}
 	},
 	captchaValidate: function(event){
 		var captcha = $.trim($(this).val());
-		var help = $(this).parents('.comment-input').find('.help-inline');
-		var helperror = $(this).parents('.comment-input').find('.help-error');
-		var clearfix = $(this).parents('.comment-clearfix');
+		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
+		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
+		var group = $(this).parents('.beta-control-group');
 
 		help.hide();
 		if (captcha.length == 4) {
-			clearfix.removeClass('error').addClass('success');
+			group.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
 			helperror.show();
-			clearfix.removeClass('success').addClass('error');
+			group.removeClass('success').addClass('error');
 			return false;
 		}
 	},
 	contentValidate: function(event) {
 		var content = $.trim($(this).val());
 		var minlen = parseInt($(this).attr('minlen'));
-		var clearfix = $(this).parents('.comment-clearfix');
+		var group = $(this).parents('.beta-control-group');
 		minlen = (isNaN(minlen) || minlen == 0) ? 5 : minlen;
 		if (content.length > minlen) {
-			clearfix.removeClass('error').addClass('success');
+			group.removeClass('error').addClass('success');
 			return true;
 		}
 		else {
-			clearfix.removeClass('success').addClass('error');
+			group.removeClass('success').addClass('error');
 			return false;
 		}
 	},
@@ -325,7 +327,7 @@ var BetaComment = {
 	},
 	refreshCaptcha: function(event) {
 		event.preventDefault();
-		var url = $(this).parents('.comment-input').find('.refresh-captcha').attr('href');
+		var url = $(this).parents('.beta-controls').find('.refresh-captcha').attr('href');
 		var jqXhr = $.ajax({
 			url: url,
 			dataType: 'json',

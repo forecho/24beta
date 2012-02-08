@@ -302,7 +302,7 @@ class Post extends CActiveRecord
 	    return $tags = explode(',', $data);
 	}
 	
-	public function getTagLinks($operator = '&nbsp;&nbsp;', $target = '_blank', $class='label')
+	public function getTagLinks($operator = '&nbsp;&nbsp;', $target = '_blank', $class='beta-tag')
 	{
 	    $tags = $this->getTagArray();
 	    if (empty($tags)) return '';

@@ -36,8 +36,9 @@ a:hover{color:#00438a;text-decoration:underline;}
 .beta-post-item .post-summary .post-summary-detail p {line-height:24px;}
 .beta-post-item .post-summary .post-summary-detail img, .beta-post-detail .post-content img {margin:10px 0px; max-width:570px; overflow:hidden;}
 .beta-post-item .post-item-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:lightgray; border-top:1px solid #cccccc;}
-.beta-post-item .post-item-toolbar strong {margin-right:10px;}
+.beta-post-item .post-item-toolbar a {margin-right:10px;}
 .beta-post-item .thank-contributor {font-size:12px; color:#555;}
+.post-extra p {border-bottom:1px solid lightgray; padding-bottom:5px; color:#555555; display:inline; font-size:12px;}
 
 .beta-sidebar-block {border:1px solid #AAAAAA; margin-bottom:10px;}
 .beta-sidebar-block h2, .beta-sidebar-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:lightgray; border-bottom:1px solid #cccccc;}
@@ -66,7 +67,6 @@ a:hover{color:#00438a;text-decoration:underline;}
 .beta-comment-item {font-size:12px; border-bottom:1px solid #AAAAAA; margin:0;}
 .beta-comment-item dt, .beta-comment-item dd {padding:0px 10px; margin:0;}
 .beta-comment-item dt {padding-top:10px; font-weight:normal;}
-.post-extra p {border-bottom:1px solid lightgray; padding-bottom:5px; color:#555555; display:inline; font-size:12px;}
 .beta-comment-item .comment-content {padding:10px; line-height:20px;}
 .beta-comment-item .comment-toolbar {height:22px; line-height:24px; background:lightgray;}
 .beta-comment-item .comment-toolbar a {margin-right:10px;}

@@ -1,6 +1,6 @@
 var KEConfig = {
 	mini: {
-		height:200,
+		height:180,
         resizeType: 1,
 		allowFileManager: false,
 		allowUpload: false,
@@ -25,7 +25,7 @@ var KEConfig = {
 	        'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'about']
 	},
 	admin: {
-		height:250,
+		height:500,
         resizeType: 1,
 		allowFileManager: false,
 		allowUpload: false,
