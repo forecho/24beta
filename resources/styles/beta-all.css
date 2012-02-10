@@ -235,5 +235,13 @@ form.comment-reply-form {margin:10px 10px 5px;}
 body.ke-content {padding:5px;}
 
 
-
+/* pager */
+.beta-pages ul.yiiPager{font-size:11px;border:0;margin:0;padding:0;line-height:100%;display:inline;}
+.beta-pages ul.yiiPager li{display:inline;}
+.beta-pages ul.yiiPager a:link,.beta-pages  ul.yiiPager a:visited{border:solid 1px #9aafe5;font-weight:bold;color:#0e509e;padding:1px 6px;text-decoration:none;}
+.beta-pages ul.yiiPager .page a{font-weight:normal;}
+.beta-pages ul.yiiPager a:hover{border:solid 1px #0e509e;}
+.beta-pages ul.yiiPager .selected a{background:#2e6ab1;color:#FFFFFF;font-weight:bold;}
+.beta-pages ul.yiiPager .hidden a{border:solid 1px #DEDEDE;color:#888888;}
+.beta-pages ul.yiiPager .first,.beta-pages ul.yiiPager .last{display:none;}
 

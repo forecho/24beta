@@ -5,6 +5,7 @@ return array(
         'footer' => '',
         'nextPageLabel' => t('next_page_label'),
         'prevPageLabel' => t('prev_page_label'),
+        'cssFile' => false,
     ),
     'classic' => array(
         'header' => '',
@@ -12,5 +13,6 @@ return array(
         'maxButtonCount' => 5,
         'nextPageLabel' => '&gt;',
         'prevPageLabel' => '&lt;',
+        'cssFile' => false,
     ),
 );
