@@ -73,6 +73,11 @@ return array(
     'this_post_is_disable_comment' => '当前文章已经关闭评论',
 
     /*
+     * layout
+     */
+    'return_top' => '返回顶部 ^',
+
+    /*
      * post show
      */
     'thanks_contribute' => '感谢{contributor}的投递',

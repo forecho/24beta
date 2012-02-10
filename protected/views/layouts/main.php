@@ -21,6 +21,7 @@
         footer
     </div>
 </div>
+<a class="beta-backtop" href="#top"><?php echo t('return_top');?></a>
 </body>
 </html>
 
