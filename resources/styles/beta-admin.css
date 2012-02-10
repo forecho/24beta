@@ -1,19 +1,10 @@
 @CHARSET "UTF-8";
 
-.admin-sidebar, .admin-sidebar .sub-menu {margin:0px; padding:0px;}
+.beta-container {padding:5px;}
+
+.admin-sidebar {margin:0px; padding:0px;}
+.admin-sidebar .sidebar-menus {margin-bottom:5px;}
 .admin-sidebar .menu-item {line-height:28px;}
-.admin-sidebar .menu-item a {display:block; padding-left:20px; font-size:14px;}
-.admin-sidebar .menu-item a:hover {background:lightgray;}
-.admin-sidebar .sub-menu-item {margin:0px; padding:0px; list-style:none; font-size:14px; line-height:26px;}
-.admin-sidebar .sub-menu-item a {display:block; padding-left:40px;}
-.admin-sidebar .sub-menu-item a:hover {background:lightgray;}
+.sidebar-menus .sub-item {text-indent:15px;}
 
-table.beta-table {margin:0px;}
-.toolbar {margin:5px auto;}
-
-.item-list-table .item-checkbox {width:20px; text-align:center;}
-.item-list-table .item-id {width:50px; text-align:center;}
-.item-list-table .item-title {width:350px;}
-.item-list-table .item-date {width:60px; text-align:center;}
-.item-list-table .item-time {width:60px; text-align:center;}
-.item-list-table .item-datetime {width:120px; text-align:center;}
+.post-list-table {}

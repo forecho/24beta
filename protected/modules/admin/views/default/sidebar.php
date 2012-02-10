@@ -1,12 +1,15 @@
 <div class="admin-sidebar">
     <?php foreach ($menus as $menu):?>
-    <h3 class="menu-item"><?php echo l($menu['title'], $menu['url'], $menu['htmlOptions']);?></h3>
-    <?php if (count($menu['subs']) > 0):?>
-        <ul class="sub-menu">
-            <?php foreach ($menu['subs'] as $sub):?>
-            <li class="sub-menu-item"><?php echo l($sub['title'], $sub['url'], $sub['htmlOptions']);?></li>
+        <ul class="nav nav-list sidebar-menus">
+            <?php if ($menu['url']):?>
+            <li><?php echo l($menu['title'], $menu['url'], $menu['htmlOptions']);?></li>
+            <?php else:?>
+            <li><?php echo $menu['title'];?></li>
+            <?php endif;?>
+            <?php foreach ((array)$menu['subs'] as $sub):?>
+            <li class="sub-item"><?php echo l($sub['title'], $sub['url'], $sub['htmlOptions']);?></li>
             <?php endforeach;?>
         </ul>
-    <?php endif?>
     <?php endforeach;?>
 </div>
+
