@@ -82,8 +82,8 @@ var BetaComment = {
 		var msgtext = msg.find('.text');
 		form.after(msg);
 
-		if (form.find('.control-group.error').length > 0) {
-			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
+		if (form.find('.beta-control-group.error').length > 0) {
+			msgtext.html($('.ajax-jsstr .ajax-has-errors').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
 			return false;
 		}
@@ -148,6 +148,24 @@ var BetaComment = {
 		var form = $(this).parents('.beta-comment-item').next('form');
 		if (form.length == 0) {
 			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
+			form.find('.comment-captcha').hide();
+			$(this).parents('.beta-comment-item').after(form);
+			form.find('.beta-control-group').removeClass('error success');
+		}
+		else if (form.filter(':visible').length == 0) {
+			form.show();
+			form.find('.comment-content').focus();
+		}
+		else
+			form.hide();
+		
+		form.next('.beta-alert-message:visible').hide();
+	},
+	hotReply: function() {
+		var form = $(this).parents('.beta-comment-item').next('form');
+		if (form.length == 0) {
+			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
+			form.find('.beta-help-inline, .beta-help-block').html('');
 			form.find('.comment-captcha').hide();
 			$(this).parents('.beta-comment-item').after(form);
 			form.find('.beta-control-group').removeClass('error success');

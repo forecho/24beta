@@ -96,6 +96,7 @@ return array(
     'ajax_send' => '发送数据中...',
     'ajax_fail' => '请求错误.',
 
+    'ajax_comment_has_erros' => '请更正输入错误后再发布',
     'ajax_comment_rules_invalid' => '请输入评论内容和验证码后再发布',
     'ajax_comment_done' => '评论成功.',
     'ajax_comment_error' => '评论失败, %s不正确',

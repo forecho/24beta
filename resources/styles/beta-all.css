@@ -202,20 +202,19 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 
 .beta-control-group>label, .beta-control-group .beta-control-label {display:block; float:left; width:140px; text-align:right; padding-top:5px;}
 .beta-control-group .beta-controls {margin-left:150px;}
-.beta-form-actions{padding:15px 18px 16px;margin:10px 0 5px 0;background-color:#f5f5f5;border-top:1px solid #ddd;}
-form.beta-form-horizontal .beta-form-actions {padding-left:150px;}
+.beta-form-actions{padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #ddd;}
+form.beta-form-horizontal .beta-form-actions {text-align:center;}
 
-.beta-create-form {padding:10px; font-size:14px;}
-form.beta-comment-form {font-size:12px;}
+.beta-create-form {font-size:14px; padding:5px 0;}
+form.beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
 form.beta-comment-form .beta-control-group {margin:0 0 6px;}
 form.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:3px;}
 form.beta-comment-form .beta-control-group .beta-controls {margin-left:50px;}
 form.beta-comment-form .beta-control-group .beta-controls .beta-help-error {display:none;}
 form.beta-comment-form .beta-control-group .beta-controls input.beta-text, form.beta-comment-form .beta-control-group .beta-controls textarea, form.beta-comment-form .beta-control-group .beta-controls select {height:16px; padding:3px; line-height:16px; font-size:12px;}
-form.beta-comment-form .beta-control-group .beta-controls textarea {width:450px; height:70px;}
+form.beta-comment-form .beta-control-group .beta-controls textarea {width:90%; height:70px;}
 form input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}
 form.beta-comment-form .beta-form-actions .beta-btn {padding:4px 16px;}
-form.comment-reply-form {margin:10px 10px 5px;}
 
 /* post create form */
 .beta-post-form {margin:10px 0; font-size:12px;}
