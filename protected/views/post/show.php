@@ -32,7 +32,6 @@
     <span class="ajax-fail"><?php echo t('ajax_fail');?></span>
     <span class="ajax-rules-invalid"><?php echo t('ajax_comment_rules_invalid');?></span>
     <span class="ajax-has-joined"><?php echo t('you_have_joined');?></span>
-    <span class="ajax-has-errors"><?php echo t('ajax_comment_has_erros');?></span>
 </div>
 
 <?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
@@ -43,6 +42,5 @@ $(function(){
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
 	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
-	$(document).on('click', '.beta-hot-comment-reply', BetaComment.hotReply);
 });
 </script>

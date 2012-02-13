@@ -44,8 +44,6 @@ return array(
     'up_nums' => '支持数',
     'down_nums' => '反对数',
     'report_nums' => '举报数',
-    'user_site' => '网站',
-    'user_email' => '邮箱',
     'captcha' => '验证码',
     'refresh_captcha' => '看不清，换一张',
 
@@ -98,7 +96,7 @@ return array(
     'ajax_send' => '发送数据中...',
     'ajax_fail' => '请求错误.',
 
-    'ajax_comment_has_erros' => '请更正输入错误后再发布',
+    'comment_content_min_length' => '评论内容不能少于{minlength}个字哦～～～',
     'ajax_comment_rules_invalid' => '请输入评论内容和验证码后再发布',
     'ajax_comment_done' => '评论成功.',
     'ajax_comment_error' => '评论失败, %s不正确',

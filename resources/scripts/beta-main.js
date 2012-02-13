@@ -83,7 +83,7 @@ var BetaComment = {
 		form.after(msg);
 
 		if (form.find('.beta-control-group.error').length > 0) {
-			msgtext.html($('.ajax-jsstr .ajax-has-errors').text());
+			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
 			return false;
 		}
@@ -121,7 +121,7 @@ var BetaComment = {
 		});
 		jqXhr.done(function(data){
 			msgtext.html(data.text);
-			form.find('.refresh-captcha').trigger('click');
+//			form.find('.refresh-captcha').trigger('click');
 			if (data.errno == 0) {
 				form.find(':text, textarea').val('');
 				form.find('.beta-control-group').removeClass('success error');
@@ -131,8 +131,8 @@ var BetaComment = {
 				if (lastComment.length == 0)
 					lastComment = $('#beta-comment-list');
 				lastComment.after(data.html);
-				if (form.attr('id') == undefined)
-					form.remove();
+				if (form.attr('id') == undefined) form.remove();
+				$('form .comment-captcha').hide();
 			}
 			else
 				msg.removeClass('alert-success').addClass('alert-error').show();
@@ -149,24 +149,7 @@ var BetaComment = {
 		if (form.length == 0) {
 			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
 			form.find('.comment-captcha').hide();
-			$(this).parents('.beta-comment-item').after(form);
-			form.find('.beta-control-group').removeClass('error success');
-		}
-		else if (form.filter(':visible').length == 0) {
-			form.show();
-			form.find('.comment-content').focus();
-		}
-		else
-			form.hide();
-		
-		form.next('.beta-alert-message:visible').hide();
-	},
-	hotReply: function() {
-		var form = $(this).parents('.beta-comment-item').next('form');
-		if (form.length == 0) {
-			form = $('#comment-form').clone().removeAttr('id').addClass('comment-reply-form').attr('action', $(this).attr('data-url'));;
-			form.find('.beta-help-inline, .beta-help-block').html('');
-			form.find('.comment-captcha').hide();
+			form.find(':text, textarea').val('');
 			$(this).parents('.beta-comment-item').after(form);
 			form.find('.beta-control-group').removeClass('error success');
 		}
@@ -233,74 +216,6 @@ var BetaComment = {
 			commentItem.after(msg);
 			msg.show();
 		});
-	},
-	usernameValidate: function(event) {
-		var name = $.trim($(this).val());
-		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
-		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
-		var group = $(this).parents('.beta-control-group');
-		if (name.length == 0) {
-			helperror.hide();
-			group.removeClass('error success');
-			return true;
-		}
-
-		help.hide();
-		if (name.length > 50) {
-			helperror.show();
-			$(this).parents('.beta-control-group').removeClass('success').addClass('error');
-			return false;
-		}
-		else {
-			group.removeClass('error').addClass('success');
-			return true;
-		}
-
-	},
-	siteValidate: function(event) {
-		var url = $.trim($(this).val());
-		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
-		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
-		var group = $(this).parents('.beta-control-group');
-
-		if (url.length == 0) {
-			helperror.hide();
-			group.removeClass('error success');
-			return true;
-		}
-
-		help.hide();
-		if (Beta24.urlValidate(url)) {
-			group.removeClass('error').addClass('success');
-			return true;
-		}
-		else {
-			helperror.show();
-			group.removeClass('success').addClass('error');
-			return false;
-		}
-	},
-	emailValidate: function(event){
-		var email = $.trim($(this).val());
-		var help = $(this).parents('.beta-controls').find('.beta-help-inline');
-		var helperror = $(this).parents('.beta-controls').find('.beta-help-error');
-		var group = $(this).parents('.beta-control-group');
-		if (email.length == 0) {
-			helperror.hide();
-			group.removeClass('error success');
-			return true;
-		}
-
-		help.hide();
-		if (Beta24.emailValidate(email)) {
-			group.removeClass('error').addClass('success');
-			return true;
-		}
-		else {
-			helperror.show();
-			group.removeClass('success').addClass('error');
-			return false;
-		}
 	},
 	captchaValidate: function(event){
 		var captcha = $.trim($(this).val());

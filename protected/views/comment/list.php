@@ -2,7 +2,7 @@
 <div class="beta-mini-title" id="beta-comment-list"><?php echo t('comment_list');?></div>
 <?php foreach ((array)$comments as $key => $comment):?>
 <dl class="beta-comment-item">
-    <dt class="beta-post-extra"><span><?php echo t('comment_extra', 'main', array('{floor}'=>$key+1, '{author}'=>$comment->authorLink, '{time}'=>$comment->createTime));?></span></dt>
+    <dt class="beta-post-extra"><span><?php echo t('comment_extra', 'main', array('{floor}'=>$key+1, '{author}'=>$comment->authorName, '{time}'=>$comment->createTime));?></span></dt>
     <dd class="beta-comment-content"><?php echo $comment->filterContent;?></dd>
     <dd class="beta-comment-toolbar">
         <?php if (!$post->disable_comment):?>

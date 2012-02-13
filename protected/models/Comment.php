@@ -14,13 +14,10 @@
  * @property integer $report_nums
  * @property integer $user_id
  * @property string $user_name
- * @property string $user_email
- * @property string $user_site
  * @property integer $state
  * @property string $filterContent
  * @property string $createTime
  * @property string $authorName
- * @property string $authorLink
  * @property string $supportUrl
  * @property string $againstUrl
  * @property string $reportUrl
@@ -64,9 +61,6 @@ class Comment extends CActiveRecord
 			array('user_name', 'length', 'max'=>50),
 	        array('create_time, up_nums, down_nums, report_nums, state, user_id, post_id', 'numerical', 'integerOnly'=>true),
 			array('create_ip', 'length', 'max'=>15),
-	        array('user_email, user_site', 'length', 'max'=>250),
-	        array('user_email', 'email'),
-	        array('user_site', 'url'),
 			array('content', 'safe'),
 		);
 	}
@@ -98,8 +92,6 @@ class Comment extends CActiveRecord
 			'report_nums' => t('report_nums'),
 			'user_id' => t('user_id'),
 			'user_name' => t('user_name'),
-			'user_email' => t('user_email'),
-			'user_site' => t('user_site'),
 			'state' => t('state'),
 		);
 	}
@@ -141,12 +133,6 @@ class Comment extends CActiveRecord
 	        $name = t('guest_name');
 	    
 	    return $name;
-	}
-	
-	public function getAuthorLink()
-	{
-	    $name = $this->getAuthorName();
-	    return $this->user_site ? l($name, $this->user_site, array('target'=>'_blank')) : $name;
 	}
 	
 	public static function fetchList($postid, $page = 1)
@@ -205,9 +191,6 @@ class Comment extends CActiveRecord
 	        $this->up_nums = $this->down_nums = $this->report_nums = 0;
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress(); // @todo 此处获取ip地址不精确
-	        $this->user_name = strip_tags($this->user_name);
-	        $this->user_email = strip_tags($this->user_email);
-	        $this->user_site = strip_tags($this->user_site);
 	    }
 	    return true;
 	}
