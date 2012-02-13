@@ -66,7 +66,7 @@ pre code{padding:0;background-color:transparent;}
 .cred {color:red;}
 .cblue {color:blue;}
 .cgray {color:gray;}
-.clightgray {color:lightgray;}
+.clightgray {color:#CFCFCF;}
 .cgreen {color:green;}
 
 /* button */
@@ -134,11 +134,11 @@ button.btn.small,input[type="submit"].btn.small{*padding-top:3px;*padding-bottom
 .beta-post-item h1 {font-size:18px; font-family:微软雅黑; line-height:22px;}
 .beta-post-item h1 strong {color:darkred;}
 .beta-post-item .beta-post-summary {margin:10px 0px; overflow:hidden; line-height:24px;}
-.beta-post-item .beta-post-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:lightgray; border-top:1px solid #cccccc;}
+.beta-post-item .beta-post-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:#CFCFCF; border-top:1px solid #cccccc;}
 .beta-post-item .beta-post-toolbar a {margin-right:10px;}
 .beta-thank {font-size:12px; color:#555555;}
 .beta-post-extra {font-size:12px; margin-bottom:10px;}
-.beta-post-extra span {border-bottom:1px solid lightgray; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
+.beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
 /* summary and content css */
 .beta-post-content {overflow:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
@@ -147,7 +147,7 @@ button.btn.small,input[type="submit"].btn.small{*padding-top:3px;*padding-bottom
 
 /* content block */
 .beta-block {border:1px solid #AAAAAA; margin-bottom:10px; font-size:14px;}
-.beta-block h2, .beta-block .beta-title {font-size:inherit; line-height:28px; height:28px; padding:0 10px; background:lightgray; border-bottom:1px solid #BBBBBB; margin:0;}
+.beta-block h2, .beta-block .beta-title {font-size:14px; line-height:28px; height:28px; padding:0 10px; background:#CFCFCF; border-bottom:1px solid #BBBBBB; margin:0;}
 .beta-block .beta-block-content {margin:10px 10px 10px 25px; font-size:inherit;}
 .beta-block .beta-block-content.unstyled {margin-left:10px;}
 .beta-block .beta-block-content li {margin-top:5px;}
@@ -166,18 +166,18 @@ button.btn.small,input[type="submit"].btn.small{*padding-top:3px;*padding-bottom
 .beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
 .beta-post-detail .beta-post-tags a {margin-right:2px;}
 .beta-post-detail .beta-post-source a {line-height:16px;}
-.beta-mini-title {font-size:12px; background:lightgray; text-indent:10px; height:24px; line-height:24px; font-weight:bold;}
+.beta-mini-title {font-size:12px; background:#BFBFBF; text-indent:10px; height:24px; line-height:24px; font-weight:bold;}
 
 /* comment list */
 .beta-comment-item {font-size:12px; border-bottom:1px solid #AAAAAA; margin:0;}
 .beta-comment-item dt, .beta-comment-item dd {padding:0px 10px; margin:0;}
 .beta-comment-item dt {padding-top:10px; font-weight:normal;}
 .beta-comment-item .beta-comment-content {padding:10px; line-height:20px;}
-.beta-comment-item .beta-comment-toolbar {height:22px; line-height:24px; background:lightgray;}
+.beta-comment-item .beta-comment-toolbar {height:22px; line-height:24px; background:#CFCFCF;}
 .beta-comment-item .beta-comment-toolbar a {margin-right:10px;}
 .beta-comment-item .beta-comment-toolbar a:last-child {margin-right:0;}
-.beta-comment-quote {border:1px solid lightgray; padding:8px; margin:0 0 10px; line-height:20px;}
-.beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid lightgray;}
+.beta-comment-quote {border:1px solid #CFCFCF; padding:8px; margin:0 0 10px; line-height:20px;}
+.beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid #CFCFCF;}
 .beta-hot-comment {border:1px solid #FC0; background:#FFE57F;}
 .beta-no-comments {font-size:12px; text-align:center; color:gray;}
 .disable_comment {font-size:12px; text-align:center; color:red; padding:5px;}

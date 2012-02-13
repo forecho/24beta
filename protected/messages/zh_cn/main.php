@@ -2,6 +2,8 @@
 return array(
     'guest_name' => '匿名人士',
     'post_is_not_found' => '此文章不存在',
+    'topic_is_not_found' => '主题不存在',
+    'category_is_not_found' => '分类不存在',
     'cateogry_has_subcategory' => '该分类下有子分类存在，不能直接删除',
     'cateogry_has_posts' => '该分类下有文章存在，不能直接删除',
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
@@ -108,10 +110,19 @@ return array(
     /*
      * post create
      */
+    'contribute_post' => '投递文章',
+    'contribute_post_success' => '感谢您的投递，文章标题：{title}',
     'post_title' => '文章标题',
     'post_source' => '文章来源',
     'post_contributor' => '您的大名',
     'post_contributor_site' => '您的网站',
     'post_contributor_email' => '您的邮箱',
+
+    /* topic */
+    'all_topic_list' => '所有主题列表',
+    'topics_posts' => '专题：{name}',
+
+    /* category */
+    'category_posts' => '分类：{name}',
 );
 

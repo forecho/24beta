@@ -16,6 +16,10 @@ class PostController extends Controller
         $comment = new CommentForm();
         $comment->post_id = $id;
         
+        $this->setSiteTitle($post->title);
+        $this->setPageDescription($post->summary);
+        $this->setPageKeyWords($post->tagText);
+        
         $this->render('show', array(
             'post' => $post,
             'comment' => $comment,
@@ -88,6 +92,9 @@ class PostController extends Controller
 
         $captchaWidget = $form->hasErrors('captcha') ? $this->widget('BetaCaptcha', array(), true) : $this->widget('BetaCaptcha', array('skin'=>'defaultLazy'), true);
         $captchaClass = $form->hasErrors('captcha') ? 'error' : 'hide';
+        
+        $this->setSiteTitle(t('contribute_post'));
+        
         $this->render('create', array(
             'form' => $form,
             'captchaClass' => $captchaClass,
@@ -98,6 +105,9 @@ class PostController extends Controller
     public function actionSuccess($title)
     {
         $title = strip_tags(trim($title));
+        
+        $this->setSiteTitle(t('contribute_post_success', 'main', array('{title}'=>$title)));
+        
         $this->render('create_success', array('title'=>$title));
     }
     

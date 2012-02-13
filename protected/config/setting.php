@@ -6,6 +6,8 @@
 return array(
     // 网站名称
     'sitename' => '24beta',
+    // 网站短描述
+    'shortdesc' => '我们大家的资讯',
     // 域名，与当前使用的域名一致
     'domain' => '24beta.cn',
     // 网站语言
@@ -16,7 +18,8 @@ return array(
     'theme' => null,
     // 记住用户登录状态的cookie时间
     'autoLoginDuration' => 3600 * 24 * 7,
-        
+
+    // 注册用户是否需要邮件激活
     'userRequiredEmailVerfiy' => false,
         
     // 每页显示的文章数量

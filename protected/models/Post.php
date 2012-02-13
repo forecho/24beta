@@ -39,6 +39,12 @@
  * @property string $absoluteUrl
  * @property string $relativeUrl
  * @property string $titleLink
+ * @property string $postToolbar
+ * @property string $postExtra
+ * @property string $subTitle
+ * @property string $tagArray
+ * @property string $tagText
+ * @property string $tagLinks
  */
 class Post extends CActiveRecord
 {
@@ -300,6 +306,11 @@ class Post extends CActiveRecord
 	
 	    $data = Tag::filterTags($this->tags);
 	    return $tags = explode(',', $data);
+	}
+	
+	public function getTagText()
+	{
+	    return join(', ', $this->getTagArray());
 	}
 	
 	public function getTagLinks($operator = '&nbsp;&nbsp;', $target = '_blank', $class='beta-tag')

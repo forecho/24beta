@@ -4,7 +4,16 @@ class TopicController extends Controller
     public function actionPosts($tid)
     {
         $tid = (int)$tid;
+        $topic = Topic::model()->findByPk($tid);
+        if ($topic === null)
+            throw new CHttpException(404, t('topic_is_not_found'));
+        
         $data = self::fetchTopicPosts($tid);
+        
+        $this->setSiteTitle(t('topic_posts', 'main', array('{name}'=>$topic->name)));
+        // @todo 关键字的描述没有指定
+        $this->setPageKeyWords(null);
+        $this->setPageDescription(null);
         
         $this->render('posts', $data);
     }
@@ -34,6 +43,11 @@ class TopicController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 'id asc';
         $topics = Topic::model()->findAll($criteria);
+        
+        $this->setSiteTitle(t('all_topic_list'));
+        // @todo 关键字的描述没有指定
+        $this->setPageKeyWords(null);
+        $this->setPageDescription(null);
         
         $this->render('list', array(
             'topics' => $topics,

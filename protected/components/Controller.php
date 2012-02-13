@@ -25,21 +25,39 @@ class Controller extends CController
 	
 	public $breadcrumbs = array();
 	
-	protected function setPageKeyWords($text)
+	protected function setPageKeyWords($value)
 	{
-	    if (empty($text)) return false;
+	    if (empty($value)) return false;
 	    
-	    if (is_array($text)) $text = join(',', $text);
-	    cs()->registerMetaTag($text . ',' . param('shortdesc'), 'keywords');
+	    $value = (array)$value;
+	    array_push($value, param('sitename'));
+	    $text = strip_tags(trim(join(',', $value)));
+	    cs()->registerMetaTag($text, 'keywords');
 	}
 	
-    protected function setPageDescription($text)
+    protected function setPageDescription($value)
 	{
-	    if (empty($text)) return false;
+	    if (empty($value)) return false;
 	    
-	    if (is_array($text)) $text = join(',', $text);
-	    cs()->registerMetaTag($text . '，' . param('shortdesc') . '，' . param('description'), 'description');
+	    $value = (array)$value;
+	    $sitename = param('sitename');
+	    if (param('shortdesc'))
+	        $sitename = $sitename . ' - ' . param('shortdesc');
+	    array_push($value, $sitename);
+	    $text = strip_tags(trim(join(',', $value)));
+	    cs()->registerMetaTag($text, 'description');
 	}
 
+	public function setSiteTitle($value)
+	{
+        $titleArray = array(param('sitename'));
+        if (param('shortdesc'))
+            array_push($titleArray, param('shortdesc'));
+        if (!empty($value))
+    	    array_unshift($titleArray, $value);
+
+        $text = strip_tags(trim(join(' - ', $titleArray)));
+	    $this->pageTitle = $text;
+	}
 
 }

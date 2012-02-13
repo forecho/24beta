@@ -4,7 +4,16 @@ class CategoryController extends Controller
     public function actionPosts($cid)
     {
         $cid = (int)$cid;
+        $category = Category::model()->findByPk($cid);
+        if ($category === null)
+            throw new CHttpException(404, t('category_is_not_found'));
+        
         $data = self::fetchTopicPosts($cid);
+        
+        $this->setSiteTitle(t('category_posts', 'main', array('{name}'=>$category->name)));
+        // @todo 关键字的描述没有指定
+        $this->setPageKeyWords(null);
+        $this->setPageDescription(null);
         
         $this->render('posts', $data);
     }

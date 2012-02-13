@@ -5,6 +5,9 @@ class SiteController extends Controller
     {
         $data = self::fetchLatestPosts();
         
+        $this->setSiteTitle(null);
+        $this->setPageKeyWords(param('siteKeywords'));
+        $this->setPageDescription(param('siteDescription'));
         $this->render('index', $data);
     }
     
