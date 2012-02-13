@@ -216,7 +216,7 @@ form.beta-comment-form .beta-control-group .beta-controls {margin-left:50px;}
 form.beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0;}
 form.beta-comment-form .beta-controls input.beta-text, form.beta-comment-form .beta-controls textarea {height:16px; padding:5px; line-height:16px; font-size:12px;}
 form.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px;}
-.beta-sidebar form.beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
+.beta-hot-comment form.beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
 form input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}
 form.beta-comment-form .beta-form-actions .beta-btn {padding:4px 16px;}
 
