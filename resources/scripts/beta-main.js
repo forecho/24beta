@@ -133,6 +133,7 @@ var BetaComment = {
 				lastComment.after(data.html);
 				if (form.attr('id') == undefined) form.remove();
 				$('form .comment-captcha').hide();
+				$('.beta-no-comments').remove();
 			}
 			else
 				msg.removeClass('alert-success').addClass('alert-error').show();
@@ -256,7 +257,6 @@ var BetaComment = {
 		captchaEl.attr('src', captchaEl.attr('lazy-src'));
 		captchaEl.trigger('click');
 		captchaRow.fadeIn('fast');
-		$(this).focus();
 	},
 	refreshCaptcha: function(event) {
 		event.preventDefault();

@@ -15,5 +15,5 @@
 <?php endforeach;?>
 
 <?php if (count($comments) === 0):?>
-<div class="beta-no-comments"><?php echo t('have_no_comments');?></div>
+<div class="beta-no-hot-comments"><?php echo t('have_no_comments');?></div>
 <?php endif;?>
