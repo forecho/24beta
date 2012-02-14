@@ -152,11 +152,12 @@ var BetaComment = {
 			form.find('.comment-captcha').hide();
 			form.find(':text, textarea').val('');
 			$(this).parents('.beta-comment-item').after(form);
+//			form.find('.comment-content').focus();
 			form.find('.beta-control-group').removeClass('error success');
 		}
 		else if (form.filter(':visible').length == 0) {
 			form.show();
-			form.find('.comment-content').focus();
+//			form.find('.comment-content').focus();
 		}
 		else
 			form.hide();
