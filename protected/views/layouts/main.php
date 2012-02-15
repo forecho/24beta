@@ -12,11 +12,22 @@
 <body>
 <div class="beta-container">
     <div class="beta-header">
-        <div class="beta-logo"><a href="<?php echo abu();?>"><img src="<?php echo tbu('images/logo.gif');?>" alt="<?php echo app()->name;?> LOGO" /></a></div>
+            <div class="beta-logo"><a href="<?php echo abu();?>"><?php echo app()->name;?></a></div>
     </div>
-    <div class="beta-entry">
-        <?php echo $content;?>
+    <div class="beta-nav">
+        <ul class="unstyled">
+            <li><a href="<?php echo app()->homeUrl;?>">首页</a></li>
+            <li><a href="<?php echo app()->homeUrl;?>">快讯</a></li>
+            <li><a href="<?php echo app()->homeUrl;?>">主题</a></li>
+            <li><a href="<?php echo app()->homeUrl;?>">事件</a></li>
+            <li><a href="<?php echo app()->homeUrl;?>">团队</a></li>
+            <li><a href="<?php echo app()->homeUrl;?>">开源</a></li>
+            <br class="clear" />
+        </ul>
     </div>
+        <div class="beta-entry">
+            <?php echo $content;?>
+        </div>
     <div class="beta-footer">
         footer
     </div>
