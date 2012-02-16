@@ -121,7 +121,6 @@ var BetaComment = {
 		});
 		jqXhr.done(function(data){
 			msgtext.html(data.text);
-//			form.find('.refresh-captcha').trigger('click');
 			if (data.errno == 0) {
 				form.find(':text, textarea').val('');
 				form.find('.beta-control-group').removeClass('success error');
@@ -135,8 +134,10 @@ var BetaComment = {
 				$('form .comment-captcha').hide();
 				$('.beta-no-comments').remove();
 			}
-			else
+			else {
 				msg.removeClass('alert-success').addClass('alert-error').show();
+				form.find('.refresh-captcha').trigger('click');
+			}
 		});
 		jqXhr.fail(function(event, jqXHR, ajaxSettings, thrownError){
 			jqXhr.abort();
