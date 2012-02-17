@@ -60,4 +60,18 @@ class Controller extends CController
 	    $this->pageTitle = $text;
 	}
 
+	public function userMiniToolbar()
+	{
+	    if (user()->getIsGuest()) {
+	        $html = '<li>' . l(t('user_login'), url('site/login')) . '</li>';
+	        $html .= '<li>' . l(t('user_signup'), url('site/signup')) . '</li>';
+	    }
+	    else {
+	        $html = '<li>' . l(t('user_login'), url('site/login')) . '</li>';
+	        $html .= '<li>' . l(t('user_signup'), url('site/signup')) . '</li>';
+	    }
+	    
+	    return $html;
+	}
+	
 }

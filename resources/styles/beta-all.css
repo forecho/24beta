@@ -115,6 +115,8 @@ button.btn.small,input[type="submit"].btn.small{*padding-top:3px;*padding-bottom
 .beta-alert.beta-alert-message {font-size:12px; margin:1px; padding:4px 35px 4px 10px;}
 .beta-alert.beta-alert-message .close {top:-1px; right:-25px;}
 
+.well{min-height:20px;padding:19px;margin-bottom:20px;background-color:#f5f5f5;border:1px solid #eee;border:1px solid rgba(0, 0, 0, 0.05);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);}.well blockquote{border-color:#ddd;border-color:rgba(0, 0, 0, 0.15);}
+
 /* global css */
 .beta-no-content-tip {font-size:12px; color:gray; margin:0; padding:0;}
 
@@ -136,12 +138,13 @@ button.btn.small,input[type="submit"].btn.small{*padding-top:3px;*padding-bottom
 .beta-header .beta-logo a {display:block; width:220px; height:60px; text-indent:-99999px;}
 
 /* header nav */
-.beta-nav {background:#EFEFEF; margin-bottom:10px; padding-left:20px; border-bottom:1px solid #DFDFDF;}
+.beta-nav {background:#EFEFEF; margin-bottom:10px; padding:0 20px; border-bottom:1px solid #DFDFDF;}
 .beta-nav ul, .beta-nav li {margin:0; list-style:none inside;}
 .beta-nav li {float:left;}
-.beta-nav li a {display:block; padding:7px 3px; margin-right:10px;}
+.beta-nav li a {display:block; padding:7px 3px 5px; margin-right:10px;}
 .beta-nav a:link, .beta-nav a:hover, .beta-nav:visited {text-decoration:none; color:#4F4F4F; text-shadow:1px 1px white;}
 .beta-nav a:hover {color:#5F5F5F;}
+.beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
 
 /* post summary list */
 .beta-post-item {border:1px solid #BFBFBF; margin:0 0 10px;}
@@ -203,8 +206,8 @@ input[type="file"]:focus,input[type="checkbox"]:focus,select:focus{-webkit-box-s
 input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;padding:4px;font-size:14px;line-height:18px;color:#555555;border:1px solid #ccc;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 
 .beta-control-group {clear:both; margin:10px 0;}
-.beta-help-inline {color:gray; padding-left:5px;}
-.beta-help-block {color:gray; display:block; margin:3px 0 0;}
+.beta-help-inline {color:gray; padding-left:5px; font-size:12px;}
+.beta-help-block {color:gray; display:block; margin:3px 0 0; font-size:12px;}
 .beta-control-group.warning>label,.beta-control-group.warning .beta-help-block,.beta-control-group.warning .beta-help-inline{color:#c09853;}
 .beta-control-group.warning input,.beta-control-group.warning select,.beta-control-group.warning textarea{color:#c09853;border-color:#c09853;}.beta-control-group.warning input:focus,.beta-control-group.warning select:focus,.beta-control-group.warning textarea:focus{border-color:#a47e3c;-webkit-box-shadow:0 0 6px #dbc59e;-moz-box-shadow:0 0 6px #dbc59e;box-shadow:0 0 6px #dbc59e;}
 .beta-control-group.warning .input-prepend .add-on,.beta-control-group.warning .input-append .add-on{color:#c09853;background-color:#fcf8e3;border-color:#c09853;}
@@ -241,7 +244,7 @@ form.beta-comment-form .beta-form-actions .beta-btn {padding:4px 16px;}
 .beta-post-form .beta-controls input, .beta-post-form textarea {font-size:12px; padding:3px;}
 .beta-post-form .beta-text {width:450px;}
 .beta-post-form .captcha-clearfix label {text-align:left; width:auto;}
-.captcha-clearfix .beta-controls {margin-left:45px;}
+.beta-post-form .captcha-clearfix .beta-controls {margin-left:45px;}
 .beta-post-form .stacked label {display:block; width:auto; float:none; text-align:left; margin-bottom:0;}
 .beta-post-form .stacked .beta-controls {display:block; margin-left:0;}
 .beta-post-form #beta-summary {width:580px; height:180px;}
@@ -269,5 +272,17 @@ body.ke-content {padding:5px;}
 .beta-recommend-posts strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:212px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
 .beta-recommend-posts img {width:100%; height:100%;}
 
+/* login form */
+.login-form .beta-control-group {margin:18px 0;}
+.login-form .beta-control-group .beta-control-label {width:60px;}
+.login-form .beta-controls {margin-left:80px;}
+.login-form .beta-controls label {font-size:12px;}
+.login-form .beta-controls.agreement input, .login-form .beta-controls.rememberme input {margin-bottom:2px;}
+.login-form .beta-controls.agreement label, .login-form .beta-controls.rememberme label {margin-left:5px;}
+.login-form .suggestion {color:gray; font-size:12px; margin-left:80px;}
+.login-form .action-buttons {padding-left:80px; margin-top:25px;}
+.login-form .action-buttons .beta-btn {padding:4px 18px;}
+.login-form .refresh-captcha {font-size:12px;}
+.quick-login-signup {margin-top:100px;}
 
 

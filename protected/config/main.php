@@ -50,6 +50,7 @@ return array(
         'user' => array(
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
+            'returnUrl' => array('site/index')
         ),
         'db' => array(
             'class' => 'CDbConnection',
@@ -87,7 +88,7 @@ return array(
 		    'showScriptName' => false,
             'cacheID' => 'fcache',
             'rules' => array(
-                
+                '' => 'site/index'
             ),
         ),
         'session' => array(

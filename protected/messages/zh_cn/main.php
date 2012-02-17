@@ -37,6 +37,20 @@ return array(
     'contributor_site' => '投稿者网站',
     'contributor_email' => '投稿者邮箱',
 
+    /* form model LoginForm */
+    'email' => '邮箱',
+    'username' => '大名',
+    'password' => '密码',
+    'remember_me' => '下次自动登录',
+    'agreement' => '我已经认真阅读并同意《<a href="{policyurl}" target="_blank">使用协议</a>》。',
+    'welcome_signup' => '欢迎加入' . app()->name,
+    'autologin' => '下次自动登录&nbsp;|&nbsp;' . l('忘记密码了', url('site/resetpwd')),
+    'user_login' => '登录',
+    'user_signup' => '注册',
+    'username_tip' => '第一印象很重要，起个响亮的名号吧',
+    'quick_login_link' => '&gt;&nbsp;已经拥有豆瓣帐号?&nbsp;' . l('直接登录', url('site/login')),
+    'quick_signup_link' => '&gt;&nbsp;还没有豆瓣帐号?&nbsp;' . l('立即注册', url('site/signup')),
+
     /*
      * model Comment attributeLabels
      */
@@ -45,7 +59,7 @@ return array(
     'down_nums' => '反对数',
     'report_nums' => '举报数',
     'captcha' => '验证码',
-    'refresh_captcha' => '看不清，换一张',
+    'refresh_captcha' => '换一张',
 
     'post_comment' => '发表评论',
     'view_detail' => '查看详情',

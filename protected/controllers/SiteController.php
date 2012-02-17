@@ -11,6 +11,44 @@ class SiteController extends Controller
         $this->render('index', $data);
     }
     
+    public function actionLogin()
+    {
+        $model = new LoginForm('login');
+        if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
+            $model->attributes = $_POST['LoginForm'];
+            if ($model->validate() && $model->login())
+                $this->redirect(user()->returnUrl);
+            else
+                $model->captcha = '';
+        }
+        $this->render('login', array('form'=>$model));
+    }
+    
+    public function actionSignup()
+    {
+        $model = new LoginForm('signup');
+        if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
+            $model->attributes = $_POST['LoginForm'];
+            if ($model->validate() && $model->signup())
+                $this->redirect(user()->returnUrl);
+            else
+                $model->captcha = '';
+        }
+        $this->render('signup', array('form'=>$model));
+    }
+    
+    public function actionLogout()
+    {
+        user()->logout();
+        user()->clearStates();
+        $this->redirect(app()->homeUrl);
+    }
+    
+    public function actionError()
+    {
+        $error = app()->errorHandler;
+    }
+    
     private static function fetchLatestPosts()
     {
         $criteria = new CDbCriteria();

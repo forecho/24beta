@@ -4,7 +4,7 @@ class LoginForm extends CFormModel
     public $email;
     public $username;
     public $password;
-    public $validateCode;
+    public $captcha;
     public $rememberMe = 1;
     public $agreement;
 
@@ -15,19 +15,19 @@ class LoginForm extends CFormModel
     {
         return array(
             array('email', 'required', 'message'=>'请输入您的email'),
-            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'insert', 'message'=>'该email已经被已经'),
+            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'signup', 'message'=>'该email已经被已经'),
             array('email', 'email'),
-            array('username', 'required', 'message'=>'请输入您的大名', 'on'=>'insert, update'),
-            array('username', 'unique', 'className'=>'User', 'attributeName'=>'username', 'on'=>'insert', 'message'=>'该大名已被人抢了，您老请换换'),
+            array('username', 'required', 'message'=>'请输入您的大名', 'on'=>'signup'),
+            array('username', 'unique', 'className'=>'User', 'attributeName'=>'name', 'on'=>'signup', 'message'=>'该大名已被人抢了，您老请换换'),
             array('username', 'checkReserveWords'),
-            array('password', 'required', 'on'=>'insert', 'message'=>'请输入您的密码'),
+            array('password', 'required', 'on'=>'signup', 'message'=>'请输入您的密码'),
             array('password', 'authenticate', 'on'=>'login'),
-            array('validateCode', 'captcha', 'allowEmpty'=>!self::getEnableCaptcha(), 'on'=>'login'),
-            array('validateCode', 'captcha', 'allowEmpty'=>false, 'on'=>'insert'),
+            array('captcha', 'captcha', 'allowEmpty'=>!$this->getEnableCaptcha(), 'on'=>'login'),
+            array('captcha', 'captcha', 'allowEmpty'=>false, 'on'=>'signup'),
             array('rememberMe', 'boolean', 'on'=>'login'),
             array('username, password', 'length', 'min'=>3, 'max'=>50),
             array('email', 'length', 'max'=>255),
-            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'insert', 'message'=>'请同意挖图么的服务条款和协议'),
+            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>'请同意挖图么的服务条款和协议'),
             array('rememberMe', 'in', 'range'=>array(0, 1)),
         );
     }
@@ -38,7 +38,7 @@ class LoginForm extends CFormModel
         foreach ((array)param('reservedWords') as $v) {
             $pos = strpos($this->$attribute, $v);
             if (false !== $pos) {
-                $this->addError($attribute, '该大名已被人抢了，您老请换换');
+                $this->addError($attribute, '该大名已被人抢了，请换一个');
                 break;
             }
         }
@@ -58,12 +58,12 @@ class LoginForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'username' => '大名',
-            'password' => '密码',
-            'validateCode' => '验证码',
-            'rememberMe' => '记住我',
-            'email' => '邮箱',
-        	'agreement' => '服务条款和协议',
+            'username' => t('username'),
+            'password' => t('password'),
+            'captcha' => t('captcha'),
+            'rememberMe' => t('member_me'),
+            'email' => t('email'),
+        	'agreement' => t('agreement'),
         );
     }
 
@@ -72,53 +72,69 @@ class LoginForm extends CFormModel
      */
     public function login()
     {
-        if (empty($this->_identity))
-            $this->_identity = new UserIdentity($this->email, $this->password);
-        if ($this->_identity->authenticate()) {
-            $duration = (user()->allowAutoLogin && $this->rememberMe) ? param('autoLoginDuration') : 0;
-            user()->login($this->_identity, $duration);
+        $duration = (user()->allowAutoLogin && $this->rememberMe) ? param('autoLoginDuration') : 0;
+        if (user()->login($this->_identity, $duration)) {
+            $this->afterLogin();
+            return true;
         }
+        else
+            return false;
     }
 
     /**
      * 创建新账号
      */
-    public function createUser()
+    public function signup()
     {
         $user = new User();
 	    $user->email = $this->email;
-	    $user->username = $this->username;
-	    $user->password = $this->password;
+	    $user->name = $this->username;
+	    $user->password = md5($this->password);
 	    $result = $user->save();
 
-	    if (!$result) return false;
-        return $user;
+	    if ($result) {
+	        $this->afterSignup($user);
+	        return true;
+	    }
+	    else
+	        return false;
     }
 
-    public static function incrementErrorLoginNums()
+    public function incrementErrorLoginNums()
     {
         $errorNums = (int)$_COOKIE['loginErrorNums'];
         setcookie('loginErrorNums', ++$errorNums, $_SERVER['REQUEST_TIME'] + 3600, param('cookiePath'), param('cookieDomain'));
     }
 
-    public static function clearErrorLoginNums()
+    public function clearErrorLoginNums()
     {
         return setcookie('loginErrorNums', null, null, param('cookiePath'), param('cookieDomain'));
     }
 
-    public static function getEnableCaptcha()
+    public function getEnableCaptcha()
     {
         $errorNums = (int)$_COOKIE['loginErrorNums'];
-        return ($errorNums >= self::$_maxLoginErrorNums) ? true : false;
+        return $errorNums >= self::$_maxLoginErrorNums;
     }
 
     public function afterValidate()
     {
         parent::afterValidate();
-        if ($this->getErrors())
-            self::incrementErrorLoginNums();
+        if ($this->hasErrors())
+            $this->incrementErrorLoginNums();
         else
-            self::clearErrorLoginNums();
+            $this->clearErrorLoginNums();
     }
 
+    protected function afterLogin()
+    {
+        
+    }
+    
+    protected function afterSignup($user)
+    {
+        
+    }
 }
+
+

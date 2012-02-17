@@ -15,7 +15,7 @@
             <div class="beta-logo"><a href="<?php echo abu();?>"><?php echo app()->name;?></a></div>
     </div>
     <div class="beta-nav">
-        <ul class="unstyled">
+        <ul class="channel-nav fleft">
             <li><a href="<?php echo app()->homeUrl;?>">首页</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">快讯</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">主题</a></li>
@@ -24,6 +24,11 @@
             <li><a href="<?php echo app()->homeUrl;?>">开源</a></li>
             <br class="clear" />
         </ul>
+        <ul class="user-mini-bar fright">
+            <?php echo $this->userMiniToolbar();?>
+            <br class="clear" />
+        </ul>
+        <br class="clear" />
     </div>
         <div class="beta-entry">
             <?php echo $content;?>
