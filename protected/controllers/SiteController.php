@@ -13,6 +13,13 @@ class SiteController extends Controller
     
     public function actionLogin()
     {
+        if (!user()->getIsGuest()) {
+            // @todo 如果有用户中心，则直接跳到用户中心
+            $this->redirect(url('site/index'));
+            exit(0);
+        }
+        
+        
         $model = new LoginForm('login');
         if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
@@ -26,6 +33,13 @@ class SiteController extends Controller
     
     public function actionSignup()
     {
+        if (!user()->getIsGuest()) {
+            // @todo 如果有用户中心，则直接跳到用户中心
+            $this->redirect(url('site/index'));
+            exit(0);
+        }
+        
+        
         $model = new LoginForm('signup');
         if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
