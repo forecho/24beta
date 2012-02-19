@@ -75,7 +75,7 @@ var BetaPost = {
 var BetaComment = {
 	create: function(event){
 		event.preventDefault();
-		var form = $(this).parents('form');
+		var form = $(this);
 		var msg = form.next('.beta-alert-message');
 		if (msg.length == 0)
 			msg = $('#beta-create-message').clone().removeAttr('id');

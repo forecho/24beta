@@ -16,13 +16,13 @@
     </div>
 </div>
 <div class="acenter">
-    <?php echo CHtml::button(t('submit'), array('class'=>'beta-btn btn-primary commit-submit'));?>
+    <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary commit-submit'));?>
 </div>
 <?php echo CHtml::endForm();?>
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('click', '.beta-comment-form .commit-submit', BetaComment.create);
+	$(document).on('submit', '.beta-comment-form', BetaComment.create);
 	$(document).on('blur', '.beta-comment-form .beta-captcha', BetaComment.captchaValidate);
 	$(document).on('blur', '.beta-comment-form .comment-content', BetaComment.contentValidate);
 	$(document).on('focus', '.beta-comment-form .comment-content', BetaComment.showCaptcha);
