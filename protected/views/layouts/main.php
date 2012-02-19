@@ -22,13 +22,13 @@
             <li><a href="<?php echo app()->homeUrl;?>">事件</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">团队</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">开源</a></li>
-            <br class="clear" />
+            <div class="clear"></div>
         </ul>
         <ul class="user-mini-bar fright">
             <?php echo $this->userMiniToolbar();?>
-            <br class="clear" />
+            <div class="clear"></div>
         </ul>
-        <br class="clear" />
+        <div class="clear"></div>
     </div>
         <div class="beta-entry">
             <?php echo $content;?>
