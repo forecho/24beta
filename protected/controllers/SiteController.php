@@ -14,8 +14,9 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!user()->getIsGuest()) {
-            // @todo 如果有用户中心，则直接跳到用户中心
-            $this->redirect(url('site/index'));
+            $returnUrl = strip_tags(trim($_GET['url']));
+            if (empty($returnUrl)) $returnUrl = aurl('user/default');
+            request()->redirect($returnUrl);
             exit(0);
         }
         
@@ -24,18 +25,26 @@ class SiteController extends Controller
         if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->validate() && $model->login())
-                $this->redirect(user()->returnUrl);
+                ;
             else
                 $model->captcha = '';
         }
+        else {
+            $returnUrl = strip_tags(trim($_GET['url']));
+            if (empty($returnUrl))
+                $returnUrl = request()->getUrlReferrer();
+            if (empty($returnUrl))
+                $returnUrl = aurl('user/default');
+            $model->returnUrl = urlencode($returnUrl);
+        }
+        
         $this->render('login', array('form'=>$model));
     }
     
     public function actionSignup()
     {
         if (!user()->getIsGuest()) {
-            // @todo 如果有用户中心，则直接跳到用户中心
-            $this->redirect(url('site/index'));
+            $this->redirect(aurl('user/default'));
             exit(0);
         }
         
@@ -44,7 +53,7 @@ class SiteController extends Controller
         if (request()->getIsPostRequest() && isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->validate() && $model->signup())
-                $this->redirect(user()->returnUrl);
+                ;
             else
                 $model->captcha = '';
         }

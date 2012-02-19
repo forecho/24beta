@@ -67,8 +67,8 @@ class Controller extends CController
 	        $html .= '<li>' . l(t('user_signup'), url('site/signup')) . '</li>';
 	    }
 	    else {
-	        $html = '<li>' . l(t('user_login'), url('site/login')) . '</li>';
-	        $html .= '<li>' . l(t('user_signup'), url('site/signup')) . '</li>';
+	        $html = '<li>' . l(user()->name, url('user/default')) . '</li>';
+	        $html .= '<li>' . l(t('user_logout'), url('site/logout')) . '</li>';
 	    }
 	    
 	    return $html;

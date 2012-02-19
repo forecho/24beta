@@ -7,6 +7,7 @@ class LoginForm extends CFormModel
     public $captcha;
     public $rememberMe = 1;
     public $agreement;
+    public $returnUrl;
 
     private $_identity;
     private static $_maxLoginErrorNums = 3;
@@ -26,7 +27,7 @@ class LoginForm extends CFormModel
             array('captcha', 'captcha', 'allowEmpty'=>false, 'on'=>'signup'),
             array('rememberMe', 'boolean', 'on'=>'login'),
             array('username, password', 'length', 'min'=>3, 'max'=>50),
-            array('email', 'length', 'max'=>255),
+            array('email, returnUrl', 'length', 'max'=>255),
             array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>'请同意挖图么的服务条款和协议'),
             array('rememberMe', 'in', 'range'=>array(0, 1)),
         );
@@ -64,6 +65,7 @@ class LoginForm extends CFormModel
             'rememberMe' => t('member_me'),
             'email' => t('email'),
         	'agreement' => t('agreement'),
+            'reutrnUrl' => 'Return Url',
         );
     }
 
@@ -126,14 +128,22 @@ class LoginForm extends CFormModel
             $this->clearErrorLoginNums();
     }
 
-    protected function afterLogin()
+    public function afterLogin()
     {
+        $returnUrl = urldecode($this->returnUrl);
+        if (empty($returnUrl))
+            $returnUrl = strip_tags(trim($_GET['url']));
+        if (empty($returnUrl))
+                $returnUrl = aurl('user/default');
         
+        request()->redirect($returnUrl);
+        exit(0);
     }
     
-    protected function afterSignup($user)
+    public function afterSignup($user)
     {
-        
+        user()->loginRequired();
+        exit(0);
     }
 }
 

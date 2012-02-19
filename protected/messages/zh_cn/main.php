@@ -50,6 +50,7 @@ return array(
     'username_tip' => '第一印象很重要，起个响亮的名号吧',
     'quick_login_link' => '&gt;&nbsp;已经拥有豆瓣帐号?&nbsp;' . l('直接登录', url('site/login')),
     'quick_signup_link' => '&gt;&nbsp;还没有豆瓣帐号?&nbsp;' . l('立即注册', url('site/signup')),
+    'user_logout' => '退出',
 
     /*
      * model Comment attributeLabels

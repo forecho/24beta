@@ -121,10 +121,6 @@ class Comment extends CActiveRecord
 	
 	public function getAuthorName()
 	{
-	    static $name;
-	    
-	    if (null !== $name) return $name;
-	    
 	    if ($this->user_name)
 	        $name = $this->user_name;
 	    elseif ($this->user_id)

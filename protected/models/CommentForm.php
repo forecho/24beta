@@ -30,6 +30,9 @@ class CommentForm extends CFormModel
         $comment->attributes = $this->attributes;
         $comment->user_id = (int)user()->id;
         $comment->state = (int)param('defaultNewCommentState');
+        if (!user()->getIsGuest())
+            $comment->user_name = (strip_tags(trim(user()->name)));
+        
         $comment->save();
         $this->afterSave();
         return $comment;
