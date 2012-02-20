@@ -15,6 +15,7 @@ class CategoryController extends Controller
         $this->setPageKeyWords(null);
         $this->setPageDescription(null);
         
+        cs()->registerMetaTag('all', 'robots');
         $this->render('posts', $data);
     }
     

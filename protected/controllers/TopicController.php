@@ -15,6 +15,7 @@ class TopicController extends Controller
         $this->setPageKeyWords(null);
         $this->setPageDescription(null);
         
+        cs()->registerMetaTag('all', 'robots');
         $this->render('posts', $data);
     }
     
@@ -49,6 +50,7 @@ class TopicController extends Controller
         $this->setPageKeyWords(null);
         $this->setPageDescription(null);
         
+        cs()->registerMetaTag('all', 'robots');
         $this->render('list', array(
             'topics' => $topics,
         ));

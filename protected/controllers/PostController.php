@@ -20,6 +20,7 @@ class PostController extends Controller
         $this->setPageDescription($post->summary);
         $this->setPageKeyWords($post->tagText);
         
+        cs()->registerMetaTag('all', 'robots');
         $this->render('show', array(
             'post' => $post,
             'comment' => $comment,
@@ -96,6 +97,7 @@ class PostController extends Controller
         
         $this->setSiteTitle(t('contribute_post'));
         
+        cs()->registerMetaTag('noindex, follow', 'robots');
         $this->render('create', array(
             'form' => $form,
             'captchaClass' => $captchaClass,
@@ -109,6 +111,7 @@ class PostController extends Controller
         
         $this->setSiteTitle(t('contribute_post_success', 'main', array('{title}'=>$title)));
         
+        cs()->registerMetaTag('all', 'robots');
         $this->render('create_success', array('title'=>$title));
     }
     

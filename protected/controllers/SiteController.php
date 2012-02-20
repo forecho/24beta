@@ -8,6 +8,8 @@ class SiteController extends Controller
         $this->setSiteTitle(null);
         $this->setPageKeyWords(param('siteKeywords'));
         $this->setPageDescription(param('siteDescription'));
+        
+        cs()->registerMetaTag('all', 'robots');
         $this->render('index', $data);
     }
     
@@ -37,7 +39,7 @@ class SiteController extends Controller
                 $returnUrl = aurl('user/default');
             $model->returnUrl = urlencode($returnUrl);
         }
-        
+        cs()->registerMetaTag('noindex, follow', 'robots');
         $this->render('login', array('form'=>$model));
     }
     
@@ -57,6 +59,8 @@ class SiteController extends Controller
             else
                 $model->captcha = '';
         }
+        
+        cs()->registerMetaTag('noindex, follow', 'robots');
         $this->render('signup', array('form'=>$model));
     }
     
@@ -93,6 +97,7 @@ class SiteController extends Controller
     
     public function actionTop()
     {
+        exit;
         //CdTopApi::debug();
         $api_key = '12228873';
         $api_secret = '226deeb654bf7c233cb8e06886d7dd7d';
@@ -123,9 +128,10 @@ class SiteController extends Controller
         $c->content = 'comment test';
         $c->up_nums = 30;
         $c->save(); */
-
+        exit;
         $c = Comment::model()->findByPk(9);
         echo $c->delete();
+        
 
     }
 
