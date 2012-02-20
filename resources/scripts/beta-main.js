@@ -248,10 +248,12 @@ var BetaComment = {
 		}
 		else {
 			group.removeClass('success').addClass('error');
+			if (content.length == 0) $(this).addClass('mini');
 			return false;
 		}
 	},
 	showCaptcha: function(event) {
+		$(this).removeClass('mini');
 		var captchaRow = $(this).parents('form').find('.comment-captcha:hidden');
 		if (captchaRow.length == 0) return false;
 

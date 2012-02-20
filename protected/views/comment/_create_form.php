@@ -4,7 +4,7 @@
 <div class="beta-control-group stacked">
     <div class="beta-controls comment-input">
         <p class="beta-help-info beta-help-block"><?php echo t('comment_content_min_length', 'main', array('{minlength}'=>param('commentMinLength')));?></p>
-        <?php echo CHtml::activeTextArea($comment, 'content', array('class'=>'comment-content', 'rows'=>4, 'minlen'=>param('commentMinLength')));?>
+        <?php echo CHtml::activeTextArea($comment, 'content', array('class'=>'comment-content mini', 'rows'=>4, 'minlen'=>param('commentMinLength')));?>
     </div>
 </div>
 <div class="beta-control-group comment-captcha hide">

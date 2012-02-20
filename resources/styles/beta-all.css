@@ -182,32 +182,31 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 .beta-control-group {clear:both; margin:10px 0;}
 .beta-help-inline {color:gray; padding-left:5px; font-size:12px;}
 .beta-help-block {color:gray; display:block; margin:3px 0 0; font-size:12px;}
-.beta-control-group.warning>label,.beta-control-group.warning .beta-help-block,.beta-control-group.warning .beta-help-inline{color:#c09853;}
+.beta-control-group.warning .beta-control-label,.beta-control-group.warning .beta-help-block,.beta-control-group.warning .beta-help-inline{color:#c09853;}
 .beta-control-group.warning input,.beta-control-group.warning select,.beta-control-group.warning textarea{color:#c09853;border-color:#c09853;}.beta-control-group.warning input:focus,.beta-control-group.warning select:focus,.beta-control-group.warning textarea:focus{border-color:#a47e3c;-webkit-box-shadow:0 0 6px #dbc59e;-moz-box-shadow:0 0 6px #dbc59e;box-shadow:0 0 6px #dbc59e;}
-.beta-control-group.warning .input-prepend .add-on,.beta-control-group.warning .input-append .add-on{color:#c09853;background-color:#fcf8e3;border-color:#c09853;}
-.beta-control-group.error>label,.beta-control-group.error .beta-help-block,.beta-control-group.error .beta-help-inline{color:#b94a48;}
+.beta-control-group.error .beta-control-label,.beta-control-group.error .beta-help-block,.beta-control-group.error .beta-help-inline{color:#b94a48;}
 .beta-control-group.error input,.beta-control-group.error select,.beta-control-group.error textarea{color:#b94a48;border-color:#b94a48;}.beta-control-group.error input:focus,.beta-control-group.error select:focus,.beta-control-group.error textarea:focus{border-color:#953b39;-webkit-box-shadow:0 0 6px #d59392;-moz-box-shadow:0 0 6px #d59392;box-shadow:0 0 6px #d59392;}
-.beta-control-group.error .input-prepend .add-on,.beta-control-group.error .input-append .add-on{color:#b94a48;background-color:#f2dede;border-color:#b94a48;}
-.beta-control-group.success>label,.beta-control-group.success .beta-help-block,.beta-control-group.success .beta-help-inline{color:#468847;}
+.beta-control-group.success .beta-control-label,.beta-control-group.success .beta-help-block,.beta-control-group.success .beta-help-inline{color:#468847;}
 .beta-control-group.success input,.beta-control-group.success select,.beta-control-group.success textarea{color:#468847;border-color:#468847;}.beta-control-group.success input:focus,.beta-control-group.success select:focus,.beta-control-group.success textarea:focus{border-color:#356635;-webkit-box-shadow:0 0 6px #7aba7b;-moz-box-shadow:0 0 6px #7aba7b;box-shadow:0 0 6px #7aba7b;}
-.beta-control-group.success .input-prepend .add-on,.beta-control-group.success .input-append .add-on{color:#468847;background-color:#dff0d8;border-color:#468847;}
 
 .beta-control-group>label, .beta-control-group .beta-control-label {display:block; float:left; width:140px; text-align:right; padding-top:5px;}
 .beta-control-group .beta-controls {margin-left:150px;}
-.beta-form-actions{padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #ddd;}
-form.beta-form-horizontal .beta-form-actions {text-align:center;}
+.beta-form-actions {padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #DDDDDD;}
+.beta-form-horizontal .beta-form-actions {text-align:center;}
 
+/* comment create form */
 .beta-create-form {font-size:14px; padding:5px 0;}
-form.beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
-form.beta-comment-form .beta-control-group {margin:0 0 6px;}
-form.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:3px;}
-form.beta-comment-form .beta-control-group .beta-controls {margin-left:50px;}
-form.beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0;}
-form.beta-comment-form .beta-controls input.beta-text, form.beta-comment-form .beta-controls textarea {height:16px; padding:5px; line-height:16px; font-size:12px;}
-form.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px;}
-.beta-hot-comment form.beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
-form input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}
-form.beta-comment-form .beta-form-actions .beta-btn {padding:4px 16px;}
+.beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
+.beta-comment-form .beta-control-group {margin:0 0 6px;}
+.beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:3px;}
+.beta-comment-form .beta-control-group .beta-controls {margin-left:50px;}
+.beta-comment-form .beta-control-group.stacked .beta-controls {margin-left:0;}
+.beta-comment-form .beta-controls input.beta-text, .beta-comment-form .beta-controls textarea {height:16px; padding:5px; line-height:16px; font-size:12px;}
+.beta-comment-form .beta-control-group .beta-controls textarea {width:98%; height:70px;}
+.beta-comment-form .beta-control-group .beta-controls textarea.mini {width:98%; height:24px;}
+.beta-hot-comment .beta-comment-form .beta-control-group .beta-controls textarea {width:96%;}
+input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkred;}
+.beta-comment-form .beta-form-actions .beta-btn {padding:4px 16px;}
 
 /* post create form */
 .beta-post-form {margin:10px 0; font-size:12px;}
