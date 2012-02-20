@@ -1,5 +1,5 @@
 <?php
-class BetaHottestPosts extends CWidget
+class BetaVisitTopPosts extends CWidget
 {
     const DEFAULT_POST_COUNT = 10;
     const DEFAULT_DAYS = 7;
@@ -59,7 +59,7 @@ class BetaHottestPosts extends CWidget
         
         $title = trim($this->title);
         if (empty($title))
-            $this->title = t('hottest_posts');
+            $this->title = t('visit_top_posts');
         
         $this->days = (int)$this->days;
         if ($this->days === 0)
@@ -74,14 +74,14 @@ class BetaHottestPosts extends CWidget
     {
         $models = $this->fetchPosts();
         if (empty($models) && !$this->allowEmpty) return ;
-        $this->render('beta_hottest_posts', array('models'=>$models));
+        $this->render('beta_visit_top_posts', array('models'=>$models));
     }
     
     private function fetchPosts()
     {
         $criteria = new CDbCriteria();
         $criteria->select = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state');
-        $criteria->order = 'comment_nums desc, id desc';
+        $criteria->order = 'visit_nums desc, id desc';
         $criteria->limit = $this->count;
         $criteria->addCondition('state > 0');
         if ($this->cid)

@@ -53,7 +53,7 @@ class Special extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		    'posts' => array(self::MANY_MANY, 'Post', '{{specail2post}}(special_id, post_id)'),
+		    'posts' => array(self::MANY_MANY, 'Post', '{{special2post}}(special_id, post_id)'),
 		);
 	}
 

@@ -82,6 +82,8 @@ return array(
     'report_comment' => '举报',
     'comment_quote_title' => '引用%s的评论:',
         
+    'comment_top_posts' => '最具争议文章排行',
+    'visit_top_posts' => '人气文章排行',
     'hottest_posts' => '热门文章排行',
     'latest_posts' => '最新发布文章',
     'relate_posts' => '相关文章',
@@ -143,5 +145,10 @@ return array(
 
     /* category */
     'category_posts' => '分类：{name}',
+
+    /* BetaHottestPosts */
+    'special_token_is_null' => 'token不能为空',
 );
+
+
 

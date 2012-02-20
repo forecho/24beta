@@ -51,5 +51,5 @@
 <div class="beta-sidebar">
     <p class="quick-login-signup"><?php echo t('quick_login_link');?></p>
 </div>
-<br class="clear" />
+<div class="clear"></div>
 
