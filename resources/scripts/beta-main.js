@@ -131,6 +131,7 @@ var BetaComment = {
 					lastComment = $('#beta-comment-list');
 				lastComment.after(data.html);
 				if (form.attr('id') == undefined) form.remove();
+				form.find('.comment-content').addClass('mini');
 				$('form .comment-captcha').hide();
 				$('.beta-no-comments').remove();
 			}

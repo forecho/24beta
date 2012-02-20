@@ -42,7 +42,6 @@ dt{font-weight:bold;}
 dd{margin-left:9px;}
 hr{margin:18px 0;border:0;border-top:1px solid #e5e5e5;border-bottom:1px solid #ffffff;}
 strong{font-weight:bold;}
-em{font-style:italic;}
 abbr{font-size:90%;text-transform:uppercase;border-bottom:1px dotted #ddd;cursor:help;}
 blockquote{padding:0 0 0 15px;margin:0 0 18px;border-left:5px solid #eeeeee;}blockquote p{margin-bottom:0;font-size:16px;font-weight:300;line-height:22.5px;}
 blockquote small{display:block;line-height:18px;color:#999999;}blockquote small:before{content:'\2014 \00A0';}
@@ -132,7 +131,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-extra {font-size:12px; margin-bottom:10px;}
 .beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
 /* summary and content css */
-.beta-post-content {overflow:hidden; width:100%; line-height:24px;}
+.beta-post-content {overflow:hidden; width:100%; line-height:22px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
 .beta-post-content img {margin:10px 0px; max-width:570px; overflow:hidden;}
 .beta-post-summary .beta-post-content p {margin:0;}
