@@ -22,6 +22,7 @@
  * @property integer $state
  * @property integer $istop
  * @property integer $disable_comment
+ * @property string $thumbnail
  * @property string $summary
  * @property string $content
  * @property integer $contributor_id
@@ -45,6 +46,7 @@
  * @property string $tagArray
  * @property string $tagText
  * @property string $tagLinks
+ * @property string $thumbnailUrl
  */
 class Post extends CActiveRecord
 {
@@ -79,7 +81,7 @@ class Post extends CActiveRecord
 		return array(
 	        array('title, content', 'required'),
 	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id', 'numerical', 'integerOnly'=>true),
-			array('source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
+			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
 			array('summary, content', 'safe'),
@@ -123,6 +125,7 @@ class Post extends CActiveRecord
 			'state' => t('state'),
 			'istop' => t('istop'),
 		    'disable_comment' => t('disable_comment'),
+			'thumbnail' => t('thumbnail'),
 			'summary' => t('summary'),
 			'content' => t('content'),
 		    'contributor_id' => t('contributor_id'),
@@ -324,6 +327,29 @@ class Post extends CActiveRecord
 	    return implode($operator, $data);
 	}
 
+	public function getThumbnailUrl()
+	{
+	    $url = $this->thumbnail;
+	    if (empty($url)) {
+	        // @todo 此处读取文章中第一个图片作为缩略图。
+	    }
+	    
+	    if ($url) {
+	        $pos = strpos($this->thumbnail, 'http://');
+	        if ($pos === false)
+	            $url = fbu($this->thumbnail);
+	        elseif ($pos === 0)
+	            $url = $this->thumbnail;
+	    }
+	    else
+	        $url = '';
+	    
+	    
+	    return $url;
+	}
 }
+
+
+
 
 

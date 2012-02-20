@@ -30,6 +30,7 @@ return array(
     'state' => '状态',
     'istop' => '置顶',
     'disable_comment' => '禁止评论',
+    'thumbnail' => '缩略图',
     'summary' => '简述',
     'content' => '内容',
     'contributor_id' => '投稿者ID',
@@ -51,6 +52,11 @@ return array(
     'quick_login_link' => '&gt;&nbsp;已经拥有豆瓣帐号?&nbsp;' . l('直接登录', url('site/login')),
     'quick_signup_link' => '&gt;&nbsp;还没有豆瓣帐号?&nbsp;' . l('立即注册', url('site/signup')),
     'user_logout' => '退出',
+
+    /* Specail model */
+    'special_token' => '标识',
+    'special_name' => '名称',
+    'special_desc' => '描述',
 
     /*
      * model Comment attributeLabels
