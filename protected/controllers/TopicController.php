@@ -1,14 +1,14 @@
 <?php
 class TopicController extends Controller
 {
-    public function actionPosts($tid)
+    public function actionPosts($id)
     {
-        $tid = (int)$tid;
-        $topic = Topic::model()->findByPk($tid);
+        $id = (int)$id;
+        $topic = Topic::model()->findByPk($id);
         if ($topic === null)
             throw new CHttpException(404, t('topic_is_not_found'));
         
-        $data = self::fetchTopicPosts($tid);
+        $data = self::fetchTopicPosts($id);
         
         $this->setSiteTitle(t('topic_posts', 'main', array('{name}'=>$topic->name)));
         // @todo 关键字的描述没有指定
@@ -18,12 +18,12 @@ class TopicController extends Controller
         $this->render('posts', $data);
     }
     
-    private static function fetchTopicPosts($tid)
+    private static function fetchTopicPosts($id)
     {
         $criteria = new CDbCriteria();
         $criteria->order = 't.state desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->addColumnCondition(array('topic_id' => $tid))
+        $criteria->addColumnCondition(array('topic_id' => $id))
             ->addCondition('t.state != :state');
     
         $count = Post::model()->count($criteria, array(':state'=>Post::STATE_DISABLED));

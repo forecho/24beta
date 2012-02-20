@@ -55,11 +55,12 @@ class PostController extends Controller
         $data = array();
         $model = new CommentForm();
         $model->attributes = $_POST['CommentForm'];
+        $model->content = h($model->content);
         
         if ($id > 0 && $quote = Comment::model()->findByPk($id)) {
             $quoteTitle = sprintf(t('comment_quote_title'), $quote->authorName);
-            $html = '<fieldset class="beta-comment-quote"><legend>' . $quoteTitle . '</legend>' . $quote->filterContent . '</fieldset>';
-            $model->content = $html . h($model->content);
+            $html = '<fieldset class="beta-comment-quote"><legend>' . $quoteTitle . '</legend>' . $quote->content . '</fieldset>';
+            $model->content = $html . $model->content;
         }
         
         if ($model->validate() && ($comment = $model->save())) {
