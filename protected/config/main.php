@@ -94,6 +94,7 @@ return array(
                 '<_a:(login|signup|logout)>' => 'site/<_a>',
                 '<_c:(category|topic)>-<id:\d+>-page-<page:\d+>' => '<_c>/posts',
                 '<_c:(category|topic)>-<id:\d+>' => '<_c>/posts',
+                'topics' => 'topic/list',
             ),
         ),
         'session' => array(

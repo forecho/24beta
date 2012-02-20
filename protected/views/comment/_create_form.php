@@ -6,6 +6,7 @@
         <p class="beta-help-info beta-help-block"><?php echo t('comment_content_min_length', 'main', array('{minlength}'=>param('commentMinLength')));?></p>
         <?php echo CHtml::activeTextArea($comment, 'content', array('class'=>'comment-content mini', 'rows'=>4, 'minlen'=>param('commentMinLength')));?>
     </div>
+    <div class="clear"></div>
 </div>
 <div class="beta-control-group comment-captcha hide">
     <label class="beta-control-label"><?php echo t('captcha');?></label>
@@ -14,6 +15,7 @@
         <?php $this->widget('BetaCaptcha', array('skin'=>'comment'));?>
         <a href="<?php echo url('post/captcha', array('refresh'=>1));?>" class="refresh-captcha" tabindex="99999"><?php echo t('refresh_captcha');?></a>
     </div>
+    <div class="clear"></div>
 </div>
 <div class="acenter">
     <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary commit-submit'));?>

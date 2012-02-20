@@ -6,6 +6,7 @@
             <?php echo CHtml::activeTextField($form, 'title', array('class'=>'beta-text', 'id'=>'post-title'));?>
             <p class="beta-help-block"><?php echo $form->getError('title');?></p>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('source')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('post_source');?></label>
@@ -13,6 +14,7 @@
             <?php echo CHtml::activeTextField($form, 'source', array('class'=>'beta-text'));?>
             <p class="beta-help-block"><?php echo $form->getError('source');?></p>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('post_contributor');?></label>
@@ -20,6 +22,7 @@
             <?php echo CHtml::activeTextField($form, 'contributor', array('class'=>'beta-text'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor');?></p>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor_site')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('post_contributor_site');?></label>
@@ -27,6 +30,7 @@
             <?php echo CHtml::activeTextField($form, 'contributor_site', array('class'=>'beta-text', 'id'=>'post-site'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor_site');?></p>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group <?php if ($form->hasErrors('contributor_email')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('post_contributor_email');?></label>
@@ -34,18 +38,21 @@
             <?php echo CHtml::activeTextField($form, 'contributor_email', array('class'=>'beta-text', 'id'=>'post-email'));?>
             <p class="beta-help-block"><?php echo $form->getError('contributor_email');?></p>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group stacked <?php if ($form->hasErrors('summary')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('summary');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('summary');?></span></label>
         <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'summary', array('id'=>'beta-summary'));?>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group stacked <?php if ($form->hasErrors('content')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('content');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('content');?></span></label>
         <div class="beta-controls">
             <?php echo CHtml::activeTextArea($form, 'content', array('id'=>'beta-content'));?>
         </div>
+        <div class="clear"></div>
     </div>
     <div class="beta-control-group captcha-clearfix <?php echo $captchaClass?>">
         <label class="beta-control-label"><?php echo t('captcha');?></label>
@@ -54,8 +61,9 @@
             <?php echo $captchaWidget;?>
             <span class="beta-help-inline"><?php echo $form->getError('captcha');?></span>
         </div>
+        <div class="clear"></div>
     </div>
-    <div class="beta-form-actions">
+    <div class="beta-form-actions acenter">
         <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary'));?>
         <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn'));?>
     </div>

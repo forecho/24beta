@@ -22,6 +22,7 @@
             <li><a href="<?php echo app()->homeUrl;?>">事件</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">团队</a></li>
             <li><a href="<?php echo app()->homeUrl;?>">开源</a></li>
+            <li><a href="<?php echo aurl('post/create');?>">投稿</a></li>
             <div class="clear"></div>
         </ul>
         <ul class="user-mini-bar fright">
