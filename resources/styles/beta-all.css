@@ -133,7 +133,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-extra {font-size:12px; margin-bottom:5px;}
 .beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
 /* summary and content css */
-.beta-post-content {overflow:hidden; width:100%; line-height:22px;}
+.beta-post-content {overflow:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
 .beta-post-content img {margin:10px 0px; max-width:570px; overflow:hidden;}
 .beta-post-summary .beta-post-content p {margin:0;}
