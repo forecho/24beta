@@ -7,6 +7,9 @@ define('BETA_NO', 0);
 $params = require(BETA_CONFIG_ROOT . DS . 'params.php');
 $setting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
 $params = array_merge($setting, $params);
+
+$dbconfig = require($params['dataPath'] . DS . 'db.config.php');
+
 return array(
     'id' => $params['domain'],
     'name' => $params['sitename'],
@@ -54,12 +57,12 @@ return array(
         ),
         'db' => array(
             'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=127.0.0.1; port=3306; dbname=cd_24beta',
-			'username' => 'root',
-		    'password' => '123',
+			'connectionString' => sprintf('mysql:host=%s; port=%s; dbname=%s', $dbconfig['dbHost'], $dbconfig['dbPort'], $dbconfig['dbName']),
+			'username' => $dbconfig['dbUser'],
+		    'password' => $dbconfig['dbPassword'],
 		    'charset' => 'utf8',
 		    'persistent' => true,
-		    'tablePrefix' => 'cd_',
+		    'tablePrefix' => $dbconfig['tablePrefix'],
             'enableParamLogging' => true,
             'enableProfiling' => true,
 // 		    'schemaCacheID' => 'fcache',
@@ -83,6 +86,21 @@ return array(
             'basePath' => BETA_CONFIG_ROOT . DS . '..' . DS . '..' . DS . 'themes',
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
+        'session' => array(
+            'cookieParams' => array(
+                'lifetime' => $params['autoLoginDuration'],
+                'domain' => $params['domain'],
+            ),
+        ),
+        'widgetFactory'=>array(
+            'enableSkin'=>true,
+        ),
+        'authManager' => array(
+            'class' => 'CDbAuthManager',
+            'assignmentTable' => $dbconfig['tablePrefix'] . 'auth_assignment',
+            'itemChildTable' => $dbconfig['tablePrefix'] . 'auth_itemchild',
+            'itemTable' => $dbconfig['tablePrefix'] . 'auth_item',
+        ),
         'urlManager' => array(
             'urlFormat' => 'path',
 		    'showScriptName' => false,
@@ -96,15 +114,6 @@ return array(
                 '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
                 'topics' => 'topic/list',
             ),
-        ),
-        'session' => array(
-            'cookieParams' => array(
-                'lifetime' => $params['autoLoginDuration'],
-                'domain' => $params['domain'],
-            ),
-        ),
-        'widgetFactory'=>array(
-            'enableSkin'=>true,
         ),
     ),
 

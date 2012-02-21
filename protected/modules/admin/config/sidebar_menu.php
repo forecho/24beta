@@ -44,4 +44,10 @@ return array(
             array('title'=>t('provision', 'admin'), 'url'=>url('admin/post/today'), 'htmlOptions'=>array('target'=>'main')),
         ),
     ),
+    array(
+        'title' => t('user_signup'),
+        'url' => url('site/logout'),
+        'htmlOptions' => array('target'=>'_top'),
+    ),
+
 );

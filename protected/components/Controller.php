@@ -68,6 +68,8 @@ class Controller extends CController
 	    }
 	    else {
 	        $html = '<li>' . l(user()->name, url('user/default')) . '</li>';
+	        if (user()->checkAccess('enterAdminSystem'))
+    	        $html .= '<li>' . l(t('management'), url('admin/default/index'), array('target'=>'_blank')) . '</li>';
 	        $html .= '<li>' . l(t('user_logout'), url('site/logout')) . '</li>';
 	    }
 	    

@@ -52,6 +52,7 @@ return array(
     'quick_login_link' => '&gt;&nbsp;已经拥有{sitename}帐号?&nbsp;<a href="{loginurl}">直接登录</a>',
     'quick_signup_link' => '&gt;&nbsp;还没有{sitename}帐号?&nbsp;<a href="{signupurl}">立即注册</a>',
     'user_logout' => '退出',
+    'management' => '管理',
 
     /* Specail model */
     'special_token' => '标识',
