@@ -41,12 +41,13 @@
  * @property string $relativeUrl
  * @property string $titleLink
  * @property string $postToolbar
- * @property string $postExtra
  * @property string $subTitle
  * @property string $tagArray
  * @property string $tagText
  * @property string $tagLinks
  * @property string $thumbnailUrl
+ * @property string $categoryLink
+ * @property string $topicLink
  */
 class Post extends CActiveRecord
 {
@@ -237,12 +238,7 @@ class Post extends CActiveRecord
 	public function getPostToolbar()
 	{
 	    // @todo 此处authorName最终应该为authorLink
-	    return array('{comment_nums}'=>$this->comment_nums, '{score_nums}'=>$this->score_nums, '{score}'=>$this->rating);
-	}
-	
-	public function getPostExtra()
-	{
-	    return array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums);
+	    return array('{comment_nums}'=>$this->comment_nums, '{score_nums}'=>$this->score_nums, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums);
 	}
 	
 	public function getSubTitle($len = 40)
@@ -302,21 +298,17 @@ class Post extends CActiveRecord
 	 */
 	public function getTagArray()
 	{
-	    static $tags = array();
-	    
-	    if ($tags) return $tags;
-	    if (empty($this->tags)) return array();
-	
-	    $data = Tag::filterTags($this->tags);
-	    return $tags = explode(',', $data);
+	    return Tag::filterTagsArray($this->tags);
 	}
 	
 	public function getTagText()
 	{
-	    return join(', ', $this->getTagArray());
+	    $tagsArray = $this->getTagArray();
+	     
+	    return (empty($tagsArray)) ? '' : join(',', $tagsArray);
 	}
 	
-	public function getTagLinks($operator = '&nbsp;&nbsp;', $target = '_blank', $class='beta-tag')
+	public function getTagLinks($operator = '', $target = '_blank', $class='beta-tag')
 	{
 	    $tags = $this->getTagArray();
 	    if (empty($tags)) return '';
@@ -324,7 +316,7 @@ class Post extends CActiveRecord
 	    foreach ($tags as $tag)
 	        $data[] = l($tag, aurl('tag/posts', array('name'=>urlencode($tag))), array('target'=>$target, 'class'=>$class));
 	    
-	    return implode($operator, $data);
+	    return t('tags') . ':' . implode($operator, $data);
 	}
 
 	public function getThumbnailUrl()
@@ -346,6 +338,27 @@ class Post extends CActiveRecord
 	    
 	    
 	    return $url;
+	}
+
+	public function getCategoryLink($target = '_blank')
+	{
+	    if ($this->category)
+	        return $this->category->getPostsLink($target);
+	    else
+	        return '';
+	}
+	
+	public function getTopicLink()
+	{
+	    if ($this->topic)
+	        return $this->topic->getPostsLink($target);
+	    else
+	        return '';
+	}
+	
+	public function getShowExtraInfo()
+	{
+	    return t('post_show_extra', 'main', array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums));
 	}
 }
 

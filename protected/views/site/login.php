@@ -43,6 +43,6 @@
     <?php echo chtml::endForm();?>
 </div>
 <div class="beta-sidebar">
-    <p class="quick-login-signup"><?php echo t('quick_signup_link');?></p>
+    <p class="quick-login-signup"><?php echo t('quick_signup_link', 'main', array('{sitename}'=>app()->name, '{signupurl}'=>url('site/signup')));?></p>
 </div>
 <div class="clear"></div>

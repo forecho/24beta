@@ -65,16 +65,19 @@ class Tag extends CActiveRecord
 		);
 	}
 	
-	public static function filterTags($tags)
+	public static function filterTagsArray($tags)
 	{
-	    if (empty($tags)) return '';
-	
-	    $tags = preg_replace('/(\s+|，|　)/i', ',', $tags);
-	    $tags = explode(',', $tags);
-	    foreach ((array)$tags as $key => $tag)
-	        $tags[$key] = strip_tags(trim($tag));
+	    if (empty($tags)) return array();
 	    
-	    return implode(',', $tags);
+	    $tags = str_replace('，', ',', $tags);
+	    $tags = explode(',', $tags);
+	    $tagsArray = array();
+	    foreach ((array)$tags as $tag)
+	        $tagsArray[] = strip_tags(trim($tag));
+	    
+	    unset($tags, $tag);
+	    return $tagsArray;
 	}
+	
 
 }

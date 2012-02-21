@@ -1,6 +1,8 @@
 <?php
 class LoginForm extends CFormModel
 {
+    const COOKIE_LOGIN_ERROR = 'sd7fh328fhs';
+    
     public $email;
     public $username;
     public $password;
@@ -104,18 +106,29 @@ class LoginForm extends CFormModel
 
     public function incrementErrorLoginNums()
     {
-        $errorNums = (int)$_COOKIE['loginErrorNums'];
-        setcookie('loginErrorNums', ++$errorNums, $_SERVER['REQUEST_TIME'] + 3600, param('cookiePath'), param('cookieDomain'));
+        $cookie = request()->cookies[self::COOKIE_LOGIN_ERROR];
+        if ($cookie === null) {
+            $cookie = new CHttpCookie(self::COOKIE_LOGIN_ERROR, 1);
+        }
+        elseif ($cookie->value < self::$_maxLoginErrorNums)
+            $cookie->value += 1;
+        else
+            return ;
+        
+        $cookie->expire = $_SERVER['REQUEST_TIME'] + 3600;
+        $cookie->path = '/';
+        $cookie->domain = param('domain');
+        request()->cookies->add(self::COOKIE_LOGIN_ERROR, $cookie);
     }
 
     public function clearErrorLoginNums()
     {
-        return setcookie('loginErrorNums', null, null, param('cookiePath'), param('cookieDomain'));
+        request()->cookies->remove(self::COOKIE_LOGIN_ERROR);
     }
 
     public function getEnableCaptcha()
     {
-        $errorNums = (int)$_COOKIE['loginErrorNums'];
+        $errorNums = (int)request()->cookies[self::COOKIE_LOGIN_ERROR]->value;
         return $errorNums >= self::$_maxLoginErrorNums;
     }
 

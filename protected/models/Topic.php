@@ -10,6 +10,8 @@
  * @property integer $post_nums
  * @property string $icon
  * @property integer $orderid
+ * @property string $postsUrl
+ * @property string $postsLink
  */
 class Topic extends CActiveRecord
 {
@@ -94,6 +96,16 @@ class Topic extends CActiveRecord
 	    $models = self::model()->find($criteria);
 	
 	    return $models;
+	}
+	
+	public function getPostsUrl()
+	{
+	    return aurl('topic/posts', array('id'=>$this->id));
+	}
+	
+	public function getPostsLink($target = '_blank')
+	{
+	    return t('topic') . '&nbsp;' . l($this->name, $this->getPostsUrl(), array('target'=>$target));
 	}
 	
 	protected function beforeSave()

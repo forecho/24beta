@@ -49,8 +49,8 @@ return array(
     'user_login' => '登录',
     'user_signup' => '注册',
     'username_tip' => '第一印象很重要，起个响亮的名号吧',
-    'quick_login_link' => '&gt;&nbsp;已经拥有豆瓣帐号?&nbsp;' . l('直接登录', url('site/login')),
-    'quick_signup_link' => '&gt;&nbsp;还没有豆瓣帐号?&nbsp;' . l('立即注册', url('site/signup')),
+    'quick_login_link' => '&gt;&nbsp;已经拥有{sitename}帐号?&nbsp;<a href="{loginurl}">直接登录</a>',
+    'quick_signup_link' => '&gt;&nbsp;还没有{sitename}帐号?&nbsp;<a href="{signupurl}">立即注册</a>',
     'user_logout' => '退出',
 
     /* Specail model */
@@ -70,8 +70,9 @@ return array(
 
     'post_comment' => '发表评论',
     'view_detail' => '查看详情',
-    'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;评分:{score}分',
-    'post_extra_text' => '{author}&nbsp;发布于&nbsp;{time}&nbsp;&nbsp;|&nbsp;&nbsp;<em class="beta-visit-nums">{visit}</em>次阅读&nbsp;&nbsp;<em class="beta-digg-nums">{digg}</em>次推荐',
+    'post_toolbar_text' => '已有{comment_nums}个评论&nbsp;&nbsp;|&nbsp;&nbsp;{score_nums}次评分&nbsp;&nbsp;|&nbsp;&nbsp;{visit}次阅读&nbsp;&nbsp;|&nbsp;&nbsp;{digg}次推荐',
+    'post_author_time' => '{author}&nbsp;发表于&nbsp;{time}',
+    'post_show_extra' => '{author}&nbsp;发表于&nbsp;{time}&nbsp;|&nbsp;{visit}次阅读&nbsp;{digg}次推荐',
     'comment_list' => '评论列表',
     'hot_comment_list' => '热门评论',
     'have_no_comments' => '当前暂无评论',
@@ -82,10 +83,10 @@ return array(
     'report_comment' => '举报',
     'comment_quote_title' => '引用%s的评论:',
         
-    'comment_top_posts' => '最具争议文章排行',
-    'visit_top_posts' => '人气文章排行',
-    'hottest_posts' => '热门文章排行',
-    'latest_posts' => '最新发布文章',
+    'comment_top_posts' => '最具争议排行',
+    'visit_top_posts' => '最具人气排行',
+    'hottest_posts' => '热门排行',
+    'latest_posts' => '最新发布',
     'relate_posts' => '相关文章',
     'no_posts' => '当前暂无文章',
         

@@ -4,7 +4,7 @@
     <?php $this->renderPartial('/post/_summary_list', array('posts'=>$posts, 'pages'=>$pages));?>
 </div>
 <div class="beta-sidebar">
-    <?php $this->widget('BetaCommentTopPosts', array('allowEmpty'=>true, 'days'=>300));?>
-    <?php $this->widget('BetaLatestPosts', array('allowEmpty'=>true));?>
+    <?php $this->widget('BetaCommentTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
+    <?php $this->widget('BetaVisitTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
 </div>
 <div class="clear"></div>

@@ -1,12 +1,17 @@
 <div class="beta-content beta-post-show beta-radius3px">
     <div class="beta-post-detail">
         <h1><?php echo $post->title;?></h1>
-        <div class="beta-post-extra"><span><?php echo t('post_extra_text', 'main', $post->postExtra);?></span></div>
-        <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
-        <div class="beta-post-content"><?php echo $post->content;?></div>
+        <div class="beta-post-extra"><span>
+            <?php echo $post->showExtraInfo;?>&nbsp;&nbsp;
+            <?php if ($post->category) echo $post->categoryLink;?>
+            <?php if ($post->topic) echo $post->topicLink;?>
+        </span></div>
         <?php if ($post->tags):?>
         <div class="beta-post-tags"><?php echo $post->tagLinks;?></div>
         <?php endif;?>
+        <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
+        <div class="beta-post-content"><?php echo $post->content;?></div>
+        
         <?php if ($post->source):?>
         <div class="beta-post-source"><?php echo t('source_label');?><?php echo $post->sourceLink;?></div>
         <?php endif;?>
@@ -24,6 +29,7 @@
         <?php $this->renderPartial('/comment/_hot_list', array('comments'=>$hotComments, 'post'=>$post));?>
     </div>
     <?php $this->widget('BetaLatestPosts', array('title'=>t('relate_posts'), 'tid'=>$post->topic_id));?>
+    <?php $this->widget('BetaLatestPosts');?>
 </div>
 <div class="clear"></div>
 

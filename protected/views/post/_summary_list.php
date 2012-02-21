@@ -1,7 +1,11 @@
 <?php foreach ((array)$posts as $model):?>
 <dl class="beta-post-item beta-radius3px">
     <dt><h1><?php echo $model->titleLink;?></h1></dt>
-    <dd class="beta-post-extra"><span><?php echo t('post_extra_text', 'main', $model->postExtra);?></span></dd>
+    <dd class="beta-post-extra"><span>
+        <?php echo t('post_author_time', 'main', array('{author}'=>$model->authorName, '{time}'=>$model->createTime));?>&nbsp;&nbsp;&nbsp;&nbsp;
+        <?php if ($model->category) echo $model->categoryLink;?>
+        <?php if ($model->topic) echo $model->topicLink;?>
+    </span></dd>
     <dd class="beta-post-summary">
         <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div>
         <div class="beta-post-content"><?php echo $model->summary;?></div>

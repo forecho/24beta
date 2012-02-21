@@ -9,6 +9,8 @@
  * @property string $name
  * @property integer $post_nums
  * @property integer $orderid
+ * @property string $postsUrl
+ * @property string $postsLink
  */
 class Category extends CActiveRecord
 {
@@ -92,6 +94,18 @@ class Category extends CActiveRecord
         
         return $models;
     }
+    
+    public function getPostsUrl()
+    {
+        return aurl('category/posts', array('id'=>$this->id));
+    }
+    
+    
+    public function getPostsLink($target = '_blank')
+    {
+        return t('category') . '&nbsp;' . l($this->name, $this->getPostsUrl(), array('target'=>$target));
+    }
+    
     
     protected function beforeSave()
     {
