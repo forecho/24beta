@@ -116,8 +116,6 @@ class LoginForm extends CFormModel
             return ;
         
         $cookie->expire = $_SERVER['REQUEST_TIME'] + 3600;
-        $cookie->path = '/';
-        $cookie->domain = param('domain');
         request()->cookies->add(self::COOKIE_LOGIN_ERROR, $cookie);
     }
 
@@ -143,6 +141,7 @@ class LoginForm extends CFormModel
 
     public function afterLogin()
     {
+        
         $returnUrl = urldecode($this->returnUrl);
         if (empty($returnUrl))
             $returnUrl = strip_tags(trim($_GET['url']));

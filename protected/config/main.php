@@ -89,8 +89,6 @@ return array(
         'session' => array(
             'cookieParams' => array(
                 'lifetime' => $params['autoLoginDuration'],
-                'domain' => $params['domain'],
-                'path' => '/',
             ),
         ),
         'widgetFactory'=>array(

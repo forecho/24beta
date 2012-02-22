@@ -16,8 +16,6 @@ return array(
     'autoLoginDuration' => 3600 * 24 * 7,
     // 当前theme，不要在此修改，这是默认值，请在后台中修改
     'theme' => null,
-    // 域名，当前使用的域名
-    'domain' => $_SERVER['SERVER_NAME'],
 
     // 注册用户是否需要邮件激活
     'userRequiredEmailVerfiy' => false,
