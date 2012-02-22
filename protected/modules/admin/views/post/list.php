@@ -1,6 +1,12 @@
-<div class="toolbar">
+<h3><?php echo user()->getFlash('table_caption', '文章列表');?></h3>
+<div class="btn-toolbar">
+    <button class="btn btn-small">全选</button>
+    <button class="btn btn-small">反选</button>
+    <button class="btn btn-small btn-primary">通过</button>
+    <button class="btn btn-small btn-danger">拒绝</button>
+    <button class="btn btn-small btn-info">删除</button>
 </div>
-<table class="table table-striped table-bordered post-list-table">
+<table class="table table-striped table-bordered beta-list-table">
     <thead>
         <tr>
             <th class="item-checkbox">#</th>
@@ -22,10 +28,6 @@
         <?php endforeach;?>
     </tbody>
 </table>
-<div class="toolbar">
-    <button class="btn">全选</button>
-    <button class="btn">反选</button>
-    <button class="btn primary">通过</button>
-    <button class="btn danger">拒绝</button>
-    <button class="btn info">删除</button>
-</div>
+<?php if ($pages):?>
+<div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
+<?php endif;?>

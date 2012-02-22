@@ -3,7 +3,7 @@ return array(
     'control_center' => '管理中心',
     'post_manage' => '文章管理',
     'verify_post' => '审核',
-    'today_post' => '今日',
+    'today_post' => '最新',
     'query_post' => '查询',
     'create_post' => '发布',
     'post_tag' => '标签',

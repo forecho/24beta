@@ -45,7 +45,7 @@ return array(
         ),
     ),
     array(
-        'title' => t('user_signup'),
+        'title' => t('user_logout'),
         'url' => url('site/logout'),
         'htmlOptions' => array('target'=>'_top'),
     ),
