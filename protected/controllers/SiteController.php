@@ -114,6 +114,8 @@ class SiteController extends Controller
     
     public function actionTest()
     {
+        phpinfo();
+        exit;
         $check = user()->checkAccess('enterAdminSystem');
         var_dump($check);
         exit;

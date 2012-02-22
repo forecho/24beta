@@ -196,7 +196,6 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 .beta-form-actions {padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #DDDDDD;}
 
 /* comment create form */
-.beta-create-form {font-size:14px; padding:5px 0;}
 .beta-comment-form {font-size:12px; margin:5px; padding:5px; background:white;}
 .beta-comment-form .beta-control-group {margin:0 0 6px;}
 .beta-comment-form .beta-control-group .beta-control-label {width:40px; padding-top:5px;}

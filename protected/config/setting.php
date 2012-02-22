@@ -5,10 +5,10 @@
 
 return array(
     // 网站名称
-    'sitename' => '24beta',
+    'sitename' => '贝塔资讯',
     // 网站短描述
-    'shortdesc' => '我们大家的资讯',
-    // 域名，与当前使用的域名一致
+    'shortdesc' => '我们不是一个人在战斗',
+    // 域名，当前使用的域名的顶级域名
     'domain' => '24beta.cn',
     // 网站语言
     'language' => 'zh_cn',
