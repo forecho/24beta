@@ -9,7 +9,7 @@ return array(
     // 网站短描述
     'shortdesc' => '我们不是一个人在战斗',
     // 域名，当前使用的域名的顶级域名
-    'domain' => '24beta.cn',
+    'domain' => '24beta.com',
     // 网站语言
     'language' => 'zh_cn',
     // 使用的时区
