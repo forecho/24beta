@@ -8,16 +8,16 @@ return array(
     'sitename' => '贝塔资讯',
     // 网站短描述
     'shortdesc' => '我们不是一个人在战斗',
-    // 域名，当前使用的域名的顶级域名
-    'domain' => '24beta.com',
     // 网站语言
     'language' => 'zh_cn',
     // 使用的时区
     'timezone' => 'Asia/Shanghai',
-    // 当前theme
-    'theme' => null,
     // 记住用户登录状态的cookie时间
     'autoLoginDuration' => 3600 * 24 * 7,
+    // 当前theme，不要在此修改，这是默认值，请在后台中修改
+    'theme' => null,
+    // 域名，当前使用的域名
+    'domain' => $_SERVER['SERVER_NAME'],
 
     // 注册用户是否需要邮件激活
     'userRequiredEmailVerfiy' => false,
