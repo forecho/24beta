@@ -113,7 +113,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-header .beta-logo a {display:block; width:220px; height:60px; text-indent:-99999px;}
 
 /* header nav */
-.beta-nav {background:#EFEFEF; margin-bottom:10px; padding:0 20px; border-bottom:1px solid #DFDFDF;}
+.beta-nav {background:#EFEFEF; margin-bottom:10px; padding:0 10px; border-bottom:1px solid #DFDFDF;}
 .beta-nav ul, .beta-nav li {margin:0; list-style:none inside;}
 .beta-nav li {float:left;}
 .beta-nav li a {display:block; padding:7px 3px 5px; margin-right:10px;}
@@ -133,7 +133,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-extra {font-size:12px; margin-bottom:5px;}
 .beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
 /* summary and content css */
-.beta-post-content {overflow:hidden; width:100%; line-height:22px;}
+.beta-post-content {overflow:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
 .beta-post-content img {margin:10px 0px; max-width:570px; overflow:hidden;}
 .beta-post-summary .beta-post-content p {margin:0;}
@@ -191,7 +191,7 @@ input.beta-text,textarea,select{display:inline-block;width:210px;height:18px;pad
 .beta-control-group.success .beta-help-block,.beta-control-group.success .beta-help-inline{color:#468847;}
 .beta-control-group.success input,.beta-control-group.success select,.beta-control-group.success textarea{color:#468847;border-color:#468847;}.beta-control-group.success input:focus,.beta-control-group.success select:focus,.beta-control-group.success textarea:focus{border-color:#356635;-webkit-box-shadow:0 0 6px #7aba7b;-moz-box-shadow:0 0 6px #7aba7b;box-shadow:0 0 6px #7aba7b;}
 
-.beta-control-group>label, .beta-control-group .beta-control-label {display:block; float:left; width:100px; text-align:right; padding-top:5px;}
+.beta-control-group .beta-control-label {display:block; float:left; width:100px; text-align:right; padding-top:5px;}
 .beta-control-group .beta-controls {float:left; margin-left:10px;}
 .beta-form-actions {padding:15px 18px 16px;margin:10px 0 0 0;background-color:#f5f5f5;border-top:1px solid #DDDDDD;}
 
