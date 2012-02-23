@@ -18,4 +18,9 @@ class DefaultController extends Controller
 	{
 	    $this->render('welcome');
 	}
+	
+	public function actionShortcut()
+	{
+	    echo __FILE__;
+	}
 }

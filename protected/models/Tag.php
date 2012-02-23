@@ -59,9 +59,9 @@ class Tag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'name' => 'Name',
-			'post_nums' => 'Post Nums',
+			'id' => 'ID',
+			'name' => t('tag_name'),
+			'post_nums' => t('post_nums'),
 		);
 	}
 	

@@ -70,11 +70,11 @@ class Category extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'parent_id' => 'Parent',
-			'name' => 'Name',
-			'post_nums' => 'Post Nums',
-			'orderid' => 'Orderid',
+			'id' => 'ID',
+			'parent_id' => t('parent_category'),
+			'name' => t('category_name'),
+			'post_nums' => t('post_nums'),
+			'orderid' => t('orderid'),
 		);
 	}
 

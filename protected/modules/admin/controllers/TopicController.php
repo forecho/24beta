@@ -7,31 +7,37 @@ class TopicController extends Controller
 		$this->render('index');
 	}
 
-	// -----------------------------------------------------------
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	public function actionCreate()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+	    
 	}
-
-	public function actions()
+	
+	public function actionList()
 	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+	    $criteria = new CDbCriteria();
+	    $criteria->limit = param('adminTopicCountOfPage');
+	    
+	    $sort = new CSort('Topic');
+	    $sort->defaultOrder = 'orderid desc, id asc';
+	    $sort->applyOrder($criteria);
+	    
+	    $pages = new CPagination(AdminTopic::model()->count($criteria));
+	    $pages->pageSize = $criteria->limit;
+	    $pages->applyLimit($criteria);
+	    
+	    $models = AdminTopic::model()->findAll($criteria);
+	    
+	    $data = array(
+	        'models' => $models,
+	        'sort' => $sort,
+	        'pages' => $pages,
+	    );
+	    
+	    $this->render('list', $data);
 	}
-	*/
+	
+	public function actionHottest($count)
+	{
+	    
+	}
 }

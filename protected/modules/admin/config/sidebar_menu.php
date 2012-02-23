@@ -1,6 +1,11 @@
 <?php
 return array(
     array(
+        'title' => t('shortcut', 'admin'),
+        'url' => url('admin/default/shortcut'),
+        'htmlOptions' => array('target'=>'main'),
+    ),
+    array(
         'title' => t('post_manage', 'admin'),
         'url' => 'javascript:void(0);',
         'htmlOptions' => array('target'=>'main'),

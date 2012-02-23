@@ -38,6 +38,17 @@ return array(
     'contributor_site' => '投稿者网站',
     'contributor_email' => '投稿者邮箱',
 
+    /* Topic model */
+    'parent_topic' => '父主题',
+    'topic_name' => '主题名',
+    'post_nums' => '文章数',
+    'icon' => '图标',
+    'orderid' => '排序ID',
+
+    /* Category model */
+    'parent_category' => '父分类',
+    'category_name' => '分类名',
+
     /* form model LoginForm */
     'email' => '邮箱',
     'username' => '大名',
@@ -58,6 +69,9 @@ return array(
     'special_token' => '标识',
     'special_name' => '名称',
     'special_desc' => '描述',
+
+    /* Tag model */
+    'tag_name' => '标签名称',
 
     /*
      * model Comment attributeLabels

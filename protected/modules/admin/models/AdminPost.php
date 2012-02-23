@@ -5,7 +5,6 @@ class AdminPost extends Post
     {
         $criteria = ($criteria === null) ? new CDbCriteria() : $criteria;
         $criteria->limit = param('adminPostCountOfPage');
-        $criteria->order = 'id desc';
          
         if ($sort) {
             $sort  = new CSort('Post');
@@ -14,7 +13,7 @@ class AdminPost extends Post
         }
          
         if ($pages) {
-            $count = Post::model()->count($criteria);
+            $count = self::model()->count($criteria);
             $pages = new CPagination($count);
             $pages->setPageSize($criteria->limit);
             $pages->applyLimit($criteria);

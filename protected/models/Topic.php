@@ -71,12 +71,12 @@ class Topic extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'parent_id' => 'Parent',
-			'name' => 'Name',
-			'post_nums' => 'Post Nums',
-			'icon' => 'Icon',
-			'orderid' => 'Orderid',
+			'id' => 'ID',
+			'parent_id' => t('parent_topic'),
+			'name' => t('topic_name'),
+			'post_nums' => t('post_nums'),
+			'icon' => t('icon'),
+			'orderid' => t('orderid'),
 		);
 	}
 
