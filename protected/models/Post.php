@@ -286,7 +286,7 @@ class Post extends CActiveRecord
 	{
 	    if (empty($this->summary)) {
 	        $content = strip_tags($this->content, param('summaryHtmlTags'));
-	        $this->summary = mb_substr($content, 0, param('subSummaryLen'), app()->charset);
+	        $this->summary = mb_strimwidth($content, 0, param('subSummaryLen'), '...', app()->charset);
 	    }
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));

@@ -58,6 +58,8 @@ return array(
     // 默认评论是否需要审核
     'defaultNewCommentState' => 1,
     
+    'subSummaryLen' => 300,
+    
     // 简述中可以使用的html标签
     'summaryHtmlTags' => '<b><strong><a><img><p>',
 );
