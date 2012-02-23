@@ -91,6 +91,9 @@
 $(function(){
 	$('#post-title').focus();
     KindEditor.ready(function(K) {
+    	var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
+    	KEConfig.mini.cssPath = [cssurl];
+        KEConfig.common.cssPath = [cssurl];
     	var betaSummary = K.create('#beta-summary', KEConfig.mini);
     	var betaContent = K.create('#beta-content', KEConfig.common);
     	$('#post-form').on('submit', {content:betaContent}, BetaPost.create);

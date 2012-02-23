@@ -4,7 +4,21 @@ class PostController extends Controller
 {
 	public function actionCreate($id = 0)
 	{
-		$this->render('create');
+	    $id = (int)$id;
+	    if ($id === 0)
+	        $model = new Post();
+	    else
+	        $model = Post::model()->findByPk($id);
+	    
+	    if (request()->getIsPostRequest() && isset($_POST['Post'])) {
+	        $model->attributes = $_POST['Post'];
+	        if ($model->save()) {
+	            user()->setFlash('post_create_result', t('post_create_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
+	            $this->redirect(url('admin/post/create'));
+	        }
+	    }
+	    
+		$this->render('create', array('model'=>$model));
 	}
 	
 	public function actionToday()

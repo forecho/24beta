@@ -1,8 +1,8 @@
 <?php
 class PostForm extends CFormModel
 {
-    public $category_id;
-    public $topic_id;
+    public $category_id = 0;
+    public $topic_id = 0;
     public $title;
     public $summary;
     public $content;

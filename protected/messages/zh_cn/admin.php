@@ -48,5 +48,11 @@ return array(
     'create_category' => '新建分类',
     'edit_category' => '编辑分类',
     'category_list_table' => '分类列表',
-    'category_top_label' => '热门分类 {count}'
+    'category_top_label' => '热门分类 {count}',
+
+    /* create post */
+    'tags_rules' => '标签多间使用英文半角逗号(,)分隔',
+    'options' => '选项',
+    'state_show' => '显示',
+    'post_create_success' => '{title}&nbsp;发表成功，<a href="{url}" target="_blank">点击查看</a>',
 );

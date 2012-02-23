@@ -12,7 +12,7 @@
     <tbody>
         <?php foreach ($models as $model):?>
         <tr>
-            <td class="item-orderid"><input type="text" name="itemid[]" value="<?php echo $model->orderid;?>" class="input-mini" /></td>
+            <td class="item-orderid"><input type="text" name="itemid[]" value="<?php echo $model->orderid;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->name;?></td>
             <td class="align-center"><?php echo $model->post_nums;?></td>

@@ -80,7 +80,7 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-	        array('title, content', 'required'),
+	        array('title, summary, content', 'required'),
 	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
@@ -209,7 +209,7 @@ class Post extends CActiveRecord
 	    return $source;
 	}
 	
-	public function getUrl($absolute = false)
+	public function getUrl($absolute = true)
 	{
 	    return $absolute ? aurl('post/show', array('id'=>$this->id)) : url('post/show', array('id'=>$this->id));
 	}

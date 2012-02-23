@@ -15,7 +15,6 @@ var KEConfig = {
 		allowFileManager: false,
 		allowUpload: false,
 		filterMode: true,
-		cssPath: ['http://s.24beta.cn/libs/bootstrap/css/bootstrap.min.css', 'http://s.24beta.cn/styles/beta-main.css'],
 		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste',
 	        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
 	        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
@@ -24,8 +23,18 @@ var KEConfig = {
 	        'italic', 'underline', 'strikethrough', '|', 'image',
 	        'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'about']
 	},
-	admin: {
-		height:500,
+	adminmini: {
+		height:180,
+        resizeType: 1,
+		allowFileManager: false,
+		allowUpload: false,
+		filterMode: true,
+		items: ['source', '|', 'plainpaste', 'wordpaste', '|', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'insertorderedlist',
+	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough', '|', 'image', 'flash', 'media',
+	        'link', 'unlink', '|', 'selectall', 'clearhtml', 'removeformat']
+	},
+	adminfull: {
+		height:450,
         resizeType: 1,
 		allowFileManager: false,
 		allowUpload: false,

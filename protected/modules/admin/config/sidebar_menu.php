@@ -10,7 +10,7 @@ return array(
         'url' => 'javascript:void(0);',
         'htmlOptions' => array('target'=>'main'),
         'subs' => array(
-            array('title'=>t('create_post', 'admin'), 'url'=>url('admin/post/create'), 'htmlOptions'=>array('target'=>'main')),
+            array('title'=>t('create_post', 'admin'), 'url'=>url('admin/post/create'), 'htmlOptions'=>array('target'=>'_blank')),
             array('title'=>t('verify_post', 'admin'), 'url'=>url('admin/post/verify'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('today_post', 'admin'), 'url'=>url('admin/post/today'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('query_post', 'admin'), 'url'=>url('admin/post/search'), 'htmlOptions'=>array('target'=>'main')),
