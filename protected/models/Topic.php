@@ -12,6 +12,8 @@
  * @property integer $orderid
  * @property string $postsUrl
  * @property string $postsLink
+ * @property string $iconUrl
+ * @property string $iconHtml
  */
 class Topic extends CActiveRecord
 {
@@ -92,8 +94,8 @@ class Topic extends CActiveRecord
 	    $tid = (int)$tid;
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('parent_id'=>$tid));
-	    $criteria->order = 'order asc, id asc';
-	    $models = self::model()->find($criteria);
+	    $criteria->order = 'orderid asc, name asc, id asc';
+	    $models = self::model()->findAll($criteria);
 	
 	    return $models;
 	}
@@ -108,10 +110,30 @@ class Topic extends CActiveRecord
 	    return t('topic') . '&nbsp;' . l($this->name, $this->getPostsUrl(), array('target'=>$target));
 	}
 	
+	public function getIconUrl()
+	{
+	    if (empty($this->icon)) return '';
+	    
+	    $pos = strpos($this->icon, 'http://');
+	    if ($pos === 0)
+	        return $this->icon;
+	    else
+	        return fbu($this->icon);
+	}
+	
+	public function getIconHtml()
+	{
+	    if (empty($this->icon))
+	        return '';
+	    else
+    	    return image($this->getIconUrl(), $this->name, array('topic-icon'));
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
-	        $this->orderid = $this->post_nums = 0;
+	        $this->orderid = (int)$this->orderid;
+	        $this->post_nums = 0;
 	    }
 	
 	    return true;

@@ -5,16 +5,20 @@ class PostController extends Controller
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
-	    if ($id === 0)
-	        $model = new Post();
-	    else
-	        $model = Post::model()->findByPk($id);
+	    if ($id === 0) {
+	        $model = new AdminPost();
+	        $this->adminTitle = t('create_post');
+	    }
+	    else {
+	        $model = AdminPost::model()->findByPk($id);
+	        $this->adminTitle = t('edit_post');
+	    }
 	    
-	    if (request()->getIsPostRequest() && isset($_POST['Post'])) {
-	        $model->attributes = $_POST['Post'];
+	    if (request()->getIsPostRequest() && isset($_POST['AdminPost'])) {
+	        $model->attributes = $_POST['AdminPost'];
 	        if ($model->save()) {
-	            user()->setFlash('post_create_result', t('post_create_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
-	            $this->redirect(url('admin/post/create'));
+	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
+	            $this->redirect(request()->getUrl());
 	        }
 	    }
 	    
@@ -39,7 +43,7 @@ class PostController extends Controller
 	public function actionVerify()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('state'=>Post::STATE_DISABLED));
+	    $criteria->addColumnCondition(array('state'=>AdminPost::STATE_DISABLED));
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->render('list', $data);

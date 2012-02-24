@@ -2,14 +2,46 @@
 
 class TopicController extends Controller
 {
+    public function init()
+    {
+        $this->layout = 'topic';
+    }
+    
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
-	public function actionCreate()
+	public function actionCreate($id = 0)
 	{
+	    $id = (int)$id;
+	    if ($id === 0) {
+	        $model = new AdminTopic();
+	        $this->adminTitle = t('create_topic', 'admin');
+	    }
+	    else {
+	        $model = AdminTopic::model()->findByPk($id);
+	        $this->adminTitle = t('edit_topic', 'admin');
+	    }
 	    
+	    if (request()->getIsPostRequest() && isset($_POST['AdminTopic'])) {
+	        $model->attributes = $_POST['AdminTopic'];
+	        $model->icon = CUploadedFile::getInstance($model, 'icon');
+	        if ($model->save() && $model->saveIcon() !== false) {
+	            user()->setFlash('save_topic_result', t('save_topic_success', 'admin', array('{name}'=>$model->name)));
+	            $this->redirect(request()->getUrl());
+	        }
+	        echo CHtml::errorSummary($model);exit;
+	    }
+	    
+	    $parents = AdminTopic::fetchRootList();
+	    $parents = CHtml::listData($parents, 'id', 'name');
+	    $empty = array(AdminTopic::ROOT_PARENT_ID => t('please_select_topic', 'admin'));
+	    $this->render('create', array(
+	        'model' => $model,
+	        'parents' => (array)$parents,
+	        'empty' => $empty,
+	    ));
 	}
 	
 	public function actionList()

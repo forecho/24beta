@@ -89,8 +89,8 @@ class Category extends CActiveRecord
         $pid = (int)$pid;
         $criteria = new CDbCriteria();
         $criteria->addColumnCondition(array('parent_id'=>$pid));
-        $criteria->order = 'order asc, id asc';
-        $models = self::model()->find($criteria);
+        $criteria->order = 'orderid desc, name asc, id asc';
+        $models = self::model()->findAll($criteria);
         
         return $models;
     }
@@ -110,7 +110,8 @@ class Category extends CActiveRecord
     protected function beforeSave()
     {
         if ($this->getIsNewRecord()) {
-            $this->orderid = $this->post_nums = 0;
+            $this->orderid = (int)$this->orderid;
+            $this->post_nums = 0;
         }
         
         return true;

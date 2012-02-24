@@ -2,6 +2,11 @@
 
 class TagController extends Controller
 {
+    public function init()
+    {
+        $this->layout = 'tag';
+    }
+    
 	public function actionIndex()
 	{
 		$this->render('index');

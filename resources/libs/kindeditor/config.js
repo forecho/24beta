@@ -5,9 +5,9 @@ var KEConfig = {
 		allowFileManager: false,
 		allowUpload: false,
 		filterMode: true,
-		items: ['plainpaste', 'wordpaste', '|', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'insertorderedlist',
+		items: ['undo', 'redo', '|', 'plainpaste', 'wordpaste', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'insertorderedlist',
 	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough', '|', 'image', 'flash', 'media',
-	        'link', 'unlink', '|', 'selectall', 'clearhtml', 'removeformat']
+	        'link', 'unlink', 'selectall', 'clearhtml', 'removeformat']
 	},
 	common: {
 		height:400,
@@ -21,7 +21,7 @@ var KEConfig = {
 	        'superscript', '|', 'selectall', 'clearhtml', 'removeformat', 'quickformat', 'fullscreen', 'preview', '/',
 	        'forecolor', 'hilitecolor', 'bold',
 	        'italic', 'underline', 'strikethrough', '|', 'image',
-	        'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'about']
+	        'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink']
 	},
 	adminmini: {
 		height:180,
@@ -29,9 +29,9 @@ var KEConfig = {
 		allowFileManager: false,
 		allowUpload: false,
 		filterMode: true,
-		items: ['source', '|', 'plainpaste', 'wordpaste', '|', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'insertorderedlist',
+		items: ['undo', 'redo', '|', 'plainpaste', 'wordpaste', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'insertorderedlist',
 	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough', '|', 'image', 'flash', 'media',
-	        'link', 'unlink', '|', 'selectall', 'clearhtml', 'removeformat']
+	        'link', 'unlink', '|', 'selectall', 'clearhtml', 'removeformat', '|', 'source']
 	},
 	adminfull: {
 		height:450,
@@ -43,12 +43,14 @@ var KEConfig = {
 		allowFlashUpload: true,
 		allowMediaUpload: true,
 		uploadJson: 'javascript:void(0)',
-		items: ['source', '|', 'undo', 'redo', '|', 'cut', 'copy', 'paste',
+		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste',
 	        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
 	        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
 	        'superscript', '|', 'selectall', 'clearhtml', 'removeformat', 'quickformat', '/',
-	        'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', '|', 'image',
-	        'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'map', 'code', 'pagebreak', '|', 'fullscreen', 'preview', 'about'],
+	        'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 
+	        '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink',
+	        '|', 'map', 'code', 'pagebreak', '|', 'fullscreen', 'preview',
+	        '|', 'source']
 	        
 	}
 };

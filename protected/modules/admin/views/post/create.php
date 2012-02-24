@@ -1,7 +1,7 @@
-<?php if (user()->hasFlash('post_create_result')):?>
+<?php if (user()->hasFlash('save_post_result')):?>
 <div class="alert alert-success fade in">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
-    <?php echo user()->getFlash('post_create_result');?>
+    <?php echo user()->getFlash('save_post_result');?>
 </div>
 <?php endif;?>
 
@@ -51,7 +51,7 @@
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
         <label class="control-label"><?php echo t('tags');?></label>
         <div class="controls">
-            <?php echo CHtml::activeTextField($model, 'tags', array('class'=>'span6'));?>
+            <?php echo CHtml::activeTextField($model, 'tags', array('class'=>'span4'));?>
             <span class="help-inline"><?php echo t('tags_rules', 'admin');?></span>
             <?php if ($model->hasErrors('tags')):?><p class="help-block"><?php echo $model->getError('tags');?></p><?php endif;?>
         </div>
@@ -63,7 +63,7 @@
                 <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
             </label>
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('istop');?>
+                <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
             </label>
             <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>

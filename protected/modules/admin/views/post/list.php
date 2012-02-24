@@ -21,9 +21,18 @@
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
-            <td><?php echo $model->title;?></td>
+            <td><?php echo $model->getAdminTitleLink();?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
-            <td>#</td>
+            <td>
+                <?php echo l(t('edit', 'admin'), url('admin/post/create', array('id'=>$model->id)));?>
+                <?php echo l(t('delete', 'admin'), url('admin/post/delete', array('id'=>$model->id)));?>
+                <?php
+                    if ($model->state == AdminPost::STATE_DISABLED)
+                        echo l(t('setshow', 'admin'), url('admin/post/verify', array('id'=>$model->id)));
+                    else
+                        echo l(t('sethide', 'admin'), url('admin/post/unverify', array('id'=>$model->id)));
+                ?>
+            </td>
         </tr>
         <?php endforeach;?>
     </tbody>

@@ -2,14 +2,44 @@
 
 class CategoryController extends Controller
 {
+    public function init()
+    {
+        $this->layout = 'category';
+    }
+    
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 	
-	public function actionCreate()
+	public function actionCreate($id = 0)
 	{
+	    $id = (int)$id;
+	    if ($id === 0) {
+    	    $model = new AdminCategory();
+    	    $this->adminTitle = t('create_category', 'admin');
+	    }
+	    else {
+	        $model = AdminCategory::model()->findByPk($id);
+	        $this->adminTitle = t('edit_category', 'admin');
+	    }
 	     
+	    if (request()->getIsPostRequest() && isset($_POST['AdminCategory'])) {
+	        $model->attributes = $_POST['AdminCategory'];
+	        if ($model->save()) {
+	            user()->setFlash('save_category_result', t('save_category_success', 'admin', array('{name}'=>$model->name)));
+	            $this->redirect(request()->getUrl());
+	        }
+	    }
+	     
+	    $parents = AdminCategory::fetchRootList();
+	    $parents = CHtml::listData($parents, 'id', 'name');
+	    $empty = array(AdminCategory::ROOT_PARENT_ID => t('please_select_category', 'admin'));
+	    $this->render('create', array(
+    	    'model' => $model,
+    	    'parents' => (array)$parents,
+    	    'empty' => $empty,
+	    ));
 	}
 	
 	public function actionList()

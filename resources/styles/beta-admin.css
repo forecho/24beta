@@ -10,14 +10,16 @@
 .dropdown-menu-small {font-size:12px;}
 
 /* table cell */
-.table .item-orderid {width:54px; padding:4px 8px;}
-.table .item-orderid input[type=text] {margin:0; padding:3px; text-align:center; width:45px;}
+.table .item-orderid {width:60px; padding:4px 8px;}
+.table .item-orderid input[type=text] {margin:0; padding:3px; text-align:center;}
 .table .item-checkbox {width:13px;}
 .table .align-right {text-align:right;}
 .table .align-center {text-align:center;}
 
 .control-group.bottom10px {margin-bottom:10px;}
 
-#summary, #content {width:800px;}
+#summary, #content {width:610px;}
 #summary {height:180px;}
 #content {height:450px;}
+
+.topic-icon {max-width:100px; max-height:100px;}
