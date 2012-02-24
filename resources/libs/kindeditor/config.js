@@ -43,14 +43,12 @@ var KEConfig = {
 		allowFlashUpload: true,
 		allowMediaUpload: true,
 		uploadJson: 'javascript:void(0)',
-		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste',
-	        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-	        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-	        'superscript', '|', 'selectall', 'clearhtml', 'removeformat', 'quickformat', '/',
-	        'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 
+		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
+	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript',
+	        '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', '/',
 	        '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink',
-	        '|', 'map', 'code', 'pagebreak', '|', 'fullscreen', 'preview',
+	        '|', 'map', 'code', 'pagebreak', '|', 'fullscreen', 'preview', 'selectall', 'clearhtml', 'removeformat', 'quickformat',
 	        '|', 'source']
-	        
+
 	}
 };

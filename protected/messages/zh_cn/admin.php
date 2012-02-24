@@ -25,6 +25,8 @@ return array(
     'settop' => '置顶',
     'setshow' => '显示',
     'sethide' => '隐藏',
+    'submit' => '提交',
+    'reset' => '重写',
 
     /* PostSearchForm */
     'postid' => '文章ID',
@@ -71,6 +73,14 @@ return array(
     'please_select_category' => '请选择上级分类',
     'create_root_category' => '不选择表示创建新的一级主题',
     'save_category_success' => '{name}&nbsp;创建成功。',
+        
+    'verify_user' => '审核用户',
+    'create_user' => '添加用户',
+    'search_user' => '搜索用户',
+    'most_active_users' => '最活跃用户',
+    'one_day' => '一天内',
+    'one_week' => '一周内',
+    'one_month' => '一月内',
 
     'delete_confirm' => '您确定要执行删除操作？',
 );

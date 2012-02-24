@@ -56,7 +56,7 @@ class TagController extends Controller
 	    $criteria->limit = (int)$count;
 	    $criteria->order = 'id desc';
 	    $tags = Tag::model()->findAll($criteria);
-	    user()->setFlash('table_caption', t('latest_tags_list', 'admin'));
+	    user()->setFlash('table_caption', t('latest_tags_list', 'admin') . '：Top ' . $count);
 	     
 	    $this->render('list', array('models'=>$tags, 'pages'=>null));
 	}

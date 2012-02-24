@@ -31,7 +31,6 @@ class TopicController extends Controller
 	            user()->setFlash('save_topic_result', t('save_topic_success', 'admin', array('{name}'=>$model->name)));
 	            $this->redirect(request()->getUrl());
 	        }
-	        echo CHtml::errorSummary($model);exit;
 	    }
 	    
 	    $parents = AdminTopic::fetchRootList();
@@ -70,6 +69,26 @@ class TopicController extends Controller
 	
 	public function actionHottest($count)
 	{
+	    $count = (int)$count;
+	    $criteria = new CDbCriteria();
+	    $criteria->limit = $count;
 	    
+	    $sort = new CSort('Topic');
+	    $sort->defaultOrder = 'post_nums desc, id asc';
+	    $sort->applyOrder($criteria);
+	    
+	    $pages = new CPagination(AdminTopic::model()->count($criteria));
+	    $pages->pageSize = $criteria->limit;
+	    $pages->applyLimit($criteria);
+	    
+	    $models = AdminTopic::model()->findAll($criteria);
+	    
+	    $data = array(
+            'models' => $models,
+            'sort' => $sort,
+            'pages' => $pages,
+	    );
+	    
+	    $this->render('list', $data);
 	}
 }

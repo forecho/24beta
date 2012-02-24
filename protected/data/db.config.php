@@ -1,6 +1,6 @@
 <?php
 return array(
-    'dbHost' => '127.0.0.1',
+    'dbHost' => 'localhost',
     'dbPort' => '3306',
     'dbName' => 'cd_24beta',
     'dbUser' => 'root',
