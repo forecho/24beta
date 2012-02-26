@@ -14,27 +14,11 @@ return array(
             array('title'=>t('verify_post', 'admin'), 'url'=>url('admin/post/verify'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('today_post', 'admin'), 'url'=>url('admin/post/today'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('query_post', 'admin'), 'url'=>url('admin/post/search'), 'htmlOptions'=>array('target'=>'main')),
-        ),
-    ),
-    array(
-        'title'=>t('post_category', 'admin'),
-        'url'=>url('admin/category/index'),
-        'htmlOptions'=>array('target'=>'main')
-    ),
-    array(
-        'title'=>t('post_topic', 'admin'),
-        'url'=>url('admin/topic/index'),
-        'htmlOptions'=>array('target'=>'main')
-    ),
-    array(
-        'title'=>t('post_tag', 'admin'),
-        'url'=>url('admin/tag/index'),
-        'htmlOptions'=>array('target'=>'main')
-    ),
-    array(
-        'title' => t('comment_manage', 'admin'),
-        'url' => url('admin/comment/index'),
-        'htmlOptions' => array('target'=>'main'),
+            array('title'=>t('post_category', 'admin'), 'url'=>url('admin/category/index'), 'htmlOptions'=>array('target'=>'main')),
+            array('title'=>t('post_topic', 'admin'), 'url'=>url('admin/topic/index'), 'htmlOptions'=>array('target'=>'main')),
+            array('title'=>t('post_tag', 'admin'), 'url'=>url('admin/tag/index'), 'htmlOptions'=>array('target'=>'main')),
+            array('title' => t('comment_manage', 'admin'), 'url' => url('admin/comment/index'), 'htmlOptions' => array('target'=>'main')),
+        )
     ),
     array(
         'title' => t('user_manage', 'admin'),

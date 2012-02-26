@@ -52,7 +52,7 @@
 class Post extends CActiveRecord
 {
     const STATE_DISABLED = 0;
-    const STATE_ENABLED = 10;
+    const STATE_ENABLED = 1;
     
 	/**
 	 * Returns the static model of the specified AR class.
@@ -139,10 +139,10 @@ class Post extends CActiveRecord
 	{
 	    return array(
             'published' => array(
-                'condition' => 'state > 0',
+                'condition' => 'state = ' . self::STATE_ENABLED,
             ),
             'recently' => array(
-                'condition' => 'state > 0',
+                'condition' => 'state = ' . self::STATE_ENABLED,
                 'order' => 'id desc',
                 'limit' => 10,
             ),
@@ -254,6 +254,7 @@ class Post extends CActiveRecord
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
 	    }
+	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
 	    return true;
 	}
 	

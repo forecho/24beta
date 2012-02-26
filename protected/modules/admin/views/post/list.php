@@ -24,14 +24,9 @@
             <td><?php echo $model->getAdminTitleLink();?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
             <td>
-                <?php echo l(t('edit', 'admin'), url('admin/post/create', array('id'=>$model->id)));?>
-                <?php echo l(t('delete', 'admin'), url('admin/post/delete', array('id'=>$model->id)));?>
-                <?php
-                    if ($model->state == AdminPost::STATE_DISABLED)
-                        echo l(t('setshow', 'admin'), url('admin/post/verify', array('id'=>$model->id)));
-                    else
-                        echo l(t('sethide', 'admin'), url('admin/post/unverify', array('id'=>$model->id)));
-                ?>
+                <?php echo $model->editUrl;?>
+                <?php echo $model->deleteUrl;?>
+                <?php echo $model->verifyUrl;?>
             </td>
         </tr>
         <?php endforeach;?>
@@ -40,3 +35,28 @@
 <?php if ($pages):?>
 <div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
 <?php endif;?>
+
+<script type="text/javascript">
+$(function(){
+	$(document).on('click', '.set-verify', function(event){
+		event.preventDefault();
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+		    url: $(this).attr('href'),
+		    dataType: 'jsonp',
+		    type: 'post',
+		    cache: false,
+		    beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				tthis.text(data.label);
+			else
+				alert('error');
+		});
+		jqXhr.fail(function(){
+			alert('fail');
+		});
+	});
+});
+</script>

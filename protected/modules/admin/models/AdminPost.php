@@ -1,4 +1,9 @@
 <?php
+/**
+ * @property string $editUrl
+ * @property string $deleteUrl
+ * @property string $verifyUrl
+ */
 class AdminPost extends Post
 {
     /**
@@ -52,5 +57,21 @@ class AdminPost extends Post
         );
          
         return $data;
+    }
+
+    public function getEditUrl()
+    {
+        return l(t('edit', 'admin'), url('admin/post/create', array('id'=>$this->id)));
+    }
+
+    public function getDeleteUrl()
+    {
+        return l(t('delete', 'admin'), url('admin/post/delete', array('id'=>$this->id)));
+    }
+
+    public function getVerifyUrl()
+    {
+        $text = t(($this->state == AdminPost::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
+        return l($text, url('admin/post/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
     }
 }

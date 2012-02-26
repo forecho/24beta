@@ -2,6 +2,15 @@
 
 class PostController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'ajaxOnly + setVerify',
+            'postOnly + setVerify',
+        );
+    }
+    
+    
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
@@ -63,6 +72,25 @@ class PostController extends Controller
         $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 	
-	
+	public function actionSetVerify($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminPost::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	    
+	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
+	    $model->save(true, array('state'));
+	    if ($model->hasErrors())
+	        throw new CHttpException(500);
+	    else {
+	        $data = array(
+	            'errno' => BETA_NO,
+	            'label' => t($model->state == AdminPost::STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
+	        );
+	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        exit(0);
+	    }
+	}
 
 }

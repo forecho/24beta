@@ -9,6 +9,8 @@
 
 .dropdown-menu-small {font-size:12px;}
 
+#beta-admin-tip {position:fixed; top:1px; right:1px; border:1px solid #DFDFDF; background:#EFEFEF; color:gray; padding:0 5px; box-shadow:0 0 2px #808080; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; display:none;}
+
 /* table cell */
 .table .item-orderid {width:60px; padding:4px 8px;}
 .table .item-orderid input[type=text] {margin:0; padding:3px; text-align:center;}
