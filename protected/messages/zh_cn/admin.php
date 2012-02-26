@@ -5,6 +5,7 @@ return array(
     'post_manage' => '文章管理',
     'verify_post' => '审核',
     'today_post' => '最新',
+    'istop_post' => '置顶',
     'query_post' => '查询',
     'new_post' => '发表',
     'post_tag' => '标签',

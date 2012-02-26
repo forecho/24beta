@@ -112,6 +112,7 @@ return array(
                 '<_c:(category|topic)>/<id:\d+>-page-<page:\d+>' => '<_c>/posts',
                 '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
                 'topics' => 'topic/list',
+                'tag/<name:[\w\d\s\%]+>' => 'tag/posts',
             ),
         ),
     ),
