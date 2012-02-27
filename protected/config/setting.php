@@ -61,6 +61,6 @@ return array(
     'subSummaryLen' => 300,
     
     // 简述中可以使用的html标签
-    'summaryHtmlTags' => '<b><strong><a><img><p>',
+    'summaryHtmlTags' => '<b><strong><img><p>',
 );
 
