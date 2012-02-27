@@ -238,14 +238,14 @@ body.ke-content {padding:5px;}
 .beta-pages ul.yiiPager .hidden a{border:solid 1px #DEDEDE;color:#888888;}
 .beta-pages ul.yiiPager .first,.beta-pages ul.yiiPager .last{display:none;}
 
-/* beta-recommend-posts */
-.beta-recommend-posts {margin:15px auto;}
-.beta-recommend-posts a {display:block; position:relative; float:left; width:222px; height:130px; overflow:hidden;}
-.beta-recommend-posts a:link, .beta-recommend-posts a:hover, .beta-recommend-posts a:visited {text-decoration:none;}
-.beta-recommend-posts a:last-child {margin-right:0;}
-.beta-recommend-posts a.separate {width:20px; height:130px; line-height:130px; text-align:center; color:#CFCFCF;}
-.beta-recommend-posts strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:212px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
-.beta-recommend-posts img {width:100%; height:100%;}
+/* beta-hottest-posts */
+.beta-hottest-posts {margin:15px auto;}
+.beta-hottest-posts a {display:block; position:relative; float:left; width:222px; height:130px; overflow:hidden;}
+.beta-hottest-posts a:link, .beta-hottest-posts a:hover, .beta-hottest-posts a:visited {text-decoration:none;}
+.beta-hottest-posts a:last-child {margin-right:0;}
+.beta-hottest-posts a.separate {width:20px; height:130px; line-height:130px; text-align:center; color:#CFCFCF;}
+.beta-hottest-posts strong {position:absolute; bottom:0; background-color:rgba(0, 0, 0, 0.5); color:white; width:212px; max-height:36px; line-height:16px; font-weight:normal; padding:3px 5px; font-size:12px; overflow:hidden;}
+.beta-hottest-posts img {width:100%; height:100%;}
 
 /* login form */
 .login-form {padding-bottom:100px;}
@@ -259,5 +259,14 @@ body.ke-content {padding:5px;}
 .login-form .action-buttons .beta-btn {padding:4px 18px;}
 .login-form .refresh-captcha {font-size:12px;}
 .quick-login-signup {margin-top:100px;}
+
+/* index recommend posts */
+.beta-recommend-posts dl {margin:0; padding:8px 10px; border-bottom:1px dashed black;}
+.beta-recommend-posts dl.row0 {background:#F7FFD4;}
+.beta-recommend-posts dl.row1 {background:#F7FBF3;}
+.beta-recommend-posts dt {margin:0 0 8px; padding:0;}
+.beta-recommend-posts dt a, .beta-recommend-posts dt a:link, .beta-recommend-posts dt a:visited {font-size:14px; color:#6F9F3F;}
+.beta-recommend-posts dd {font-size:12px; color:#3F6F9F; margin:0; padding:0; text-indent:24px;}
+
 
 

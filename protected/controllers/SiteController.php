@@ -4,13 +4,41 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $data = self::fetchLatestPosts();
+        $data['hottest'] = self::fetchHottestPosts();
+        $data['recommend'] = self::fetchRecommendPosts();
         
         $this->setSiteTitle(null);
         $this->setPageKeyWords(param('siteKeywords'));
         $this->setPageDescription(param('siteDescription'));
         
         cs()->registerMetaTag('all', 'robots');
+        
+        
         $this->render('index', $data);
+    }
+    
+    private static function fetchHottestPosts()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.hottest');
+        $criteria->order = 'id desc';
+        $criteria->limit = 4;
+        $criteria->scopes = array('hottest', 'published');
+        $models = Post::model()->findAll($criteria);
+        
+        return (array)$models;
+    }
+    
+    private static function fetchRecommendPosts()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.recommend', 't.summary', 't.content');
+        $criteria->order = 'id desc';
+        $criteria->limit = param('recommendPostsCount');
+        $criteria->scopes = array('recommend', 'published');
+        $models = Post::model()->findAll($criteria);
+        
+        return (array)$models;
     }
     
     public function actionLogin()

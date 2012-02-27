@@ -22,6 +22,8 @@
  * @property integer $state
  * @property integer $istop
  * @property integer $disable_comment
+ * @property integer $recommend
+ * @property integer $hottest
  * @property string $thumbnail
  * @property string $summary
  * @property string $content
@@ -80,7 +82,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, summary, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id', 'numerical', 'integerOnly'=>true),
+	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
@@ -125,6 +127,8 @@ class Post extends CActiveRecord
 			'state' => t('state'),
 			'istop' => t('istop'),
 		    'disable_comment' => t('disable_comment'),
+	        'recommend' => t('recommend'),
+	        'hottest' => t('hottest'),
 			'thumbnail' => t('thumbnail'),
 			'summary' => t('summary'),
 			'content' => t('content'),
@@ -139,11 +143,19 @@ class Post extends CActiveRecord
 	{
 	    return array(
             'published' => array(
-                'condition' => 'state = ' . self::STATE_ENABLED,
+                'condition' => 't.state = ' . self::STATE_ENABLED,
+            ),
+            'hottest' => array(
+                'condition' => 't.hottest = ' . BETA_YES,
+                'order' => 't.id desc',
+            ),
+            'recommend' => array(
+                'condition' => 't.recommend = ' . BETA_YES,
+                'order' => 't.id desc',
             ),
             'recently' => array(
-                'condition' => 'state = ' . self::STATE_ENABLED,
-                'order' => 'id desc',
+                'condition' => 't.state = ' . self::STATE_ENABLED,
+                'order' => 't.id desc',
                 'limit' => 10,
             ),
 	    );
@@ -245,7 +257,6 @@ class Post extends CActiveRecord
 	    return mb_strimwidth($this->title, 0, $len, '...', app()->charset);
 	}
 	
-	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -290,6 +301,16 @@ class Post extends CActiveRecord
 	    }
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
+	}
+	
+	public function getSubSummary($len)
+	{
+	    $len = (int)$len;
+	    $text = trim(strip_tags($this->summary));
+	    if ($len === 0)
+	        return $text;
+	    else
+	        return mb_strimwidth($text, 0, $len, '...', app()->charset);
 	}
 	
 	/**

@@ -73,7 +73,7 @@ return array(
     'create_category' => '新建分类',
     'edit_category' => '编辑分类',
     'please_select_category' => '请选择上级分类',
-    'create_root_category' => '不选择表示创建新的一级主题',
+    'create_root_category' => '不选择表示创建新的一级分类',
     'save_category_success' => '{name}&nbsp;创建成功。',
         
     'verify_user' => '审核用户',

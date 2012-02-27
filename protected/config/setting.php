@@ -30,6 +30,8 @@ return array(
     'upNumsOfCommentIsHot' => 10,
     // 评论内容最短长度
     'commentMinLength' => 5,
+    // 编辑推荐文章显示数量
+    'recommendPostsCount' => 15,
 
     // 缓存数据目录
     'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,

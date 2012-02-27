@@ -37,6 +37,8 @@ return array(
     'state' => '状态',
     'istop' => '置顶',
     'disable_comment' => '禁止评论',
+    'recommend' => '推荐',
+    'hottest' => '热门',
     'thumbnail' => '缩略图',
     'summary' => '简述',
     'content' => '内容',
@@ -112,6 +114,7 @@ return array(
     'latest_posts' => '最新发布',
     'relate_posts' => '相关文章',
     'no_posts' => '当前暂无文章',
+    'recommend_posts' => '编辑推荐',
         
     'source_label' => '来源：',
     'tag_label' => '标签',
