@@ -39,7 +39,10 @@ class SiteController extends Controller
                 $returnUrl = aurl('user/default');
             $model->returnUrl = urlencode($returnUrl);
         }
+        
         cs()->registerMetaTag('noindex, follow', 'robots');
+        $this->setSiteTitle(t('site_login'));
+        
         $this->render('login', array('form'=>$model));
     }
     
@@ -61,6 +64,8 @@ class SiteController extends Controller
         }
         
         cs()->registerMetaTag('noindex, follow', 'robots');
+        $this->setSiteTitle(t('site_signup'));
+        
         $this->render('signup', array('form'=>$model));
     }
     
@@ -150,3 +155,4 @@ class SiteController extends Controller
 
     }
 }
+

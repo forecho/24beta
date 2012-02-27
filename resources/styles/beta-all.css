@@ -255,7 +255,7 @@ body.ke-content {padding:5px;}
 .login-form .beta-controls.agreement input, .login-form .beta-controls.rememberme input {margin-bottom:2px;}
 .login-form .beta-controls.agreement label, .login-form .beta-controls.rememberme label {margin-left:5px;}
 .login-form .suggestion {color:gray; font-size:12px; clear:both; margin-top:2px;}
-.login-form .action-buttons {padding-left:80px;}
+.login-form .action-buttons {padding-left:90px;}
 .login-form .action-buttons .beta-btn {padding:4px 18px;}
 .login-form .refresh-captcha {font-size:12px;}
 .quick-login-signup {margin-top:100px;}

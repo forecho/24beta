@@ -172,6 +172,10 @@ return array(
 
     /* BetaHottestPosts */
     'special_token_is_null' => 'token不能为空',
+
+    /* site/login */
+    'site_login' => '用户登录',
+    'site_signup' => '用户注册',
 );
 
 

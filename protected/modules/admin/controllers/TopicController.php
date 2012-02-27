@@ -80,8 +80,8 @@ class TopicController extends Controller
 	    $sort->defaultOrder = 'post_nums desc, id asc';
 	    $sort->applyOrder($criteria);
 	    
-	    $pages = new CPagination(AdminTopic::model()->count($criteria));
-	    $pages->pageSize = $criteria->limit;
+	    $pages = new CPagination($count);
+	    $pages->pageSize = param('adminTopicCountOfPage');
 	    $pages->applyLimit($criteria);
 	    
 	    $models = AdminTopic::model()->findAll($criteria);
