@@ -66,7 +66,7 @@ class PostController extends Controller
 	        $form->attributes = $_GET['PostSearchForm'];
 	        if ($form->validate())
 	            $data = $form->search();
-	        user()->setFlash('table_caption', '文章查询结果');
+	        user()->setFlash('table_caption', t('post_search_result', 'admin'));
 	    }
 	    
         $this->render('search', array('form'=>$form, 'data'=>$data));

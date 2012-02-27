@@ -19,7 +19,7 @@
         <?php echo CHtml::activeLabel($model, 'parent_id', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeDropDownList($model, 'parent_id', $parents, array('empty'=>$empty));?>
-            <span class="help-inline"><?php echo t('create_root_topic', 'admin');?></span>
+            <span class="help-inline label label-warning"><?php echo t('create_root_topic', 'admin');?></span>
             <?php if($model->hasErrors('parent_id')):?><p class="help-block"><?php echo $model->getError('parent_id');?></p><?php endif;?>
         </div>
     </div>

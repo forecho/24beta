@@ -4,11 +4,11 @@
  * @property string $deleteUrl
  * @property string $verifyUrl
  */
-class AdminPost extends Post
+class AdminComment extends Comment
 {
     /**
      * Returns the static model of the specified AR class.
-     * @return AdminPost the static model class
+     * @return AdminComment the static model class
      */
     public static function model($className=__CLASS__)
     {
@@ -17,7 +17,7 @@ class AdminPost extends Post
     
     public function getInfoUrl()
     {
-        return url('admin/post/info', array('id'=>$this->id));
+        return url('admin/comment/info', array('id'=>$this->id));
     }
     
     public function getAdminTitleLink($target = 'main')
@@ -34,11 +34,11 @@ class AdminPost extends Post
     {
         $criteria = ($criteria === null) ? new CDbCriteria() : $criteria;
         if (empty($criteria->limit))
-            $criteria->limit = param('adminPostCountOfPage');
+            $criteria->limit = param('adminCommentCountOfPage');
          
         if ($sort) {
             $sort  = new CSort(__CLASS__);
-            $sort->defaultOrder = 'id desc';
+            $sort->defaultOrder = 't.id desc';
             $sort->applyOrder($criteria);
         }
          
@@ -49,7 +49,7 @@ class AdminPost extends Post
             $pages->applyLimit($criteria);
         }
          
-        $models = self::model()->findAll($criteria);
+        $models = self::model()->with('post')->findAll($criteria);
          
         $data = array(
             'models' => $models,
@@ -72,7 +72,13 @@ class AdminPost extends Post
 
     public function getVerifyUrl()
     {
-        $text = t(($this->state == AdminPost::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
-        return l($text, url('admin/post/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
+        $text = t(($this->state == AdminComment::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
+        return l($text, url('admin/comment/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
+    }
+
+    public function getRecommendUrl()
+    {
+        $text = t(($this->recommend == BETA_NO) ? 'set_recommend_comment' : 'cancel_recommend_comment', 'admin');
+        return l($text, url('admin/comment/setRecommend', array('id'=>$this->id)), array('class'=>'set-recommend'));
     }
 }

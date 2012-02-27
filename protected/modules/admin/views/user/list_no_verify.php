@@ -13,8 +13,8 @@
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span3"><?php echo $sort->link('email');?></th>
             <th class="span3"><?php echo $sort->link('name');?></th>
-            <th class="span1 align-center"><?php echo $sort->link('state');?></th>
             <th class="span2 align-center"><?php echo $sort->link('create_time');?></th>
+            <th class="span1 align-center">#</th>
             <th>#</th>
         </tr>
     </thead>
@@ -25,15 +25,14 @@
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo l($model->email, $model->getInfoUrl());?></td>
             <td><?php echo $model->name;?></td>
-            <td class="span1 align-center"><?php echo $model->stateText;?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
+            <td class="align-center"><?php echo $model->verifyUrl;?></td>
             <td>
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><?php echo $model->editUrl;?></li>
                         <li><?php echo $model->deleteUrl;?></li>
-                        <li><?php echo $model->verifyUrl;?></li>
                         <li><?php echo $model->resetPasswordUrl;?></li>
                     </ul>
                 </div>

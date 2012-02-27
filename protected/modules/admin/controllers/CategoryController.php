@@ -15,6 +15,11 @@ class CategoryController extends Controller
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
+	    
+	    $parents = AdminCategory::fetchRootList();
+	    $parents = CHtml::listData($parents, 'id', 'name');
+	    $empty = array(AdminCategory::ROOT_PARENT_ID => t('please_select_category', 'admin'));
+	     
 	    if ($id === 0) {
     	    $model = new AdminCategory();
     	    $this->adminTitle = t('create_category', 'admin');
@@ -22,6 +27,7 @@ class CategoryController extends Controller
 	    else {
 	        $model = AdminCategory::model()->findByPk($id);
 	        $this->adminTitle = t('edit_category', 'admin');
+	        unset($parents[$id]);
 	    }
 	     
 	    if (request()->getIsPostRequest() && isset($_POST['AdminCategory'])) {
@@ -32,9 +38,6 @@ class CategoryController extends Controller
 	        }
 	    }
 	     
-	    $parents = AdminCategory::fetchRootList();
-	    $parents = CHtml::listData($parents, 'id', 'name');
-	    $empty = array(AdminCategory::ROOT_PARENT_ID => t('please_select_category', 'admin'));
 	    $this->render('create', array(
     	    'model' => $model,
     	    'parents' => (array)$parents,

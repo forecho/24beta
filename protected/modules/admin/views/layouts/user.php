@@ -21,6 +21,7 @@
                 <li><?php echo l(t('one_month', 'admin'), url('admin/user/mostactive', array('day'=>30)));?></li>
             </ul>
         </div>
+        <div class="btn-group"><?php echo l(t('today_signup', 'admin'), url('admin/user/today'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('create_user', 'admin'), url('admin/user/create'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('verify_user', 'admin'), url('admin/user/verify'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('search_user', 'admin'), url('admin/user/search'), array('class'=>'btn btn-small'));?></div>

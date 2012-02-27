@@ -11,10 +11,10 @@
         <tr>
             <th class="item-checkbox align-center">#</th>
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
-            <th class="span3"><?php echo $sort->link('email');?></th>
-            <th class="span3"><?php echo $sort->link('name');?></th>
-            <th class="span1 align-center"><?php echo $sort->link('state');?></th>
+            <th class="span5"><?php t('content');?></th>
+            <th class="author-name"><?php echo $sort->link('user_name');?></th>
             <th class="span2 align-center"><?php echo $sort->link('create_time');?></th>
+            <th class="span1 align-center">#</th>
             <th>#</th>
         </tr>
     </thead>
@@ -23,18 +23,17 @@
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
-            <td><?php echo l($model->email, $model->getInfoUrl());?></td>
-            <td><?php echo $model->name;?></td>
-            <td class="span1 align-center"><?php echo $model->stateText;?></td>
+            <td><?php echo $model->content;?></td>
+            <td><?php echo $model->authorName;?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
+            <td class="align-center"><?php echo $model->verifyUrl;?></td>
             <td>
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><?php echo $model->editUrl;?></li>
+                        <li><?php echo $model->recommendUrl;?></li>
                         <li><?php echo $model->deleteUrl;?></li>
-                        <li><?php echo $model->verifyUrl;?></li>
-                        <li><?php echo $model->resetPasswordUrl;?></li>
                     </ul>
                 </div>
             </td>
@@ -48,7 +47,7 @@
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('click', '.set-verify', function(event){
+	$(document).on('click', '.set-verify, .set-recommend', function(event){
 		event.preventDefault();
 		var tthis = $(this);
 		var jqXhr = $.ajax({

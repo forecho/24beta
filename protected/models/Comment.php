@@ -15,6 +15,7 @@
  * @property integer $user_id
  * @property string $user_name
  * @property integer $state
+ * @property integer $recommend
  * @property string $filterContent
  * @property string $createTime
  * @property string $authorName
@@ -59,7 +60,7 @@ class Comment extends CActiveRecord
 		return array(
 	        array('post_id, content', 'required'),
 			array('user_name', 'length', 'max'=>50),
-	        array('create_time, up_nums, down_nums, report_nums, state, user_id, post_id', 'numerical', 'integerOnly'=>true),
+	        array('create_time, up_nums, down_nums, report_nums, state, user_id, post_id, recommend', 'numerical', 'integerOnly'=>true),
 			array('create_ip', 'length', 'max'=>15),
 			array('content', 'safe'),
 		);
@@ -93,6 +94,7 @@ class Comment extends CActiveRecord
 			'user_id' => t('user_id'),
 			'user_name' => t('user_name'),
 			'state' => t('state'),
+		    'recommend' => t('recommend'),
 		);
 	}
 	
@@ -103,6 +105,15 @@ class Comment extends CActiveRecord
                 'order' => 'id desc',
                 'limit' => 10,
             ),
+	        'recommend' => array(
+	            'condition' => 't.recommend = ' .  BETA_YES
+	        ),
+	        'noverify' => array(
+	            'condition' => 't.state = ' .  self::STATE_DISABLED
+	        ),
+    	    'published' => array(
+        	    'condition' => 't.state = ' .  self::STATE_ENABLED
+    	    ),
         );
 	}
 
@@ -203,7 +214,6 @@ class Comment extends CActiveRecord
 	    Post::model()->updateCounters($counters, 'id = :pid', array(':pid'=>$this->post_id));
 	    // @todo 此处还需要删除评论的支持及反对记录
 	}
-	
 	
 }
 

@@ -13,6 +13,8 @@ return array(
     'adminTopicCountOfPage' => 20,
     // 每页显示的分类数量
     'adminCategoryCountOfPage' => 20,
-    // 如果简述没写，则截取内容的长度
-    'subSummaryLen' => 200,
+    // 每页显示的用户数量
+    'adminUserCountOfPage' => 20,
+    // 每页显示的评论数量
+    'adminCommentCountOfPage' => 30,
 );

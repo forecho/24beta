@@ -16,6 +16,9 @@
  */
 class User extends CActiveRecord
 {
+    const STATE_DISABLED = 0;
+    const STATE_ENABLED = 1;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -76,14 +79,14 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'email' => 'Email',
-			'name' => 'Name',
-			'password' => 'Password',
-			'create_time' => 'Create Time',
-			'create_ip' => 'Create Ip',
-			'state' => 'State',
-			'token' => 'Token',
+			'id' => 'ID',
+			'email' => t('user_email'),
+			'name' => t('user_name'),
+			'password' => t('password'),
+			'create_time' => t('create_time'),
+			'create_ip' => t('create_ip'),
+			'state' => t('user_state'),
+			'token' => t('user_token'),
 		);
 	}
 	
@@ -100,9 +103,14 @@ class User extends CActiveRecord
 	    if ($this->getIsNewRecord()) {
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
-	        $this->state = !param('userRequiredEmailVerfiy');
+	        $this->state = $this->state && !param('userRequiredEmailVerfiy');
 	    }
 	    return true;
+	}
+	
+	public function encryptPassword()
+	{
+	    $this->password = BetaBase::encryptPassword($this->password);
 	}
 
 }

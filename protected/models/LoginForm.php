@@ -93,7 +93,7 @@ class LoginForm extends CFormModel
         $user = new User();
 	    $user->email = $this->email;
 	    $user->name = $this->username;
-	    $user->password = md5($this->password);
+	    $user->encryptPassword();
 	    $result = $user->save();
 
 	    if ($result) {

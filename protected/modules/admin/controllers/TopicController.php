@@ -15,6 +15,11 @@ class TopicController extends Controller
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
+	    
+	    $parents = AdminTopic::fetchRootList();
+	    $parents = CHtml::listData($parents, 'id', 'name');
+	    $empty = array(AdminTopic::ROOT_PARENT_ID => t('please_select_topic', 'admin'));
+	    
 	    if ($id === 0) {
 	        $model = new AdminTopic();
 	        $this->adminTitle = t('create_topic', 'admin');
@@ -22,6 +27,7 @@ class TopicController extends Controller
 	    else {
 	        $model = AdminTopic::model()->findByPk($id);
 	        $this->adminTitle = t('edit_topic', 'admin');
+	        unset($parents[$id]);
 	    }
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminTopic'])) {
@@ -33,9 +39,6 @@ class TopicController extends Controller
 	        }
 	    }
 	    
-	    $parents = AdminTopic::fetchRootList();
-	    $parents = CHtml::listData($parents, 'id', 'name');
-	    $empty = array(AdminTopic::ROOT_PARENT_ID => t('please_select_topic', 'admin'));
 	    $this->render('create', array(
 	        'model' => $model,
 	        'parents' => (array)$parents,

@@ -74,4 +74,11 @@ class BetaBase
         return $data;
     }
     
+    public static function encryptPassword($password)
+    {
+        if (empty($password))
+            return '';
+        else
+            return md5($password);
+    }
 }

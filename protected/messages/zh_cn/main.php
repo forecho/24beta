@@ -9,6 +9,14 @@ return array(
     'topic_has_subtopic' => '该主题下有子主题存在，不能直接删除',
     'topic_has_posts' => '该主题下有文章存在，不能直接删除',
         
+    /*
+     * model User attributeLabels
+     */
+    'user_email' => '邮箱',
+    'user_name' => '名字',
+    'password' => '密码',
+    'user_state' => '状态',
+    'user_token' => '标识',
         
     /*
      * model Post attributeLabels
@@ -24,7 +32,6 @@ return array(
     'digg_nums' => '支持数',
     'visit_nums' => '浏览数',
     'user_id' => '用户ID',
-    'user_name' => '用户名',
     'source' => '来源',
     'tags' => '标签',
     'state' => '状态',
@@ -80,6 +87,7 @@ return array(
     'up_nums' => '支持数',
     'down_nums' => '反对数',
     'report_nums' => '举报数',
+    'recommend' => '推荐',
     'captcha' => '验证码',
     'refresh_captcha' => '换一张',
 

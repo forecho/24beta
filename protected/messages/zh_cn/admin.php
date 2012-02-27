@@ -38,6 +38,7 @@ return array(
     'tag_search' => '标签查询',
     'post_search' => '文章查询',
     'fuzzy_search' => '模糊查询',
+    'post_search_result' => '文章查询结果',
 
     'post_list_table' => '文章列表',
     'tag_list_table' => '标签列表',
@@ -77,13 +78,37 @@ return array(
         
     'verify_user' => '审核用户',
     'create_user' => '添加用户',
+    'edit_user' => '修改用户资料',
     'search_user' => '搜索用户',
+    'today_signup' => '今日注册',
     'most_active_users' => '最活跃用户',
     'one_day' => '一天内',
     'one_week' => '一周内',
     'one_month' => '一月内',
+    'user_create_success' => '{name} 保存成功',
+    'user_disabled' => '禁用',
+    'user_enabled' => '启用',
+    'reset_password' => '重置密码',
+    'operation' => '操作',
 
     'delete_confirm' => '您确定要执行删除操作？',
+
+    /*
+     * model UserSearchForm
+     */
+    'userid' => '用户ID',
+
+    'user_search_result' => '用户查询结果',
+
+    /* comment manage */
+    'latest_comment_in_hours' => '{hours} 小时内最新',
+    'recommend_comment' => '推荐评论 {count}',
+    'verify_comment' => '审核评论',
+    'search_comment' => '搜索评论',
+    'comment_list_table' => '评论列表',
+    'set_recommend_comment' => '推荐评论',
+    'cancel_recommend_comment' => '取消推荐',
+
 );
 
 
