@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="form-actions">
-        <input type="submit" value="<?php echo t('search', 'admin');?>" class="btn btn-primary" />
+        <input type="submit" value="<?php echo t('submit', 'admin');?>" class="btn btn-primary" />
     </div>
 </fieldset>
 <?php echo CHtml::endForm();?>

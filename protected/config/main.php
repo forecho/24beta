@@ -87,6 +87,7 @@ return array(
             'baseUrl' => $params['themeResourceBaseUrl'],
         ),
         'session' => array(
+            'autoStart' => true,
             'cookieParams' => array(
                 'lifetime' => $params['autoLoginDuration'],
             ),

@@ -24,8 +24,8 @@
     </div>
     <div class="control-group bottom10px">
         <div class="controls">
-            <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
+            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
+            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
@@ -44,8 +44,8 @@
     </div>
     <div class="control-group bottom10px">
         <div class="controls">
-            <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
+            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
+            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
@@ -99,8 +99,8 @@
         </div>
     </div>
     <div class="form-actions">
-        <?php echo CHtml::submitButton(t('submit'), array('class'=>'btn btn-primary'));?>
-        <?php echo CHtml::resetButton(t('reset'), array('class'=>'btn'));?>
+        <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
+        <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
     </div>
 </fieldset>
 <?php echo CHtml::endForm();?>
