@@ -229,9 +229,9 @@ body.ke-content {padding:5px;}
 
 
 /* pager */
-.beta-pages ul.yiiPager{font-size:11px;border:0;margin:0;padding:0;line-height:100%;display:inline;}
+.beta-pages ul.yiiPager{font-size:14px;border:0;margin:0;padding:0;line-height:100%;display:inline;}
 .beta-pages ul.yiiPager li{display:inline;}
-.beta-pages ul.yiiPager a:link,.beta-pages  ul.yiiPager a:visited{border:solid 1px #9aafe5;font-weight:bold;color:#0e509e;padding:1px 6px;text-decoration:none;}
+.beta-pages ul.yiiPager a:link,.beta-pages  ul.yiiPager a:visited{border:solid 1px #9aafe5;font-weight:bold;color:#0e509e;padding:5px 10px;text-decoration:none;}
 .beta-pages ul.yiiPager .page a{font-weight:normal;}
 .beta-pages ul.yiiPager a:hover{border:solid 1px #0e509e;}
 .beta-pages ul.yiiPager .selected a{background:#2e6ab1;color:#FFFFFF;font-weight:bold;}
@@ -261,7 +261,7 @@ body.ke-content {padding:5px;}
 .quick-login-signup {margin-top:100px;}
 
 /* index recommend posts */
-.beta-recommend-posts dl {margin:0; padding:8px 10px; border-bottom:1px dashed black;}
+.beta-recommend-posts dl {margin:0; padding:10px; border-bottom:1px dashed black;}
 .beta-recommend-posts dl:last-child {border:0;}
 .beta-recommend-posts dl.row0 {background:#F7FFD4;}
 .beta-recommend-posts dl.row1 {background:#F7FBF3;}
@@ -269,5 +269,13 @@ body.ke-content {padding:5px;}
 .beta-recommend-posts dt a, .beta-recommend-posts dt a:link, .beta-recommend-posts dt a:visited {font-size:14px; color:#6F9F3F;}
 .beta-recommend-posts dd {font-size:12px; color:#3F6F9F; margin:0; padding:0; text-indent:24px;}
 
+/* index recommend comments */
+.beta-recommend-comments dl {margin:0; padding:10px 10px 5px; border-bottom:1px dashed black;}
+.beta-recommend-comments dl:last-child {border:0;}
+.beta-recommend-comments dl.row0 {background:#EFEFEF;}
+.beta-recommend-comments dl.row1 {background:#F7FBF3;}
+.beta-recommend-comments dt {margin:0; padding:0; font-size:12px; font-weight:normal; text-align:right;}
+.beta-recommend-comments dt a, .beta-recommend-comments dt a:link, .beta-recommend-comments dt a:visited {font-size:12px;}
+.beta-recommend-comments dd {font-size:12px; margin:0 0 10px; padding:0; color:#555555;}
 
 

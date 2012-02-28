@@ -20,6 +20,7 @@
     <?php $this->widget('BetaCommentTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
     <?php $this->widget('BetaVisitTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
     
+    <!-- editor recommend posts start -->
     <?php if ($recommend):?>
     <div class="beta-block beta-radius3px beta-recommend-posts">
         <h2><?php echo t('recommend_posts');?></h2>
@@ -31,5 +32,20 @@
         <?php endforeach;?>
     </div>
     <?php endif;?>
+    <!-- editor recommend posts end -->
+    
+    <!-- recommend comments start -->
+    <?php if ($comments):?>
+    <div class="beta-block beta-radius3px beta-recommend-comments">
+        <h2><?php echo t('recommend_comments');?></h2>
+        <?php foreach($comments as $index => $comment):?>
+        <dl class="row<?php echo $index%2;?>">
+            <dd><?php echo $comment->filterContent;?></dd>
+            <dt><em><?php echo $comment->post->titleLink;?></em></dt>
+        </dl>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+    <!-- recommend comments end -->
 </div>
 <div class="clear"></div>

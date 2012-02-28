@@ -3,6 +3,7 @@ return array(
     'default' => array(
         'header' => '',
         'footer' => '',
+        'maxButtonCount' => 8,
         'nextPageLabel' => t('next_page_label'),
         'prevPageLabel' => t('prev_page_label'),
         'cssFile' => false,

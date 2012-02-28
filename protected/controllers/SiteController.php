@@ -6,6 +6,7 @@ class SiteController extends Controller
         $data = self::fetchLatestPosts();
         $data['hottest'] = self::fetchHottestPosts();
         $data['recommend'] = self::fetchRecommendPosts();
+        $data['comments'] = self::fetchRecommendComments();
         
         $this->setSiteTitle(null);
         $this->setPageKeyWords(param('siteKeywords'));
@@ -39,6 +40,18 @@ class SiteController extends Controller
         $models = Post::model()->findAll($criteria);
         
         return (array)$models;
+    }
+    
+    private static function fetchRecommendComments()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = array('t.id', 't.content', 't.create_time', 't.user_id', 't.user_name', 't.post_id');
+        $criteria->limit = param('recommendCommentsCount');
+        $criteria->scopes = array('recommend', 'published');
+        $criteria->with = array('post'=>array('select'=>'id, title'));
+        $models = Comment::model()->findAll($criteria);
+        
+        return $models;
     }
     
     public function actionLogin()

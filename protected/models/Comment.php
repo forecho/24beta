@@ -102,17 +102,20 @@ class Comment extends CActiveRecord
 	{
 	    return array(
             'recently' => array(
-                'order' => 'id desc',
+                'order' => 't.id desc',
                 'limit' => 10,
             ),
 	        'recommend' => array(
-	            'condition' => 't.recommend = ' .  BETA_YES
+	            'condition' => 't.recommend = ' .  BETA_YES,
+    	        'order' => 't.id desc',
 	        ),
 	        'noverify' => array(
-	            'condition' => 't.state = ' .  self::STATE_DISABLED
+	            'condition' => 't.state = ' .  self::STATE_DISABLED,
+    	        'order' => 't.id desc',
 	        ),
     	    'published' => array(
-        	    'condition' => 't.state = ' .  self::STATE_ENABLED
+        	    'condition' => 't.state = ' .  self::STATE_ENABLED,
+        	    'order' => 't.id desc',
     	    ),
         );
 	}

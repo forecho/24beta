@@ -115,6 +115,7 @@ return array(
     'relate_posts' => '相关文章',
     'no_posts' => '当前暂无文章',
     'recommend_posts' => '编辑推荐',
+    'recommend_comments' => '网友精彩点评',
         
     'source_label' => '来源：',
     'tag_label' => '标签',

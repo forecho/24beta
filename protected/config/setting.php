@@ -32,6 +32,8 @@ return array(
     'commentMinLength' => 5,
     // 编辑推荐文章显示数量
     'recommendPostsCount' => 10,
+    // 编辑推荐评论显示数量
+    'recommendCommentsCount' => 15,
 
     // 缓存数据目录
     'dataPath' => BETA_CONFIG_ROOT . DS . '..' . DS . 'data' . DS,
