@@ -67,12 +67,24 @@ class AdminPost extends Post
 
     public function getDeleteUrl()
     {
-        return l(t('delete', 'admin'), url('admin/post/delete', array('id'=>$this->id)));
+        return l(t('delete', 'admin'), url('admin/post/setdelete', array('id'=>$this->id)), array('class'=>'set-delete'));
     }
 
     public function getVerifyUrl()
     {
         $text = t(($this->state == AdminPost::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
         return l($text, url('admin/post/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
+    }
+
+    public function getHottestUrl()
+    {
+        $text = t(($this->hottest == BETA_NO) ? 'set_hottest_post' : 'cancel_hottest_post', 'admin');
+        return l($text, url('admin/post/sethottest', array('id'=>$this->id)), array('class'=>'set-hottest'));
+    }
+
+    public function getRecommendUrl()
+    {
+        $text = t(($this->recommend == BETA_NO) ? 'set_recommend_post' : 'cancel_recommend_post', 'admin');
+        return l($text, url('admin/post/setrecommend', array('id'=>$this->id)), array('class'=>'set-recommend'));
     }
 }

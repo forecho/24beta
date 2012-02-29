@@ -3,8 +3,8 @@ return array(
     'control_center' => '管理中心',
     'shortcut' => '快捷操作',
     'post_manage' => '文章管理',
-    'verify_post' => '审核',
-    'today_post' => '最新',
+    'verify' => '审核',
+    'today' => '今日',
     'istop_post' => '置顶',
     'query_post' => '查询',
     'new_post' => '发表',
@@ -26,6 +26,7 @@ return array(
     'settop' => '置顶',
     'setshow' => '显示',
     'sethide' => '隐藏',
+    'cancel_delete' => '取消删除',
     'submit' => '提交',
     'reset' => '重写',
 
@@ -108,6 +109,26 @@ return array(
     'comment_list_table' => '评论列表',
     'set_recommend_comment' => '推荐评论',
     'cancel_recommend_comment' => '取消推荐',
+
+    /* post manage */
+    'create_posts' => '发表文章',
+    'today_posts' => '今日发布',
+    'verify_posts' => '审核文章',
+    'search_posts' => '搜索文章',
+    'hottest_posts' => '热门文章',
+    'editor_recommend_posts' => '编辑推荐',
+    'set_recommend_post' => '推荐文章',
+    'cancel_recommend_post' => '取消推荐',
+    'set_hottest_post' => '热门',
+    'cancel_hottest_post' => '取消热门',
+    'has_deleted_posts' => '已删除',
+    'delete_success' => '删除成功',
+
+    'select_all' => '全选',
+    'reverse_select' => '反选',
+    'pass_review' => '通过',
+    'sethottest' => '热门',
+    'setrecommend' => '推荐',
 
 );
 

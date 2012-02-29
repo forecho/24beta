@@ -11,8 +11,8 @@ return array(
         'htmlOptions' => array('target'=>'main'),
         'subs' => array(
             array('title'=>t('new_post', 'admin'), 'url'=>url('admin/post/create'), 'htmlOptions'=>array('target'=>'main')),
-            array('title'=>t('verify_post', 'admin'), 'url'=>url('admin/post/verify'), 'htmlOptions'=>array('target'=>'main')),
-            array('title'=>t('today_post', 'admin'), 'url'=>url('admin/post/today'), 'htmlOptions'=>array('target'=>'main')),
+            array('title'=>t('verify', 'admin'), 'url'=>url('admin/post/verify'), 'htmlOptions'=>array('target'=>'main')),
+            array('title'=>t('today', 'admin'), 'url'=>url('admin/post/today'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('query_post', 'admin'), 'url'=>url('admin/post/search'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('post_category', 'admin'), 'url'=>url('admin/category/index'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('post_topic', 'admin'), 'url'=>url('admin/topic/index'), 'htmlOptions'=>array('target'=>'main')),

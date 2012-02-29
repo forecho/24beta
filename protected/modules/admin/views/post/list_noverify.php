@@ -1,9 +1,8 @@
 <h3><?php echo user()->getFlash('table_caption', t('post_list_table', 'admin'));?></h3>
 <div class="btn-toolbar">
     <button class="btn btn-small"><?php echo t('select_all', 'admin');?></button>
-    <button class="btn btn-small"><?php echo t('reverse_select', 'admin');?></button>
-    <button class="btn btn-small btn-primary"><?php echo t('setrecommend', 'admin');?></button>
-    <button class="btn btn-small btn-primary"><?php echo t('sethottest', 'admin');?></button>
+    <button class="btn btn-small"><?php echo t('reverse_select', 'admin')?></button>
+    <button class="btn btn-small btn-primary"><?php echo t('pass_review', 'admin');?></button>
     <button class="btn btn-small btn-danger"><?php echo t('delete', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
@@ -13,7 +12,6 @@
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span7"><?php echo $sort->link('title');?></th>
             <th class="span2 align-center"><?php echo $sort->link('create_time');?></th>
-            <th class="span1 align-center">#</th>
             <th></th>
         </tr>
     </thead>
@@ -24,17 +22,10 @@
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->getAdminTitleLink();?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
-            <td class="align-center"><?php echo $model->editUrl;?></td>
             <td>
-                <div class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><?php echo $model->recommendUrl;?></li>
-                        <li><?php echo $model->hottestUrl;?></li>
-                        <li><?php echo $model->verifyUrl;?></li>
-                        <li><?php echo $model->deleteUrl;?></li>
-                    </ul>
-                </div>
+                <?php echo $model->editUrl;?>
+                <?php echo $model->verifyUrl;?>
+                <?php echo $model->deleteUrl;?>
             </td>
         </tr>
         <?php endforeach;?>
@@ -46,8 +37,28 @@
 
 <script type="text/javascript">
 $(function(){
-	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
-	$(document).on('click', '.set-verify, .set-hottest, .set-recommend', BetaAdmin.ajaxSetPostBoolColumn);
-	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deletePost);
+	$(document).on('click', '.set-verify, .set-hottest, .set-recommend, .set-delete', function(event){
+		event.preventDefault();
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+		    url: $(this).attr('href'),
+		    dataType: 'jsonp',
+		    type: 'post',
+		    cache: false,
+		    beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				if (tthis.hasClass('set-delete'))
+					tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
+				else
+				    tthis.text(data.label);
+			else
+				alert('error');
+		});
+		jqXhr.fail(function(){
+			alert('fail');
+		});
+	});
 });
 </script>

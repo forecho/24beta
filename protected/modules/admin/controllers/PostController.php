@@ -2,14 +2,18 @@
 
 class PostController extends Controller
 {
+    public function init()
+    {
+        $this->layout = 'post';
+    }
+    
     public function filters()
     {
         return array(
-            'ajaxOnly + setVerify',
-            'postOnly + setVerify',
+            'ajaxOnly + setVerify, setHottest, setRecommend, setDelete',
+            'postOnly + setVerify, setHottest, setRecommend, setDelete',
         );
     }
-    
     
 	public function actionCreate($id = 0)
 	{
@@ -31,6 +35,7 @@ class PostController extends Controller
 	        }
 	    }
 	    
+	    $this->layout = 'main';
 		$this->render('create', array('model'=>$model));
 	}
 	
@@ -55,7 +60,7 @@ class PostController extends Controller
 	    $criteria->addColumnCondition(array('state'=>AdminPost::STATE_DISABLED));
 	    $data = AdminPost::fetchList($criteria);
 	    
-	    $this->render('list', $data);
+	    $this->render('list_noverify', $data);
 	}
 	
 	public function actionSearch()
@@ -93,4 +98,92 @@ class PostController extends Controller
 	    }
 	}
 
+	public function actionHottest()
+	{
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('hottest'=>BETA_YES));
+	    $data = AdminPost::fetchList($criteria);
+	     
+	    $this->render('list', $data);
+	}
+	
+	public function actionRecommend()
+	{
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('recommend'=>BETA_YES));
+	    $data = AdminPost::fetchList($criteria);
+	     
+	    $this->render('list', $data);
+	}
+	
+	public function actionDeleted()
+	{
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('state'=>AdminPost::STATE_DELETED));
+	    $data = AdminPost::fetchList($criteria);
+	     
+	    $this->render('list', $data);
+	}
+
+	
+	public function actionSetHottest($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminPost::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	     
+	    $model->hottest = abs($model->hottest - BETA_YES);
+	    $model->save(true, array('hottest'));
+	    if ($model->hasErrors())
+	        throw new CHttpException(500);
+	    else {
+	        $data = array(
+	            'errno' => BETA_NO,
+	            'label' => t($model->hottest == BETA_YES ? 'set_hottest_post' : 'cancel_hottest_post', 'admin')
+	        );
+	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        exit(0);
+	    }
+	}
+
+	public function actionSetRecommend($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminPost::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	     
+	    $model->recommend = abs($model->recommend - BETA_YES);
+	    $model->save(true, array('recommend'));
+	    if ($model->hasErrors())
+	        throw new CHttpException(500);
+	    else {
+	        $data = array(
+	            'errno' => BETA_NO,
+	            'label' => t($model->recommend == BETA_YES ? 'set_recommend_post' : 'cancel_recommend_post', 'admin')
+	        );
+	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        exit(0);
+	    }
+	}
+
+	public function actionSetDelete($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminPost::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	     
+	    if ($model->delete()) {
+	        $data = array(
+	            'errno' => BETA_NO,
+	            'label' => t('delete_success', 'admin'),
+	        );
+	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        exit(0);
+	    }
+	    else
+	        throw new CHttpException(500);
+	}
 }
