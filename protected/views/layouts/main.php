@@ -36,7 +36,13 @@
         footer
     </div>
 </div>
+
+<!--[if gt IE 7]>
 <a class="beta-backtop" href="#top"><?php echo t('return_top');?></a>
+<![endif]-->
+
+<?php echo param('tongjiCode');?>
+
 </body>
 </html>
 

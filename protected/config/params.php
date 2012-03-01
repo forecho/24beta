@@ -5,5 +5,4 @@
 
 return array(
     'cacheTokenAllPostCount' => 'all_post_count',
-
 );
