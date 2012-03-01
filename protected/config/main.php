@@ -4,10 +4,16 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 define('BETA_YES', 1);
 define('BETA_NO', 0);
 
-$params = require(BETA_CONFIG_ROOT . DS . 'params.php');
-$defaultSetting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
-$customSetting = require($defaultSetting['dataPath'] . DS . 'setting.config.php');
-$params = array_merge($defaultSetting, $params, $customSetting);
+try {
+    $params = require(BETA_CONFIG_ROOT . DS . 'params.php');
+    $defaultSetting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
+    $customSetting = @require($defaultSetting['dataPath'] . DS . 'setting.config.php');
+    $params = array_merge($defaultSetting, $params, $customSetting);
+}
+catch (Exception $e) {
+    echo $e->getMessage();
+    exit(0);
+}
 
 $dbconfig = require($params['dataPath'] . DS . 'db.config.php');
 
