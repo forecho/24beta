@@ -9,6 +9,7 @@ class TopicController extends Controller
             throw new CHttpException(404, t('topic_is_not_found'));
         
         $data = self::fetchTopicPosts($id);
+        $data['topic'] = $topic;
         
         $this->setSiteTitle(t('topic_posts', 'main', array('{name}'=>$topic->name)));
         // @todo 关键字的描述没有指定
@@ -22,16 +23,16 @@ class TopicController extends Controller
     private static function fetchTopicPosts($id)
     {
         $criteria = new CDbCriteria();
-        $criteria->order = 't.state desc, t.create_time desc, t.id desc';
-        $criteria->limit = param('postCountOfPage');
-        $criteria->addColumnCondition(array('topic_id' => $id))
+        $criteria->order = 't.istop desc, t.create_time desc, t.id desc';
+        $criteria->addColumnCondition(array('t.topic_id' => $id))
             ->addCondition('t.state != :state');
+        $criteria->params += array(':state'=>Post::STATE_DISABLED);
     
-        $count = Post::model()->count($criteria, array(':state'=>Post::STATE_DISABLED));
+        $count = Post::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->setPageSize(param('postCountOfPage'));
+        $pages->setPageSize(param('postCountOfTitleListPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->findAll($criteria, array(':state'=>Post::STATE_DISABLED));
+        $posts = Post::model()->with('category', 'topic')->findAll($criteria);
     
         return array(
             'posts' => $posts,
@@ -42,13 +43,12 @@ class TopicController extends Controller
     public function actionList()
     {
         $criteria = new CDbCriteria();
-        $criteria->order = 'id asc';
+        $criteria->order = 'orderid desc, post_nums desc, id asc';
         $topics = Topic::model()->findAll($criteria);
         
         $this->setSiteTitle(t('all_topic_list'));
-        // @todo 关键字的描述没有指定
         $this->setPageKeyWords(null);
-        $this->setPageDescription(null);
+        $this->setPageDescription(t('all_topics_description'));
         
         cs()->registerMetaTag('all', 'robots');
         $this->render('list', array(

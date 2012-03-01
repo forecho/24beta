@@ -169,7 +169,7 @@ return array(
 
     /* topic */
     'all_topic_list' => '所有主题列表',
-    'topics_posts' => '专题：{name}',
+    'topic_posts' => '专题：{name}',
 
     /* category */
     'category_posts' => '分类：{name}',
@@ -180,6 +180,9 @@ return array(
     /* site/login */
     'site_login' => '用户登录',
     'site_signup' => '用户注册',
+
+    /* topic/list */
+    'all_topics_description' => '所有主题列表',
 );
 
 

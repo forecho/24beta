@@ -287,8 +287,8 @@ class Post extends CActiveRecord
 	    $comments = Comment::model()->findAll('post_id = :pid', array(':pid'=>$this->id));
 	    foreach ($comments as $c) $c->delete();
 	    
-	    app()->db->createCommand()
-	        ->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->db->createCommand()->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->db->createCommand()->delete('{{special2post}}', 'post_id = :pid', array(':pid'=>$this->id));
 	    
 	    // @todo 此处删除文章后对应的图片也应该删除
 	}

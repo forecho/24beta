@@ -21,7 +21,9 @@ return array(
     'userRequiredEmailVerfiy' => false,
         
     // 每页显示的文章数量
-    'postCountOfPage' => 15,
+    'postCountOfPage' => 12,
+    // 标题显示列表每页显示的文章数量
+    'postCountOfTitleListPage' => 25,
     // 每页显示的评论数量
     'commentCountOfPage' => 20,
     // 每页显示的热门评论数量
