@@ -37,9 +37,7 @@
     </div>
 </div>
 
-<!--[if lte IE 7]><span class="hide"><![endif]-->
 <a class="beta-backtop" href="#top"><?php echo t('return_top');?></a>
-<!--[if lte IE 7]></span><![endif]-->
 
 <?php echo param('tongjiCode');?>
 

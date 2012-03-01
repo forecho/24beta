@@ -107,6 +107,8 @@ pre code{padding:0;background-color:transparent;}
 .beta-header .beta-logo {height:75px;}
 .beta-backtop {position:fixed; right:-1px; bottom:-1px; display:inline-block; font-size:12px; font-weight:bold; height:27px; line-height:27px; padding:0 8px; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px; background:whiteSmoke; border:1px solid rgba(0, 0, 0, 0.1); box-shadow:0 0 6px #808080; min-width:55px; margin:0; text-align:center; z-index:10001;}
 .beta-backtop:hover, .beta-backtop:active, .beta-backtop:visited, .beta-backtop:focus {color:#444444; text-decoration:none;}
+/* ie6, ie7 */
+.beta-backtop {+display:none; _display:none;}
 
 /* header */
 .beta-header {height:60px; background:url(http://www.ifanr.com/wp-content/themes/apple4us/images/banner.png); overflow:hidden;}
