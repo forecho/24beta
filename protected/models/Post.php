@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table '{{post}}':
  * @property integer $id
+ * @property integer $post_type
  * @property integer $category_id
  * @property integer $topic_id
  * @property string $title
@@ -56,6 +57,18 @@ class Post extends CActiveRecord
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
     
+    /*
+     * post type
+     * 0 post
+     * 1 vote
+     * 2 album
+     * 3 goods
+     */
+    const TYPE_POST = 0;
+    const TYPE_VOTE = 1;
+    const TYPE_ALBUM = 2;
+    const TYPE_GOODS = 3;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Post the static model class
@@ -82,7 +95,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, summary, content', 'required'),
-	        array('category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
+	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
@@ -110,6 +123,7 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+            'post_type' => t('post_type'),
 			'category_id' => t('category'),
 			'topic_id' => t('topic'),
 			'title' => t('title'),

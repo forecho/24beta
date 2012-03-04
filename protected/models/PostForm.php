@@ -50,6 +50,7 @@ class PostForm extends CFormModel
     {
         $post = new Post();
         $post->attributes = $this->attributes;
+        $post->post_type = Post::TYPE_POST;
         $post->contributor_id = (int)user()->id;
         $post->state = $this->state();
         $post->save();

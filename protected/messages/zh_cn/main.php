@@ -21,6 +21,7 @@ return array(
     /*
      * model Post attributeLabels
      */
+    'post_type' => '类型',
     'category' => '分类',
     'topic' => '主题',
     'title' => '标题',

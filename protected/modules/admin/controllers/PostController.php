@@ -15,7 +15,7 @@ class PostController extends Controller
         );
     }
     
-	public function actionCreate($id = 0)
+	public function actionCreatePost($id = 0)
 	{
 	    $id = (int)$id;
 	    if ($id === 0) {
@@ -29,6 +29,7 @@ class PostController extends Controller
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminPost'])) {
 	        $model->attributes = $_POST['AdminPost'];
+	        $model->post_type = AdminPost::TYPE_POST;
 	        if ($model->save()) {
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
 	            $this->redirect(request()->getUrl());

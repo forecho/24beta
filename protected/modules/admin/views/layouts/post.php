@@ -16,9 +16,7 @@
         <div class="btn-group"><?php echo l(t('search_posts', 'admin'), url('admin/post/search'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('hottest_posts', 'admin'), url('admin/post/hottest'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('editor_recommend_posts', 'admin'), url('admin/post/recommend'), array('class'=>'btn btn-small'));?></div>
-        <div class="btn-group"><?php echo l(t('has_deleted_posts', 'admin'), url('admin/post/deleted'), array('class'=>'btn btn-small'));?></div>
     </div>
-
     <?php echo $content;?>
 
 </div>
