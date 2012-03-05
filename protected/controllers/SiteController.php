@@ -114,6 +114,8 @@ class SiteController extends Controller
     {
         user()->logout();
         user()->clearStates();
+        app()->session->clear();
+        app()->session->destroy();
         $this->redirect(app()->homeUrl);
     }
     

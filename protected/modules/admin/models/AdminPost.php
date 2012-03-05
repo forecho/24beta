@@ -62,7 +62,7 @@ class AdminPost extends Post
 
     public function getEditUrl()
     {
-        return l(t('edit', 'admin'), url('admin/post/create', array('id'=>$this->id)));
+        return l(t('edit', 'admin'), url('admin/post/createpost', array('id'=>$this->id)));
     }
 
     public function getDeleteUrl()

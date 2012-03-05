@@ -18,6 +18,7 @@ return array(
             array('title'=>t('post_topic', 'admin'), 'url'=>url('admin/topic/index'), 'htmlOptions'=>array('target'=>'main')),
             array('title'=>t('post_tag', 'admin'), 'url'=>url('admin/tag/index'), 'htmlOptions'=>array('target'=>'main')),
             array('title' => t('comment_manage', 'admin'), 'url' => url('admin/comment/index'), 'htmlOptions' => array('target'=>'main')),
+            array('title' => t('attachment', 'admin'), 'url' => url('admin/upload/index'), 'htmlOptions' => array('target'=>'main')),
         )
     ),
     array(

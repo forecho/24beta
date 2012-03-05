@@ -123,6 +123,7 @@ return array(
     'cancel_hottest_post' => '取消热门',
     'has_deleted_posts' => '已删除',
     'delete_success' => '删除成功',
+    'attachment' => '附件',
 
     'select_all' => '全选',
     'reverse_select' => '反选',

@@ -92,8 +92,11 @@ $(function(){
 	$('#post-title').focus();
     KindEditor.ready(function(K) {
     	var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
+    	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
     	KEConfig.mini.cssPath = [cssurl];
+    	KEConfig.mini.uploadJson = imageUploadUrl;
         KEConfig.common.cssPath = [cssurl];
+        KEConfig.common.uploadJson = imageUploadUrl;
     	var betaSummary = K.create('#beta-summary', KEConfig.mini);
     	var betaContent = K.create('#beta-content', KEConfig.common);
     	$('#post-form').on('submit', {content:betaContent}, BetaPost.create);

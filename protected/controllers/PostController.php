@@ -91,6 +91,10 @@ class PostController extends Controller
                 exit(0);
             }
         }
+        else {
+            $key = param('sess_post_create_token');
+            app()->session->add($key, uniqid('beta', true));
+        }
 
         $captchaWidget = $form->hasErrors('captcha') ? $this->widget('BetaCaptcha', array(), true) : $this->widget('BetaCaptcha', array('skin'=>'defaultLazy'), true);
         $captchaClass = $form->hasErrors('captcha') ? 'error' : 'hide';

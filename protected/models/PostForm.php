@@ -13,6 +13,7 @@ class PostForm extends CFormModel
     public $contributor_site;
     public $tags;
     public $captcha;
+    public $token;
     
     public function rules()
     {
@@ -54,7 +55,7 @@ class PostForm extends CFormModel
         $post->contributor_id = (int)user()->id;
         $post->state = $this->state();
         $post->save();
-        $this->afterSave();
+        $this->afterSave($post);
         return $post;
     }
     
@@ -63,9 +64,15 @@ class PostForm extends CFormModel
         return Post::STATE_DISABLED;
     }
         
-    public function afterSave()
+    public function afterSave(Post $post)
     {
-        
+        $key = param('sess_post_create_token');
+        if (app()->session->contains($key)) {
+            $token = app()->session[$key];
+            $attributes = array('post_id'=>$post->id, 'token'=>'');
+            Upload::model()->updateAll($attributes, 'token = :token', array(':token'=>$token));
+            app()->session->remove($key);
+        }
     }
     
     public function captchaAllowEmpty()

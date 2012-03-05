@@ -108,11 +108,35 @@ class Post extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 	        'category'=>array(self::BELONGS_TO, 'Category', 'category_id'),
 	        'topic'=>array(self::BELONGS_TO, 'Topic', 'topic_id'),
+		    'uploadCount' => array(self::STAT, 'Upload', 'post_id'),
+		    'picture' => array(self::HAS_MANY, 'Upload', 'post_id',
+		        'condition' => 'file_type = :filetype',
+		        'params' => array(':filetype' => Upload::TYPE_PICTURE),
+		        'order' => 'id asc',
+		    ),
+		    'pictureCount' => array(self::STAT, 'Upload', 'post_id',
+		        'condition' => 'file_type = :filetype',
+		        'params' => array(':filetype' => Upload::TYPE_PICTURE),
+		    ),
+		    'audio' => array(self::HAS_MANY, 'Upload', 'post_id',
+		        'condition' => 'file_type = :filetype',
+		        'params' => array(':filetype' => Upload::TYPE_AUDIO),
+		        'order' => 'id asc',
+		    ),
+		    'video' => array(self::HAS_MANY, 'Upload', 'post_id',
+		        'condition' => 'file_type = :filetype',
+		        'params' => array(':filetype' => Upload::TYPE_VIDEO),
+		        'order' => 'id asc',
+		    ),
+		    'downfile' => array(self::HAS_MANY, 'Upload', 'post_id',
+		        'condition' => 'file_type = :filetype',
+		        'params' => array(':filetype' => Upload::TYPE_FILE),
+		        'order' => 'id asc',
+		    ),
+		    
 		);
 	}
 
@@ -271,52 +295,6 @@ class Post extends CActiveRecord
 	    return mb_strimwidth($this->title, 0, $len, '...', app()->charset);
 	}
 	
-	protected function beforeSave()
-	{
-	    if ($this->getIsNewRecord()) {
-	        $this->title = strip_tags($this->title);
-	        $this->create_time = $_SERVER['REQUEST_TIME'];
-	        $this->create_ip = request()->getUserHostAddress();
-	        $this->source = strip_tags(trim($this->source));
-	    }
-	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
-	    return true;
-	}
-	
-	protected function afterSave()
-	{
-	    $counters = array('post_nums' => 1);
-	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
-	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
-	    
-	    // @todo 此处还要处理tag的保存
-	}
-	
-	protected function afterDelete()
-	{
-	    $counters = array('post_nums' => -1);
-	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
-	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
-	    
-	    $comments = Comment::model()->findAll('post_id = :pid', array(':pid'=>$this->id));
-	    foreach ($comments as $c) $c->delete();
-	    
-	    app()->db->createCommand()->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
-	    app()->db->createCommand()->delete('{{special2post}}', 'post_id = :pid', array(':pid'=>$this->id));
-	    
-	    // @todo 此处删除文章后对应的图片也应该删除
-	}
-
-	protected function afterFind()
-	{
-	    if (empty($this->summary)) {
-	        $content = strip_tags($this->content, param('summaryHtmlTags'));
-	        $this->summary = mb_strimwidth($content, 0, param('subSummaryLen'), '...', app()->charset);
-	    }
-	    else
-	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
-	}
-	
 	public function getSubSummary($len)
 	{
 	    $len = (int)$len;
@@ -394,6 +372,55 @@ class Post extends CActiveRecord
 	public function getShowExtraInfo()
 	{
 	    return t('post_show_extra', 'main', array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums));
+	}
+
+	
+	protected function beforeSave()
+	{
+	    if ($this->getIsNewRecord()) {
+	        $this->title = strip_tags($this->title);
+	        $this->create_time = $_SERVER['REQUEST_TIME'];
+	        $this->create_ip = request()->getUserHostAddress();
+	        $this->source = strip_tags(trim($this->source));
+	    }
+	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
+	    return true;
+	}
+	
+	protected function afterSave()
+	{
+	    $counters = array('post_nums' => 1);
+	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
+	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
+        
+	    // @todo 此处还要处理tag的保存
+	}
+	
+	protected function afterDelete()
+	{
+	    $counters = array('post_nums' => -1);
+	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
+	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
+	     
+	    $comments = Comment::model()->findAllByAttributes(array('post_id'=>$this->id));
+	    foreach ($comments as $c) $c->delete();
+	     
+	    app()->db->createCommand()->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->db->createCommand()->delete('{{special2post}}', 'post_id = :pid', array(':pid'=>$this->id));
+	     
+	    // @todo 此处删除文章后对应的图片也应该删除
+	    $files = Upload::model()->findAllByAttributes(array('post_id'=>$this->id));
+	    foreach ($files as $file) $file->delete();
+	}
+	
+	protected function afterFind()
+	{
+	    if (empty($this->summary)) {
+	        $content = strip_tags($this->content, param('summaryHtmlTags'));
+	        $this->summary = mb_strimwidth($content, 0, param('subSummaryLen'), '...', app()->charset);
+	    }
+	    else
+	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
 	}
 }
 

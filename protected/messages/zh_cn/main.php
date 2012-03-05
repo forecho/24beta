@@ -48,6 +48,10 @@ return array(
     'contributor_site' => '投稿者网站',
     'contributor_email' => '投稿者邮箱',
 
+    /* Upload model */
+    'file_type' => '文件类型',
+    'file_description' => '文件描述',
+
     /* Topic model */
     'parent_topic' => '父主题',
     'topic_name' => '主题名',
