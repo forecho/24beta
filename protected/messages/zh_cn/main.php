@@ -188,6 +188,10 @@ return array(
 
     /* topic/list */
     'all_topics_description' => '所有主题列表',
+        
+    /* site */
+    'site_announce' => '除非特别注明，本站所有文章均不代表本站观点。报道中出现的商标属于其合法持有人。交流时请遵守理性，宽容，换位思考的原则。',
+    'site_content_share_announce' => '除非特别声明，本站所有内容遵守<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/" target="_blank">CC Creative Commons License.</a>',
 );
 
 

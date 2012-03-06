@@ -109,6 +109,12 @@ pre code{padding:0;background-color:transparent;}
 /* ie6, ie7 */
 .beta-backtop {+display:none; _display:none;}
 
+/* footer */
+.beta-footer, .beta-footer .beta-container {background:#333333; margin-top:20px; min-height:50px; font-size:12px; color:#BFBFBF;}
+.beta-footer .beta-container {padding:10px 0 20px; text-align:center;}
+.beta-footer .beta-container p {margin:0 0 5px;}
+.beta-footer .beta-container a:link, .beta-footer .beta-container a:visited {color:white;}
+
 /* header */
 .beta-header {height:60px; background:url(../images/header_bg.jpg); overflow:hidden;}
 .beta-header .beta-logo {height:100%;}
