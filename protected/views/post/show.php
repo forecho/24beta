@@ -28,7 +28,21 @@
     <div class="beta-block beta-hot-comment beta-radius3px">
         <?php $this->renderPartial('/comment/_hot_list', array('comments'=>$hotComments, 'post'=>$post));?>
     </div>
+    <div class="beta-block">
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-0852804202998726";
+            /* 24beta_336x280 */
+            google_ad_slot = "8426390713";
+            google_ad_width = 336;
+            google_ad_height = 280;
+            //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+    </div>
     <?php $this->widget('BetaLatestPosts', array('title'=>t('relate_posts'), 'tid'=>$post->topic_id));?>
+    <div class="beta-block">
+        <script type="text/javascript">/*24beta_336x280，创建于2012-3-8*/ var cpro_id = 'u797747';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script>
+    </div>
     <?php $this->widget('BetaLatestPosts');?>
 </div>
 <div class="clear"></div>
