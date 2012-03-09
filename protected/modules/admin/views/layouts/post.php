@@ -10,12 +10,13 @@
 <body>
 <div class="beta-container">
     <div class="well btn-toolbar">
-        <div class="btn-group"><?php echo l(t('create_posts', 'admin'), url('admin/post/create'), array('class'=>'btn btn-small'));?></div>
+        <div class="btn-group"><?php echo l(t('create_posts', 'admin'), url('admin/post/createpost'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('verify_posts', 'admin'), url('admin/post/verify'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('today_posts', 'admin'), url('admin/post/today'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('search_posts', 'admin'), url('admin/post/search'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('hottest_posts', 'admin'), url('admin/post/hottest'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('editor_recommend_posts', 'admin'), url('admin/post/recommend'), array('class'=>'btn btn-small'));?></div>
+        <div class="btn-group"><?php echo l(t('home_show_posts', 'admin'), url('admin/post/homeshow'), array('class'=>'btn btn-small'));?></div>
     </div>
     <?php echo $content;?>
 

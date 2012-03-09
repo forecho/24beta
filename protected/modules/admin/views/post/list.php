@@ -29,6 +29,7 @@
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><?php echo $model->homeshowUrl;?></li>
                         <li><?php echo $model->recommendUrl;?></li>
                         <li><?php echo $model->hottestUrl;?></li>
                         <li><?php echo $model->verifyUrl;?></li>

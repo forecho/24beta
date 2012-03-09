@@ -63,6 +63,8 @@ return array(
      */
     // 默认评论是否需要审核
     'defaultNewCommentState' => 1,
+    // 默认发布的文章是否直接显示在首页
+    'defaultPostShowHomePage' => 1,
     
     'subSummaryLen' => 300,
     

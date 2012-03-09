@@ -1,8 +1,14 @@
 <?php
 /**
+ * @property string $infoUrl
  * @property string $editUrl
  * @property string $deleteUrl
  * @property string $verifyUrl
+ * @property string $adminTitleLink
+ * @property string $verifyUlr
+ * @property string $hottestUrl
+ * @property string $recommendUrl
+ * @property string $homeshowUrl
  */
 class AdminPost extends Post
 {
@@ -86,5 +92,11 @@ class AdminPost extends Post
     {
         $text = t(($this->recommend == BETA_NO) ? 'set_recommend_post' : 'cancel_recommend_post', 'admin');
         return l($text, url('admin/post/setrecommend', array('id'=>$this->id)), array('class'=>'set-recommend'));
+    }
+    
+    public function getHomeshowUrl()
+    {
+        $text = t(($this->homeshow == BETA_YES) ? 'cannel_homeshow_post' : 'set_homeshow_post', 'admin');
+        return l($text, url('admin/post/sethomeshow', array('id'=>$this->id)), array('class'=>'set-recommend'));
     }
 }

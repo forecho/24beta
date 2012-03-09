@@ -63,6 +63,9 @@
                 <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
             </label>
             <label class="checkbox inline">
+                <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
+            </label>
+            <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
             </label>
             <label class="checkbox inline">

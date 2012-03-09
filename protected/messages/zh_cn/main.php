@@ -40,6 +40,7 @@ return array(
     'disable_comment' => '禁止评论',
     'recommend' => '推荐',
     'hottest' => '热门',
+    'homeshow' => '首页',
     'thumbnail' => '缩略图',
     'summary' => '简述',
     'content' => '内容',

@@ -129,7 +129,7 @@ class SiteController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 't.istop desc, t.create_time desc, t.id desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->scopes = 'published';
+        $criteria->scopes = array('published', 'homeshow');
 
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);

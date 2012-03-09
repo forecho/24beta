@@ -25,6 +25,7 @@
  * @property integer $disable_comment
  * @property integer $recommend
  * @property integer $hottest
+ * @property integer $homeshow
  * @property string $thumbnail
  * @property string $summary
  * @property string $content
@@ -95,7 +96,7 @@ class Post extends CActiveRecord
 		// will receive user inputs.
 		return array(
 	        array('title, summary, content', 'required'),
-	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
+	        array('post_type, category_id, topic_id, score_nums, comment_nums, digg_nums, visit_nums, user_id, create_time, state, istop, homeshow, disable_comment, contributor_id, recommend, hottest', 'numerical', 'integerOnly'=>true),
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
@@ -180,6 +181,9 @@ class Post extends CActiveRecord
 	public function scopes()
 	{
 	    return array(
+            'homeshow' => array(
+                'condition' => 't.homeshow = ' . BETA_YES,
+            ),
             'published' => array(
                 'condition' => 't.state = ' . self::STATE_ENABLED,
             ),
@@ -382,6 +386,7 @@ class Post extends CActiveRecord
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
+	        $this->homeshow = user()->checkAccess('enterAdminSystem') ? BETA_YES : param('defaultPostShowHomePage');
 	    }
 	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
 	    return true;
