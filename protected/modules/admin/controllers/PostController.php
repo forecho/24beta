@@ -92,7 +92,7 @@ class PostController extends Controller
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->state == AdminPost::STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
+	            'label' => t($model->state == AdminPost::STATE_ENABLED ? 'sethide' : 'setshow', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
