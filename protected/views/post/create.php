@@ -40,6 +40,7 @@
         </div>
         <div class="clear"></div>
     </div>
+    <?php if (user()->checkAccess('enterAdminSystem')):?>
     <div class="beta-control-group <?php if ($form->hasErrors('tags')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('tags');?></label>
         <div class="beta-controls">
@@ -48,6 +49,7 @@
         </div>
         <div class="clear"></div>
     </div>
+    <?php endif;?>
     <div class="beta-control-group stacked <?php if ($form->hasErrors('summary')) echo 'error';?>">
         <label class="beta-control-label"><?php echo t('summary');?>&nbsp;<span class="beta-help-inline"><?php echo $form->getError('summary');?></span></label>
         <div class="beta-controls">
