@@ -54,6 +54,7 @@ class PostForm extends CFormModel
         $post->post_type = Post::TYPE_POST;
         $post->contributor_id = (int)user()->id;
         $post->state = $this->state();
+        $post->homeshow = $this->homeshow();
         $post->save();
         $this->afterSave($post);
         return $post;
@@ -61,7 +62,12 @@ class PostForm extends CFormModel
     
     public function state()
     {
-        return Post::STATE_DISABLED;
+        return user()->checkAccess('enterAdminSystem') ? Post::STATE_ENABLED : Post::STATE_DISABLED;
+    }
+    
+    public function homeshow()
+    {
+        return user()->checkAccess('enterAdminSystem') ? BETA_YES : param('defaultPostShowHomePage');
     }
         
     public function afterSave(Post $post)

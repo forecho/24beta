@@ -386,7 +386,6 @@ class Post extends CActiveRecord
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
-	        $this->homeshow = user()->checkAccess('enterAdminSystem') ? BETA_YES : param('defaultPostShowHomePage');
 	    }
 	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
 	    return true;
