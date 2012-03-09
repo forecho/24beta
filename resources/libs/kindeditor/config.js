@@ -15,13 +15,10 @@ var KEConfig = {
 		allowFileManager: false,
 		allowUpload: true,
 		filterMode: true,
-		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste',
-	        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-	        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-	        'superscript', '|', 'link', 'unlink', 'selectall', 'clearhtml', 'removeformat', 'quickformat', '/',
-	        'forecolor', 'hilitecolor', 'bold',
-	        'italic', 'underline', 'strikethrough', '|', 'image',
-	        'flash', 'media', 'table', 'hr', 'emoticons', 'fullscreen', 'preview']
+		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
+	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', '|', 'link', 'unlink', 'selectall', 'clearhtml', 'removeformat', 'quickformat',
+	        '/', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough',
+	        '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons', 'fullscreen', 'preview', '|', 'source']
 	},
 	adminmini: {
 		height:180,
@@ -30,8 +27,9 @@ var KEConfig = {
 		allowUpload: true,
 		filterMode: true,
 		items: ['undo', 'redo', '|', 'plainpaste', 'wordpaste', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'insertorderedlist',
-	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough', '|', 'image', 'flash', 'media',
-	        'link', 'unlink', '|', 'selectall', 'clearhtml', 'removeformat', '|', 'source']
+	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough',
+	        '|', 'image', 'flash', 'media', 'link', 'unlink',
+	        '|', 'selectall', 'clearhtml', 'removeformat', '|', 'source']
 	},
 	adminfull: {
 		height:450,
