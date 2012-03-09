@@ -162,11 +162,11 @@ class SiteController extends Controller
     
     public function actionTest()
     {
-//         phpinfo();
-//         exit;
-//         $check = user()->checkAccess('enterAdminSystem');
-//         var_dump($check);
-//         exit;
+        phpinfo();
+        exit;
+        $check = user()->checkAccess('enterAdminSystem');
+        var_dump($check);
+        exit;
         
         $auth=Yii::app()->authManager;
  
