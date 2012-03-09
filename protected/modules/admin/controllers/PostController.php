@@ -141,7 +141,7 @@ class PostController extends Controller
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->hottest == BETA_YES ? 'set_hottest_post' : 'cancel_hottest_post', 'admin')
+	            'label' => t($model->hottest == BETA_YES ? 'cancel_hottest_post' : 'set_hottest_post', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
@@ -162,7 +162,7 @@ class PostController extends Controller
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->recommend == BETA_YES ? 'set_recommend_post' : 'cancel_recommend_post', 'admin')
+	            'label' => t($model->recommend == BETA_YES ? 'cancel_recommend_post' : 'set_recommend_post', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
