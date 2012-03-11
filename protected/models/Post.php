@@ -397,7 +397,9 @@ class Post extends CActiveRecord
 	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
 	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
         
-	    // @todo 此处还要处理tag的保存
+	    if ($this->getIsNewRecord()) {
+	        Tag::savePostTags($this->id, $this->tags);
+	    }
 	}
 	
 	protected function afterDelete()

@@ -80,4 +80,33 @@ class Tag extends CActiveRecord
 	}
 	
 
+	public static function savePostTags($postid, $tags)
+	{
+	    $postid = (int)$postid;
+	    if (0 === $postid || empty($tags))
+	        return false;
+	
+	    if (is_string($tags))
+	        $tags = self::filterTagsArray($tags);
+	
+	    $count = 0;
+	    foreach ((array)$tags as $v) {
+	        $model = Tag::model()->findByAttributes(array('name'=>$v));
+	        if ($model === null) {
+	            $model = new Tag();
+	            $model->name = $v;
+	            $model->post_nums = 1;
+	            if ($model->save())
+	                $count++;
+	        }
+	        else {
+	            $model->post_nums = $model->post_nums + 1;
+	            $model->save(array('post_nums'));
+	        }
+	        $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
+	        app()->getDb()->createCommand()->insert('{{post2tag}}', $columns);
+	        unset($model);
+	    }
+	    return $count;
+	}
 }
