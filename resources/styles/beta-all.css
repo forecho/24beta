@@ -171,9 +171,8 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-detail {overflow:hidden; padding:10px;}
 .beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px;}
 .beta-post-detail .beta-post-content {margin:10px 0;}
-.beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
-.beta-post-detail .beta-post-tags {font-size:12px;}
-.beta-post-detail .beta-post-tags a {margin-left:5px; font-size:12px!important;}
+.beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {font-size:12px; margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
+.beta-post-detail .beta-post-tags a, .beta-post-detail .beta-post-source a {margin-left:5px; font-size:12px!important;}
 .beta-post-detail .beta-post-source a {line-height:16px;}
 .beta-mini-title {font-size:12px; background:#CFCFCF; text-indent:10px; height:24px; line-height:24px; font-weight:bold;}
 

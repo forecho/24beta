@@ -6,12 +6,12 @@
             <?php if ($post->category) echo $post->categoryLink;?>
             <?php if ($post->topic) echo $post->topicLink;?>
         </span></div>
-        <?php if ($post->tags):?>
-        <div class="beta-post-tags"><?php echo $post->tagLinks;?></div>
-        <?php endif;?>
         <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
         <div class="beta-post-content"><?php echo $post->content;?></div>
         
+        <?php if ($post->tags):?>
+        <div class="beta-post-tags"><?php echo t('tag_label');?><?php echo $post->tagLinks;?></div>
+        <?php endif;?>
         <?php if ($post->source):?>
         <div class="beta-post-source"><?php echo t('source_label');?><?php echo $post->sourceLink;?></div>
         <?php endif;?>

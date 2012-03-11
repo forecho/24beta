@@ -100,6 +100,8 @@ class Post extends CActiveRecord
 			array('thumbnail, source, title, tags, contributor_site, contributor_email', 'length', 'max'=>250),
 			array('create_ip', 'length', 'max'=>15),
 			array('user_name, contributor', 'length', 'max'=>50),
+	        array('contributor_site', 'url'),
+	        array('contributor_email', 'email'),
 			array('summary, content', 'safe'),
 		);
 	}
@@ -254,10 +256,13 @@ class Post extends CActiveRecord
 	{
 	    if (empty($this->source)) return '';
 	    
+	    $textLen = 50;
+	    $text = mb_strimwidth($this->source, 0, $textLen, '...', app()->charset);
+	    
 	    if (strpos($this->source, 'http://') === false && strpos($this->source, 'https://') === false)
-	        $source = $this->source;
+	        $source = $text;
 	    else
-	        $source = l($this->source, $this->source, array('target'=>'_blank', 'class'=>'post-source'));
+	        $source = l($text, $this->source, array('target'=>'_blank', 'class'=>'post-source'));
 	    
 	    return $source;
 	}
@@ -333,7 +338,7 @@ class Post extends CActiveRecord
 	    foreach ($tags as $tag)
 	        $data[] = l($tag, aurl('tag/posts', array('name'=>urlencode($tag))), array('target'=>$target, 'class'=>$class));
 	    
-	    return t('tags') . ':' . implode($operator, $data);
+	    return join($operator, $data);
 	}
 
 	public function getThumbnailUrl()
@@ -378,7 +383,6 @@ class Post extends CActiveRecord
 	    return t('post_show_extra', 'main', array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums));
 	}
 
-	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
