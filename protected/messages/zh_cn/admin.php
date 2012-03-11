@@ -134,6 +134,11 @@ return array(
     'pass_review' => '通过',
     'sethottest' => '热门',
     'setrecommend' => '推荐',
+        
+    /* user manager */
+    'user_is_not_exist' => '该用户不存在',
+    'reset_user_passwd' => '重置用户密码',
+    'user_resetpwd_success' => '修改{name}密码成功',
 
 );
 

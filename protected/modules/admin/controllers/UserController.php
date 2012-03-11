@@ -2,6 +2,14 @@
 
 class UserController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'onlyPost + setVerify',
+            'onlyAjax + setVerify',
+        );
+    }
+    
     public function init()
     {
         $this->layout = 'user';
@@ -113,5 +121,31 @@ class UserController extends Controller
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
 	    }
+	}
+
+	public function actionResetPassword($id)
+	{
+	    $id = (int)$id;
+	    if ($id <= 0)
+	        throw new CHttpException(500);
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->select = array('id', 'email', 'name', 'password');
+	    $user = AdminUser::model()->findByPk($id, $criteria);
+	    if ($user === null)
+	        throw new CHttpException(404, t('user_is_not_exist', 'admin'));
+	    
+	    if (request()->getIsPostRequest() && isset($_POST['AdminUser'])) {
+	        $user->attributes = $_POST['AdminUser'];
+	        $user->encryptPassword();
+	        if ($user->save(true, array('password'))) {
+	            user()->setFlash('user_create_result', t('user_resetpwd_success', 'admin', array('{name}'=>$user->email)));
+	            $this->redirect(request()->getUrl());
+	        }
+	    }
+	    
+	    $user->password = '';
+	    $this->adminTitle = t('reset_user_passwd', 'admin');
+	    $this->render('resetpwd', array('model'=>$user));
 	}
 }

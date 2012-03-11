@@ -33,7 +33,7 @@ return array(
     ),
     array(
         'title' => t('system_setting', 'admin'),
-        'url' => url('admin/setting/index'),
+        'url' => url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_SYSTEM)),
         'htmlOptions' => array('target'=>'main'),
     ),
     array(

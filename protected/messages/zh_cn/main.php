@@ -19,6 +19,14 @@ return array(
     'user_token' => '标识',
         
     /*
+     * Model Config attributeLabels
+     */
+    'config_category' => '参数分类',
+    'config_name' => '参数名称',
+    'config_value' => '参数值',
+    'config_description' => '参数说明',
+        
+    /*
      * model Post attributeLabels
      */
     'post_type' => '类型',
