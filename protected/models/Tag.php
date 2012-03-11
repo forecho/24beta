@@ -91,17 +91,19 @@ class Tag extends CActiveRecord
 	
 	    $count = 0;
 	    foreach ((array)$tags as $v) {
-	        $model = Tag::model()->findByAttributes(array('name'=>$v));
+	        $model = self::model()->findByAttributes(array('name'=>$v));
 	        if ($model === null) {
 	            $model = new Tag();
 	            $model->name = $v;
 	            $model->post_nums = 1;
 	            if ($model->save())
 	                $count++;
+	            else
+	                break;
 	        }
 	        else {
 	            $model->post_nums = $model->post_nums + 1;
-	            $model->save(array('post_nums'));
+	            $model->save(true, array('post_nums'));
 	        }
 	        $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
 	        app()->getDb()->createCommand()->insert('{{post2tag}}', $columns);
