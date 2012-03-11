@@ -388,6 +388,10 @@ class Post extends CActiveRecord
 	        $this->source = strip_tags(trim($this->source));
 	    }
 	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
+	    if ($this->tags) {
+    	    $tags = str_replace('，', ',', $tags);
+    	    $this->tags = trim(trim($tags), ',');
+	    }
 	    return true;
 	}
 	

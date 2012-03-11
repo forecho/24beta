@@ -72,8 +72,10 @@ class Tag extends CActiveRecord
 	    $tags = str_replace('，', ',', $tags);
 	    $tags = explode(',', $tags);
 	    $tagsArray = array();
-	    foreach ((array)$tags as $tag)
-	        $tagsArray[] = strip_tags(trim($tag));
+	    foreach ((array)$tags as $tag) {
+	        if (!empty($tag))
+    	        $tagsArray[] = strip_tags(trim($tag));
+	    }
 	    
 	    unset($tags, $tag);
 	    return $tagsArray;
