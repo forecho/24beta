@@ -86,9 +86,13 @@ class PostController extends Controller
         $form = new PostForm();
         if (request()->getIsPostRequest() && isset($_POST['PostForm'])) {
             $form->attributes = $_POST['PostForm'];
-            if ($form->validate() && ($post = $form->save())) {
-                $this->redirect(url('post/success', array('title'=>$form->title)));
-                exit(0);
+            if ($form->validate()) {
+                $post = $form->save();
+                if (!$post->hasErrors()) {
+                    user()->setFlash('success_post_id', $post->id);
+                    $this->redirect(url('post/success'));
+                    exit(0);
+                }
             }
         }
         else {
@@ -109,14 +113,19 @@ class PostController extends Controller
         ));
     }
     
-    public function actionSuccess($title)
+    public function actionSuccess()
     {
-        $title = strip_tags(trim($title));
+        $postid = user()->getFlash('success_post_id');
+        if (empty($postid))
+            $this->redirect(app()->homeUrl);
         
-        $this->setSiteTitle(t('contribute_post_success', 'main', array('{title}'=>$title)));
+        $this->setSiteTitle(t('contribute_post_success'));
         
-        cs()->registerMetaTag('all', 'robots');
-        $this->render('create_success', array('title'=>$title));
+        cs()->registerMetaTag('noindex, follow', 'robots');
+        $this->render('create_success', array(
+            'title'=>t('contribute_post_success'),
+            'postid'=>$postid,
+        ));
     }
     
     

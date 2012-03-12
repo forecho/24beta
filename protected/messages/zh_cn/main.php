@@ -174,7 +174,7 @@ return array(
      * post create
      */
     'contribute_post' => '投递文章',
-    'contribute_post_success' => '感谢您的投递，文章标题：{title}',
+    'contribute_post_success' => '感谢您的投递！',
     'post_title' => '文章标题',
     'post_source' => '文章来源',
     'post_contributor' => '您的大名',

@@ -18,7 +18,7 @@ class PostForm extends CFormModel
     public function rules()
     {
         return array(
-            array('title, content', 'required'),
+            array('title, summary, content', 'required'),
             array('category_id, topic_id', 'numerical', 'integerOnly'=>true),
 			array('contributor', 'length', 'max'=>50),
 	        array('contributor_email, contributor_site, source, tags', 'length', 'max'=>250),
