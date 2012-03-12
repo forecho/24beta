@@ -139,6 +139,18 @@ return array(
     'user_is_not_exist' => '该用户不存在',
     'reset_user_passwd' => '重置用户密码',
     'user_resetpwd_success' => '修改{name}密码成功',
+        
+    /* config manage */
+    'custome_config_params' => '自定义参数',
+    'system_config_params' => '系统功能',
+    'display_config_params' => '网站显示',
+    'ui_config_params' => '界面元素',
+    'performance_config_params' => '性能相关',
+    'sns_config_params' => '社会化分享',
+    'view_config_params' => '查看配置参数',
+    'edit_config_params' => '编辑配置参数',
+    'the_following_names_error' => '以下参数保存出错',
+    'cofig_save_success' => '配置参数保存成功',
 
 );
 

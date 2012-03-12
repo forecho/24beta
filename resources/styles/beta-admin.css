@@ -30,3 +30,11 @@
 
 /* comment list */
 .author-name {width:80px;}
+
+
+/* config manage */
+.beta-config-table td, .beta-config-table th {vertical-align:middle;}
+.table.beta-config-table td input {margin:0;}
+.config-error-names {margin-top:10px;}
+.config-error-names li {margin-bottom:10px;}
+.beta-config-table textarea {height:70px;}
