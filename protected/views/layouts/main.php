@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-all.css');?>" />
     <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.1.min.js');?>"></script>
+    <?php echo param('header_html');?>
 </head>
 <body>
 <div class="beta-container">
@@ -34,6 +35,7 @@
         </div>
     
 </div>
+<?php echo param('footer_before_html');?>
 <div class="beta-footer">
     <div class="beta-container">
         <p><?php echo t('site_announce');?></p>
@@ -42,8 +44,8 @@
     </div>
 </div>
 <a class="beta-backtop" href="#top"><?php echo t('return_top');?></a>
+<?php echo param('footer_after_html');?>
 <?php echo param('tongjiCode');?>
-
 </body>
 </html>
 

@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+
+/* custom */
+.align-right {text-align:right;}
+.align-left {text-align:left;}
+.align-center {text-align:center;}
+.cgray {color:gray;}
+.f14px {font-size:14px;}
+.f12px {font-size:12px;}
+
 .beta-container {padding:5px;}
 
 .admin-sidebar {margin:0px; padding:0px;}

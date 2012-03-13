@@ -7,8 +7,13 @@ define('BETA_NO', 0);
 try {
     $params = require(BETA_CONFIG_ROOT . DS . 'params.php');
     $defaultSetting = require(BETA_CONFIG_ROOT . DS . 'setting.php');
-    $customSetting = @require($defaultSetting['dataPath'] . DS . 'setting.config.php');
-    $params = array_merge($defaultSetting, $params, $customSetting);
+    $params = array_merge($defaultSetting, $params);
+    $cachefile = $defaultSetting['dataPath'] . DS . 'setting.config.php';
+    if (file_exists($cachefile)) {
+        $customSetting = require($cachefile);
+        $params = array_merge($params, $customSetting);
+    }
+    
 }
 catch (Exception $e) {
     echo $e->getMessage();
@@ -31,9 +36,10 @@ return array(
 		'application.models.*',
 		'application.components.*',
         'application.extensions.*',
+        'application.widgets.*',
         'application.helpers.*',
         'application.libs.*',
-        'application.widgets.*',
+        'application.apis.*',
 	),
         
     'modules' => array(
