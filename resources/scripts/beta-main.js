@@ -52,22 +52,22 @@ var BetaPost = {
 			event.data.content.focus();
 			event.preventDefault();
 		}
-		else if ($(this).find('.beta-captcha:visible').length == 0) {
-			var captchaEl = $(this).find('.captcha-clearfix img.beta-captcha-img');
-			captchaEl.attr('src', captchaEl.attr('lazy-src')).removeAttr('lazy-src');
-			$(this).find('.captcha-clearfix').fadeIn('fast');
-			$(this).find('.beta-captcha:visible').focus();
-			event.preventDefault();
-		}
-		else {
-			var captcha = $.trim($(this).find('.beta-captcha').val());
-			if (captcha.length != 4) {
-				$(this).find('.beta-captcha').parents('.beta-control-group').addClass('error');
-				$(this).find('.beta-captcha').focus();
+		else if ($(this).find('.beta-captcha').length > 0) {
+			if ($(this).find('.beta-captcha:visible').length == 0) {
+				var captchaEl = $(this).find('.captcha-clearfix img.beta-captcha-img');
+				captchaEl.attr('src', captchaEl.attr('lazy-src')).removeAttr('lazy-src');
+				$(this).find('.captcha-clearfix').fadeIn('fast');
+				$(this).find('.beta-captcha:visible').focus();
 				event.preventDefault();
 			}
-			else
-				;
+			else {
+				var captcha = $.trim($(this).find('.beta-captcha').val());
+				if (captcha.length != 4) {
+					$(this).find('.beta-captcha').parents('.beta-control-group').addClass('error');
+					$(this).find('.beta-captcha').focus();
+					event.preventDefault();
+				}
+			}
 		}
 	}
 };
@@ -163,7 +163,7 @@ var BetaComment = {
 		}
 		else
 			form.hide();
-		
+
 		form.next('.beta-alert-message:visible').hide();
 	},
 	rating: function(event) {

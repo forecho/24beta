@@ -83,7 +83,8 @@ class PostForm extends CFormModel
     
     public function captchaAllowEmpty()
     {
-        return false;
+        return user()->checkAccess('editor');
     }
-        
+
+    
 }
