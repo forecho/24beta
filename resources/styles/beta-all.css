@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-body{margin:0;font-family:arial,helvetica,"Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;font-size:14px;line-height:18px;color:#333333;background-color:#ffffff;}
+body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:18px;color:#333333;background-color:#ffffff;}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
 audio:not([controls]){display:none;}
