@@ -27,7 +27,7 @@ var contentHtmlTags = {
             '.font-style', '.text-decoration', '.vertical-align', '.background'
     ],
     a: ['href', 'target', 'name'],
-    embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+    embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess', 'flashvars'],
     img: ['src', 'width', 'height', 'border', 'alt', 'title', '.width', '.height'],
     'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6': [
             'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',

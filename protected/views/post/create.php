@@ -64,6 +64,7 @@
         </div>
         <div class="clear"></div>
     </div>
+    <?php if (!$form->captchaAllowEmpty()):?>
     <div class="beta-control-group captcha-clearfix <?php echo $captchaClass?>">
         <label class="beta-control-label"><?php echo t('captcha');?></label>
         <div class="beta-controls">
@@ -73,6 +74,7 @@
         </div>
         <div class="clear"></div>
     </div>
+    <?php endif;?>
     <div class="beta-form-actions acenter">
         <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary'));?>
         <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn'));?>

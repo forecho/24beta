@@ -66,6 +66,12 @@
                 <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
             </label>
             <label class="checkbox inline">
+                <?php echo CHtml::activeCheckBox($model, 'hottest');?><?php echo t('hottest_show', 'admin');?>
+            </label>
+            <label class="checkbox inline">
+                <?php echo CHtml::activeCheckBox($model, 'recommend');?><?php echo t('recommend_show', 'admin');?>
+            </label>
+            <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'istop');?><?php echo t('settop', 'admin');?>
             </label>
             <label class="checkbox inline">

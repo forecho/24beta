@@ -60,6 +60,8 @@ return array(
     'options' => '选项',
     'state_show' => '显示',
     'home_show' => '首页',
+    'hottest_show' => '热门',
+    'recommend_show' => '推荐',
     'save_post_success' => '{title}&nbsp;发表成功，<a href="{url}" target="_blank">点击查看</a>',
 
     /* create topic */
