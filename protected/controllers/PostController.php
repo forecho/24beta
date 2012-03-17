@@ -7,7 +7,7 @@ class PostController extends Controller
         if ($id <= 0)
             throw new CHttpException(404, t('post_is_not_found'));
         
-        $cacheID = sprintf(param('cache_post_id'), $postid);
+        $cacheID = sprintf(param('cache_post_id'), $id);
         $cachePostId = app()->cache->get($cacheID);
         if ($cachePostId === false)
             $post = Post::model()->published()->findByPk($id);
