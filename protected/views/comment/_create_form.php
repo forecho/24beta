@@ -18,7 +18,7 @@
     <div class="clear"></div>
 </div>
 <div class="acenter">
-    <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary commit-submit'));?>
+    <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn small'));?>
 </div>
 <?php echo CHtml::endForm();?>
 

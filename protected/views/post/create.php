@@ -78,8 +78,8 @@
     </div>
     <?php endif;?>
     <div class="beta-form-actions acenter">
-        <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn btn-primary'));?>
-        <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn'));?>
+        <?php echo CHtml::submitButton(t('submit'), array('class'=>'beta-btn small'));?>
+        <?php echo CHtml::resetButton(t('reset'), array('class'=>'beta-btn small'));?>
     </div>
     <?php echo CHtml::endForm();?>
 </div>
