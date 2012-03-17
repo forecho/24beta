@@ -3,6 +3,7 @@ class UploadController extends Controller
 {
     public function actionImage()
     {
+        // @todo 此处有个权限验证
         $upload = CUploadedFile::getInstanceByName('imgFile');
         $this->uploadFile($upload, Upload::TYPE_PICTURE, 'images');
     }

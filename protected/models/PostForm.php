@@ -66,12 +66,12 @@ class PostForm extends CFormModel
     
     public function state()
     {
-        return user()->checkAccess('enterAdminSystem') ? Post::STATE_ENABLED : Post::STATE_DISABLED;
+        return user()->checkAccess('chief_editor') ? Post::STATE_ENABLED : Post::STATE_DISABLED;
     }
     
     public function homeshow()
     {
-        return user()->checkAccess('enterAdminSystem') ? BETA_YES : param('defaultPostShowHomePage');
+        return user()->checkAccess('chief_editor') ? BETA_YES : param('defaultPostShowHomePage');
     }
         
     public function afterSave(Post $post)
