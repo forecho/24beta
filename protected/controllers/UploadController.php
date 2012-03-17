@@ -4,8 +4,18 @@ class UploadController extends Controller
     public function actionImage()
     {
         // @todo 此处有个权限验证
-        $upload = CUploadedFile::getInstanceByName('imgFile');
-        $this->uploadFile($upload, Upload::TYPE_PICTURE, 'images');
+        if (user()->checkAccess('upload_file')) {
+            $upload = CUploadedFile::getInstanceByName('imgFile');
+            $this->uploadFile($upload, Upload::TYPE_PICTURE, 'images');
+        }
+        else {
+            $data = array(
+                'error' => 1,
+                'message' => t('you_do_not_have_enough_permissions'),
+            );
+            echo CJSON::encode($data);
+            exit(0);
+        }
     }
     
     private function uploadFile(CUploadedFile $upload, $fileType = Upload::TYPE_UNKNOWN, $additional = null)
