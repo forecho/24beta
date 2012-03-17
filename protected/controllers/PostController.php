@@ -7,7 +7,13 @@ class PostController extends Controller
         if ($id <= 0)
             throw new CHttpException(404, t('post_is_not_found'));
         
-        $post = Post::model()->published()->findByPk($id);
+        $cacheID = sprintf(param('cache_post_id'), $postid);
+        $cachePostId = app()->cache->get($cacheID);
+        if ($cachePostId === false)
+            $post = Post::model()->published()->findByPk($id);
+        else
+            $post = Post::model()->findByPk($id);
+        
         if (null === $post)
             throw new CHttpException(404, t('post_is_not_found'));
 
@@ -118,6 +124,9 @@ class PostController extends Controller
         $postid = user()->getFlash('success_post_id');
         if (empty($postid))
             $this->redirect(app()->homeUrl);
+        
+        $cacheID = sprintf(param('cache_post_id'), $postid);
+        app()->cache->set($cacheID, $postid, param('expire_after_create_post_successs_post_id'));
         
         $this->setSiteTitle(t('contribute_post_success'));
         
