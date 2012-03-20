@@ -86,6 +86,8 @@ class PostController extends Controller
 	        throw new CHttpException(500);
 	    
 	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
+	    if ($model->state == AdminPost::STATE_ENABLED)
+	        $model->create_time = $_SERVER['REQUEST_TIME'];
 	    $model->save(true, array('state'));
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
@@ -134,7 +136,6 @@ class PostController extends Controller
 	     
 	    $this->render('list', $data);
 	}
-
 	
 	public function actionSetHottest($id, $callback)
 	{
