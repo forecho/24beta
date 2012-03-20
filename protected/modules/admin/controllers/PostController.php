@@ -86,9 +86,14 @@ class PostController extends Controller
 	        throw new CHttpException(500);
 	    
 	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
-	    if ($model->state == AdminPost::STATE_ENABLED)
+	    if ($model->state == AdminPost::STATE_ENABLED) {
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
-	    $model->save(true, array('state'));
+	        $attributes = array('state', 'create_teme');
+	    }
+	    else
+	        $attributes = array('state');
+	    
+        $model->save(true, $attributes);
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
 	    else {
