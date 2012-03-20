@@ -88,7 +88,7 @@ class PostController extends Controller
 	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
 	    if ($model->state == AdminPost::STATE_ENABLED) {
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
-	        $attributes = array('state', 'create_teme');
+	        $attributes = array('state', 'create_time');
 	    }
 	    else
 	        $attributes = array('state');
