@@ -39,9 +39,9 @@ class AdminPost extends Post
     public static function fetchList($criteria = null, $sort = true, $pages = true)
     {
         $criteria = ($criteria === null) ? new CDbCriteria() : $criteria;
-        if (empty($criteria->limit))
+        if ($criteria->limit < 0)
             $criteria->limit = param('adminPostCountOfPage');
-         
+        
         if ($sort) {
             $sort  = new CSort(__CLASS__);
             $sort->defaultOrder = 'id desc';
@@ -54,7 +54,7 @@ class AdminPost extends Post
             $pages->setPageSize($criteria->limit);
             $pages->applyLimit($criteria);
         }
-         
+
         $models = self::model()->findAll($criteria);
          
         $data = array(

@@ -48,7 +48,7 @@ class AdminUser extends User
     public static function fetchList($criteria = null, $sort = true, $pages = true)
     {
         $criteria = ($criteria === null) ? new CDbCriteria() : $criteria;
-        if (empty($criteria->limit))
+        if ($criteria->limit < 0)
             $criteria->limit = param('adminUserCountOfPage');
          
         if ($sort) {
