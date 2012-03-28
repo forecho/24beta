@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="beta-container">
-    <div class="well well-small">
+    <div class="well well-small btn-toolbar btn-top-toolbar">
         <div class="btn-group">
             <?php echo l(t('latest_comment_in_hours', 'admin', array('{hours}'=>8)), url('admin/comment/latest', array('hours'=>12)), array('class'=>'btn btn-small'));?>
             <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">

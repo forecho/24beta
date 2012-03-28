@@ -16,6 +16,8 @@
 .admin-sidebar .menu-item {line-height:28px;}
 .sidebar-menus .sub-item {text-indent:15px;}
 
+.btn-top-toolbar {margin-top:0; margin-bottom:0;}
+
 .dropdown-menu-small {font-size:12px;}
 
 #beta-admin-tip {position:fixed; top:1px; right:1px; border:1px solid #DFDFDF; background:#EFEFEF; color:gray; padding:0 5px; box-shadow:0 0 2px #808080; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; display:none;}

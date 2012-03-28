@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="beta-container">
-    <div class="well well-small">
+    <div class="well well-small btn-toolbar btn-top-toolbar">
         <div class="btn-group">
             <?php echo l(t('topic_top_label', 'admin', array('{count}'=>10)), url('admin/topic/hottest', array('count'=>10)), array('class'=>'btn btn-small'));?>
             <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
