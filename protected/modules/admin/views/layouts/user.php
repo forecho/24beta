@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="beta-container">
-    <div class="well btn-toolbar">
+    <div class="well well-small">
         <div class="btn-group">
             <?php echo l(t('most_active_users', 'admin'), url('admin/user/mostactive', array('day'=>1)), array('class'=>'btn btn-small'));?>
             <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">

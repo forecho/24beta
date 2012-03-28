@@ -10,7 +10,7 @@
 <body>
 <div class="beta-container">
 
-    <div class="well btn-toolbar">
+    <div class="well well-small">
         <div class="btn-group">
             <?php echo l(t('category_top_label', 'admin', array('{count}'=>10)), url('admin/category/hottest', array('count'=>10)), array('class'=>'btn btn-small'));?>
             <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">

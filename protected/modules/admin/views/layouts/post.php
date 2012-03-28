@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="beta-container">
-    <div class="well btn-toolbar">
+    <div class="well well-small">
         <div class="btn-group"><?php echo l(t('create_posts', 'admin'), url('admin/post/createpost'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('verify_posts', 'admin'), url('admin/post/verify'), array('class'=>'btn btn-small'));?></div>
         <div class="btn-group"><?php echo l(t('today_posts', 'admin'), url('admin/post/today'), array('class'=>'btn btn-small'));?></div>
