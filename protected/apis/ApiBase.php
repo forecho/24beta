@@ -38,7 +38,7 @@ class ApiBase
     
     protected function requiredParams($params)
     {
-        $params = array($params);
+        $params = (array)$params;
         
         $allParams = array_keys($this->_params);
         $diff = join('|', array_diff($params, $allParams));
