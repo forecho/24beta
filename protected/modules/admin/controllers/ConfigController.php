@@ -1,5 +1,5 @@
 <?php
-class ConfigController extends Controller
+class ConfigController extends AdminController
 {
     public function actionView($categoryid)
     {

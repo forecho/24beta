@@ -1,6 +1,6 @@
 <?php
 
-class TopicController extends Controller
+class TopicController extends AdminController
 {
     public function init()
     {

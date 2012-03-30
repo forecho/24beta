@@ -1,6 +1,6 @@
 <?php
 
-class ToolController extends Controller
+class ToolController extends AdminController
 {
 	public function actionIndex()
 	{

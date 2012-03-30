@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends Controller
+class DefaultController extends AdminController
 {
 	public function actionIndex()
 	{
@@ -23,4 +23,10 @@ class DefaultController extends Controller
 	{
 	    echo __FILE__;
 	}
+
+    public function actionTest()
+    {
+        $this->layout = 'test';
+        $this->render('welcome');
+    }
 }

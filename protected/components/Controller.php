@@ -5,8 +5,6 @@
  */
 class Controller extends CController
 {
-    public $adminTitle;
-    
 	public function actions()
 	{
 		return array(
