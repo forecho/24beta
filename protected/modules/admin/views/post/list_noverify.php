@@ -1,4 +1,4 @@
-<h3><?php echo user()->getFlash('table_caption', t('post_list_table', 'admin'));?></h3>
+<h3><?php echo user()->getFlash('table_caption', t('noverify_post_list_table', 'admin'));?></h3>
 <div class="btn-toolbar">
     <button class="btn btn-small"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small"><?php echo t('reverse_select', 'admin')?></button>

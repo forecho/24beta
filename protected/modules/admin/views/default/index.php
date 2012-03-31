@@ -15,7 +15,7 @@
             <ul class="nav">
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">快捷操作<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('action_shortcut', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><?php echo l(t('create_posts', 'admin'), url('admin/post/createpost'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('verify_posts', 'admin'), url('admin/post/verify'), array('target'=>'main'));?></li>
@@ -137,12 +137,12 @@
 </div>
 <div class="well admin-sidebar">
     <ul class="nav nav-list">
-        <li class="nav-header">文章</li>
-        <li><a href="#"><i class="icon-pencil"></i>&nbsp;发布</a></li>
-        <li><a href="#"><i class="icon-eye-open"></i>&nbsp;审核</a></li>
-        <li class="nav-header">评论</li>
-        <li><a href="#"><i class="icon-eye-open"></i>&nbsp;审核</a></li>
-        <li><a href="#"><i class="icon-time"></i>&nbsp;最新</a></li>
+        <li class="nav-header"><?php echo t('article', 'admin');?></li>
+        <li><?php echo l(t('action_post', 'admin'), url('admin/post/createpost'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('action_verify', 'admin'), url('admin/post/verify'), array('target'=>'main'));?></li>
+        <li class="nav-header"><?php echo t('post_comment', 'admin');?></li>
+        <li><?php echo l(t('action_verify', 'admin'), url('admin/comment/verify'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('latest', 'admin'), url('admin/comment/latest'), array('target'=>'main'));?></li>
     </ul>
 </div>
 <div class="admin-container">
