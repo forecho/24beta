@@ -11,6 +11,7 @@ return array(
     'post_tag' => '标签',
     'post_category' => '分类',
     'post_topic' => '主题',
+    'topic_category' => '主题分类',
     'comment_manage' => '评论',
     'user_manage' => '用户',
     'system_tool' => '工具',
@@ -19,6 +20,7 @@ return array(
     'about_us' => '关于',
     'our_team' => '团队',
     'provision' => '条款',
+    'statistics' => '统计',
 
     'create' => '新建',
     'edit' => '编辑',
@@ -45,13 +47,13 @@ return array(
     'tag_list_table' => '标签列表',
     'hottest_tags_list' => '热门标签列表',
     'latest_tags_list' => '最新添加标签',
-    'tag_top_label' => '热门标签 {count}',
+    'hottest_tags' => '热门标签',
     'tag_latest_label' => '最新标签 {count}',
 
     'create_category' => '新建分类',
     'edit_category' => '编辑分类',
     'category_list_table' => '分类列表',
-    'category_top_label' => '热门分类 {count}',
+    'category_statistics' => '分类统计',
 
     /* create post */
     'create_post' => '发表文章',
@@ -71,7 +73,7 @@ return array(
     'create_root_topic' => '不选择表示创建新的一级主题',
     'save_topic_success' => '{name}&nbsp;保存成功。',
     'topic_list_table' => '主题列表',
-    'topic_top_label' => '热门主题 {count}',
+    'topic_statistics' => '主题统计',
 
     /* create category */
     'create_category' => '新建分类',
@@ -86,6 +88,7 @@ return array(
     'search_user' => '搜索用户',
     'today_signup' => '今日注册',
     'most_active_users' => '最活跃用户',
+    'user_statistics' => '用户统计',
     'one_day' => '一天内',
     'one_week' => '一周内',
     'one_month' => '一月内',
@@ -105,8 +108,8 @@ return array(
     'user_search_result' => '用户查询结果',
 
     /* comment manage */
-    'latest_comment_in_hours' => '{hours} 小时内最新',
-    'recommend_comment' => '推荐评论 {count}',
+    'latest_comment' => '最新评论',
+    'recommend_comment' => '推荐评论',
     'verify_comment' => '审核评论',
     'search_comment' => '搜索评论',
     'comment_list_table' => '评论列表',
@@ -115,7 +118,7 @@ return array(
 
     /* post manage */
     'create_posts' => '发表文章',
-    'today_posts' => '今日发布',
+    'latest_posts' => '今日发布',
     'verify_posts' => '审核文章',
     'search_posts' => '搜索文章',
     'hottest_posts' => '热门文章',
@@ -145,10 +148,20 @@ return array(
     /* config manage */
     'custome_config_params' => '自定义参数',
     'system_config_params' => '系统功能',
+    'system_site' => '网站设置',
+    'system_rewrite' => 'URL伪表态',
+    'system_cache' => '缓存设置',
+    'system_attachments' => '附件设置',
+
     'display_config_params' => '网站显示',
-    'ui_config_params' => '界面元素',
-    'performance_config_params' => '性能相关',
+    'display_template' => '模板',
+    'display_ui' => '界面元素',
+
     'sns_config_params' => '社会化分享',
+    'sns_interface' => '接口设置',
+    'sns_stats' => '数据统计',
+    'sns_template' => '内容模板',
+
     'view_config_params' => '查看配置参数',
     'edit_config_params' => '编辑配置参数',
     'the_following_names_error' => '以下参数保存出错',

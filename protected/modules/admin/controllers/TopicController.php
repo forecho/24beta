@@ -2,11 +2,6 @@
 
 class TopicController extends AdminController
 {
-    public function init()
-    {
-        $this->layout = 'topic';
-    }
-    
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -70,17 +65,16 @@ class TopicController extends AdminController
 	    $this->render('list', $data);
 	}
 	
-	public function actionHottest($count)
+	public function actionStatistics()
 	{
-	    $count = (int)$count;
 	    $criteria = new CDbCriteria();
-	    $criteria->limit = $count;
+	    $criteria->limit = param('adminTopicCountOfPage');
 	    
 	    $sort = new CSort('Topic');
 	    $sort->defaultOrder = 'post_nums desc, id asc';
 	    $sort->applyOrder($criteria);
 	    
-	    $pages = new CPagination($count);
+	    $pages = new CPagination(Topic::model()->count($criteria));
 	    $pages->pageSize = param('adminTopicCountOfPage');
 	    $pages->applyLimit($criteria);
 	    

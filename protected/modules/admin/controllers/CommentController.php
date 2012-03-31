@@ -2,17 +2,7 @@
 
 class CommentController extends AdminController
 {
-    public function init()
-    {
-        $this->layout = 'comment';
-    }
-    
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-
-	public function actionLatest($hours)
+	public function actionLatest($hours = 48)
 	{
 	    $hours = (int)$hours;
 	    
@@ -22,7 +12,7 @@ class CommentController extends AdminController
 	    
 	    $data = AdminComment::fetchList($criteria);
 	    
-	    $this->adminTitle = t('latest_comment_in_hours', 'admin', array('{hours}'=>$hours));
+	    $this->adminTitle = t('latest_comment', 'admin');
 	    
 	    $this->render('list', $data);
 	}
@@ -35,7 +25,7 @@ class CommentController extends AdminController
 	    
 	    $data = AdminComment::fetchList($criteria);
 	    
-	    $this->adminTitle = t('recommend_comment', 'admin', array('{count}'=>$count));
+	    $this->adminTitle = t('verify_comment', 'admin');
 	    
 	    $this->render('list', $data);
 	}
@@ -45,16 +35,16 @@ class CommentController extends AdminController
 	    
 	}
 	
-	public function actionRecommend($count)
+	public function actionRecommend()
 	{
-	    $count = (int)$count;
+	    $count = (int)param('adminCommentCountOfPage');
 	    $criteria = new CDbCriteria();
 	    $criteria->scopes = 'recommend';
 	    $criteria->limit = $count;
 	     
 	    $data = AdminComment::fetchList($criteria);
 	     
-	    $this->adminTitle = t('recommend_comment', 'admin', array('{count}'=>$count));
+	    $this->adminTitle = t('recommend_comment', 'admin');
 	     
 	    $this->render('list', $data);
 	}

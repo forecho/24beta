@@ -2,11 +2,6 @@
 
 class CategoryController extends AdminController
 {
-    public function init()
-    {
-        $this->layout = 'category';
-    }
-    
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -69,18 +64,17 @@ class CategoryController extends AdminController
 	    $this->render('list', $data);
 	}
 	
-	public function actionHottest($count)
+	public function actionStatistics()
 	{
-	    $count = (int)$count;
 	    $criteria = new CDbCriteria();
-	    $criteria->limit = $count;
+	    $criteria->limit = param('adminCategoryCountOfPage');
 	    
 	    $sort = new CSort('Category');
 	    $sort->defaultOrder = 'post_nums desc, id asc';
 	    $sort->applyOrder($criteria);
 	    
 	    $pages = new CPagination(AdminCategory::model()->count($criteria));
-	    $pages->pageSize = $criteria->limit;
+	    $pages->pageSize = param('adminCategoryCountOfPage');
 	    $pages->applyLimit($criteria);
 	    
 	    $models = AdminCategory::model()->findAll($criteria);

@@ -2,11 +2,22 @@
 class AdminConfig extends Config
 {
     const CATEGORY_CUSTOM = 0;
+    
     const CATEGORY_SYSTEM = 10;
+    const CATEGORY_SYSTEM_SITE = 11;
+    const CATEGORY_SYSTEM_REWRITE = 12;
+    const CATEGORY_SYSTEM_CACHE = 13;
+    const CATEGORY_SYSTEM_ATTACHMENTS = 14;
+    
     const CATEGORY_DISPLAY = 20;
-    const CATEGORY_UI = 30;
-    const CATEGORY_PERFORMANCE = 40;
-    const CATEGORY_SNS = 50;
+    const CATEGORY_DISPLAY_TEMPLATE = 21;
+    const CATEGORY_DISPLAY_UI = 220;
+    
+    const CATEGORY_SNS = 30;
+    const CATEGORY_SNS_INTERFACE = 31;
+    const CATEGORY_SNS_STATS = 32;
+    const CATEGORY_SNS_TEMPLATE = 33;
+    
     
     /**
      * Returns the static model of the specified AR class.
@@ -22,11 +33,21 @@ class AdminConfig extends Config
         // @todo not complete
         return array(
             self::CATEGORY_CUSTOM => t('custome_config_params', 'admin'),
+        
             self::CATEGORY_SYSTEM => t('system_config_params', 'admin'),
+            self::CATEGORY_SYSTEM_SITE => t('system_site', 'admin'),
+            self::CATEGORY_SYSTEM_REWRITE => t('system_rewrite', 'admin'),
+            self::CATEGORY_SYSTEM_CACHE => t('system_cache', 'admin'),
+            self::CATEGORY_SYSTEM_ATTACHMENTS => t('system_attachements', 'admin'),
+        
             self::CATEGORY_DISPLAY => t('display_config_params', 'admin'),
-            self::CATEGORY_UI => t('ui_config_params', 'admin'),
-            self::CATEGORY_PERFORMANCE => t('performance_config_params', 'admin'),
+            self::CATEGORY_DISPLAY_TEMPLATE => t('display_template', 'admin'),
+            self::CATEGORY_DISPLAY_UI => t('display_ui', 'admin'),
+        
             self::CATEGORY_SNS => t('sns_config_params', 'admin'),
+            self::CATEGORY_SNS_INTERFACE => t('sns_interface', 'admin'),
+            self::CATEGORY_SNS_STATS => t('sns_stats', 'admin'),
+            self::CATEGORY_SNS_TEMPLATE => t('sns_template', 'admin'),
         );
     }
     

@@ -2,11 +2,6 @@
 
 class TagController extends AdminController
 {
-    public function init()
-    {
-        $this->layout = 'tag';
-    }
-    
 	public function actionIndex()
 	{
 		$this->render('index');

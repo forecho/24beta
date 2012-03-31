@@ -164,36 +164,36 @@ class SiteController extends Controller
     {
         phpinfo();
         exit;
-        $check = user()->checkAccess('enterAdminSystem');
-        var_dump($check);
-        exit;
         
         $auth=Yii::app()->authManager;
- 
-        $auth->createOperation('createPost','create a post');
-        $auth->createOperation('updatePost','update a post');
-        $auth->createOperation('deletePost','delete a post');
-        $auth->createOperation('enterAdminSystem','login into admin system');
+        $auth->createOperation('create_post','create a post');
+        $auth->createOperation('update_post','update a post');
+        $auth->createOperation('delete_post','delete a post');
+        $auth->createOperation('enter_admin_system','login into admin system');
+        $auth->createOperation('upload_file','upload a file');
 
         $bizRule='return Yii::app()->user->id==$params["post"]->user_id;';
-        $task=$auth->createTask('updateOwnPost','update a post by author himself',$bizRule);
-        $task->addChild('updatePost');
+        $task=$auth->createTask('update_own_post','update a post by author himself',$bizRule);
+        $task->addChild('update_post');
          
         $role=$auth->createRole('author');
-        $role->addChild('createPost');
-        $role->addChild('updateOwnPost');
+        $role->addChild('create_post');
+        $role->addChild('update_own_post');
+        $role->addChild('upload_file');
          
         $role=$auth->createRole('editor');
-        $role->addChild('updatePost');
-        $role->addChild('enterAdminSystem');
-         
-        $role=$auth->createRole('admin');
-        $role->addChild('editor');
+        $role->addChild('update_post');
+        $role->addChild('enter_admin_system');
         $role->addChild('author');
-        $role->addChild('deletePost');
+
+        $role=$auth->createRole('chief_editor');
+        $role->addChild('editor');
+        
+        $role=$auth->createRole('admin');
+        $role->addChild('chief_editor');
+        $role->addChild('delete_post');
          
         $auth->assign('admin','1');
-//         $auth->assign('author','2');
         
 
     }

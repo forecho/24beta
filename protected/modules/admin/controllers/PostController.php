@@ -2,11 +2,6 @@
 
 class PostController extends AdminController
 {
-    public function init()
-    {
-        $this->layout = 'post';
-    }
-    
     public function filters()
     {
         return array(
@@ -40,7 +35,7 @@ class PostController extends AdminController
 		$this->render('create', array('model'=>$model));
 	}
 	
-	public function actionToday()
+	public function actionLatest()
 	{
 	    $time = $_SERVER['REQUEST_TIME'] - 24*60*60;
 	    $criteria = new CDbCriteria();
