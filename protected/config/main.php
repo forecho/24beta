@@ -1,8 +1,6 @@
 <?php
 define('BETA_CONFIG_ROOT', dirname(__FILE__));
-defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-define('BETA_YES', 1);
-define('BETA_NO', 0);
+require(BETA_CONFIG_ROOT . DS . 'define.php');
 
 try {
     $params = require(BETA_CONFIG_ROOT . DS . 'params.php');

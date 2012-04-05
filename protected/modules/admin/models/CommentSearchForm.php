@@ -44,7 +44,7 @@ class CommentSearchForm extends CFormModel
             if ($this->user_name)
                 $criteria->addColumnCondition(array('t.user_name'=>$this->user_name));
             if ($this->keyword)
-                $criteria->addSearchCondition('content', $this->keyword);
+                $criteria->addSearchCondition('t.content', $this->keyword);
             
             if ($this->start_create_time || $this->end_create_time) {
                 $criteria->addCondition(array('and', 't.create_time > :starttime', 't.create_time < :endtime'));
