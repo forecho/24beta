@@ -171,7 +171,21 @@ return array(
     'edit_config_params' => '编辑配置参数',
     'the_following_names_error' => '以下参数保存出错',
     'cofig_save_success' => '配置参数保存成功',
+    'system_config_is_not_allowed_deleted' => '系统配置参数不能删除',
+    'custom_config_params' => '自定义参数',
+    'create_custom_param' => '添加参数',
 
+    /* comment search form */
+    'post_id' => '文章ID',
+    'comment_id' => '评论ID',
+    'comment_user_id' => '评论人ID',
+    'comment_user_name' => '评论人',
+    'start_create_time' => '起始时间',
+    'end_create_time' => '结束时间',
+    'comment_search' => '评论搜索',
+    'comment_search_result' => '评论查询结果',
+    'comment_create_time' => '评论时间',
+    'comment_delete_confirm' => '确定要删除评论吗？'
 );
 
 

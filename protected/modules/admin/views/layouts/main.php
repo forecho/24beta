@@ -6,6 +6,12 @@
 <link rel="stylesheet" type="text/css" href="<?php echo sbu('libs/bootstrap/css/bootstrap.min.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo sbu('styles/beta-admin.css');?>" />
 <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.1.min.js');?>"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+var BETA_YES = <?php echo BETA_YES;?>;
+var BETA_NO = <?php echo BETA_NO;?>;
+/*]]>*/
+</script>
 </head>
 <body>
 <div class="beta-container">

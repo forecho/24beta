@@ -1,7 +1,10 @@
 <?php
 class AdminConfig extends Config
 {
-    const CATEGORY_CUSTOM = 0;
+    const TYPE_SYSTEM = 0;
+    const TYPE_CUSTOM = 1;
+    
+    const CATEGORY_CUSTOM = 1;
     
     const CATEGORY_SYSTEM = 10;
     const CATEGORY_SYSTEM_SITE = 11;
@@ -64,5 +67,10 @@ class AdminConfig extends Config
         $data = "<?php\nreturn " . var_export($rows, true) . ';';
         $filename = dp('setting.config.php');
         return file_put_contents($filename, $data);
+    }
+
+    protected function beforeDelete()
+    {
+        throw new CException(t('system_config_is_not_allowed_deleted'));
     }
 }

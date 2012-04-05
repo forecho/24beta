@@ -1,8 +1,3 @@
-<div class="well btn-toolbar">
-    <?php foreach ($categoryLabels as $cid => $label):?>
-    <div class="btn-group"><?php echo l($label, url('admin/config/edit', array('categoryid'=>$cid)), array('class'=>'btn btn-small'));?></div>
-    <?php endforeach;?>
-</div>
 
 <?php if (user()->hasFlash('save_config_success')):?>
 <div class="alert alert-success">

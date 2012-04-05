@@ -4,11 +4,13 @@ class PostSearchForm extends CFormModel
     public $postid;
     public $author;
     public $keyword;
+    public $start_create_time;
+    public $end_create_time;
     
     public function rules()
     {
         return array(
-            array('postid', 'numerical', 'integerOnly'=>true),
+            array('postid, start_create_time, end_create_time', 'numerical', 'integerOnly'=>true),
             array('author, keyword', 'filter', 'filter'=>'trim'),
         );
     }

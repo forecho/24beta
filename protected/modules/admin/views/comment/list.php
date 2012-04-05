@@ -4,7 +4,7 @@
     <button class="btn btn-small">反选</button>
     <button class="btn btn-small btn-primary">通过</button>
     <button class="btn btn-small btn-danger">拒绝</button>
-    <button class="btn btn-small btn-info">删除</button>
+    <button class="btn btn-small btn-info" id="beta-delete-multi-comment" data-src="<?php echo url('admin/comment/multiDelete');?>">删除</button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -21,7 +21,7 @@
     <tbody>
         <?php foreach ($models as $model):?>
         <tr>
-            <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
+            <td class="item-checkbox"><input type="checkbox" name="itemids" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->content;?></td>
             <td><?php echo $model->authorName;?></td>
@@ -47,25 +47,11 @@
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('click', '.set-verify, .set-recommend', function(event){
-		event.preventDefault();
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			if (data.errno == 0)
-				tthis.text(data.label);
-			else
-				alert('error');
-		});
-		jqXhr.fail(function(){
-			alert('fail');
-		});
-	});
+	$(document).on('click', '.set-verify, .set-verify, .set-recommend', BetaAdmin.ajaxSetCommentBoolColumn);
+	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
+	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteComment);
+	
+	$(document).on('click', '#beta-delete-multi-comment', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiComments);
 });
 </script>
+

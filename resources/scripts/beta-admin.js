@@ -5,23 +5,28 @@ $(function(){
 		$('body').append(html);
 	}
 	$(document).ajaxStart(function(){
-		$('#beta-admin-tip').html('sending...').fadeIn('fast');
+		tip.html('sending...').fadeIn('fast');
 	});
 	
 	$(document).ajaxSuccess(function(){
-		$('#beta-admin-tip').html('Success.');
+		tip.html('Success.');
 	});
 	
 	$(document).ajaxError(function(){
-		$('#beta-admin-tip').html('Error.');
+		tip.html('Error.');
 	});
 	
 	$(document).ajaxStop(function(){
-		$('#beta-admin-tip').html('done.');
+		tip.html('done.');
 	});
 });
 
 var BetaAdmin = {
+	showAjaxMessage: function(text){
+		if (text.length > 0) {
+			$('#beta-admin-tip').html(text);
+		}
+	},
 	deletePost: function(event){
 		event.preventDefault();
 
@@ -46,6 +51,57 @@ var BetaAdmin = {
 			alert('fail');
 		});
 	},
+	deleteComment: function(event) {
+		event.preventDefault();
+		var confirm = window.confirm(event.data.onfirmText);
+	    if (!confirm) return ;
+		
+	    var tthis = $(this);
+		var jqXhr = $.ajax({
+		    url: $(this).attr('href'),
+		    dataType: 'jsonp',
+		    type: 'post',
+		    cache: false,
+		    beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				tthis.parents('tr').remove();
+			else
+				BetaAdmin.showAjaxMessage('error');
+		});
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
+	deleteMultiComments: function(event) {
+		event.preventDefault();
+		var confirm = window.confirm(event.data.onfirmText);
+		if (!confirm) return ;
+		
+		var commentIds = [];
+		$('input:checked').each(function(index, element){
+			commentIds.push($(element).val());
+		});
+
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
 	ajaxSetPostBoolColumn: function(event) {
 		event.preventDefault();
 		var tthis = $(this);
@@ -57,13 +113,33 @@ var BetaAdmin = {
 		    beforeSend: function(){}
 		});
 		jqXhr.done(function(data){
-			if (data.errno == 0)
+			if (data.errno == BETA_NO)
 			    tthis.text(data.label);
 			else
-				alert('error');
+				BetaAdmin.showAjaxMessage('error');
 		});
 		jqXhr.fail(function(){
-			alert('fail');
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
+	ajaxSetCommentBoolColumn: function(event) {
+		event.preventDefault();
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+		    url: $(this).attr('href'),
+		    dataType: 'jsonp',
+		    type: 'post',
+		    cache: false,
+		    beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == BETA_NO)
+			    tthis.text(data.label);
+			else
+				BetaAdmin.showAjaxMessage('error');
+		});
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
 		});
 	}
 };

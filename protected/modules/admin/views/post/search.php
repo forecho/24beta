@@ -4,7 +4,7 @@
     <div class="control-group">
         <?php echo CHtml::activeLabel($form, 'postid', array('class'=>'control-label'));?>
         <div class="controls">
-            <?php echo CHtml::activeTextField($form, 'postid', array('class'=>'input-mini'));?>
+            <?php echo CHtml::activeTextField($form, 'postid', array('class'=>'input-small'));?>
         </div>
     </div>
     <div class="control-group">

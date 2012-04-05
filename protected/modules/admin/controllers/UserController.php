@@ -5,8 +5,8 @@ class UserController extends AdminController
     public function filters()
     {
         return array(
-            'onlyPost + setVerify',
-            'onlyAjax + setVerify',
+            'postOnly + setVerify',
+            'ajaxOnly + setVerify',
         );
     }
     

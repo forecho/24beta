@@ -1,9 +1,3 @@
-<div class="well btn-toolbar">
-    <?php foreach ($categoryLabels as $cid => $label):?>
-    <div class="btn-group"><?php echo l($label, url('admin/config/view', array('categoryid'=>$cid)), array('class'=>'btn btn-small'));?></div>
-    <?php endforeach;?>
-</div>
-
 <h3><?php echo $this->adminTitle;?></h3>
 <table class="table table-striped table-bordered beta-config-table">
     <thead>
@@ -11,8 +5,8 @@
             <th class="span1 align-center">ID</th>
             <th class="span2 align-right"><?php echo t('config_name');?></th>
             <th class="span4"><?php echo t('config_value');?></th>
-            <th class="span4"><?php echo l(t('edit_config_params', 'admin'), url('admin/config/edit', array('categoryid'=>$categoryid)), array('class'=>'btn btn-small btn-warning'));?></th>
-            <th>#</th>
+            <th class="span4"></th>
+            <th><?php echo l(t('edit_config_params', 'admin'), url('admin/config/edit', array('categoryid'=>$categoryid)));?></th>
         </tr>
     </thead>
     <tbody>

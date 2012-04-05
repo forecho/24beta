@@ -2,6 +2,14 @@
 
 class CommentController extends AdminController
 {
+    public function filters()
+    {
+        return array(
+        'ajaxOnly + setVerify, delete, setRecommend, multiDelete',
+        'postOnly + setVerify, delete, setRecommend, multiDelete',
+        );
+    }
+    
 	public function actionLatest($hours = 48)
 	{
 	    $hours = (int)$hours;
@@ -29,10 +37,19 @@ class CommentController extends AdminController
 	    
 	    $this->render('list', $data);
 	}
-	
+
 	public function actionSearch()
 	{
-	    
+	    $form = new CommentSearchForm();
+	     
+	    if (isset($_GET['CommentSearchForm'])) {
+	        $form->attributes = $_GET['CommentSearchForm'];
+	        if ($form->validate())
+	            $data = $form->search();
+	        user()->setFlash('table_caption', t('comment_search_result', 'admin'));
+	    }
+	     
+	    $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 	
 	public function actionRecommend()
@@ -90,5 +107,49 @@ class CommentController extends AdminController
 	        exit(0);
 	    }
 	}
+
+	public function actionDelete($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminComment::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	    
+	    $result = $model->delete();
+	    $data = array(
+	        'errno' => $result ? BETA_NO : BETA_YES,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量删除评论
+	 * @param array $ids 评论ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiDelete($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	    $successIds = $failedIds = array();
+	    foreach ($ids as $id) {
+    	    $model = AdminComment::model()->findByPk($id);
+    	    if ($model === null)
+    	        continue;
+    	    
+    	    $result = $model->delete();
+    	    if ($result)
+        	    $successIds[] = $id;
+    	    else
+    	        $failedIds[] = $id;
+	    }
+	    $data = array(
+	        'success' => $successIds,
+	        'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
 }
 

@@ -62,12 +62,12 @@ class AdminComment extends Comment
 
     public function getEditUrl()
     {
-        return l(t('edit', 'admin'), url('admin/post/create', array('id'=>$this->id)));
+        return l(t('edit', 'admin'), url('admin/comment/create', array('id'=>$this->id)));
     }
 
     public function getDeleteUrl()
     {
-        return l(t('delete', 'admin'), url('admin/post/delete', array('id'=>$this->id)));
+        return l(t('delete', 'admin'), url('admin/comment/delete', array('id'=>$this->id)), array('class'=>'set-delete'));
     }
 
     public function getVerifyUrl()
