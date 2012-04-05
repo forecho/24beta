@@ -38,7 +38,25 @@
     </div>
     <?php endif;?>
     <!-- editor recommend posts end -->
-    
+    <div class="beta-block">
+        <script type="text/javascript">
+            alimama_pid="mm_12551250_1665796_9863081";
+            alimama_titlecolor="0000FF";
+            alimama_descolor ="000000";
+            alimama_bgcolor="FFFFFF";
+            alimama_bordercolor="E6E6E6";
+            alimama_linkcolor="008000";
+            alimama_bottomcolor="FFFFFF";
+            alimama_anglesize="0";
+            alimama_bgpic="0";
+            alimama_icon="0";
+            alimama_sizecode="36";
+            alimama_width=336;
+            alimama_height=280;
+            alimama_type=2;
+        </script>
+        <script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
+    </div>
     <!-- recommend comments start -->
     <?php if ($comments):?>
     <div class="beta-block beta-radius3px beta-recommend-comments">
@@ -54,3 +72,4 @@
     <!-- recommend comments end -->
 </div>
 <div class="clear"></div>
+
