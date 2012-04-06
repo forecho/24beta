@@ -76,11 +76,15 @@ var BetaAdmin = {
 	},
 	deleteMultiComments: function(event) {
 		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
 		var confirm = window.confirm(event.data.onfirmText);
 		if (!confirm) return ;
 		
 		var commentIds = [];
-		$('input:checked').each(function(index, element){
+		checkboxs.each(function(index, element){
 			commentIds.push($(element).val());
 		});
 
