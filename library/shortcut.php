@@ -4,6 +4,9 @@
  * @version v1.0
  * @since 2010-9-7 10:39
  */
+
+defined('CD_LIBRARY_ROOT') or define('CD_LIBRARY_ROOT', dirname(__FILE__));
+
 /**
  * This is the shortcut to DIRECTORY_SEPARATOR
  */
