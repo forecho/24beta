@@ -9,8 +9,8 @@ class SiteController extends Controller
         $data['comments'] = self::fetchRecommendComments();
         
         $this->setSiteTitle(null);
-        $this->setPageKeyWords(param('siteKeywords'));
-        $this->setPageDescription(param('siteDescription'));
+        $this->setPageKeyWords(param('site_keywords'));
+        $this->setPageDescription(param('site_description'));
         
         cs()->registerMetaTag('all', 'robots');
         

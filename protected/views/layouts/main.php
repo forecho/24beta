@@ -45,7 +45,7 @@
 </div>
 <a class="beta-backtop" href="#top"><?php echo t('return_top');?></a>
 <?php echo param('footer_after_html');?>
-<?php echo param('tongjiCode');?>
+<?php echo param('tongji_code');?>
 </body>
 </html>
 
