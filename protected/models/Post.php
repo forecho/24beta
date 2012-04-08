@@ -259,10 +259,12 @@ class Post extends CActiveRecord
 	    $textLen = 50;
 	    $text = mb_strimwidth($this->source, 0, $textLen, '...', app()->charset);
 	    
-	    if (strpos($this->source, 'http://') === false && strpos($this->source, 'https://') === false)
-	        $source = $text;
-	    else
+	    $pos1 = (int)strpos($this->source, 'http://');
+	    $pos2 = (int)strpos($this->source, 'https://');
+	    if ($pos1 > 0 || $pos2 > 0)
 	        $source = l($text, $this->source, array('target'=>'_blank', 'class'=>'post-source'));
+	    else
+	        $source = $text;
 	    
 	    return $source;
 	}
