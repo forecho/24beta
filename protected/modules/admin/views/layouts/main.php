@@ -15,9 +15,7 @@ var BETA_NO = <?php echo BETA_NO;?>;
 </head>
 <body>
 <div class="beta-container">
-
 <?php echo $content;?>
-
 </div>
 </body>
 </html>

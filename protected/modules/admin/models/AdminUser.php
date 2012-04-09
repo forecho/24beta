@@ -1,4 +1,13 @@
 <?php
+/**
+ * @author chendong
+ *
+ * @property string $infoUrl
+ * @property string $editurl
+ * @property string $deleteUrl
+ * @property string $verifyUrl
+ * @property string $stateText;
+ */
 class AdminUser extends User
 {
     /**
@@ -38,11 +47,12 @@ class AdminUser extends User
     
     public function getStateText()
     {
-        $states = array(
-            self::STATE_DISABLED => sprintf('<span class="label label-important">%s</span>', t('user_disabled', 'admin')),
-            self::STATE_ENABLED => sprintf('<span class="label label-success">%s</span>', t('user_enabled', 'admin')),
-        );
-        return $states[$this->state];
+        if ($this->state == self::STATE_ENABLED)
+	        $html = '<span class="label label-success">' . t('user_enabled', 'admin') . '</span>';
+	    else
+	        $html = $html = '<span class="label label-important">' . t('user_disabled', 'admin') . '</span>';
+	    
+	    return $html;
     }
     
     public static function fetchList($criteria = null, $sort = true, $pages = true)

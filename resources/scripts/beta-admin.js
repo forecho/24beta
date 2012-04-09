@@ -27,6 +27,15 @@ var BetaAdmin = {
 			$('#beta-admin-tip').html(text);
 		}
 	},
+	selectAll: function(event){
+		var checked = ($(':checkbox:not(:checked)').length > 0) ? true : false;
+		$(':checkbox').attr('checked', checked);
+	},
+	reverseSelect: function(event) {
+		$(':checkbox').each(function(index, element){
+			$(element).attr('checked', !$(element).attr('checked'));
+		});
+	},
 	deletePost: function(event){
 		event.preventDefault();
 
@@ -88,6 +97,93 @@ var BetaAdmin = {
 			commentIds.push($(element).val());
 		});
 
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
+	verifyMultiComments: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
+	recommendMultiComments: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('fail');
+		});
+	},
+	hottestMultiComments: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
 		var tthis = $(this);
 		var jqXhr = $.ajax({
 			url: $(this).attr('data-src'),

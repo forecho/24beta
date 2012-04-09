@@ -12,7 +12,7 @@
  * @property string $create_ip
  * @property integer $state
  * @property string $token
- * @property string $createTime
+ * @property string $createTimeText
  */
 class User extends CActiveRecord
 {
@@ -90,14 +90,14 @@ class User extends CActiveRecord
 		);
 	}
 	
-	public function getCreateTime($format = null)
+	public function getCreateTimeText($format = null)
 	{
 	    if  (null === $format)
 	        $format = param('formatShortDateTime');
 	
 	    return date($format, $this->create_time);
 	}
-	
+	    
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {

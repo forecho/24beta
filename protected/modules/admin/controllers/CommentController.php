@@ -25,6 +25,20 @@ class CommentController extends AdminController
 	    $this->render('list', $data);
 	}
 	
+	public function actionList($postid)
+	{
+	    $postid = (int)$postid;
+	    
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('post_id' => $postid));
+	    
+	    $data = AdminComment::fetchList($criteria);
+	    
+	    $this->adminTitle = t('latest_comment', 'admin');
+	    
+	    $this->render('list', $data);
+	}
+	
 	public function actionVerify()
 	{
 	    $count = (int)$count;
@@ -74,6 +88,7 @@ class CommentController extends AdminController
 	        throw new CHttpException(500);
 	
 	    $model->state = abs($model->state - AdminComment::STATE_ENABLED);
+	    $model->create_time = $_SERVER['REQUEST_TIME'];
 	    $model->save(true, array('state'));
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
@@ -95,7 +110,8 @@ class CommentController extends AdminController
 	        throw new CHttpException(500);
 	
 	    $model->recommend = abs($model->recommend - BETA_YES);
-	    $model->save(true, array('recommend'));
+	    $model->create_time = $_SERVER['REQUEST_TIME'];
+	    $model->save(true, array('recommend', 'create_time'));
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
 	    else {
@@ -138,6 +154,96 @@ class CommentController extends AdminController
     	        continue;
     	    
     	    $result = $model->delete();
+    	    if ($result)
+        	    $successIds[] = $id;
+    	    else
+    	        $failedIds[] = $id;
+	    }
+	    $data = array(
+	        'success' => $successIds,
+	        'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量审核评论
+	 * @param array $ids 评论ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiVerify($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	    
+	    $successIds = $failedIds = array();
+	    $attributes = array(
+	        'state' => AdminComment::STATE_ENABLED,
+	        'create_time' => $_SERVER['REQUEST_TIME'],
+	    );
+	    foreach ($ids as $id) {
+    	    $result =Comment::model()->updateByPk($id, $attributes);
+    	    if ($result)
+        	    $successIds[] = $id;
+    	    else
+    	        $failedIds[] = $id;
+	    }
+	    $data = array(
+	        'success' => $successIds,
+	        'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量推荐评论
+	 * @param array $ids 评论ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiRecommend($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	    
+	    $successIds = $failedIds = array();
+	    $attributes = array(
+	        'state' => AdminComment::STATE_ENABLED,
+	        'recommend' => BETA_YES,
+	        'create_time' => $_SERVER['REQUEST_TIME'],
+	    );
+	    foreach ($ids as $id) {
+    	    $result =Comment::model()->updateByPk($id, $attributes);
+    	    if ($result)
+        	    $successIds[] = $id;
+    	    else
+    	        $failedIds[] = $id;
+	    }
+	    $data = array(
+	        'success' => $successIds,
+	        'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量推荐评论
+	 * @param array $ids 评论ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiHottest($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	    
+	    $successIds = $failedIds = array();
+	    foreach ($ids as $id) {
+	        $model = AdminComment::model()->findByPk($id);
+	        if ($model === null) continue;
+	        
+	        $model->state = AdminComment::STATE_ENABLED;
+	        $model->up_nums += param('upNumsOfCommentIsHot');
+	        
+    	    $result = $model->save(true, array('state', 'up_nums'));
     	    if ($result)
         	    $successIds[] = $id;
     	    else

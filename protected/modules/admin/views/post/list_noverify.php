@@ -1,9 +1,10 @@
 <h3><?php echo user()->getFlash('table_caption', t('noverify_post_list_table', 'admin'));?></h3>
 <div class="btn-toolbar">
-    <button class="btn btn-small"><?php echo t('select_all', 'admin');?></button>
-    <button class="btn btn-small"><?php echo t('reverse_select', 'admin')?></button>
-    <button class="btn btn-small btn-primary"><?php echo t('pass_review', 'admin');?></button>
-    <button class="btn btn-small btn-danger"><?php echo t('delete', 'admin');?></button>
+    <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
+    <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-verify" data-src="<?php echo url('admin/comment/multiVerify');?>"><?php echo t('set_batch_verify', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-reject" data-src="<?php echo url('admin/comment/multiReject');?>"><?php echo t('set_batch_reject', 'admin');?></button>
+    <button class="btn btn-small btn-danger" id="beta-delete-multi-comment" data-src="<?php echo url('admin/comment/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>

@@ -11,7 +11,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container admin-nav-container">
-            <a class="brand" href="<?php echo app()->homeUrl;?>" target="_blank">24Beta Control</a>
+            <a class="brand" href="<?php echo url('admin/default/welcomme');?>" target="main">24Beta Control</a>
             <ul class="nav">
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
@@ -119,8 +119,9 @@
                 </li>
             </ul>
             <ul class="nav pull-right">
-                <li><a href="#"><?php echo user()->name;?></a></li>
-                <li><a href="#">退出</a></li>
+                <li><?php echo l(user()->name, url('admin/user/current'), array('target'=>'main'));?></li>
+                <li><?php echo l(t('logout_control_center', 'admin'), url('site/logout'));?></li>
+                <li><?php echo l(t('site_home', 'admin'), url('site/index'), array('target'=>'_blank'));?></li>
             </ul>
         </div>
     </div>

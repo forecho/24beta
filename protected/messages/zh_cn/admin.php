@@ -1,6 +1,7 @@
 <?php
 return array(
     'control_center' => '管理中心',
+    'site_home' => '网站首页',
     'action_shortcut' => '快捷操作',
     'post_manage' => '文章管理',
     'action_post' => '发布',
@@ -25,6 +26,7 @@ return array(
     'provision' => '条款',
     'statistics' => '统计',
     'latest' => '最新',
+    'logout_control_center' => '退出登录',
 
     'create' => '新建',
     'edit' => '编辑',
@@ -120,6 +122,7 @@ return array(
     'comment_list_table' => '评论列表',
     'set_recommend_comment' => '推荐评论',
     'cancel_recommend_comment' => '取消推荐',
+    'set_batch_verify' => '通过',
 
     /* post manage */
     'create_posts' => '发表文章',

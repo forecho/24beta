@@ -1,10 +1,10 @@
 <h3><?php echo user()->getFlash('table_caption', t('post_list_table', 'admin'));?></h3>
 <div class="btn-toolbar">
-    <button class="btn btn-small"><?php echo t('select_all', 'admin');?></button>
-    <button class="btn btn-small"><?php echo t('reverse_select', 'admin');?></button>
-    <button class="btn btn-small btn-primary"><?php echo t('setrecommend', 'admin');?></button>
-    <button class="btn btn-small btn-primary"><?php echo t('sethottest', 'admin');?></button>
-    <button class="btn btn-small btn-danger"><?php echo t('delete', 'admin');?></button>
+    <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
+    <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-verify"><?php echo t('setrecommend', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-reject"><?php echo t('sethottest', 'admin');?></button>
+    <button class="btn btn-small btn-danger" id="batch-delete"><?php echo t('delete', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -29,6 +29,7 @@
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><?php echo $model->commentUrl;?></li>
                         <li><?php echo $model->homeshowUrl;?></li>
                         <li><?php echo $model->recommendUrl;?></li>
                         <li><?php echo $model->hottestUrl;?></li>

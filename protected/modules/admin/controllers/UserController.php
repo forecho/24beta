@@ -148,4 +148,14 @@ class UserController extends AdminController
     {
         echo __METHOD__;
     }
+
+    public function actionCurrent()
+    {
+        $userID = (int)user()->id;
+        $model = AdminUser::model()->findByPk($userID);
+        if ($model === null)
+            throw new CHttpException(500, t('user_is_not_exist', 'admin'));
+        
+        $this->render('current', array('model' => $model));
+    }
 }

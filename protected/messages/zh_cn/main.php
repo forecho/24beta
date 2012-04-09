@@ -17,6 +17,8 @@ return array(
     'password' => '密码',
     'user_state' => '状态',
     'user_token' => '标识',
+    'user_disabled' => '禁用',
+    'user_enabled' => '启用',
         
     /*
      * Model Config attributeLabels
@@ -34,7 +36,7 @@ return array(
     'topic' => '主题',
     'title' => '标题',
     'create_time' => '添加时间',
-    'create_ip' => 'IP',
+    'create_ip' => 'IP地址',
     'score' => '评分',
     'score_nums' => '评分次数',
     'comment_nums' => '评论数',

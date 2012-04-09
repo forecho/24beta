@@ -1,10 +1,11 @@
 <h3><?php echo $this->adminTitle;?></h3>
 <div class="btn-toolbar">
-    <button class="btn btn-small">全选</button>
-    <button class="btn btn-small">反选</button>
-    <button class="btn btn-small btn-primary">通过</button>
-    <button class="btn btn-small btn-danger">拒绝</button>
-    <button class="btn btn-small btn-info" id="beta-delete-multi-comment" data-src="<?php echo url('admin/comment/multiDelete');?>">删除</button>
+    <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
+    <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-verify" data-src="<?php echo url('admin/comment/multiVerify');?>"><?php echo t('set_batch_verify', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-recommend" data-src="<?php echo url('admin/comment/multiRecommend');?>"><?php echo t('setrecommend', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-hottest" data-src="<?php echo url('admin/comment/multiHottest');?>"><?php echo t('sethottest', 'admin');?></button>
+    <button class="btn btn-small btn-danger" id="beta-delete-multi-comment" data-src="<?php echo url('admin/comment/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -50,8 +51,12 @@ $(function(){
 	$(document).on('click', '.set-verify, .set-verify, .set-recommend', BetaAdmin.ajaxSetCommentBoolColumn);
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
 	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteComment);
-	
 	$(document).on('click', '#beta-delete-multi-comment', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiComments);
+	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiComments);
+	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiComments);
+	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiComments);
+	$(document).on('click', '#select-all', BetaAdmin.selectAll);
+	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
 });
 </script>
 
