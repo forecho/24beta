@@ -56,7 +56,7 @@ class AdminPost extends Post
         }
 
         $models = self::model()->findAll($criteria);
-         
+
         $data = array(
             'models' => $models,
             'sort' => $sort,

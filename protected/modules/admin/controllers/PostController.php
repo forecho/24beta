@@ -5,8 +5,8 @@ class PostController extends AdminController
     public function filters()
     {
         return array(
-            'ajaxOnly + setVerify, setHottest, setRecommend, setDelete',
-            'postOnly + setVerify, setHottest, setRecommend, setDelete',
+            'ajaxOnly + setVerify, setHottest, setRecommend, setDelete, multiDelete',
+            'postOnly + setVerify, setHottest, setRecommend, setDelete, multiDelete',
         );
     }
     
@@ -37,17 +37,11 @@ class PostController extends AdminController
 	
 	public function actionLatest()
 	{
-	    $time = $_SERVER['REQUEST_TIME'] - 24*60*60;
+	    $count = (int)$count;
 	    $criteria = new CDbCriteria();
-	    $criteria->addCondition('create_time > ' . $time);
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->render('list', $data);
-	}
-	
-	public function actionList()
-	{
-	    $this->render('list');
 	}
 	
 	public function actionVerify()
@@ -217,5 +211,152 @@ class PostController extends AdminController
 	    }
 	    else
 	        throw new CHttpException(500);
+	}
+
+	/**
+	 * 批量删除文章
+	 * @param array $ids ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiDelete($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	    $successIds = $failedIds = array();
+	    foreach ($ids as $id) {
+	        $model = AdminPost::model()->findByPk($id);
+	        if ($model === null)
+	            continue;
+	        	
+	        $result = $model->delete();
+	        if ($result)
+	            $successIds[] = $id;
+	        else
+	            $failedIds[] = $id;
+	    }
+	    $data = array(
+    	    'success' => $successIds,
+    	    'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+
+	/**
+	 * 批量审核文章
+	 * @param array $ids 文章ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiVerify($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	     
+	    $successIds = $failedIds = array();
+	    $attributes = array(
+	        'state' => AdminPost::STATE_ENABLED,
+	        'create_time' => $_SERVER['REQUEST_TIME'],
+	    );
+	    foreach ($ids as $id) {
+	        $result = AdminPost::model()->updateByPk($id, $attributes);
+	        if ($result)
+	            $successIds[] = $id;
+	        else
+	            $failedIds[] = $id;
+	    }
+	    $data = array(
+    	    'success' => $successIds,
+    	    'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+
+	/**
+	 * 批量拒绝文章
+	 * @param array $ids 文章ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiReject($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	     
+	    $successIds = $failedIds = array();
+	    $attributes = array(
+	        'state' => AdminPost::STATE_REJECTED,
+	    );
+	    foreach ($ids as $id) {
+	        $result = AdminPost::model()->updateByPk($id, $attributes);
+	        if ($result)
+	            $successIds[] = $id;
+	        else
+	            $failedIds[] = $id;
+	    }
+	    $data = array(
+    	    'success' => $successIds,
+    	    'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量推荐文章
+	 * @param array $ids 文章ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiRecommend($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	     
+	    $successIds = $failedIds = array();
+	    $attributes = array(
+    	    'state' => AdminPost::STATE_ENABLED,
+    	    'recommend' => BETA_YES,
+    	    'create_time' => $_SERVER['REQUEST_TIME'],
+	    );
+	    foreach ($ids as $id) {
+	        $result = AdminPost::model()->updateByPk($id, $attributes);
+	        if ($result)
+	            $successIds[] = $id;
+	        else
+	            $failedIds[] = $id;
+	    }
+	    $data = array(
+    	    'success' => $successIds,
+    	    'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
+	}
+	
+	/**
+	 * 批量设置热门文章
+	 * @param array $ids 文章ID数组
+	 * @param string $callback jsonp回调函数，自动赋值
+	 */
+	public function actionMultiHottest($callback)
+	{
+	    $ids = (array)request()->getPost('ids');
+	     
+	    $successIds = $failedIds = array();
+	    foreach ($ids as $id) {
+	        $model = AdminPost::model()->findByPk($id);
+	        if ($model === null) continue;
+	         
+	        $model->hottest = BETA_YES;
+	        $model->state = AdminPost::STATE_ENABLED;
+	         
+	        $result = $model->save(true, array('hottest', 'state'));
+	        if ($result)
+	            $successIds[] = $id;
+	        else
+	            $failedIds[] = $id;
+	    }
+	    $data = array(
+    	    'success' => $successIds,
+    	    'failed' => $failedIds,
+	    );
+	    echo $callback . '(' . CJSON::encode($data) . ')';
+	    exit(0);
 	}
 }

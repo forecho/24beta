@@ -123,10 +123,11 @@ return array(
     'set_recommend_comment' => '推荐评论',
     'cancel_recommend_comment' => '取消推荐',
     'set_batch_verify' => '通过',
+    'set_batch_reject' => '拒绝',
 
     /* post manage */
     'create_posts' => '发表文章',
-    'latest_posts' => '今日发布',
+    'latest_posts' => '最新发布',
     'verify_posts' => '审核文章',
     'search_posts' => '搜索文章',
     'hottest_posts' => '热门文章',

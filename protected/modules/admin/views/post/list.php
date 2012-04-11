@@ -2,9 +2,9 @@
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
-    <button class="btn btn-small btn-primary" id="batch-verify"><?php echo t('setrecommend', 'admin');?></button>
-    <button class="btn btn-small btn-primary" id="batch-reject"><?php echo t('sethottest', 'admin');?></button>
-    <button class="btn btn-small btn-danger" id="batch-delete"><?php echo t('delete', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-recommend" data-src="<?php echo url('admin/post/multiRecommend');?>"><?php echo t('setrecommend', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-hottest" data-src="<?php echo url('admin/post/multiHottest');?>"><?php echo t('sethottest', 'admin');?></button>
+    <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/post/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -51,5 +51,13 @@ $(function(){
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
 	$(document).on('click', '.set-verify, .set-hottest, .set-recommend', BetaAdmin.ajaxSetPostBoolColumn);
 	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deletePost);
+
+	$(document).on('click', '#batch-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
+	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiPosts);
+	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiPosts);
+	
+	$(document).on('click', '#select-all', BetaAdmin.selectAll);
+	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
 });
 </script>
+

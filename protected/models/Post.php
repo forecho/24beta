@@ -55,6 +55,7 @@
  */
 class Post extends CActiveRecord
 {
+    const STATE_REJECTED = -1;
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
     
@@ -185,6 +186,9 @@ class Post extends CActiveRecord
 	    return array(
             'homeshow' => array(
                 'condition' => 't.homeshow = ' . BETA_YES,
+            ),
+            'rejected' => array(
+                'condition' => 't.state = ' . self::STATE_REJECTED,
             ),
             'published' => array(
                 'condition' => 't.state = ' . self::STATE_ENABLED,

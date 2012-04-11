@@ -99,6 +99,7 @@ class Upload extends CActiveRecord
 	protected function afterDelete()
 	{
 	    $filename = fbp($this->url);
-	    unlink($filename);
+	    if (is_file($filename) && file_exists($filename) && is_writable($filename))
+    	    unlink($filename);
 	}
 }

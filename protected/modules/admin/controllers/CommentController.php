@@ -227,7 +227,7 @@ class CommentController extends AdminController
 	}
 	
 	/**
-	 * 批量推荐评论
+	 * 批量设置推荐评论
 	 * @param array $ids 评论ID数组
 	 * @param string $callback jsonp回调函数，自动赋值
 	 */

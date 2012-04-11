@@ -3,21 +3,23 @@ $(function(){
 	if (tip.length == 0) {
 		var html = '<div id="beta-admin-tip"></div>';
 		$('body').append(html);
+		tip = $('#beta-admin-tip');
 	}
 	$(document).ajaxStart(function(){
-		tip.html('sending...').fadeIn('fast');
+		tip.stop(true, true);
+		tip.html('发送数据中...').fadeIn('fast');
 	});
 	
 	$(document).ajaxSuccess(function(){
-		tip.html('Success.');
+		tip.html('请求成功.');
 	});
 	
 	$(document).ajaxError(function(){
-		tip.html('Error.');
+		tip.html('发生错误.');
 	});
 	
 	$(document).ajaxStop(function(){
-		tip.html('done.');
+		tip.html('请求完成.').delay(5000).fadeOut('slow');
 	});
 });
 
@@ -54,10 +56,10 @@ var BetaAdmin = {
 			if (data.errno == 0)
 				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
 			else
-				alert('error');
+				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			alert('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	deleteComment: function(event) {
@@ -77,10 +79,10 @@ var BetaAdmin = {
 			if (data.errno == 0)
 				tthis.parents('tr').remove();
 			else
-				BetaAdmin.showAjaxMessage('error');
+				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	deleteMultiComments: function(event) {
@@ -112,7 +114,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	verifyMultiComments: function(event) {
@@ -141,7 +143,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	recommendMultiComments: function(event) {
@@ -170,7 +172,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	hottestMultiComments: function(event) {
@@ -199,7 +201,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	ajaxSetPostBoolColumn: function(event) {
@@ -216,10 +218,10 @@ var BetaAdmin = {
 			if (data.errno == BETA_NO)
 			    tthis.text(data.label);
 			else
-				BetaAdmin.showAjaxMessage('error');
+				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
 	ajaxSetCommentBoolColumn: function(event) {
@@ -236,10 +238,158 @@ var BetaAdmin = {
 			if (data.errno == BETA_NO)
 			    tthis.text(data.label);
 			else
-				BetaAdmin.showAjaxMessage('error');
+				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('fail');
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
+	deleteMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var confirm = window.confirm(event.data.onfirmText);
+		if (!confirm) return ;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
+	recommendMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
+	hottestMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
+	verifyMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
+	rejectMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	}
 };
