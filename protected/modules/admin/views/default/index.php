@@ -11,7 +11,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container admin-nav-container">
-            <a class="brand" href="<?php echo url('admin/default/welcomme');?>" target="main">24Beta Control</a>
+            <a class="brand" href="<?php echo url('admin/default/welcome');?>" target="main">24Beta Control</a>
             <ul class="nav">
                 <li class="divider-vertical"></li>
                 <li class="dropdown">

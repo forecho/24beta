@@ -21,7 +21,7 @@
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
-            <td><?php echo $model->getAdminTitleLink();?></td>
+            <td><?php echo $model->titleLink;?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
             <td>
                 <?php echo $model->editUrl;?>

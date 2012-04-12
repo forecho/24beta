@@ -51,5 +51,9 @@
 /* user */
 td.column-label {width:150px; text-align:right;}
 
+/* comment info */
+.comment-content {padding:10px; line-height:20px;}
+.beta-comment-quote {border:1px solid #CFCFCF; padding:8px; margin:0 0 10px; line-height:20px; display:none; color:gray; }
+.beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid #CFCFCF;}
 
 

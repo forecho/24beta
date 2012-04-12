@@ -148,6 +148,8 @@ return array(
     'pass_review' => '通过',
     'sethottest' => '热门',
     'setrecommend' => '推荐',
+    'post_info_view' => '统计信息',
+    'post_is_not_exist' => '该文章不存在',
         
     /* user manager */
     'user_is_not_exist' => '该用户不存在',

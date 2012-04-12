@@ -29,12 +29,17 @@ class CommentController extends AdminController
 	{
 	    $postid = (int)$postid;
 	    
+	    $post = AdminPost::model()->findByPk($postid);
+	    if ($post === null)
+	        throw new CHttpException(404, t('post_is_not_exist', 'admin'));
+	    
 	    $criteria = new CDbCriteria();
 	    $criteria->addColumnCondition(array('post_id' => $postid));
 	    
 	    $data = AdminComment::fetchList($criteria);
-	    
+	    $data['post'] = $post;
 	    $this->adminTitle = t('latest_comment', 'admin');
+	    
 	    
 	    $this->render('list', $data);
 	}
@@ -60,9 +65,9 @@ class CommentController extends AdminController
 	        $form->attributes = $_GET['CommentSearchForm'];
 	        if ($form->validate())
 	            $data = $form->search();
-	        user()->setFlash('table_caption', t('comment_search_result', 'admin'));
+	        $this->adminTitle = t('comment_search_result', 'admin');
 	    }
-	     
+	    
 	    $this->render('search', array('form'=>$form, 'data'=>$data));
 	}
 	

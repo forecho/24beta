@@ -23,17 +23,7 @@ class AdminPost extends Post
     
     public function getInfoUrl()
     {
-        return url('admin/post/info', array('id'=>$this->id));
-    }
-    
-    public function getAdminTitleLink($target = 'main')
-    {
-	    if ($this->istop == BETA_YES)
-	        $title = '<strong>[' . t('istop') . ']' . $this->title . '</strong>';
-	    else
-	        $title = $this->title;
-	    
-	    return l($title, $this->getInfoUrl(), array('class'=>'post-title', 'target'=>$target));
+        return l(t('post_info_view', 'admin'), url('admin/post/info', array('id'=>$this->id)));
     }
     
     public static function fetchList($criteria = null, $sort = true, $pages = true)

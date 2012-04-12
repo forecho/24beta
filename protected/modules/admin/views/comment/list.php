@@ -1,4 +1,4 @@
-<h3><?php echo $this->adminTitle;?></h3>
+<h3><?php echo $this->adminTitle;?>&nbsp;&nbsp;&nbsp;<?php echo $post->titleLink;?></h3>
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
@@ -12,11 +12,9 @@
         <tr>
             <th class="item-checkbox align-center">#</th>
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
-            <th class="span5"><?php t('content');?></th>
-            <th class="author-name"><?php echo $sort->link('user_name');?></th>
-            <th class="span2 align-center"><?php echo $sort->link('create_time');?></th>
+            <th><?php echo t('content');?></th>
+            <th class="span2 align-center"><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
             <th class="span1 align-center">#</th>
-            <th>#</th>
         </tr>
     </thead>
     <tbody>
@@ -24,11 +22,13 @@
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemids" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
-            <td><?php echo $model->content;?></td>
-            <td><?php echo $model->authorName;?></td>
-            <td class="align-center"><?php echo $model->createTime;?></td>
-            <td class="align-center"><?php echo $model->verifyUrl;?></td>
+            <td class="comment-content"><?php echo $model->content;?></td>
             <td>
+                <?php echo $model->authorName;?><br />
+                <?php echo $model->createTime;?>
+            </td>
+            <td>
+                <?php echo $model->verifyUrl;?>
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -59,6 +59,10 @@ $(function(){
 	
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
+	
+	$(document).on('click', '.comment-content', function(event){
+		$(this).find('fieldset').toggle();
+	});
 });
 </script>
 

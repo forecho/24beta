@@ -22,19 +22,21 @@
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
-            <td><?php echo $model->getAdminTitleLink();?></td>
+            <td><?php echo $model->getTitleLink();?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
             <td class="align-center"><?php echo $model->editUrl;?></td>
             <td>
                 <div class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><?php echo $model->commentUrl;?></li>
                         <li><?php echo $model->homeshowUrl;?></li>
                         <li><?php echo $model->recommendUrl;?></li>
                         <li><?php echo $model->hottestUrl;?></li>
                         <li><?php echo $model->verifyUrl;?></li>
                         <li><?php echo $model->deleteUrl;?></li>
+                        <li class="divider"></li>
+                        <li><?php echo $model->commentUrl;?></li>
+                        <li><?php echo $model->infoUrl;?></li>
                     </ul>
                 </div>
             </td>

@@ -22,6 +22,7 @@
  * @property string $supportUrl
  * @property string $againstUrl
  * @property string $reportUrl
+ * @property string $originalContent;
  */
 class Comment extends CActiveRecord
 {
@@ -193,6 +194,15 @@ class Comment extends CActiveRecord
 	public function getReportUrl()
 	{
 	    return aurl('comment/report', array('id'=>$this->id));
+	}
+	
+	public function getOriginalContent()
+	{
+	    if (empty($this->content)) return '';
+	    
+	    $pattern = '/<fieldset.*<\/fieldset>/is';
+	    $content = preg_replace($pattern, '', $this->content);
+	    return $content;
 	}
 	
 	protected function beforeSave()
