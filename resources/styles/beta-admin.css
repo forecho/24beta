@@ -56,4 +56,7 @@ td.column-label {width:150px; text-align:right;}
 .beta-comment-quote {border:1px solid #CFCFCF; padding:8px; margin:0 0 10px; line-height:20px; display:none; color:gray; }
 .beta-comment-quote legend {text-align:left; text-indent:18px; font-size:12px; font-weight:bold; margin:0; padding:0 5px; width:auto; height:20px; line-height:20px; background:white url(../images/quotetip.gif) no-repeat left center; border:1px solid #CFCFCF;}
 
-
+/* post create */
+.post-pictures li {float:left; margin-right:5px; cursor:pointer;}
+.post-pictures li:last-child) {margin-right:0; clear:both;}
+.post-pictures img {max-height:53px; max-width:80px;}

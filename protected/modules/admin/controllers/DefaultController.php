@@ -9,7 +9,13 @@ class DefaultController extends AdminController
 	
 	public function actionWelcome()
 	{
-	    $this->render('welcome');
+	    $criteria = new CDbCriteria();
+	    $criteria->addColumnCondition(array('state'=>AdminPost::STATE_DISABLED));
+	    $unVerifyCount = AdminPost::model()->count($criteria);
+	    
+	    $this->render('welcome', array(
+	        'unVerifyCount' => $unVerifyCount,
+	    ));
 	}
 
     public function actionTest()

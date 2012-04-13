@@ -42,6 +42,18 @@
             <?php if ($model->hasErrors('content')):?><p class="help-block"><?php echo $model->getError('content');?></p><?php endif;?>
         </div>
     </div>
+    <?php if (count($model->picture) > 0):?>
+    <div class="control-group bottom10px">
+        <label class="control-label"><?php echo t('post_upload_picutures', 'admin');?></label>
+        <div class="controls">
+            <ul class="unstyled post-pictures">
+                <?php foreach ((array)$model->picture as $pic):?>
+                <li><img src="<?php echo $pic->fileUrl;?>" /></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    </div>
+    <?php endif;?>
     <div class="control-group bottom10px">
         <div class="controls">
             <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
@@ -126,7 +138,13 @@ $(function(){
         KEConfig.adminfull.cssPath = [cssurl];
     	var betaSummary = K.create('#summary', KEConfig.adminmini);
     	var betaContent = K.create('#content', KEConfig.adminfull);
+
+    	$(document).on('click', '.post-pictures li', function(event){
+            var html = $(this).html();
+            betaContent.insertHtml(html);
+        });
     });
+
 });
 </script>
 

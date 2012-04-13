@@ -31,8 +31,11 @@ class PostController extends AdminController
 	        }
 	    }
 	    
+	    
 	    $this->layout = 'main';
-		$this->render('create', array('model'=>$model));
+		$this->render('create', array(
+		    'model'=>$model,
+		));
 	}
 	
 	public function actionLatest()
@@ -359,4 +362,5 @@ class PostController extends AdminController
 	    echo $callback . '(' . CJSON::encode($data) . ')';
 	    exit(0);
 	}
+
 }

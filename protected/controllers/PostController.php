@@ -9,7 +9,7 @@ class PostController extends Controller
         
         $cacheID = sprintf(param('cache_post_id'), $id);
         $cachePostId = app()->cache->get($cacheID);
-        if ($cachePostId === false)
+        if ($cachePostId === false && !user()->checkAccess('enter_admin_system'))
             $post = Post::model()->published()->findByPk($id);
         else
             $post = Post::model()->findByPk($id);

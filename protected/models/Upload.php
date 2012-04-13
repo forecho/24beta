@@ -86,6 +86,17 @@ class Upload extends CActiveRecord
 		);
 	}
 
+	public function getFileUrl()
+	{
+	    $pos = strpos($this->url, 'http://');
+	    if ($pos === 0)
+    	    return $this->url;
+	    elseif ($pos === false)
+	        return fbu($this->url);
+	    else
+	        return '';
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {

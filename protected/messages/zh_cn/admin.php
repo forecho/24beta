@@ -150,6 +150,7 @@ return array(
     'setrecommend' => '推荐',
     'post_info_view' => '统计信息',
     'post_is_not_exist' => '该文章不存在',
+    'post_upload_picutures' => '文章图片',
         
     /* user manager */
     'user_is_not_exist' => '该用户不存在',
