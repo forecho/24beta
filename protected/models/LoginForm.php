@@ -17,20 +17,20 @@ class LoginForm extends CFormModel
     public function rules()
     {
         return array(
-            array('email', 'required', 'message'=>'请输入您的email'),
-            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'signup', 'message'=>'该email已经被已经'),
+            array('email', 'required', 'message'=>t('please_input_your_email')),
+            array('email', 'unique', 'className'=>'User', 'attributeName'=>'email', 'on'=>'signup', 'message'=>t('email_is_exist')),
             array('email', 'email'),
-            array('username', 'required', 'message'=>'请输入您的大名', 'on'=>'signup'),
-            array('username', 'unique', 'className'=>'User', 'attributeName'=>'name', 'on'=>'signup', 'message'=>'该大名已被人抢了，您老请换换'),
+            array('username', 'required', 'message'=>t('please_input_your_nickname'), 'on'=>'signup'),
+            array('username', 'unique', 'className'=>'User', 'attributeName'=>'name', 'on'=>'signup', 'message'=>t('nickname_is_exist')),
             array('username', 'checkReserveWords'),
-            array('password', 'required', 'on'=>'signup', 'message'=>'请输入您的密码'),
+            array('password', 'required', 'on'=>'signup', 'message'=>t('please_input_your_password')),
             array('password', 'authenticate', 'on'=>'login'),
             array('captcha', 'captcha', 'allowEmpty'=>!$this->getEnableCaptcha(), 'on'=>'login'),
             array('captcha', 'captcha', 'allowEmpty'=>false, 'on'=>'signup'),
             array('rememberMe', 'boolean', 'on'=>'login'),
             array('username, password', 'length', 'min'=>3, 'max'=>50),
             array('email, returnUrl', 'length', 'max'=>255),
-            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>'请同意挖图么的服务条款和协议'),
+            array('agreement', 'compare', 'compareValue'=>true, 'on'=>'signup', 'message'=>t('please_agree_policy')),
             array('rememberMe', 'in', 'range'=>array(0, 1)),
         );
     }
@@ -41,7 +41,7 @@ class LoginForm extends CFormModel
         foreach ((array)param('reservedWords') as $v) {
             $pos = strpos($this->$attribute, $v);
             if (false !== $pos) {
-                $this->addError($attribute, '该大名已被人抢了，请换一个');
+                $this->addError($attribute, t('nickname_is_exist'));
                 break;
             }
         }
@@ -54,7 +54,7 @@ class LoginForm extends CFormModel
         $this->_identity = new UserIdentity($this->email, $this->password);
 
         if (!$this->_identity->authenticate()) {
-            $this->addError($attribute, '邮箱或密码错误');
+            $this->addError($attribute, t('email_or_password_error'));
         }
     }
 

@@ -38,7 +38,7 @@
     <div class="beta-control-group <?php echo $form->hasErrors('agreement') ? 'error' : '';?>">
         <label class="beta-control-label">&nbsp;</label>
         <div class="beta-controls beta-agreement">
-            <?php echo CHtml::activeCheckBox($form, 'agreement', array('id'=>'agreement', 'tabindex'=>5));?><label for="agreement"><?php echo t('agreement');?></label>
+            <?php echo CHtml::activeCheckBox($form, 'agreement', array('id'=>'agreement', 'tabindex'=>5));?><label for="agreement"><?php echo t('agreement', 'main', array('{policyurl}'=>aurl('static/policy')));?></label>
             <?php if ($form->hasErrors('agreement')):?><span class="beta-help-inline"><?php echo $form->getError('agreement');?></span><?php endif;?>
         </div>
         <div class="clear"></div>

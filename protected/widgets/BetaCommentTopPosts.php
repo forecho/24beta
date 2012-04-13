@@ -83,7 +83,7 @@ class BetaCommentTopPosts extends CWidget
         $criteria->select = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state');
         $criteria->order = 'comment_nums desc, id desc';
         $criteria->limit = $this->count;
-        $criteria->addCondition('state > 0');
+        $criteria->addColumnCondition(array('t.state'=>Post::STATE_ENABLED));
         if ($this->cid)
             $criteria->addColumnCondition(array('category_id'=>$this->cid));
         if ($this->tid)
