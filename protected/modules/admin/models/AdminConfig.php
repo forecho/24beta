@@ -41,7 +41,7 @@ class AdminConfig extends Config
             self::CATEGORY_SYSTEM_SITE => t('system_site', 'admin'),
             self::CATEGORY_SYSTEM_REWRITE => t('system_rewrite', 'admin'),
             self::CATEGORY_SYSTEM_CACHE => t('system_cache', 'admin'),
-            self::CATEGORY_SYSTEM_ATTACHMENTS => t('system_attachements', 'admin'),
+            self::CATEGORY_SYSTEM_ATTACHMENTS => t('system_attachments', 'admin'),
         
             self::CATEGORY_DISPLAY => t('display_config_params', 'admin'),
             self::CATEGORY_DISPLAY_TEMPLATE => t('display_template', 'admin'),

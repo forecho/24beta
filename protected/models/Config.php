@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table '{{config}}':
  * @property integer $id
+ * @property string $name
  * @property integer $category_id
  * @property string $config_name
  * @property string $config_value
@@ -37,8 +38,9 @@ class Config extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-	        array('config_name', 'required'),
+	        array('name, config_name', 'required'),
 	        array('config_name', 'unique'),
+	        array('config_name', 'match', 'pattern'=>'/^[a-z][\w\d\_]{4,99}/i', 'message'=>t('config_name_pattern')),
 	        array('category_id', 'numerical', 'integerOnly'=>true),
 			array('config_name', 'length', 'max'=>100),
 			array('config_value, desc', 'safe'),
@@ -63,8 +65,9 @@ class Config extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+	        'name' => t('config_nickname'),
 			'category_id' => t('config_category'),
-			'config_name' => t('config_name'),
+			'config_name' => t('config_var_name'),
 			'config_value' => t('config_value'),
 			'desc' => t('config_description'),
 		);

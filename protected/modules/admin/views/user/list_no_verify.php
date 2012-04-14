@@ -25,7 +25,7 @@
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo l($model->email, $model->getInfoUrl());?></td>
             <td><?php echo $model->name;?></td>
-            <td class="align-center"><?php echo $model->createTime;?></td>
+            <td class="align-center"><?php echo $model->createTimeText;?></td>
             <td class="align-center"><?php echo $model->verifyUrl;?></td>
             <td>
                 <div class="dropdown">

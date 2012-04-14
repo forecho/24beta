@@ -12,9 +12,9 @@
         <tr>
             <th class="item-checkbox align-center">#</th>
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
-            <th><?php echo t('content');?></th>
-            <th class="span2 align-center"><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
+            <th class="span8"><?php echo t('content');?></th>
             <th class="span1 align-center">#</th>
+            <th><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
         </tr>
     </thead>
     <tbody>
@@ -23,10 +23,6 @@
             <td class="item-checkbox"><input type="checkbox" name="itemids" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td class="comment-content"><?php echo $model->content;?></td>
-            <td>
-                <?php echo $model->authorName;?><br />
-                <?php echo $model->createTime;?>
-            </td>
             <td>
                 <?php echo $model->verifyUrl;?>
                 <div class="dropdown">
@@ -37,6 +33,10 @@
                         <li><?php echo $model->deleteUrl;?></li>
                     </ul>
                 </div>
+            </td>
+            <td>
+                <?php echo $model->authorName;?><br />
+                <?php echo $model->createTime;?>
             </td>
         </tr>
         <?php endforeach;?>

@@ -1,5 +1,7 @@
 <?php
 return array(
+    'invalid_request' => '非法请求',
+        
     'control_center' => '管理中心',
     'site_home' => '网站首页',
     'action_shortcut' => '快捷操作',
@@ -180,7 +182,10 @@ return array(
     'cofig_save_success' => '配置参数保存成功',
     'system_config_is_not_allowed_deleted' => '系统配置参数不能删除',
     'custom_config_params' => '自定义参数',
-    'create_custom_param' => '添加参数',
+    'create_custom_param' => '添加自定义参数',
+    'param_is_not_exist' => '此参数不存在',
+    'create_custom_param_name_tip' => '变量名只能使用字母数字下划线组成，且只能用字母开头，不区分大小写，长度5-100字符',
+    'create_custom_param_value_tip' => '布尔值使用1和0代表',
 
     /* comment search form */
     'post_id' => '文章ID',
@@ -192,7 +197,18 @@ return array(
     'comment_search' => '评论搜索',
     'comment_search_result' => '评论查询结果',
     'comment_create_time' => '评论时间',
-    'comment_delete_confirm' => '确定要删除评论吗？'
+    'comment_delete_confirm' => '确定要删除评论吗？',
+        
+    /* upload file search form */
+    'file_url' => '文件URL',
+        
+    /* upload file manage */
+    'search_upload_file' => '搜索附件',
+    'upload_file_search' => '附件查询',
+    'upload_file_list' => '附件列表',
+    'please_select_file_type' => '请选择文件类型',
+    'view_picture' => '查看图片',
+    'search_result' => '搜索结果',
 );
 
 

@@ -1,4 +1,3 @@
-
 <?php if (user()->hasFlash('save_config_success')):?>
 <div class="alert alert-success">
     <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
@@ -23,9 +22,9 @@
     <thead>
         <tr>
             <th class="span1 align-center">ID</th>
-            <th class="span2 align-right"><?php echo t('config_name');?></th>
-            <th class="span4"><?php echo t('config_value');?></th>
-            <th class="span4"><?php echo t('config_description');?></th>
+            <th class="span2 align-right"><?php echo t('config_var_name');?></th>
+            <th class="span6"><?php echo t('config_value');?></th>
+            <th class="span3"><?php echo t('config_description');?></th>
             <th>#</th>
         </tr>
     </thead>
@@ -39,9 +38,9 @@
             </td>
             <td>
             <?php if (strlen($model['config_value']) < 50):?>
-                <input class="span4" type="text" name="AdminConfig[<?php echo $model['config_name'];?>]" value="<?php echo h($model['config_value']);?>" />
+                <input class="span5" type="text" name="AdminConfig[<?php echo $model['config_name'];?>]" value="<?php echo h($model['config_value']);?>" />
             <?php else:?>
-                <textarea class="span4" name="AdminConfig[<?php echo $model['config_name'];?>]"><?php echo h($model['config_value']);?></textarea>
+                <textarea class="span6" name="AdminConfig[<?php echo $model['config_name'];?>]"><?php echo h($model['config_value']);?></textarea>
             <?php endif;?>
             </td>
             <td><?php echo nl2br($model['config_description']);?></td>

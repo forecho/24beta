@@ -6,4 +6,6 @@ return array (
   'header_html' => '',
   'footer_after_html' => '',
   'footer_before_html' => '',
+  'param_test1' => '1',
+  'param_test2' => '22',
 );

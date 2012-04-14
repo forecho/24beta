@@ -13,6 +13,9 @@
  * @property integer $user_id
  * @property string $desc
  * @property string $token
+ * @property string $fileUrl
+ * @property string $fileTypeText
+ * @property string $createTimeText
  */
 class Upload extends CActiveRecord
 {
@@ -21,6 +24,17 @@ class Upload extends CActiveRecord
     const TYPE_FILE = 2;
     const TYPE_AUDIO = 3;
     const TYPE_VIDEO = 4;
+    
+    public static function typeLabels()
+    {
+        return array(
+            self::TYPE_PICTURE => t('file_type_picture'),
+            self::TYPE_FILE => t('file_type_file'),
+            self::TYPE_AUDIO => t('file_type_audio'),
+            self::TYPE_VIDEO => t('file_type_video'),
+            self::TYPE_UNKNOWN => t('file_type_unknown'),
+        );
+    }
     
 	/**
 	 * Returns the static model of the specified AR class.
@@ -95,6 +109,26 @@ class Upload extends CActiveRecord
 	        return fbu($this->url);
 	    else
 	        return '';
+	}
+	
+	public function getFileTypeText()
+	{
+	    $types = self::typeLabels();
+	    if (array_key_exists($this->file_type, $types))
+	        $text = $types[$this->file_type];
+	    else
+	        $text = '';
+	    
+	    return $text;
+	}
+	
+	
+	public function getCreateTimeText($format = null)
+	{
+	    if  (null === $format)
+	        $format = param('formatShortDateTime');
+	
+	    return date($format, $this->create_time);
 	}
 	
 	protected function beforeSave()

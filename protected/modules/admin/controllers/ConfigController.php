@@ -68,14 +68,24 @@ class ConfigController extends AdminController
         AdminConfig::flushAllConfig();
     }
     
-    public function actionEditRow($configid)
+    public function actionCreate($id = 0)
     {
+        $id = (int)$id;
+        $model = ($id > 0) ? AdminConfig::model()->findByPk($id) : new AdminConfig();
         
-    }
-
-    public function actionCreate()
-    {
-        echo __METHOD__;
+        if (request()->getIsPostRequest() && isset($_POST['AdminConfig'])) {
+            $model->attributes = $_POST['AdminConfig'];
+            $model->category_id = AdminConfig::CATEGORY_CUSTOM;
+            if ($model->save()) {
+                user()->setFlash('save_config_success', t('cofig_save_success', 'admin'));
+                request()->redirect(url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_CUSTOM)));
+            }
+        }
+        
+        $this->adminTitle = t('create_custom_param', 'admin');
+        $this->render('create', array(
+            'model' => $model,
+        ));
     }
 }
 

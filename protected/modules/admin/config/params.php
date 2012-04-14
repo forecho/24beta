@@ -17,4 +17,6 @@ return array(
     'adminUserCountOfPage' => 20,
     // 每页显示的评论数量
     'adminCommentCountOfPage' => 30,
+    // 每页显示的文件数量
+    'adminUploadFilesCountOfPage' => 30,
 );
