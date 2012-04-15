@@ -19,6 +19,12 @@ class User extends CActiveRecord
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
     
+
+    public static function states()
+    {
+        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_NOT_VERIFY);
+    }
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -53,6 +59,7 @@ class User extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>32, 'min'=>'5'),
 			array('create_ip', 'length', 'max'=>15, 'min'=>7),
+    		array('state', 'in', 'range'=>self::states()),
 		);
 	}
 

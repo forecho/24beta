@@ -55,7 +55,8 @@
  */
 class Post extends CActiveRecord
 {
-    const STATE_REJECTED = -1;
+    const STATE_REJECTED = -2;
+    const STATE_NOT_VERIFY = -1;
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
     
@@ -70,6 +71,16 @@ class Post extends CActiveRecord
     const TYPE_VOTE = 1;
     const TYPE_ALBUM = 2;
     const TYPE_GOODS = 3;
+    
+    public static function states()
+    {
+        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_REJECTED, self::STATE_NOT_VERIFY);
+    }
+    
+    public static function types()
+    {
+        return array(self::TYPE_POST, self::TYPE_ALBUM, self::TYPE_VOTE, self::TYPE_GOODS);
+    }
     
 	/**
 	 * Returns the static model of the specified AR class.
@@ -103,6 +114,8 @@ class Post extends CActiveRecord
 			array('user_name, contributor', 'length', 'max'=>50),
 	        array('contributor_site', 'url'),
 	        array('contributor_email', 'email'),
+    		array('state', 'in', 'range'=>self::states()),
+    		array('post_type', 'in', 'range'=>self::types()),
 			array('summary, content', 'safe'),
 		);
 	}
