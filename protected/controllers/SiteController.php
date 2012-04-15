@@ -171,6 +171,7 @@ class SiteController extends Controller
         $auth->createOperation('delete_post','delete a post');
         $auth->createOperation('enter_admin_system','login into admin system');
         $auth->createOperation('upload_file','upload a file');
+        $auth->createOperation('create_post_in_home','create post in home page');
 
         $bizRule='return Yii::app()->user->id==$params["post"]->user_id;';
         $task=$auth->createTask('update_own_post','update a post by author himself',$bizRule);

@@ -95,6 +95,16 @@
             <li>请仔细查看：<a class="cred" href="#">新闻投递规范</a></li>
         </ul>
     </div>
+    <?php if (count($tempPictures) > 0):?>
+    <div class="beta-block beta-small beta-radius3px">
+        <h2><?php echo t('post_upload_temp_pictures');?></h2>
+        <ul class="beta-block-content unstyled temp-pictures">
+            <?php foreach ((array)$tempPictures as $picture):?>
+            <li><img src="<?php echo $picture->fileUrl;?>" /></li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <?php endif;?>
 </div>
 <div class="clear"></div>
 
@@ -114,6 +124,11 @@ $(function(){
     	var betaSummary = K.create('#beta-summary', KEConfig.mini);
     	var betaContent = K.create('#beta-content', KEConfig.common);
     	$('#post-form').on('submit', {content:betaContent}, BetaPost.create);
+
+    	$(document).on('click', '.temp-pictures li', function(event){
+            var html = $(this).html();
+            betaContent.insertHtml(html);
+        });
     });
 });
 </script>

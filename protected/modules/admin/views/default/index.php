@@ -37,12 +37,12 @@
                         <li class="nav-header"><?php echo t('post_topic', 'admin');?></li>
                         <li><?php echo l(t('create_topic', 'admin'), url('admin/topic/create'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('topic_list_table', 'admin'), url('admin/topic/list'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('topic_statistics', 'admin'), url('admin/topic/statistics'), array('target'=>'main'));?></li>
+                        <!-- <li><?php echo l(t('topic_statistics', 'admin'), url('admin/topic/statistics'), array('target'=>'main'));?></li> -->
                         <li class="divider"></li>
                         <li class="nav-header"><?php echo t('post_category', 'admin');?></li>
                         <li><?php echo l(t('create_category', 'admin'), url('admin/category/create'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('category_list_table', 'admin'), url('admin/category/list'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('category_statistics', 'admin'), url('admin/category/statistics'), array('target'=>'main'));?></li>
+                        <!-- <li><?php echo l(t('category_statistics', 'admin'), url('admin/category/statistics'), array('target'=>'main'));?></li> -->
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -70,9 +70,10 @@
                         <li class="nav-header"><?php echo t('statistics', 'admin');?></li>
                         <!-- <li><?php echo l(t('most_active_users', 'admin'), url('admin/user/mostactive', array('day'=>14)), array('target'=>'main'));?></li> -->
                         <li><?php echo l(t('today_signup', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('user_statistics', 'admin'), url('admin/user/statistics'), array('target'=>'main'));?></li>
+                        <!-- <li><?php echo l(t('user_statistics', 'admin'), url('admin/user/statistics'), array('target'=>'main'));?></li> -->
                     </ul>
                 </li>
+                <!--
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('system_tool', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -85,6 +86,7 @@
                         <li><a href="#">恢复</a></li>
                     </ul>
                 </li>
+                 -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('system_setting', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -134,8 +136,11 @@
         <li><?php echo l(t('latest_posts', 'admin'), url('admin/post/latest'), array('target'=>'main'));?></li>
         <li><?php echo l(t('search_posts', 'admin'), url('admin/post/search'), array('target'=>'main'));?></li>
         <li class="nav-header"><?php echo t('post_comment', 'admin');?></li>
-        <li><?php echo l(t('action_verify', 'admin'), url('admin/comment/verify'), array('target'=>'main'));?></li>
-        <li><?php echo l(t('latest', 'admin'), url('admin/comment/latest'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('verify_comment', 'admin'), url('admin/comment/verify'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('latest_comment', 'admin'), url('admin/comment/latest'), array('target'=>'main'));?></li>
+        <li class="nav-header"><?php echo t('user_manage', 'admin');?></li>
+        <li><?php echo l(t('verify_user', 'admin'), url('admin/user/verify'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('today_signup', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
     </ul>
 </div>
 <div class="admin-container">

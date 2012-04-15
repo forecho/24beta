@@ -18,11 +18,12 @@ class User extends CActiveRecord
 {
     const STATE_DISABLED = 0;
     const STATE_ENABLED = 1;
+    const STATE_FORBIDDEN = -1;
     
 
     public static function states()
     {
-        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_NOT_VERIFY);
+        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_FORBIDDEN);
     }
     
 	/**

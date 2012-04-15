@@ -192,6 +192,7 @@ return array(
     'post_contributor_site' => '您的网站',
     'post_contributor_email' => '您的邮箱',
     'you_do_not_have_enough_permissions' => '您没有上传文件的权限',
+    'post_upload_temp_pictures' => '刚刚上传的图片',
 
     /* topic */
     'all_topic_list' => '所有主题列表',

@@ -22,44 +22,6 @@
             <?php if ($model->hasErrors('source')):?><p class="help-block"><?php echo $model->getError('source');?></p><?php endif;?>
         </div>
     </div>
-    <div class="control-group bottom10px">
-        <div class="controls">
-            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
-        </div>
-    </div>
-    <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
-        <label class="control-label"><?php echo t('summary');?></label>
-        <div class="controls">
-            <?php echo CHtml::activeTextArea($model, 'summary', array('id'=>'summary'));?>
-            <?php if ($model->hasErrors('summary')):?><p class="help-block"><?php echo $model->getError('summary');?></p><?php endif;?>
-        </div>
-    </div>
-    <div class="control-group bottom10px <?php if ($model->hasErrors('content')) echo 'error';?>">
-        <label class="control-label"><?php echo t('content');?></label>
-        <div class="controls">
-            <?php echo CHtml::activeTextArea($model, 'content', array('id'=>'content'));?>
-            <?php if ($model->hasErrors('content')):?><p class="help-block"><?php echo $model->getError('content');?></p><?php endif;?>
-        </div>
-    </div>
-    <?php if (count($model->picture) > 0):?>
-    <div class="control-group bottom10px">
-        <label class="control-label"><?php echo t('post_upload_picutures', 'admin');?></label>
-        <div class="controls">
-            <ul class="unstyled post-pictures">
-                <?php foreach ((array)$model->picture as $pic):?>
-                <li><img src="<?php echo $pic->fileUrl;?>" /></li>
-                <?php endforeach;?>
-            </ul>
-        </div>
-    </div>
-    <?php endif;?>
-    <div class="control-group bottom10px">
-        <div class="controls">
-            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
-        </div>
-    </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
         <label class="control-label"><?php echo t('tags');?></label>
         <div class="controls">
@@ -89,6 +51,56 @@
             <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
             </label>
+        </div>
+    </div>
+    <div class="control-group bottom10px">
+        <div class="controls">
+            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
+            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
+        </div>
+    </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
+        <label class="control-label"><?php echo t('summary');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeTextArea($model, 'summary', array('id'=>'summary'));?>
+            <?php if ($model->hasErrors('summary')):?><p class="help-block"><?php echo $model->getError('summary');?></p><?php endif;?>
+        </div>
+    </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('content')) echo 'error';?>">
+        <label class="control-label"><?php echo t('content');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeTextArea($model, 'content', array('id'=>'content'));?>
+            <?php if ($model->hasErrors('content')):?><p class="help-block"><?php echo $model->getError('content');?></p><?php endif;?>
+        </div>
+    </div>
+    <?php if (count($tempPictures) > 0):?>
+    <div class="control-group bottom10px">
+        <label class="control-label"><?php echo t('post_upload_temp_pictures', 'admin');?></label>
+        <div class="controls">
+            <ul class="unstyled post-pictures">
+                <?php foreach ((array)$tempPictures as $picture):?>
+                <li><img src="<?php echo $picture->fileUrl;?>" /></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    </div>
+    <?php endif;?>
+    <?php if (count($model->picture) > 0):?>
+    <div class="control-group bottom10px">
+        <label class="control-label"><?php echo t('post_upload_pictures', 'admin');?></label>
+        <div class="controls">
+            <ul class="unstyled post-pictures">
+                <?php foreach ((array)$model->picture as $pic):?>
+                <li><img src="<?php echo $pic->fileUrl;?>" /></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    </div>
+    <?php endif;?>
+    <div class="control-group bottom10px">
+        <div class="controls">
+            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
+            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
@@ -134,8 +146,11 @@ $(function(){
 	$(':text:first').focus();
     KindEditor.ready(function(K) {
         var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
+    	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
         KEConfig.adminmini.cssPath = [cssurl];
+    	KEConfig.adminmini.uploadJson = imageUploadUrl;
         KEConfig.adminfull.cssPath = [cssurl];
+    	KEConfig.adminfull.uploadJson = imageUploadUrl;
     	var betaSummary = K.create('#summary', KEConfig.adminmini);
     	var betaContent = K.create('#content', KEConfig.adminfull);
 

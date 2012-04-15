@@ -58,10 +58,11 @@ td.column-label {width:150px; text-align:right;}
 
 /* post create */
 .post-pictures li {float:left; margin-right:5px; cursor:pointer;}
-.post-pictures li:last-child) {margin-right:0; clear:both;}
+.post-pictures li:last-child {margin-right:0; clear:both;}
 .post-pictures img {max-height:53px; max-width:80px;}
 
 /* upload manage */
 .table tbody .file-info td {background-color:#DFDFDF;}
 .table tbody .file-info:hover td {background-color:#DFDFDF;}
 .table tbody .file-info td a {margin-left:30px;}
+

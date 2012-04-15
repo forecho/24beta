@@ -15,6 +15,8 @@ class PostController extends AdminController
 	    $id = (int)$id;
 	    if ($id === 0) {
 	        $model = new AdminPost();
+	        $model->homeshow = user()->checkAccess('create_post_in_home') ? BETA_YES : BETA_NO;
+	        $model->state = BETA_YES;
 	        $this->adminTitle = t('create_post');
 	    }
 	    else {
@@ -26,16 +28,37 @@ class PostController extends AdminController
 	        $model->attributes = $_POST['AdminPost'];
 	        $model->post_type = AdminPost::TYPE_POST;
 	        if ($model->save()) {
+	            $this->afterPostSave($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
 	            $this->redirect(request()->getUrl());
 	        }
 	    }
+	    else {
+	        $key = param('sess_post_create_token');
+            if (!app()->session->contains($key) || empty(app()->session[$key]))
+                app()->session->add($key, uniqid('beta', true));
+            else {
+                $token = app()->session[$key];
+                $tempPictures = Upload::model()->findAllByAttributes(array('token'=>$token));
+            }
+	    }
 	    
-	    
-	    $this->layout = 'main';
 		$this->render('create', array(
 		    'model'=>$model,
+	        'tempPictures' => $tempPictures,
 		));
+	}
+	
+	private function afterPostSave(AdminPost $post)
+	{
+	    $key = param('sess_post_create_token');
+        if (app()->session->contains($key) && $token = app()->session[$key]) {
+            if (!$post->hasErrors()) {
+                $attributes = array('post_id'=>$post->id, 'token'=>'');
+                AdminUpload::model()->updateAll($attributes, 'token = :token', array(':token'=>$token));
+                app()->session->remove($key);
+            }
+        }
 	}
 	
 	public function actionLatest()

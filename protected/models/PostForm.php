@@ -77,11 +77,12 @@ class PostForm extends CFormModel
     public function afterSave(Post $post)
     {
         $key = param('sess_post_create_token');
-        if (app()->session->contains($key)) {
-            $token = app()->session[$key];
-            $attributes = array('post_id'=>$post->id, 'token'=>'');
-            Upload::model()->updateAll($attributes, 'token = :token', array(':token'=>$token));
-            app()->session->remove($key);
+        if (app()->session->contains($key) && $token = app()->session[$key]) {
+            if (!$post->hasErrors()) {
+                $attributes = array('post_id'=>$post->id, 'token'=>'');
+                Upload::model()->updateAll($attributes, 'token = :token', array(':token'=>$token));
+                app()->session->remove($key);
+            }
         }
     }
     

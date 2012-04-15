@@ -103,7 +103,12 @@ class PostController extends Controller
         }
         else {
             $key = param('sess_post_create_token');
-            app()->session->add($key, uniqid('beta', true));
+            if (!app()->session->contains($key) || empty(app()->session[$key]))
+                app()->session->add($key, uniqid('beta', true));
+            else {
+                $token = app()->session[$key];
+                $tempPictures = Upload::model()->findAllByAttributes(array('token'=>$token));
+            }
         }
 
         $captchaWidget = $form->hasErrors('captcha') ? $this->widget('BetaCaptcha', array(), true) : $this->widget('BetaCaptcha', array('skin'=>'defaultLazy'), true);
@@ -116,6 +121,7 @@ class PostController extends Controller
             'form' => $form,
             'captchaClass' => $captchaClass,
             'captchaWidget' => $captchaWidget,
+            'tempPictures' => $tempPictures,
         ));
     }
     
@@ -136,6 +142,5 @@ class PostController extends Controller
             'postid'=>$postid,
         ));
     }
-    
     
 }

@@ -235,14 +235,14 @@ input.beta-text.beta-captcha {font-size:16px!important; width:50px; color:darkre
 .beta-post-form .beta-controls input, .beta-post-form textarea {font-size:12px; padding:3px;}
 .beta-post-form .beta-text {width:450px;}
 .beta-post-form .captcha-clearfix label {text-align:left; width:auto;}
-.beta-post-form .beta-control-group.stacked label {display:block; width:auto; display:block; clear:both; text-align:left; margin-bottom:0;}
-.beta-post-form .beta-control-group.stacked .beta-controls {display:block; margin-left:0;}
+.beta-post-form .beta-control-group.stacked label {display:block; width:auto; clear:both; text-align:left; margin-bottom:0; float:none;}
+.beta-post-form .beta-control-group.stacked .beta-controls {display:block; margin-left:0; float:none;}
 .beta-post-form #beta-summary {width:580px; height:180px;}
 .beta-post-form #beta-content {width:580px; height:400px;}
 body.beta-ke-content {padding:5px;}
 .beta-success-items {margin-bottom:100px;}
 .beta-success-items li {margin-bottom:10px;}
-
+.temp-pictures img {max-height:53px; max-width:80px; cursor:pointer;}
 
 /* pager */
 .beta-pages ul.yiiPager{font-size:14px;border:0;margin:0;padding:0;line-height:100%;display:inline;}
