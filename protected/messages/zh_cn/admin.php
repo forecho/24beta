@@ -22,7 +22,7 @@ return array(
     'user_manage' => '用户',
     'system_tool' => '工具',
     'system_setting' => '设置',
-    'system_about' => '关于我们',
+    'system_about' => '关于24BETA',
     'about_us' => '关于',
     'our_team' => '团队',
     'provision' => '条款',
