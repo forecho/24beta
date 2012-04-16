@@ -220,6 +220,27 @@ class PostController extends AdminController
 	    }
 	}
 
+	public function actionSettop($id, $callback)
+	{
+	    $id = (int)$id;
+	    $model = AdminPost::model()->findByPk($id);
+	    if ($model === null)
+	        throw new CHttpException(500);
+	     
+	    $model->istop = abs($model->istop - BETA_YES);
+	    $model->save(true, array('istop'));
+	    if ($model->hasErrors())
+	        throw new CHttpException(500);
+	    else {
+	        $data = array(
+	            'errno' => BETA_NO,
+	            'label' => t($model->istop == BETA_YES ? 'cancel_top' : 'settop', 'admin')
+	        );
+	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        exit(0);
+	    }
+	}
+
 	public function actionSetDelete($id, $callback)
 	{
 	    $id = (int)$id;

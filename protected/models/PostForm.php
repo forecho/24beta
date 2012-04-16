@@ -71,7 +71,7 @@ class PostForm extends CFormModel
     
     public function homeshow()
     {
-        return user()->checkAccess('chief_editor') ? BETA_YES : param('defaultPostShowHomePage');
+        return user()->checkAccess('create_post_in_home') ? BETA_YES : param('defaultPostShowHomePage');
     }
         
     public function afterSave(Post $post)

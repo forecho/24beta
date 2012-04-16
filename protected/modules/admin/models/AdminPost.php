@@ -9,6 +9,7 @@
  * @property string $recommendUrl
  * @property string $homeshowUrl
  * @property string $commentUrl
+ * @property string $topLink
  */
 class AdminPost extends Post
 {
@@ -93,5 +94,11 @@ class AdminPost extends Post
     public function getCommentUrl()
     {
         return l(t('comment_list_table', 'admin'), url('admin/comment/list', array('postid'=>$this->id)));
+    }
+
+    public function getTopLink()
+    {
+        $text = t(($this->istop == BETA_NO) ? 'settop' : 'cancel_top', 'admin');
+        return l($text, url('admin/post/settop', array('id'=>$this->id)), array('class'=>'set-top'));
     }
 }

@@ -34,6 +34,7 @@ return array(
     'edit' => '编辑',
     'delete' => '删除',
     'settop' => '置顶',
+    'cancel_top' => '取消置顶',
     'setshow' => '显示',
     'sethide' => '隐藏',
     'cancel_delete' => '取消删除',
