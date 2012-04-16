@@ -32,9 +32,9 @@
                         <li><?php echo $model->homeshowUrl;?></li>
                         <li><?php echo $model->recommendUrl;?></li>
                         <li><?php echo $model->hottestUrl;?></li>
+                        <li><?php echo $model->topLink;?></li>
                         <li><?php echo $model->verifyUrl;?></li>
                         <li><?php echo $model->deleteUrl;?></li>
-                        <li><?php echo $model->topLink;?></li>
                         <li class="divider"></li>
                         <li><?php echo $model->commentUrl;?></li>
                         <li><?php echo $model->infoUrl;?></li>
