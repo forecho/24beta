@@ -276,12 +276,13 @@ class Post extends CActiveRecord
 	    $textLen = 50;
 	    $text = mb_strimwidth($this->source, 0, $textLen, '...', app()->charset);
 	    
-	    $pos1 = (int)strpos($this->source, 'http://');
-	    $pos2 = (int)strpos($this->source, 'https://');
-	    if ($pos1 > 0 || $pos2 > 0)
+	    $pos = strpos($this->source, 'http://');
+	    if ($pos === false)
+	        $source = $text;
+	    elseif ($pos === 0)
 	        $source = l($text, $this->source, array('target'=>'_blank', 'class'=>'post-source'));
 	    else
-	        $source = $text;
+	        $source = '';
 	    
 	    return $source;
 	}
@@ -367,16 +368,15 @@ class Post extends CActiveRecord
 	        // @todo 此处读取文章中第一个图片作为缩略图。
 	    }
 	    
-	    if ($url) {
-	        $pos = strpos($this->thumbnail, 'http://');
-	        if ($pos === false)
-	            $url = fbu($this->thumbnail);
-	        elseif ($pos === 0)
-	            $url = $this->thumbnail;
-	    }
+	    if (empty($url)) return '';
+
+	    $pos = strpos($this->thumbnail, 'http://');
+        if ($pos === false)
+            $url = fbu($this->thumbnail);
+        elseif ($pos === 0)
+            $url = $this->thumbnail;
 	    else
 	        $url = '';
-	    
 	    
 	    return $url;
 	}

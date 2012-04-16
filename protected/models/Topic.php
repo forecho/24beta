@@ -115,10 +115,14 @@ class Topic extends CActiveRecord
 	    if (empty($this->icon)) return '';
 	    
 	    $pos = strpos($this->icon, 'http://');
-	    if ($pos === 0)
-	        return $this->icon;
+	    if ($pos === false)
+	        $url = fbu($this->icon);
+	    elseif ($pos === 0)
+	        $url = $this->icon;
 	    else
-	        return fbu($this->icon);
+	        $url = '';
+	    
+	    return $url;
 	}
 	
 	public function getIconHtml()
