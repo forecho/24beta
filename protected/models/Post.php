@@ -96,7 +96,7 @@ class Post extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{post}}';
+		return TABLE_POST;
 	}
 
 	/**

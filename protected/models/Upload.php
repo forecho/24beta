@@ -50,7 +50,7 @@ class Upload extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{upload}}';
+		return TABLE_UPLOAD;
 	}
 
 	/**

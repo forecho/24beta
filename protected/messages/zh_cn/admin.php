@@ -75,12 +75,12 @@ return array(
     'hottest_show' => '热门',
     'recommend_show' => '推荐',
     'save_post_success' => '{title}&nbsp;发表成功，<a href="{url}" target="_blank">点击查看</a>',
+    'please_select_category' => '请选择分类',
+    'please_select_topic' => '请选择主题',
 
     /* create topic */
     'create_topic' => '新建主题',
     'edit_topic' => '编辑主题',
-    'please_select_topic' => '请选择上级主题',
-    'create_root_topic' => '不选择表示创建新的一级主题',
     'save_topic_success' => '{name}&nbsp;保存成功。',
     'topic_list_table' => '主题列表',
     'topic_statistics' => '主题统计',
@@ -88,9 +88,10 @@ return array(
     /* create category */
     'create_category' => '新建分类',
     'edit_category' => '编辑分类',
-    'please_select_category' => '请选择上级分类',
-    'create_root_category' => '不选择表示创建新的一级分类',
     'save_category_success' => '{name}&nbsp;创建成功。',
+
+    'order_id_save_success' => '排序ID更新成功',
+    'order_id_save_error' => '排序ID更新出错：{error}',
         
     'verify_user' => '审核用户',
     'create_user' => '添加用户',

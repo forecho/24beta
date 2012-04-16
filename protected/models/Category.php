@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table '{{category}}':
  * @property integer $id
- * @property integer $parent_id
  * @property string $name
  * @property integer $post_nums
  * @property integer $orderid
@@ -14,8 +13,6 @@
  */
 class Category extends CActiveRecord
 {
-    const ROOT_PARENT_ID = 0;
-    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Category the static model class
@@ -30,7 +27,7 @@ class Category extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{category}}';
+		return TABLE_CATEGORY;
 	}
 
 	/**
@@ -43,7 +40,7 @@ class Category extends CActiveRecord
 		return array(
 	        array('name', 'required'),
 	        array('name', 'unique'),
-	        array('parent_id, post_nums, orderid', 'numerical', 'integerOnly'=>true),
+	        array('post_nums, orderid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 	        array('name', 'filter', 'filter'=>'strip_tags'),
 		);
@@ -58,9 +55,7 @@ class Category extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 	        'postCount' => array(self::STAT, 'Post', 'category_id'),
-	        'subCount' => array(self::STAT, 'Category', 'parent_id'),
 	        'subs' => array(self::HAS_MANY, 'Category', 'parent_id'),
-	        'parent' => array(self::BELONGS_TO, 'Category', 'parent_id'),
 		);
 	}
 
@@ -71,28 +66,36 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'parent_id' => t('parent_category'),
 			'name' => t('category_name'),
 			'post_nums' => t('post_nums'),
 			'orderid' => t('orderid'),
 		);
 	}
-
-    public static function fetchRootList()
-    {
-        $models = self::fetchSubList(self::ROOT_PARENT_ID);
-        return $models;
-    }
     
-    public static function fetchSubList($pid)
+    public static function fetchListObjects()
     {
-        $pid = (int)$pid;
         $criteria = new CDbCriteria();
-        $criteria->addColumnCondition(array('parent_id'=>$pid));
-        $criteria->order = 'orderid desc, name asc, id asc';
+        $criteria->order = 'orderid desc, id asc';
         $models = self::model()->findAll($criteria);
         
         return $models;
+    }
+    
+    public static function fetchListArray()
+    {
+        $cmd = app()->getDb()->createCommand()
+            ->from(TABLE_CATEGORY)
+            ->order(array('orderid desc', 'id asc'));
+
+        $rows = $cmd->queryAll();
+        return $rows;
+    }
+    
+    public static function listData()
+    {
+        $rows = self::fetchListArray();
+        $data = CHtml::listData($rows, 'id', 'name');
+        return $data;
     }
     
     public function getPostsUrl()
@@ -100,12 +103,10 @@ class Category extends CActiveRecord
         return aurl('category/posts', array('id'=>$this->id));
     }
     
-    
     public function getPostsLink($target = '_blank')
     {
-        return t('category') . '&nbsp;' . l($this->name, $this->getPostsUrl(), array('target'=>$target));
+        return l($this->name, $this->getPostsUrl(), array('target'=>$target));
     }
-    
     
     protected function beforeSave()
     {

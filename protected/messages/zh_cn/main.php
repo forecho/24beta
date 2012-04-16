@@ -66,7 +66,6 @@ return array(
     'file_description' => '文件描述',
 
     /* Topic model */
-    'parent_topic' => '父主题',
     'topic_name' => '主题名',
     'post_nums' => '文章数',
     'icon' => '图标',
@@ -80,7 +79,6 @@ return array(
     'file_type_unknown' => '未知',
 
     /* Category model */
-    'parent_category' => '父分类',
     'category_name' => '分类名',
 
     /* form model LoginForm */

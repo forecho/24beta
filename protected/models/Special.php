@@ -26,7 +26,7 @@ class Special extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{special}}';
+		return TABLE_SPECIAL;
 	}
 
 	/**

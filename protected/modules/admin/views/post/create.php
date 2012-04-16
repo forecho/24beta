@@ -53,6 +53,20 @@
             </label>
         </div>
     </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
+        <label class="control-label"><?php echo t('post_category', 'admin');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeDropDownList($model, 'category_id', AdminCategory::listData(), array('empty'=>t('please_select_category', 'admin')));?>
+            <?php if ($model->hasErrors('category_id')):?><span class="help-inline"><?php echo $model->getError('category_id');?></span><?php endif;?>
+        </div>
+    </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
+        <label class="control-label"><?php echo t('post_topic', 'admin');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_category', 'admin')));?>
+            <?php if ($model->hasErrors('topic_id')):?><span class="help-inline"><?php echo $model->getError('topic_id');?></span><?php endif;?>
+        </div>
+    </div>
     <div class="control-group bottom10px">
         <div class="controls">
             <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>

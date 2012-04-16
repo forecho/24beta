@@ -25,14 +25,14 @@ class TopicController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 't.istop desc, t.create_time desc, t.id desc';
         $criteria->addColumnCondition(array('t.topic_id' => $id))
-            ->addCondition('t.state != :state');
-        $criteria->params += array(':state'=>Post::STATE_DISABLED);
+            ->addCondition('t.state = :state');
+        $criteria->params += array(':state'=>Post::STATE_ENABLED);
     
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->setPageSize(param('postCountOfTitleListPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->findAll($criteria);
+        $posts = Post::model()->findAll($criteria);
     
         return array(
             'posts' => $posts,

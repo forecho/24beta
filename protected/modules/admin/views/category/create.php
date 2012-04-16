@@ -15,14 +15,6 @@
             <?php if($model->hasErrors('name')):?><p class="help-block"><?php echo $model->getError('name');?></p><?php endif;?>
         </div>
     </div>
-    <div class="control-group <?php if($model->hasErrors('parent_id')) echo 'error';?>">
-        <?php echo CHtml::activeLabel($model, 'parent_id', array('class'=>'control-label'));?>
-        <div class="controls">
-            <?php echo CHtml::activeDropDownList($model, 'parent_id', $parents, array('empty'=>$empty));?>
-            <span class="help-inline label label-warning"><?php echo t('create_root_category', 'admin');?></span>
-            <?php if($model->hasErrors('parent_id')):?><p class="help-block"><?php echo $model->getError('parent_id');?></p><?php endif;?>
-        </div>
-    </div>
     <div class="control-group <?php if($model->hasErrors('orderid')) echo 'error';?>">
         <?php echo CHtml::activeLabel($model, 'orderid', array('class'=>'control-label'));?>
         <div class="controls">

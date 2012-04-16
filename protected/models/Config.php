@@ -27,7 +27,7 @@ class Config extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{config}}';
+		return TABLE_CONFIG;
 	}
 
 	/**

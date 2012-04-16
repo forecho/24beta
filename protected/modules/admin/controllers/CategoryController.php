@@ -2,18 +2,18 @@
 
 class CategoryController extends AdminController
 {
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-	
+    public function filters()
+    {
+        return array(
+            'postOnly + updateOrderID',
+        );
+    }
+    
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
 	    
-	    $parents = AdminCategory::fetchRootList();
-	    $parents = CHtml::listData($parents, 'id', 'name');
-	    $empty = array(AdminCategory::ROOT_PARENT_ID => t('please_select_category', 'admin'));
+	    $parents = (array)AdminCategory::listData();
 	     
 	    if ($id === 0) {
     	    $model = new AdminCategory();
@@ -35,9 +35,23 @@ class CategoryController extends AdminController
 	     
 	    $this->render('create', array(
     	    'model' => $model,
-    	    'parents' => (array)$parents,
-    	    'empty' => $empty,
+    	    'parents' => $parents,
 	    ));
+	}
+	
+	public function actionUpdateOrderID()
+	{
+	    try {
+    	    $rows = (array)$_POST['itemid'];
+    	    foreach ($rows as $id => $orderid) {
+    	        AdminCategory::model()->updateByPk((int)$id, array('orderid'=>(int)$orderid));
+    	    }
+    	    user()->setFlash('order_id_save_result_success', t('order_id_save_success', 'admin'));
+	    }
+	    catch (Exception $e) {
+	        user()->setFlash('order_id_save_result_error', t('order_id_save_error', 'admin', array('{error}'=>$e->getMessage())));
+	    }
+	    request()->redirect(url('admin/category/list'));
 	}
 	
 	public function actionList()
