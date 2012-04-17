@@ -1,4 +1,9 @@
 <?php
+/**
+ * AdminTopic
+ * @author chendong
+ * @property string $postListLink
+ */
 class AdminTopic extends Topic
 {
     /**
@@ -8,6 +13,11 @@ class AdminTopic extends Topic
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function getPostListLink()
+    {
+        return l($this->name, url('admin/post/latest', array('tid'=>$this->id)));
     }
     
     public function saveIcon()

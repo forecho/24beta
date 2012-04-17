@@ -30,6 +30,9 @@ return array(
     'latest' => '最新',
     'logout_control_center' => '退出登录',
 
+    'update' => '更新',
+    'updating' => '更新中...',
+    'update_complete' => '更新完成',
     'create' => '新建',
     'edit' => '编辑',
     'delete' => '删除',
@@ -39,7 +42,7 @@ return array(
     'sethide' => '隐藏',
     'cancel_delete' => '取消删除',
     'submit' => '提交',
-    'reset' => '重写',
+    'submit_post' => '发表文章',
 
     /* PostSearchForm */
     'postid' => '文章ID',
@@ -77,6 +80,8 @@ return array(
     'save_post_success' => '{title}&nbsp;发表成功，<a href="{url}" target="_blank">点击查看</a>',
     'please_select_category' => '请选择分类',
     'please_select_topic' => '请选择主题',
+    'set_hot_post_tip' => '请设置文章在的缩略图',
+    'open_summary' => '添加摘要',
 
     /* create topic */
     'create_topic' => '新建主题',
@@ -137,6 +142,7 @@ return array(
     'hottest_posts' => '热门文章',
     'editor_recommend_posts' => '编辑推荐',
     'home_show_posts' => '首页推荐',
+    'istop_posts' => '置顶文章',
     'set_recommend_post' => '推荐文章',
     'cancel_recommend_post' => '取消推荐',
     'set_hottest_post' => '热门',
@@ -147,15 +153,17 @@ return array(
     'cannel_homeshow_post' => '取消首页显示',
     'attachment' => '附件',
 
+    'category_is_not_exist' => '该分类不存在',
+    'topic_is_not_exist' => '该主题不存在',
     'select_all' => '全选',
     'reverse_select' => '反选',
     'pass_review' => '通过',
     'sethottest' => '热门',
     'setrecommend' => '推荐',
-    'post_info_view' => '统计信息',
+    'post_info_view' => '查看',
     'post_is_not_exist' => '该文章不存在',
     'post_upload_pictures' => '文章图片',
-    'post_upload_temp_pictures' => '临时上传的图片',
+    'post_upload_temp_pictures' => '临时图片',
         
     /* user manager */
     'user_is_not_exist' => '该用户不存在',

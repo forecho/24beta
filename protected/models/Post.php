@@ -55,6 +55,7 @@
  */
 class Post extends CActiveRecord
 {
+    const STATE_TRASH = -99;
     const STATE_REJECTED = -2;
     const STATE_NOT_VERIFY = -1;
     const STATE_DISABLED = 0;

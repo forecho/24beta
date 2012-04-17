@@ -7,7 +7,7 @@
 
 <?php echo CHtml::form('',  'post', array('class'=>'form-horizontal post-form'));?>
 <fieldset>
-    <legend>发布文章</legend>
+    <legend><?php echo t('create_posts', 'admin');?></legend>
     <div class="control-group bottom10px <?php if ($model->hasErrors('title')) echo 'error';?>">
         <label class="control-label"><?php echo t('post_title');?></label>
         <div class="controls">
@@ -25,7 +25,7 @@
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
         <label class="control-label"><?php echo t('tags');?></label>
         <div class="controls">
-            <?php echo CHtml::activeTextField($model, 'tags', array('class'=>'span4'));?>
+            <?php echo CHtml::activeTextField($model, 'tags', array('class'=>'span5'));?>
             <span class="help-inline"><?php echo t('tags_rules', 'admin');?></span>
             <?php if ($model->hasErrors('tags')):?><p class="help-block"><?php echo $model->getError('tags');?></p><?php endif;?>
         </div>
@@ -39,7 +39,7 @@
             <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
             </label>
-            <label class="checkbox inline">
+            <label class="checkbox inline" rel="tooltip" title="<?php echo t('set_hot_post_tip', 'admin');?>">
                 <?php echo CHtml::activeCheckBox($model, 'hottest');?><?php echo t('hottest_show', 'admin');?>
             </label>
             <label class="checkbox inline">
@@ -53,6 +53,13 @@
             </label>
         </div>
     </div>
+    <div class="control-group bottom10px hidden <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
+        <label class="control-label"><?php echo t('thumbnail');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeTextField($model, 'thumbnail', array('class'=>'span6'));?>
+            <?php if ($model->hasErrors('thumbnail')):?><p class="help-block"><?php echo $model->getError('thumbnail');?></p><?php endif;?>
+        </div>
+    </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
         <label class="control-label"><?php echo t('post_category', 'admin');?></label>
         <div class="controls">
@@ -63,14 +70,13 @@
     <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
         <label class="control-label"><?php echo t('post_topic', 'admin');?></label>
         <div class="controls">
-            <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_category', 'admin')));?>
+            <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_topic', 'admin')));?>
             <?php if ($model->hasErrors('topic_id')):?><span class="help-inline"><?php echo $model->getError('topic_id');?></span><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px">
         <div class="controls">
-            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
+            <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
@@ -99,6 +105,7 @@
         </div>
     </div>
     <?php endif;?>
+    <!-- 此处是文章图片，以后代替为弹出层的相册界面
     <?php if (count($model->picture) > 0):?>
     <div class="control-group bottom10px">
         <label class="control-label"><?php echo t('post_upload_pictures', 'admin');?></label>
@@ -111,18 +118,9 @@
         </div>
     </div>
     <?php endif;?>
-    <div class="control-group bottom10px">
-        <div class="controls">
-            <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
-            <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
-        </div>
-    </div>
-    <div class="control-group bottom10px <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
-        <label class="control-label"><?php echo t('thumbnail');?></label>
-        <div class="controls">
-            <?php echo CHtml::activeTextField($model, 'thumbnail', array('class'=>'span6'));?>
-            <?php if ($model->hasErrors('thumbnail')):?><p class="help-block"><?php echo $model->getError('thumbnail');?></p><?php endif;?>
-        </div>
+     -->
+    <div class="form-actions">
+        <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('contributor')) echo 'error';?>">
         <label class="control-label"><?php echo t('post_contributor');?></label>
@@ -146,8 +144,7 @@
         </div>
     </div>
     <div class="form-actions">
-        <?php echo CHtml::submitButton(t('submit', 'admin'), array('class'=>'btn btn-primary'));?>
-        <?php echo CHtml::resetButton(t('reset', 'admin'), array('class'=>'btn'));?>
+        <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
     </div>
 </fieldset>
 <?php echo CHtml::endForm();?>
@@ -158,6 +155,7 @@
 <script type="text/javascript">
 $(function(){
 	$(':text:first').focus();
+	
     KindEditor.ready(function(K) {
         var cssurl = '<?php echo tbu('styles/beta-all.css');?>';
     	var imageUploadUrl = '<?php echo aurl('upload/image');?>';
@@ -165,15 +163,13 @@ $(function(){
     	KEConfig.adminmini.uploadJson = imageUploadUrl;
         KEConfig.adminfull.cssPath = [cssurl];
     	KEConfig.adminfull.uploadJson = imageUploadUrl;
-    	var betaSummary = K.create('#summary', KEConfig.adminmini);
     	var betaContent = K.create('#content', KEConfig.adminfull);
-
+    	var betaSummary = K.create('#summary', KEConfig.adminmini);
     	$(document).on('click', '.post-pictures li', function(event){
             var html = $(this).html();
             betaContent.insertHtml(html);
         });
     });
-
 });
 </script>
 

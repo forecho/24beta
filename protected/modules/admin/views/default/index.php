@@ -25,6 +25,7 @@
                         <li><?php echo l(t('hottest_posts', 'admin'), url('admin/post/hottest'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('editor_recommend_posts', 'admin'), url('admin/post/recommend'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('home_show_posts', 'admin'), url('admin/post/homeshow'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('istop_posts', 'admin'), url('admin/post/istop'), array('target'=>'main'));?></li>
                         <li class="divider"></li>
                         <li class="nav-header">附件</li>
                         <li><?php echo l(t('upload_file_search', 'admin'), url('admin/upload/search'), array('target'=>'main'));?></li>

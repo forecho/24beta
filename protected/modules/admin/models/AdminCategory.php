@@ -1,4 +1,9 @@
 <?php
+/**
+ * AdminCategory
+ * @author chendong
+ * @property string $postListLink
+ */
 class AdminCategory extends Category
 {
     /**
@@ -8,5 +13,10 @@ class AdminCategory extends Category
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function getPostListLink()
+    {
+        return l($this->name, url('admin/post/latest', array('cid'=>$this->id)));
     }
 }

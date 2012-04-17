@@ -7,10 +7,7 @@ var summaryHtmlTags = {
 };
 
 var contentHtmlTags = {
-    span: [
-            '.color', '.background-color', '.font-size', '.font-family', '.background',
-            '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height'
-    ],
+    span: ['.color', '.text-decoration'],
     div: [
             'align', '.border', '.margin', '.padding', '.text-align', '.color',
             '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
@@ -89,7 +86,7 @@ var KEConfig = {
 	adminfull: {
 		height:450,
         resizeType: 1,
-		allowFileManager: false,
+		allowFileManager: true,
 		allowUpload: true,
 		filterMode: true,
 		allowImageUpload: true,

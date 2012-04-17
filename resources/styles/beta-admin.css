@@ -8,6 +8,7 @@
 .cgray {color:gray;}
 .f14px {font-size:14px;}
 .f12px {font-size:12px;}
+.beta-badge {font-weight:normal; -moz-border-radius:7px; border-radius:7px; -webkit-border-radius:7px; padding:1px 7px 2px; font-size:12px;}
 
 .admin-container {margin:0 5px 5px 0;}
 .admin-sidebar {margin:0px; padding:0px;}
@@ -60,9 +61,16 @@ td.column-label {width:150px; text-align:right;}
 .post-pictures li {float:left; margin-right:5px; cursor:pointer;}
 .post-pictures li:last-child {margin-right:0; clear:both;}
 .post-pictures img {max-height:53px; max-width:80px;}
+.form-horizontal .control-label {width:80px;}
+.form-horizontal .controls {margin-left:100px;}
 
 /* upload manage */
 .table tbody .file-info td {background-color:#DFDFDF;}
 .table tbody .file-info:hover td {background-color:#DFDFDF;}
 .table tbody .file-info td a {margin-left:30px;}
+
+/* post list */
+.beta-list-table form {margin:0; margin-top:3px;}
+.beta-list-table form .checkbox {font-size:12px; margin-left:1px;}
+table td {height:42px;}
 

@@ -54,7 +54,7 @@ return array(
     'hottest' => '热门',
     'homeshow' => '首页',
     'thumbnail' => '缩略图',
-    'summary' => '简述',
+    'summary' => '摘要',
     'content' => '内容',
     'contributor_id' => '投稿者ID',
     'contributor' => '投稿者',
