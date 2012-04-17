@@ -4,7 +4,7 @@
  * @property string $editUrl
  * @property string $editLink
  * @property string $deleteLink
- * @property string $verifyUrl
+ * @property string $verifyLink
  * @property string $adminTitleLink
  * @property string $hottestUrl
  * @property string $recommendUrl
@@ -69,7 +69,7 @@ class AdminPost extends Post
 
     public function getEditUrl()
     {
-        return url('admin/post/createpost', array('id'=>$this->id));
+        return url('admin/post/create', array('id'=>$this->id));
     }
     
     public function getEditLink()
@@ -82,7 +82,7 @@ class AdminPost extends Post
         return l(t('delete', 'admin'), url('admin/post/setdelete', array('id'=>$this->id)), array('class'=>'set-delete'));
     }
 
-    public function getVerifyUrl()
+    public function getVerifyLink()
     {
         $text = t(($this->state == AdminPost::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
         return l($text, url('admin/post/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
@@ -131,4 +131,6 @@ class AdminPost extends Post
         $html = l($html, $this->commentUrl, array('title'=>'Click to view comment list'));
         return $html;
     }
+
 }
+

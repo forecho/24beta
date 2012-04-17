@@ -5,6 +5,7 @@
     <button class="btn btn-small btn-primary">通过</button>
     <button class="btn btn-small btn-danger">拒绝</button>
     <button class="btn btn-small btn-info">删除</button>
+    <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>

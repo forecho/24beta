@@ -10,9 +10,6 @@
 /*<![CDATA[*/
 var BETA_YES = <?php echo BETA_YES;?>;
 var BETA_NO = <?php echo BETA_NO;?>;
-$(function(){
-	$('[rel=tooltip]').tooltip();
-});
 /*]]>*/
 </script>
 </head>

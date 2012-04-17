@@ -21,6 +21,12 @@ $(function(){
 	$(document).ajaxStop(function(){
 		tip.html('请求完成.').delay(5000).fadeOut('slow');
 	});
+	
+	$(document).on('click', '#beta-reload-current', function(event){
+		window.location.reload();
+	});
+	
+	$('[rel=tooltip]').tooltip();
 });
 
 var BetaAdmin = {

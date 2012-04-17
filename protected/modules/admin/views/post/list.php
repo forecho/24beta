@@ -5,6 +5,7 @@
     <button class="btn btn-small btn-primary" id="batch-recommend" data-src="<?php echo url('admin/post/multiRecommend');?>"><?php echo t('setrecommend', 'admin');?></button>
     <button class="btn btn-small btn-primary" id="batch-hottest" data-src="<?php echo url('admin/post/multiHottest');?>"><?php echo t('sethottest', 'admin');?></button>
     <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/post/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
+    <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -16,6 +17,7 @@
             <th class="span1 align-center"><?php echo $sort->link('comment_nums');?></th>
             <th class="span2 align-center"><?php echo $sort->link('create_time');?></th>
             <th class="span1 align-center">#</th>
+            <th>#</th>
         </tr>
     </thead>
     <tbody>
@@ -51,8 +53,9 @@
                 <?php echo $model->adminCategory->postListLink;?><br />
                 <?php echo $model->adminTopic->postListLink;?>
             </td>
-            <td class="align-center"><?php echo $model->commentNumsBadgeHtml;?></td>
-            <td class="align-center">
+            <td class="align-center"><?php echo $model->commentNumsBadgeHtml;?><br />
+            </td>
+            <td>
                 <?php echo $model->authorName;?><br />
                 <?php echo $model->createTime;?>
             </td>
@@ -60,6 +63,7 @@
                 <?php echo $model->deleteLink;?><br />
                 <?php echo $model->infoLink;?>
             </td>
+            <td></td>
         </tr>
         <?php endforeach;?>
     </tbody>

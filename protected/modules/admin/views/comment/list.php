@@ -6,6 +6,7 @@
     <button class="btn btn-small btn-primary" id="batch-recommend" data-src="<?php echo url('admin/comment/multiRecommend');?>"><?php echo t('setrecommend', 'admin');?></button>
     <button class="btn btn-small btn-primary" id="batch-hottest" data-src="<?php echo url('admin/comment/multiHottest');?>"><?php echo t('sethottest', 'admin');?></button>
     <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/comment/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
+    <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
@@ -14,7 +15,9 @@
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span8"><?php echo t('content');?></th>
             <th class="span1 align-center">#</th>
-            <th><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
+            <th class="span1 align-center">#</th>
+            <th class="span2"><?php echo t('user_name');?>&nbsp;/&nbsp;<?php echo $sort->link('create_time');?></th>
+            <th>#</th>
         </tr>
     </thead>
     <tbody>
@@ -23,21 +26,19 @@
             <td class="item-checkbox"><input type="checkbox" name="itemids" value="<?php echo $model->id;?>" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td class="comment-content"><?php echo $model->content;?></td>
-            <td>
-                <?php echo $model->verifyUrl;?>
-                <div class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><?php echo $model->editUrl;?></li>
-                        <li><?php echo $model->recommendUrl;?></li>
-                        <li><?php echo $model->deleteUrl;?></li>
-                    </ul>
-                </div>
+            <td class="align-center">
+                <?php echo $model->verifyUrl;?><br />
+                <?php echo $model->recommendUrl;?>
+            </td>
+            <td class="align-center">
+                <?php echo $model->editUrl;?><br />
+                <?php echo $model->deleteUrl;?>
             </td>
             <td>
                 <?php echo $model->authorName;?><br />
                 <?php echo $model->createTime;?>
             </td>
+            <td></td>
         </tr>
         <?php endforeach;?>
     </tbody>
@@ -63,6 +64,7 @@ $(function(){
 	$(document).on('click', '.comment-content', function(event){
 		$(this).find('fieldset').toggle();
 	});
+	
 });
 </script>
 

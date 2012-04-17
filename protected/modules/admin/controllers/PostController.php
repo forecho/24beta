@@ -10,7 +10,7 @@ class PostController extends AdminController
         );
     }
     
-	public function actionCreatePost($id = 0)
+	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
 	    if ($id === 0) {
@@ -32,7 +32,7 @@ class PostController extends AdminController
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
-	            $this->redirect($model->getEditUrl());
+                $this->redirect(request()->getUrl());
 	        }
 	    }
 	    else {

@@ -6,6 +6,7 @@
 <?php endif;?>
 
 <?php echo CHtml::form('',  'post', array('class'=>'form-horizontal post-form'));?>
+<input type="hidden" name="returnurl" value="<?php echo request()->getUrlReferrer();?>" />
 <fieldset>
     <legend><?php echo t('create_posts', 'admin');?></legend>
     <div class="control-group bottom10px <?php if ($model->hasErrors('title')) echo 'error';?>">
@@ -53,7 +54,7 @@
             </label>
         </div>
     </div>
-    <div class="control-group bottom10px hidden <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
+    <div class="control-group bottom10px <?php if ($model->hasErrors('thumbnail')) echo 'error';?>">
         <label class="control-label"><?php echo t('thumbnail');?></label>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'thumbnail', array('class'=>'span6'));?>

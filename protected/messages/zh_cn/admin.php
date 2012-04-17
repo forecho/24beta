@@ -80,7 +80,7 @@ return array(
     'save_post_success' => '{title}&nbsp;发表成功，<a href="{url}" target="_blank">点击查看</a>',
     'please_select_category' => '请选择分类',
     'please_select_topic' => '请选择主题',
-    'set_hot_post_tip' => '请设置文章在的缩略图',
+    'set_hot_post_tip' => '请设置文章的缩略图',
     'open_summary' => '添加摘要',
 
     /* create topic */
@@ -129,10 +129,14 @@ return array(
     'verify_comment' => '审核评论',
     'search_comment' => '搜索评论',
     'comment_list_table' => '评论列表',
-    'set_recommend_comment' => '推荐评论',
-    'cancel_recommend_comment' => '取消推荐',
+    'set_recommend_comment' => '推荐',
+    'cancel_recommend_comment' => '普通',
     'set_batch_verify' => '通过',
     'set_batch_reject' => '拒绝',
+    'show_comment' => '显示',
+    'hide_comment' => '隐藏',
+    'delete_comment' => '删除',
+    'reload_data' => '重新载入',
 
     /* post manage */
     'create_posts' => '发表文章',

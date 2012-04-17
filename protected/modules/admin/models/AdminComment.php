@@ -67,12 +67,12 @@ class AdminComment extends Comment
 
     public function getDeleteUrl()
     {
-        return l(t('delete', 'admin'), url('admin/comment/delete', array('id'=>$this->id)), array('class'=>'set-delete'));
+        return l(t('delete_comment', 'admin'), url('admin/comment/delete', array('id'=>$this->id)), array('class'=>'set-delete'));
     }
 
     public function getVerifyUrl()
     {
-        $text = t(($this->state == AdminComment::STATE_DISABLED) ? 'setshow' : 'sethide', 'admin');
+        $text = t(($this->state == AdminComment::STATE_DISABLED) ? 'show_comment' : 'hide_comment', 'admin');
         return l($text, url('admin/comment/setVerify', array('id'=>$this->id)), array('class'=>'set-verify'));
     }
 

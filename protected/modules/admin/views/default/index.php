@@ -17,7 +17,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('post_manage', 'admin');?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><?php echo l(t('create_posts', 'admin'), url('admin/post/createpost'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('create_posts', 'admin'), url('admin/post/create'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('verify_posts', 'admin'), url('admin/post/verify'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('search_posts', 'admin'), url('admin/post/search'), array('target'=>'main'));?></li>
                         <li class="divider"></li>
@@ -132,7 +132,7 @@
 <div class="well admin-sidebar">
     <ul class="nav nav-list">
         <li class="nav-header"><?php echo t('article', 'admin');?></li>
-        <li><?php echo l(t('create_posts', 'admin'), url('admin/post/createpost'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('create_posts', 'admin'), url('admin/post/create'), array('target'=>'main'));?></li>
         <li><?php echo l(t('verify_posts', 'admin'), url('admin/post/verify'), array('target'=>'main'));?></li>
         <li><?php echo l(t('latest_posts', 'admin'), url('admin/post/latest'), array('target'=>'main'));?></li>
         <li><?php echo l(t('search_posts', 'admin'), url('admin/post/search'), array('target'=>'main'));?></li>
