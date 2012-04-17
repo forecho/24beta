@@ -7,7 +7,7 @@
     <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/post/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
     <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
 </div>
-<table class="table table-striped table-bordered beta-list-table">
+<table class="table table-striped table-bordered beta-list-table table-post-list">
     <thead>
         <tr>
             <th class="item-checkbox align-center">#</th>

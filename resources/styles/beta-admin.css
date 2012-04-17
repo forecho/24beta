@@ -72,5 +72,5 @@ td.column-label {width:150px; text-align:right;}
 /* post list */
 .beta-list-table form {margin:0; margin-top:3px;}
 .beta-list-table form .checkbox {font-size:12px; margin-left:1px;}
-table td {height:42px;}
+.table-post-list td {height:42px;}
 
