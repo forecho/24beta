@@ -37,8 +37,10 @@ class PostController extends AdminController
 	    }
 	    else {
 	        $key = param('sess_post_create_token');
-            if (!app()->session->contains($key) || empty(app()->session[$key]))
-                app()->session->add($key, uniqid('beta', true));
+            if (!app()->session->contains($key) || empty(app()->session[$key])) {
+                $token = $model->getIsNewRecord() ? uniqid('beta', true) : $model->id;
+                app()->session->add($key, $token);
+    	    }
             else {
                 $token = app()->session[$key];
                 $tempPictures = Upload::model()->findAllByAttributes(array('token'=>$token));
@@ -54,7 +56,7 @@ class PostController extends AdminController
 	private function afterPostSave(AdminPost $post)
 	{
 	    $key = param('sess_post_create_token');
-        if (app()->session->contains($key) && $token = app()->session[$key]) {
+        if (app()->session->contains($key) && $token = app()->session[$key] && !is_numeric($token)) {
             if (!$post->hasErrors()) {
                 $attributes = array('post_id'=>$post->id, 'token'=>'');
                 AdminUpload::model()->updateAll($attributes, 'token = :token', array(':token'=>$token));

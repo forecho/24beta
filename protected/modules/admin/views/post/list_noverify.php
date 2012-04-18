@@ -46,7 +46,6 @@
                         <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
                     </label>
                     <input type="button" data-toggle="button" data-loading-text="<?php echo t('updating', 'admin');?>" data-complete-text="<?php echo t('update_complete', 'admin');?>" class="btn-update-state btn btn-mini" value="<?php echo t('update', 'admin');?>" />
-                    <?php echo $model->deleteLink;?>
                 </form>
             </td>
             <td>
@@ -74,6 +73,7 @@
 $(function(){
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
 	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deletePost);
+	$(document).on('click', '.set-verify', BetaAdmin.ajaxSetPostBoolColumn);
 
 	$(document).on('click', '#batch-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
 	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiPosts);
