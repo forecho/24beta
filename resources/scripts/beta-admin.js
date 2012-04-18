@@ -68,6 +68,30 @@ var BetaAdmin = {
 			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
+	trashPost: function(event){
+		event.preventDefault();
+		
+		var confirm = window.confirm(event.data.onfirmText);
+		if (!confirm) return ;
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('href'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
+			else
+				BetaAdmin.showAjaxMessage('发生错误.');
+		});
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
 	deleteComment: function(event) {
 		event.preventDefault();
 		var confirm = window.confirm(event.data.onfirmText);
@@ -282,6 +306,38 @@ var BetaAdmin = {
 			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
+	trashMultiPosts: function(event) {
+		event.preventDefault();
+		
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var confirm = window.confirm(event.data.onfirmText);
+		if (!confirm) return ;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
+		});
+	},
 	recommendMultiPosts: function(event) {
 		event.preventDefault();
 		
@@ -397,5 +453,33 @@ var BetaAdmin = {
 		jqXhr.fail(function(){
 			BetaAdmin.showAjaxMessage('请求错误.');
 		});
+	},
+	quickUpdate: function(event){
+		event.preventDefault();
+		var tthis = $(this);
+		var form = tthis.parents('form');
+		var jqXhr = $.ajax({
+			url: form.attr('action'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: form.serialize(),
+			beforeSend: function(){
+				tthis.button('loading');
+			}
+		});
+		jqXhr.done(function(data){
+			tthis.button('complete');
+		});
+		jqXhr.fail(function(){
+			tthis.button('error');
+		});
+		jqXhr.always(function(){
+			setTimeout(function(){
+				tthis.button('reset');
+				tthis.button('toggle');
+			}, 1000);
+		});
 	}
 };
+

@@ -75,7 +75,7 @@ class Post extends CActiveRecord
     
     public static function states()
     {
-        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_REJECTED, self::STATE_NOT_VERIFY);
+        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_REJECTED, self::STATE_NOT_VERIFY, self::STATE_TRASH);
     }
     
     public static function types()
@@ -403,6 +403,17 @@ class Post extends CActiveRecord
 	    return t('post_show_extra', 'main', array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums));
 	}
 
+	public function trash()
+	{
+	    if ($this->getIsNewRecord())
+	        throw new CException('this is a new record');
+	    else {
+    	    $this->state = self::STATE_TRASH;
+    	    $result = $this->save(true, array('state'));
+    	    return $result;
+	    }
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -411,7 +422,6 @@ class Post extends CActiveRecord
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
 	    }
-	    $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
 	    if ($this->tags) {
     	    $tags = join(',', Tag::filterTagsArray($this->tags));
     	    $this->tags = $tags;
@@ -456,6 +466,7 @@ class Post extends CActiveRecord
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
 	}
+
 }
 
 

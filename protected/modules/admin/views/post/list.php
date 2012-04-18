@@ -2,9 +2,18 @@
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
+    <?php if (strtolower($this->action->id) == 'verify'):?>
+    <button class="btn btn-small btn-primary" id="batch-verify" data-src="<?php echo url('admin/post/multiVerify');?>"><?php echo t('set_batch_verify', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-reject" data-src="<?php echo url('admin/post/multiReject');?>"><?php echo t('set_batch_reject', 'admin');?></button>
+    <?php else:?>
     <button class="btn btn-small btn-primary" id="batch-recommend" data-src="<?php echo url('admin/post/multiRecommend');?>"><?php echo t('setrecommend', 'admin');?></button>
     <button class="btn btn-small btn-primary" id="batch-hottest" data-src="<?php echo url('admin/post/multiHottest');?>"><?php echo t('sethottest', 'admin');?></button>
-    <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/post/multiDelete');?>"><?php echo t('delete', 'admin');?></button>
+    <?php endif;?>
+    <?php if (strtolower($this->action->id) == 'trash'):?>
+    <button class="btn btn-small btn-danger" id="batch-delete" data-src="<?php echo url('admin/post/multiDelete');?>"><?php echo t('forever_delete', 'admin');?></button>
+    <?php else:?>
+    <button class="btn btn-small btn-danger" id="batch-trash" data-src="<?php echo url('admin/post/multiTrash');?>"><?php echo t('trash_post', 'admin');?></button>
+    <?php endif;?>
     <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
 </div>
 <table class="table table-striped table-bordered beta-list-table table-post-list">
@@ -24,10 +33,13 @@
         <?php foreach ($models as $model):?>
         <tr>
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
-            <td class="align-center"><?php echo $model->id;?></td>
-            <td>
+            <td class="align-center post-preivew-link">
+                <?php echo $model->id;?>
+                <div class="hidden quick-links"><?php echo $model->previewLink;?></div>
+            </td>
+            <td class="post-quick-edit">
                 <?php echo $model->editLink;?>
-                <form class="form-inline hidden state-update-block">
+                <form class="form-inline hidden state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
                     </label>
@@ -46,7 +58,7 @@
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
                     </label>
-                    <input type="button" data-toggle="button" data-loading-text="<?php echo t('updating', 'admin');?>" data-complete-text="<?php echo t('update_complete', 'admin');?>" class="btn-update-state btn btn-mini" value="<?php echo t('update', 'admin');?>" />
+                    <button data-toggle="button" data-loading-text="<?php echo t('updating', 'admin');?>" data-error-text="<?php echo t('update_error', 'admin')?>" data-complete-text="<?php echo t('update_complete', 'admin');?>" class="btn-update-state btn btn-mini"><?php echo t('update', 'admin');?></button>
                 </form>
             </td>
             <td>
@@ -60,7 +72,9 @@
                 <?php echo $model->createTime;?>
             </td>
             <td class="align-center">
-                <?php echo $model->deleteLink;?><br />
+                <?php if (strtolower($this->action->id) != 'trash'):?>
+                <?php echo $model->trashLink;?><br />
+                <?php endif;?>
                 <?php echo $model->infoLink;?>
             </td>
             <td></td>
@@ -75,26 +89,28 @@
 <script type="text/javascript">
 $(function(){
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
-	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deletePost);
+	$(document).on('click', '.set-trash, .set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.trashPost);
 
-	$(document).on('click', '#batch-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
+	$(document).on('click', '#batch-delete, #batch-trash', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
 	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiPosts);
 	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiPosts);
 	
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
 
-	$(document).on('click', '.btn-update-state', function(event){
-	    $(this).button('loading');alert(1);
-	    $(this).button('complete');alert(1);
-	    $(this).button('reset');
-	});
+	$(document).on('click', '.btn-update-state', BetaAdmin.quickUpdate);
 
-	$('table tr').mouseenter(function(event){
-		$(this).find('.state-update-block').hide().delay(250).show(1);
+	$('table td.post-quick-edit').mouseenter(function(event){
+		$(this).find('.state-update-block').hide().delay(200).show(1);
 	});
-	$('table tr').mouseleave(function(event){
+	$('table td.post-quick-edit').mouseleave(function(event){
 		$(this).find('.state-update-block').stop(true, true).hide();
+	});
+	$('table td.post-preivew-link').mouseenter(function(event){
+		$(this).find('.quick-links').hide().delay(150).show(1);
+	});
+	$('table td.post-preivew-link').mouseleave(function(event){
+		$(this).find('.quick-links').stop(true, true).hide();
 	});
 });
 </script>

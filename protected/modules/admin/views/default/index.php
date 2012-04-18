@@ -30,6 +30,8 @@
                         <li class="nav-header">附件</li>
                         <li><?php echo l(t('upload_file_search', 'admin'), url('admin/upload/search'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('upload_file_list', 'admin'), url('admin/upload/list'), array('target'=>'main'));?></li>
+                        <li class="divider"></li>
+                        <li><?php echo l(t('trash', 'admin'), url('admin/post/trash'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
                 <li class="dropdown">

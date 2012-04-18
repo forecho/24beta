@@ -3,6 +3,7 @@
  * @property string $infoLink
  * @property string $editUrl
  * @property string $editLink
+ * @property string $trashLink
  * @property string $deleteLink
  * @property string $verifyLink
  * @property string $adminTitleLink
@@ -12,6 +13,7 @@
  * @property string $commentUrl
  * @property string $topLink
  * @property string $commentNumsBadgeHtml
+ * @property string $previewLink
  */
 class AdminPost extends Post
 {
@@ -77,6 +79,11 @@ class AdminPost extends Post
         return l($this->title, $this->getEditUrl(), array('target'=>'_blank'));
     }
 
+    public function getTrashLink()
+    {
+        return l(t('delete', 'admin'), url('admin/post/settrash', array('id'=>$this->id)), array('class'=>'set-trash'));
+    }
+
     public function getDeleteLink()
     {
         return l(t('delete', 'admin'), url('admin/post/setdelete', array('id'=>$this->id)), array('class'=>'set-delete'));
@@ -132,5 +139,9 @@ class AdminPost extends Post
         return $html;
     }
 
+    public function getPreviewLink()
+    {
+        return l(t('post_preivew', 'admin'), $this->getUrl(), array('target'=>'_blank'));
+    }
 }
 
