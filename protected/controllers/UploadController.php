@@ -20,7 +20,7 @@ class UploadController extends Controller
     
     private function uploadFile(CUploadedFile $upload, $fileType = Upload::TYPE_UNKNOWN, $additional = null)
     {
-        $file = BetaBase::makeUploadFilePath($upload->extensionName, 'images');
+        $file = BetaBase::makeUploadFilePath(param('uploadBasePath'), $upload->extensionName, 'images');
         $filePath = $file['path'];
         if ($upload->saveAs($filePath, $deleteTempFile)) {
             $this->afterUploaded($upload, $file, $fileType);

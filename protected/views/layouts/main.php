@@ -13,16 +13,12 @@
 <body>
 <div class="beta-container">
     <div class="beta-header">
-            <div class="beta-logo"><a href="<?php echo abu();?>"><?php echo app()->name;?></a></div>
+        <div class="beta-logo"><a href="<?php echo abu();?>"><?php echo app()->name;?></a></div>
     </div>
     <div class="beta-nav">
         <ul class="channel-nav fleft">
             <li><a href="<?php echo app()->homeUrl;?>">首页</a></li>
-            <li><a href="<?php echo app()->homeUrl;?>">快讯</a></li>
             <li><a href="<?php echo aurl('topic/list');?>">主题</a></li>
-            <li><a href="<?php echo aurl('event/list');?>">事件</a></li>
-            <li><a href="<?php echo aurl('site/team');?>">团队</a></li>
-            <li><a href="<?php echo aurl('site/opensource');?>">开源</a></li>
             <li><a href="<?php echo aurl('post/create');?>">投稿</a></li>
         </ul>
         <ul class="user-mini-bar fright">

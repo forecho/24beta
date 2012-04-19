@@ -28,22 +28,20 @@ class BetaBase
      * -1 目录不存在并且无法创建
      * -2 目录不可写
      */
-    public static function makeUploadPath($additional = null)
+    public static function makeUploadPath($basePath, $additional = null)
     {
         $relativeUrl = (($additional === null) ? '' : $additional . '/') . date('Y/m/d/', $_SERVER['REQUEST_TIME']);
         $relativePath = (($additional === null) ? '' : $additional . DS) . date(addslashes(sprintf('Y%sm%sd%s', DS, DS, DS)), $_SERVER['REQUEST_TIME']);
 
-        $path = param('uploadBasePath') . $relativePath;
+        $path = $basePath . $relativePath;
 
-        if (!file_exists($path) && !mkdir($path, 0755, true)) {
-            return self::FILE_NO_EXIST;
-        } else if (!is_writable($path)) {
-            return self::FILE_NO_WRITABLE;
-        } else
+        if ((file_exists($path) || mkdir($path, 0755, true)) && is_writable($path))
             return array(
             	'path' => realpath($path) . DS,
                 'url' => $relativeUrl,
             );
+        else
+            throw new Exception('path not exist or not writable', 0);
     }
 
     /**
@@ -61,9 +59,9 @@ class BetaBase
         return $file;
     }
     
-    public static function makeUploadFilePath($extension, $additional = null)
+    public static function makeUploadFilePath($basePath, $extension, $additional = null)
     {
-        $path = self::makeUploadPath($additional);
+        $path = self::makeUploadPath($basePath, $additional);
         $file = self::makeUploadFileName($extension);
         
         $data = array(

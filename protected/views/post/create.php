@@ -88,7 +88,7 @@
     <div class="beta-block beta-small beta-radius3px">
         <h2>投稿必读</h2>
         <ul class="beta-block-content">
-            <li>欢迎原创及翻译文章，您的独家报料与独特视角是CB的宝贵财富</li>
+            <li>欢迎原创及翻译文章，您的独家报料与独特视角是我们的宝贵财富</li>
             <li>非原创文章必须填写来源</li>
             <li>别忘了署名! 写上您的blog地址,带来意想不到的人气,也可能发现志同道合的网友</li>
             <li>编辑也许会对投递进行适当修改, 以适合在本站发表</li>
