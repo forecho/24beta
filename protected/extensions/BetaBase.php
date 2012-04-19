@@ -88,4 +88,40 @@ class BetaBase
         echo $callback . '(' . CJSON::encode($data) . ')';
         if ($exit) exit(0);
     }
+
+    public static function uploadImage(CUploadedFile $upload, $additional = null, $compress = true, $deleteTempFile = true)
+    {
+        if (!$compress) {
+            $result = self::uploadFile($upload, $additional, $deleteTempFile);
+            return $result;
+        }
+        
+        $path = self::makeUploadPath(param('uploadBasePath'), $additional);
+        $file = self::makeUploadFileName(null);
+        $filename = $path['path'] . $file;
+        $im = new CdImage();
+        $im->load($upload->tempName);
+        $result = $im->save($filename);
+        $newFilename = $im->filename();
+        unset($im);
+        if ($result === false)
+            return false;
+        else {
+            $filename = array(
+                'path' => $path['path'] . $newFilename,
+                'url' => $path['url'] . $newFilename
+            );
+            return $filename;
+        }
+    }
+    
+    public static function uploadFile(CUploadedFile $upload, $additional = null, $deleteTempFile = true)
+    {
+        $filename = self::makeUploadFilePath(param('uploadBasePath'), $upload->extensionName);
+        $result = $upload->saveAs($filename['path'], $deleteTempFile);
+        if ($result)
+            return $filename;
+        else
+            return false;
+    }
 }

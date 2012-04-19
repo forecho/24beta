@@ -4,6 +4,9 @@ class TestController extends Controller
 {
     public function actionTest1()
     {
+        phpinfo();
+        exit;
+        
         $a = array(
         	array('age'=>20, 'name'=>'asdfxxx'),
         	array('age'=>21, 'name'=>'sdfgbbb'),
