@@ -149,10 +149,33 @@
 <div class="admin-container">
     <iframe id="admin-iframe" src="<?php echo url('admin/default/welcome');?>" name="main"></iframe>
 </div>
+
+<script type="text/javascript">
+$(function(){
+	$(document).on('click', '.admin-sidebar li a', function(event){
+		var li = $(this).parent();
+		if (li.hasClass('active')) return true;
+
+		$('li.dropdown').removeClass('active');
+		$('.dropdown-menu  li').removeClass('active');
+		li.siblings().removeClass('active');
+		li.addClass('active');
+	});
+	$(document).on('click', '.dropdown-menu li a', function(event){
+		var li = $(this).parent();
+		if (li.hasClass('active')) return true;
+
+		$('.admin-sidebar li').removeClass('active');
+		$('li.dropdown').removeClass('active');
+		$('.dropdown-menu  li').removeClass('active');
+		$(this).parents('.dropdown').addClass('active');
+		li.addClass('active');
+	});
+});
+</script>
 <script type="text/javascript" src="<?php echo sbu('libs/bootstrap/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo sbu('scripts/beta-admin.js');?>"></script>
+
 </body>
 </html>
-
-
 

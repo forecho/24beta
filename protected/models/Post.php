@@ -390,7 +390,7 @@ class Post extends CActiveRecord
 	        return '';
 	}
 	
-	public function getTopicLink()
+	public function getTopicLink($target = '_blank')
 	{
 	    if ($this->topic)
 	        return $this->topic->getPostsLink($target);
