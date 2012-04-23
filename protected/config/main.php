@@ -76,7 +76,7 @@ return array(
 		    'tablePrefix' => $dbconfig['tablePrefix'],
             'enableParamLogging' => true,
             'enableProfiling' => true,
-// 		    'schemaCacheID' => 'fcache',
+// 		    'schemaCacheID' => 'cache',
 // 		    'schemaCachingDuration' => 3600 * 24,    // metadata 缓存超时时间(s)
 // 		    'queryCacheID' => 'cache',
 // 		    'queryCachingDuration' => 60,
@@ -85,10 +85,6 @@ return array(
             'class' => 'CFileCache',
             'directoryLevel' => 2,
         ),
-        'fcache' => array(
-		    'class' => 'CFileCache',
-		    'directoryLevel' => 2,
-		),
         'assetManager' => array(
             'basePath' => $params['resourceBasePath'] . 'assets',
             'baseUrl' => $params['resourceBaseUrl'] . 'assets',
@@ -113,9 +109,9 @@ return array(
             'itemTable' => '{{auth_item}}',
         ),
         'urlManager' => array(
-            'urlFormat' => 'path',
+            'urlFormat' => $params['urlFormat'],
 		    'showScriptName' => false,
-            'cacheID' => 'fcache',
+            'cacheID' => 'cache',
             'rules' => array(
                 'page/<page:\d+>' => 'site/index',
                 '' => 'site/index',
