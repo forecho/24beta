@@ -133,7 +133,7 @@ class SiteController extends Controller
         $pages = new CPagination($count);
         $pages->setPageSize(param('postCountOfPage'));
         $pages->applyLimit($criteria);
-        $posts = Post::model()->with('category', 'topic')->together()->findAll($criteria);
+        $posts = Post::model()->findAll($criteria);
 
         return array(
             'posts' => $posts,
