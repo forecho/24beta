@@ -74,4 +74,8 @@ td.column-label {width:150px; text-align:right;}
 .beta-list-table form .checkbox {font-size:12px; margin-left:1px;}
 .table-post-list td {height:42px;}
 .beta-list-table .quick-links {margin-top:5px;}
+.post-info tr td {padding-right:15px; padding-left:15px;}
+.post-info tr td:first-child {width:150px; text-align:right; color:gray;}
+.post-info tr td:first-child label {color:gray;}
+
 

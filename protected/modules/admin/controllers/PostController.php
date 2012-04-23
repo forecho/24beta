@@ -10,6 +10,16 @@ class PostController extends AdminController
         );
     }
     
+    public function actionInfo($id)
+    {
+        $id = (int)$id;
+        $model = AdminPost::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, t('post_is_not_exist', 'admin'));
+        
+        $this->render('info', array('model'=>$model));
+    }
+    
 	public function actionCreate($id = 0)
 	{
 	    $id = (int)$id;
@@ -189,9 +199,6 @@ class PostController extends AdminController
         BetaBase::jsonp($callback, $result);
 	}
 	
-	
-	
-
     public function actionSetVerify($id, $callback)
 	{
 	    $id = (int)$id;

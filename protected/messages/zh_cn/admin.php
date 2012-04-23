@@ -160,6 +160,7 @@ return array(
     'set_homeshow_post' => '首页显示',
     'cannel_homeshow_post' => '取消首页显示',
     'attachment' => '附件',
+    'avg_score' => '平均分',
 
     'category_is_not_exist' => '该分类不存在',
     'topic_is_not_exist' => '该主题不存在',
