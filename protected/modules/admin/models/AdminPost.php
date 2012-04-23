@@ -58,7 +58,7 @@ class AdminPost extends Post
             $pages->applyLimit($criteria);
         }
 
-        $models = self::model()->with('category', 'topic')->findAll($criteria);
+        $models = self::model()->with('adminCategory', 'adminTopic')->findAll($criteria);
 
         $data = array(
             'models' => $models,

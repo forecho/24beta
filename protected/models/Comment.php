@@ -115,20 +115,19 @@ class Comment extends CActiveRecord
 	{
 	    return array(
             'recently' => array(
-                'order' => 't.id desc',
+                'order' => 't.create_time desc',
                 'limit' => 10,
             ),
 	        'recommend' => array(
 	            'condition' => 't.recommend = ' .  BETA_YES,
-    	        'order' => 't.id desc',
+    	        'order' => 't.create_time desc',
 	        ),
 	        'noverify' => array(
 	            'condition' => 't.state = ' .  self::STATE_DISABLED,
-    	        'order' => 't.id desc',
 	        ),
     	    'published' => array(
         	    'condition' => 't.state = ' .  self::STATE_ENABLED,
-        	    'order' => 't.id desc',
+        	    'order' => 't.create_time desc',
     	    ),
         );
 	}
@@ -162,7 +161,7 @@ class Comment extends CActiveRecord
 	{
 	    $postid = (int)$postid;
 	    $criteria = new CDbCriteria();
-	    $criteria->order = 'id asc';
+	    $criteria->order = 'create_time asc';
 	    $criteria->limit = param('commentCountOfPage');
 	    $offset = ($page - 1) * $criteria->limit;
 	    $criteria->offset = $offset;
@@ -179,7 +178,7 @@ class Comment extends CActiveRecord
 	{
 	    $postid = (int)$postid;
 	    $criteria = new CDbCriteria();
-	    $criteria->order = 'id desc';
+	    $criteria->order = 'create_time desc';
 	    $criteria->limit = param('hotCommentCountOfPage');
 	    $offset = ($page - 1) * $criteria->limit;
 	    $criteria->offset = $offset;

@@ -4,6 +4,8 @@ class TestController extends Controller
 {
     public function actionTest1()
     {
+        echo time();
+        exit;
         phpinfo();
         exit;
         

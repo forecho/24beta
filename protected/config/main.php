@@ -108,9 +108,9 @@ return array(
         ),
         'authManager' => array(
             'class' => 'CDbAuthManager',
-            'assignmentTable' => $dbconfig['tablePrefix'] . 'auth_assignment',
-            'itemChildTable' => $dbconfig['tablePrefix'] . 'auth_itemchild',
-            'itemTable' => $dbconfig['tablePrefix'] . 'auth_item',
+            'assignmentTable' => '{{auth_assignment}}',
+            'itemChildTable' => '{{auth_itemchild}}',
+            'itemTable' => '{{auth_item}}',
         ),
         'urlManager' => array(
             'urlFormat' => 'path',

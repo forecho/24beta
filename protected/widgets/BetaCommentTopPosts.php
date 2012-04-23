@@ -83,14 +83,17 @@ class BetaCommentTopPosts extends CWidget
         $criteria->select = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state');
         $criteria->order = 'comment_nums desc, id desc';
         $criteria->limit = $this->count;
-        $criteria->addColumnCondition(array('t.state'=>Post::STATE_ENABLED));
+        
+
+        $criteria->addCondition('create_time > :createtime');
+        $createtime = $_SERVER['REQUEST_TIME'] - 3600 * 24 * $this->days;
+        
         if ($this->cid)
             $criteria->addColumnCondition(array('category_id'=>$this->cid));
         if ($this->tid)
             $criteria->addColumnCondition(array('topic_id'=>$this->tid));
         
-        $criteria->addCondition('create_time > :createtime');
-        $createtime = $_SERVER['REQUEST_TIME'] - 3600 * 24 * $this->days;
+        $criteria->addColumnCondition(array('t.state'=>Post::STATE_ENABLED));
         $criteria->params = array_merge($criteria->params, array(':createtime'=>$createtime));
         
         $models = Post::model()->findAll($criteria);

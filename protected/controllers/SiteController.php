@@ -22,7 +22,6 @@ class SiteController extends Controller
     {
         $criteria = new CDbCriteria();
         $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.hottest');
-        $criteria->order = 'id desc';
         $criteria->limit = 4;
         $criteria->scopes = array('hottest', 'published');
         $models = Post::model()->findAll($criteria);
@@ -34,7 +33,6 @@ class SiteController extends Controller
     {
         $criteria = new CDbCriteria();
         $criteria->select = array('t.id', 't.title', 't.thumbnail', 't.state', 't.recommend', 't.summary', 't.content');
-        $criteria->order = 'id desc';
         $criteria->limit = param('recommendPostsCount');
         $criteria->scopes = array('recommend', 'published');
         $models = Post::model()->findAll($criteria);
@@ -127,9 +125,9 @@ class SiteController extends Controller
     private static function fetchLatestPosts()
     {
         $criteria = new CDbCriteria();
-        $criteria->order = 't.istop desc, t.create_time desc, t.id desc';
+        $criteria->order = 't.istop desc, t.create_time desc';
         $criteria->limit = param('postCountOfPage');
-        $criteria->scopes = array('published', 'homeshow');
+        $criteria->scopes = array('homeshow', 'published');
 
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);

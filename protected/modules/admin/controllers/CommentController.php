@@ -15,9 +15,6 @@ class CommentController extends AdminController
 	    $hours = (int)$hours;
 	    
 	    $criteria = new CDbCriteria();
-	    $time = $_SERVER['REQUEST_TIME'] - $hours*60*60;
-	    $criteria->addCondition('t.create_time > ' . $time);
-	    
 	    $data = AdminComment::fetchList($criteria);
 	    
 	    $this->adminTitle = t('latest_comment', 'admin');

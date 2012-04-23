@@ -209,15 +209,15 @@ class Post extends CActiveRecord
             ),
             'hottest' => array(
                 'condition' => 't.hottest = ' . BETA_YES,
-                'order' => 't.id desc',
+                'order' => 't.create_time desc',
             ),
             'recommend' => array(
                 'condition' => 't.recommend = ' . BETA_YES,
-                'order' => 't.id desc',
+                'order' => 't.create_time desc',
             ),
             'recently' => array(
                 'condition' => 't.state = ' . self::STATE_ENABLED,
-                'order' => 't.id desc',
+                'order' => 't.create_time desc',
                 'limit' => 10,
             ),
 	    );
