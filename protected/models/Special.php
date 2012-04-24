@@ -7,11 +7,21 @@
  * @property integer $id
  * @property string $token
  * @property string $name
- * @property string $desc
+ * @property string $thumbnail
  * @property integer $create_time
+ * @property integer $state
+ * @property string $desc
+ * @property string $url
+ * @property string $nameLink
+ * @property string $thumbnailUrl
+ * @property string $thumbnailHtml
+ * @property string $thumbnailLink
  */
 class Special extends CActiveRecord
 {
+    const STATE_ENABLED = 1;
+    const STATE_DISABLED = 0;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Special the static model class
@@ -39,9 +49,11 @@ class Special extends CActiveRecord
 		return array(
 		    array('token, name', 'required'),
 		    array('token, name', 'unique'),
-			array('create_time', 'numerical', 'integerOnly'=>true),
+			array('create_time, state', 'numerical', 'integerOnly'=>true),
+		    array('state', 'in', 'range'=>array(self::STATE_ENABLED, self::STATE_DISABLED)),
 			array('token, name', 'length', 'max'=>100),
-			array('desc', 'length', 'max'=>250),
+			array('desc, thumbnail', 'length', 'max'=>250),
+			array('desc', 'safe'),
 		);
 	}
 
@@ -68,7 +80,123 @@ class Special extends CActiveRecord
 			'name' => t('special_name'),
 			'desc' => t('special_desc'),
 			'create_time' => t('create_time'),
+		    'state' => t('state'),
+		    'thumbnail' => t('thumbnail'),
 		);
 	}
 
+	public function getUrl()
+	{
+	    return aurl('special/show', array('id'=>$this->id));
+	}
+	
+	public function getNameLink($target = '_blank')
+	{
+	    return l($this->name, $this->getUrl(), array('target'=>$target));
+	}
+	
+	public function getThumbnailUrl()
+	{
+	    $thumbnail = $this->thumbnail;
+	    if (empty($thumbnail))
+	        return '';
+	    
+	    $pos = strpos($thumbnail, 'http://');
+	    if ($pos === 0)
+	        $url = $thumbnail;
+	    elseif ($pos === false)
+	        $url  = fbu($thumbnail);
+	    else
+	        $url = '';
+	    
+	    return $url;
+	}
+	
+	public function getThumbnailHtml()
+	{
+	    $url = $this->getThumbnailUrl();
+	    if (empty($url))
+	        $html = '';
+	    else {
+	        $html = image($url, $this->name, array('title'=>$this->name));
+	    }
+	    
+	    return $html;
+	}
+	
+	public function getThumbnailLink($target = '_blank')
+	{
+	    $image = $this->getThumbnailHtml();
+	    if (empty($image))
+	        $html = '';
+	    else {
+	        $html = l($image, $this->getUrl(), array('target'=>$target));
+	    }
+	    
+	    return $html;
+	}
+	
+	public static function fetchEnabledList(CDbCriteria $criteria = null, $pages = true)
+	{
+	    static $defaultSize = 12;
+	    
+	    if ($criteria === null)
+	        $criteria = new CDbCriteria();
+	
+	    $criteria->addColumnCondition(array('t.state'=>self::STATE_ENABLED));
+	    $criteria->order = 'create_time desc';
+	    if ($pages) {
+	        $limit = ($criteria->limit <= 0) ? $defaultSize : $criteria->limit;
+	        $pages = new CPagination(self::model()->count($criteria));
+	        $pages->setPageSize($limit);
+	        $pages->applyLimit($criteria);
+	        $data['pages'] = $pages;
+	    }
+	
+	    $models = self::model()->findAll($criteria);
+	    if (empty($models))
+	        $data = array();
+	    else
+	        $data['models'] = $models;
+	    
+	    return $data;
+	}
+
+    protected function beforeSave()
+    {
+        if ($this->getIsNewRecord()) {
+            $this->create_time = $_SERVER['REQUEST_TIME'];
+            $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
+            $this->token = strip_tags(trim($this->token));
+            $this->name = strip_tags(trim($this->name));
+        }
+        
+        return true;
+    }
+    
+    protected function beforeDelete()
+    {
+        try {
+            $result = $this->getDbConnection()->createCommand()
+                ->delete('{{special2post}}', 'special_id = :specialid', array(':specialid'=>$this->id));
+            
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+    
+    protected function afterFind()
+    {
+        $this->name = strip_tags(trim($this->name));
+        $this->token = strip_tags(trim($this->token));
+        $this->thumbnail = strip_tags(trim($this->thumbnail));
+    }
 }
+
+
+
+
+
+

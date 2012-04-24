@@ -17,7 +17,7 @@ return array(
     // 当前theme，不要在此修改，这是默认值，请在后台中修改
     'theme' => null,
     // URL 格式，get|path，如果设置为path，需要在web服务端设置rewrite重定向
-    'urlFormat' => 'ge3t',
+    'urlFormat' => 'path',
 
     // 注册用户是否需要邮件激活
     'userRequiredEmailVerfiy' => false,

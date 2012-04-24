@@ -5,7 +5,7 @@ class TopicController extends AdminController
     public function filters()
     {
         return array(
-        'postOnly + updateOrderID',
+            'postOnly + updateOrderID',
         );
     }
     
@@ -14,22 +14,24 @@ class TopicController extends AdminController
 	{
 	    $id = (int)$id;
 	    
-	    $parents = (array)AdminTopic::listData();
-	    
-	    if ($id === 0) {
-	        $model = new AdminTopic();
-	        $this->adminTitle = t('create_topic', 'admin');
-	    }
-	    else {
+	    if ($id > 0) {
 	        $model = AdminTopic::model()->findByPk($id);
 	        $this->adminTitle = t('edit_topic', 'admin');
-	        unset($parents[$id]);
+	    }
+	    else {
+	        $model = new AdminTopic();
+	        $this->adminTitle = t('create_topic', 'admin');
 	    }
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminTopic'])) {
 	        $model->attributes = $_POST['AdminTopic'];
 	        $model->icon = CUploadedFile::getInstance($model, 'icon');
-	        if ($model->save() && $model->saveIcon() !== false) {
+	        
+	        $attributes = $model->attributes;
+	        if (!($model->icon instanceof CUploadedFile))
+	            unset($attributes['icon']);
+	        $attributes = array_keys($attributes);
+	        if ($model->save(true, $attributes) && $model->saveIcon() !== false) {
 	            user()->setFlash('save_topic_result', t('save_topic_success', 'admin', array('{name}'=>$model->name)));
 	            $this->redirect(request()->getUrl());
 	        }
@@ -37,7 +39,6 @@ class TopicController extends AdminController
 	    
 	    $this->render('create', array(
 	        'model' => $model,
-	        'parents' => $parents,
 	    ));
 	}
 	

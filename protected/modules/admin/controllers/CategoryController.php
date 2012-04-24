@@ -13,8 +13,6 @@ class CategoryController extends AdminController
 	{
 	    $id = (int)$id;
 	    
-	    $parents = (array)AdminCategory::listData();
-	     
 	    if ($id === 0) {
     	    $model = new AdminCategory();
     	    $this->adminTitle = t('create_category', 'admin');
@@ -22,7 +20,6 @@ class CategoryController extends AdminController
 	    else {
 	        $model = AdminCategory::model()->findByPk($id);
 	        $this->adminTitle = t('edit_category', 'admin');
-	        unset($parents[$id]);
 	    }
 	     
 	    if (request()->getIsPostRequest() && isset($_POST['AdminCategory'])) {
@@ -35,7 +32,6 @@ class CategoryController extends AdminController
 	     
 	    $this->render('create', array(
     	    'model' => $model,
-    	    'parents' => $parents,
 	    ));
 	}
 	

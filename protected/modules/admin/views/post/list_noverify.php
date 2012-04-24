@@ -73,7 +73,7 @@
 $(function(){
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
 	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deletePost);
-	$(document).on('click', '.set-verify', BetaAdmin.ajaxSetPostBoolColumn);
+	$(document).on('click', '.set-verify', BetaAdmin.ajaxSetBooleanColumn);
 
 	$(document).on('click', '#batch-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
 	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiPosts);

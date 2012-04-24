@@ -16,6 +16,7 @@ return array(
     'post_tag' => '标签',
     'post_category' => '分类',
     'post_topic' => '主题',
+    'post_special' => '专题',
     'post_comment' => '评论',
     'topic_category' => '主题分类',
     'comment_manage' => '评论管理',
@@ -93,6 +94,15 @@ return array(
     'save_topic_success' => '{name}&nbsp;保存成功。',
     'topic_list_table' => '主题列表',
     'topic_statistics' => '主题统计',
+
+    /* create special */
+    'create_special' => '新建专题',
+    'edit_special' => '编辑专题',
+    'save_special_success' => '{name}&nbsp;保存成功。',
+    'special_list_table' => '专题列表',
+    'special_statistics' => '专题统计',
+    'special_enabled' => '上线',
+    'special_disabled' => '下线',
 
     /* create category */
     'create_category' => '新建分类',

@@ -234,27 +234,7 @@ var BetaAdmin = {
 			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 	},
-	ajaxSetPostBoolColumn: function(event) {
-		event.preventDefault();
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			if (data.errno == BETA_NO)
-			    tthis.text(data.label);
-			else
-				BetaAdmin.showAjaxMessage('发生错误.');
-		});
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
-		});
-	},
-	ajaxSetCommentBoolColumn: function(event) {
+	ajaxSetBooleanColumn: function(event) {
 		event.preventDefault();
 		var tthis = $(this);
 		var jqXhr = $.ajax({

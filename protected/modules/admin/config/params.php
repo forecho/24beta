@@ -19,5 +19,7 @@ return array(
     'adminCommentCountOfPage' => 30,
     // 每页显示的文件数量
     'adminUploadFilesCountOfPage' => 30,
+    // 每页显示的专题数量
+    'adminSpecialCountOfPage' => 20,
         
 );

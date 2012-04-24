@@ -24,9 +24,10 @@
 
 .control-group.bottom10px {margin-bottom:10px;}
 
-#summary, #content {width:610px;}
+#summary, #content, #special-desc {width:610px;}
 #summary {height:180px;}
 #content {height:450px;}
+#special-desc {height:200px;}
 
 .topic-icon {max-width:100px; max-height:100px;}
 
