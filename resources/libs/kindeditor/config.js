@@ -1,4 +1,5 @@
 var summaryHtmlTags = {
+	span: ['.color', '.text-decoration', '.font-weight'],
     a: ['href', 'target', 'name'],
     embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
     img: ['src', 'width', 'height', 'border', 'alt', 'title', '.width', '.height'],
@@ -7,7 +8,7 @@ var summaryHtmlTags = {
 };
 
 var contentHtmlTags = {
-    span: ['.color', '.text-decoration'],
+    span: ['.color', '.text-decoration', '.font-weight', '.font-size'],
     div: [
             'align', '.border', '.margin', '.padding', '.text-align', '.color',
             '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
