@@ -240,6 +240,12 @@ return array(
     'please_select_file_type' => '请选择文件类型',
     'view_picture' => '查看图片',
     'search_result' => '搜索结果',
+        
+    /* filter keyword manage */
+    'filter_keyword_list' => '敏感词列表',
+    'cofig_filter_keyword_success' => '敏感词保存成功',
+    'filter_keyword_manage' => '敏感词管理',
+    'multi_create_filter_keyword' => '批量添加',
 );
 
 

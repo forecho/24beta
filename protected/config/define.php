@@ -11,3 +11,4 @@ define('TABLE_TAG', '{{tag}}');
 define('TABLE_TOPIC', '{{topic}}');
 define('TABLE_UPLOAD', '{{upload}}');
 define('TABLE_USER', '{{user}}');
+define('TABLE_FILTER_KEYWORD', '{{filter_keyword}}');

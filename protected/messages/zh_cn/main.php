@@ -21,6 +21,12 @@ return array(
     'user_enabled' => '启用',
         
     /*
+     * model FilterKeyword
+     */
+    'filter_keyword' => '敏感词',
+    'filter_replace' => '替换词',
+        
+    /*
      * Model Config attributeLabels
      */
     'config_category' => '参数分类',

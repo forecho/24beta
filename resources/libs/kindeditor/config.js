@@ -1,5 +1,5 @@
 var summaryHtmlTags = {
-	span: ['.color', '.text-decoration', '.font-weight'],
+    span: ['.color', '.text-decoration', '.font-weight'],
     a: ['href', 'target', 'name'],
     embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
     img: ['src', 'width', 'height', 'border', 'alt', 'title', '.width', '.height'],

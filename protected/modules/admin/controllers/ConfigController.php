@@ -54,7 +54,7 @@ class ConfigController extends AdminController
         foreach ($params as $name => $value) {
             try {
                 $result = app()->getDb()->createCommand()
-                    ->update(AdminConfig::model()->tableName(), array('config_value'=>$value), 'config_name = :configname', array(':configname'=>$name));
+                    ->update(TABLE_CONFIG, array('config_value'=>$value), 'config_name = :configname', array(':configname'=>$name));
             }
             catch (Exception $e) {
                 array_push($names, $name);
@@ -87,5 +87,6 @@ class ConfigController extends AdminController
             'model' => $model,
         ));
     }
+
 }
 

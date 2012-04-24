@@ -107,10 +107,15 @@
                         <li><?php echo l(t('display_template', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_DISPLAY_TEMPLATE)), array('target'=>'main'));?></li>
                         <li><?php echo l(t('display_ui', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_DISPLAY_UI)), array('target'=>'main'));?></li>
                         <li class="divider"></li>
+                        <li class="nav-header"><?php echo t('filter_keyword_manage', 'admin');?></li>
+                        <li><?php echo l(t('multi_create_filter_keyword', 'admin'), url('admin/filterkeyword/multicreate'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('filter_keyword_list', 'admin'), url('admin/filterkeyword/list'), array('target'=>'main'));?></li>
+                        <!--
                         <li class="nav-header"><?php echo t('sns_config_params', 'admin');?></li>
                         <li><?php echo l(t('sns_interface', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_SNS_INTERFACE)), array('target'=>'main'));?></li>
                         <li><?php echo l(t('sns_stats', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_SNS_STATS)), array('target'=>'main'));?></li>
                         <li><?php echo l(t('sns_template', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_SNS_TEMPLATE)), array('target'=>'main'));?></li>
+                         -->
                         <li class="divider"></li>
                         <li class="nav-header"><?php echo t('custom_config_params', 'admin');?></li>
                         <li><?php echo l(t('custom_config_params', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_CUSTOM)), array('target'=>'main'));?></li>
