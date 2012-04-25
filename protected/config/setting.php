@@ -21,6 +21,8 @@ return array(
 
     // 注册用户是否需要邮件激活
     'userRequiredEmailVerfiy' => false,
+    // 敏感关键词被替换为
+    'filterKeywordReplacement' => '文明用语',
         
     // 每页显示的文章数量
     'postCountOfPage' => 12,

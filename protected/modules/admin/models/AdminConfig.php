@@ -58,7 +58,7 @@ class AdminConfig extends Config
     {
         $rows = app()->getDb()->createCommand()
             ->select(array('config_name', 'config_value'))
-            ->from(self::model()->tableName())
+            ->from(TABLE_CONFIG)
             ->queryAll();
         
         if (empty($rows)) return false;

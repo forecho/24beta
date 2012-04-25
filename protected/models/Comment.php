@@ -134,7 +134,8 @@ class Comment extends CActiveRecord
 
 	public function getFilterContent()
 	{
-	    return nl2br($this->content);
+	    $content = BetaBase::filterText($this->content);
+	    return nl2br($content);
 	}
 	
 	public function getCreateTime($format = null)

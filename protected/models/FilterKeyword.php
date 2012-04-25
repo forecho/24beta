@@ -65,7 +65,24 @@ class FilterKeyword extends CActiveRecord
     
     public static function updateCacheFile()
     {
+        $rows = app()->getDb()->createCommand()
+            ->select(array('keyword', 'replace'))
+            ->from(TABLE_FILTER_KEYWORD)
+            ->queryAll();
         
+        if (empty($rows)) return true;
+        
+        foreach ($rows as $index => $row) {
+            $pattern = '/\{(\d+)\}/is';
+            $replacement = '.{0,$1}?';
+            $rows[$index]['keyword'] = preg_replace($pattern, $replacement, $row['keyword']);
+        }
+        
+        $rows = CHtml::listData($rows, 'keyword', 'replace');
+        $data = "<?php\nreturn " . var_export($rows, true) . ';';
+        $filename = dp('filter_keywords.php');
+        
+        return file_put_contents($filename, $data);
     }
 }
 

@@ -124,4 +124,38 @@ class BetaBase
         else
             return false;
     }
+
+    public static function filterText($text)
+    {
+        static $keywords = null;
+        if ($keywords === null) {
+            $filename = dp('filter_keywords.php');
+            if (file_exists($filename) && is_readable($filename)) {
+                $keywords = require($filename);
+            }
+            else
+                return $text;
+        }
+//         var_dump($keywords);exit;
+        if (empty($keywords)) return $text;
+
+        try {
+            $patterns = array_keys($keywords);
+            foreach ($patterns as $index => $pattern) {
+                $patterns[$index] = '/' . $pattern . '/is';
+            }
+            
+            $replacement = array_values($keywords);
+            foreach ($replacement as $index => $word)
+                $replacement[$index] = empty($word) ? param('filterKeywordReplacement') : $word;
+            
+            $result = preg_replace($patterns, $replacement, $text);
+            $newText = ($result === null) ? $text : $result;
+        }
+        catch (Exception $e) {
+            $newText = $text;
+        }
+        
+        return $newText;
+    }
 }

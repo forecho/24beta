@@ -17,7 +17,7 @@ class FilterKeywordController extends AdminController
         foreach ($params as $name => $value) {
             try {
                 $result = app()->getDb()->createCommand()
-                ->update(TABLE_FILTER_KEYWORD, array('replace'=>$value), 'keyword = :keyword', array(':keyword'=>$name));
+                    ->update(TABLE_FILTER_KEYWORD, array('replace'=>$value), 'keyword = :keyword', array(':keyword'=>$name));
             }
             catch (Exception $e) {
                 array_push($names, $name);
