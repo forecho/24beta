@@ -48,6 +48,7 @@ return array(
     'cancel_delete' => '取消删除',
     'submit' => '提交',
     'submit_post' => '发表文章',
+    'return_list_page' => '返回列表',
 
     /* PostSearchForm */
     'postid' => '文章ID',

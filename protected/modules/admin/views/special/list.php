@@ -7,7 +7,7 @@
             <th class="span3"><?php echo $sort->link('name');?></th>
             <th class="span3"><?php echo $sort->link('token');?></th>
             <th class="span1 align-center"><?php echo $sort->link('state');?></th>
-            <th>#</th>
+            <th><a class="label label-important" href="<?php echo url('admin/special/create');?>"><?php echo t('create_special', 'admin');?></a></th>
         </tr>
     </thead>
     <tbody>

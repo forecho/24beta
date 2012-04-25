@@ -24,6 +24,7 @@
     </div>
     <div class="form-actions">
         <input type="submit" value="<?php echo t('submit', 'admin');?>" class="btn btn-primary" />
+        <a class="btn" href="<?php echo url('admin/category/list');?>"><?php echo t('return_list_page', 'admin');?></a>
     </div>
 </fieldset>
 <?php echo CHtml::endForm();?>

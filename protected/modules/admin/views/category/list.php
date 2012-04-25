@@ -21,7 +21,7 @@
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span5"><?php echo $sort->link('name');?></th>
             <th class="span1 align-center"><?php echo $sort->link('post_nums');?></th>
-            <th>#</th>
+            <th><a class="label label-important" href="<?php echo url('admin/category/create');?>"><?php echo t('create_category', 'admin');?></a></th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +46,7 @@
 <fieldset>
     <div class="form-actions">
         <input type="submit" value="<?php echo t('submit', 'admin');?>" class="btn btn-primary" />
+        <a class="btn" href="<?php echo url('admin/category/create');?>"><?php echo t('create_category', 'admin');?></a>
     </div>
 </fieldset>
 <?php endif;?>

@@ -33,6 +33,7 @@
     </div>
     <div class="form-actions">
         <input type="submit" value="<?php echo t('search', 'admin');?>" class="btn btn-primary" />
+        <a class="btn" href="<?php echo url('admin/upload/list');?>"><?php echo t('return_list_page', 'admin');?></a>
     </div>
 </fieldset>
 <?php echo CHtml::endForm();?>
