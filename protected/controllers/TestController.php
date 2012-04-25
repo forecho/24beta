@@ -4,6 +4,10 @@ class TestController extends Controller
 {
     public function actionTest1()
     {
+        exit;
+        $result = FilterKeyword::updateCacheFile();
+        var_dump($result);
+        exit;
         echo time();
         exit;
         phpinfo();
@@ -35,6 +39,7 @@ class TestController extends Controller
 
     public function actionWeibo()
     {
+        exit;
         $appKey = '456860706';
         $appSecert = '19168ffef668231aa22f74683d3d18e7';
         

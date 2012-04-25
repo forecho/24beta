@@ -1,3 +1,7 @@
+<div class="alert alert-block alert-info">
+    <a href="javascript:void(0);" data-dismiss="alert" class="close">&times;</a>
+    <?php echo t('filter_keyword_alert', 'admin')?>
+</div>
 <h3><?php echo $this->adminTitle;?></h3>
 <table class="table table-striped table-bordered beta-config-table">
     <thead>
@@ -28,3 +32,10 @@
         <?php endforeach;?>
     </tbody>
 </table>
+<form action="" method="post" class="form-horizontal">
+<fieldset>
+    <div class="form-actions">
+        <input type="button" class="btn" value="<?php echo t('create_filter_keyword', 'admin');?>" />
+    </div>
+</fieldset>
+</form>

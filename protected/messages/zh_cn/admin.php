@@ -1,4 +1,13 @@
 <?php
+$filter_keyword_alert = <<<EOD
+    <div class="alert-heading">关键词支持三种格式</div>
+    <ul>
+        <li>精确匹配。例如：太阳</li>
+        <li>简单正则匹配。关键词中间可以跳过一定数量的字符，例如：太{5}阳，将会匹配“太”和“阳”中间有0-5个字符的关键词</li>
+        <li>复杂正则匹配。关键词可以是一个完整的正则表达式。如果不熟悉正则表达式，尽量不要使用。</li>
+    </ul>
+EOD;
+
 return array(
     'invalid_request' => '非法请求',
         
@@ -246,7 +255,9 @@ return array(
     'filter_keyword_list' => '敏感词列表',
     'cofig_filter_keyword_success' => '敏感词保存成功',
     'filter_keyword_manage' => '敏感词管理',
+    'create_filter_keyword' => '添加关键词',
     'multi_create_filter_keyword' => '批量添加',
+    'filter_keyword_alert' => $filter_keyword_alert,
 );
 
 
