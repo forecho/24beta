@@ -258,6 +258,8 @@ return array(
     'create_filter_keyword' => '添加关键词',
     'multi_create_filter_keyword' => '批量添加',
     'filter_keyword_alert' => $filter_keyword_alert,
+    'occurred_following_errors' => '发生以下错误',
+    'kwcontent_format_tip' => '一行一个关键词，如果有替换词，使用逗号(,)分隔，例如：傻子,文明用语',
 );
 
 

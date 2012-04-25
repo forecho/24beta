@@ -108,7 +108,7 @@
                         <li><?php echo l(t('display_ui', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_DISPLAY_UI)), array('target'=>'main'));?></li>
                         <li class="divider"></li>
                         <li class="nav-header"><?php echo t('filter_keyword_manage', 'admin');?></li>
-                        <li><?php echo l(t('multi_create_filter_keyword', 'admin'), url('admin/filterkeyword/multicreate'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('multi_create_filter_keyword', 'admin'), url('admin/filterkeyword/create'), array('target'=>'main'));?></li>
                         <li><?php echo l(t('filter_keyword_list', 'admin'), url('admin/filterkeyword/list'), array('target'=>'main'));?></li>
                         <!--
                         <li class="nav-header"><?php echo t('sns_config_params', 'admin');?></li>

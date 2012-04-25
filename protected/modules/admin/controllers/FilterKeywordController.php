@@ -28,6 +28,34 @@ class FilterKeywordController extends AdminController
     
     public function actionCreate()
     {
-    
+        if (request()->getIsPostRequest()) {
+            $content = trim($_POST['kwcontent']);
+            if ($content) {
+                $keywords = explode("\n", $content);
+                foreach ((array)$keywords as $kw) {
+                    $kwArray = explode(',', $kw);
+                    $kwArray = array_unique($kwArray);
+                    $model = new FilterKeyword();
+                    $model->keyword = trim($kwArray[0]);
+                    $model->replace = trim($kwArray[1]);
+                    try {
+                        if (!$model->save()) {
+                            $error['keyword'] = $kw;
+                            $error['message'] = implode('; ', $model->getErrors('keyword')) . implode('; ', $model->getErrors('replace'));
+                            $errors[] = $error;
+                        }
+                    }
+                    catch (Exception $e) {
+                        $error['keyword'] = $kw;
+                        $error['message'] = $e->getMessage();
+                        $errors[] = $kw;
+                    }
+                    unset($model);
+                }
+            }
+        }
+        
+        $this->adminTitle = t('create_filter_keyword', 'admin');
+        $this->render('create', array('errors'=>$errors));
     }
 }

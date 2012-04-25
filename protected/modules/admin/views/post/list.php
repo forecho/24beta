@@ -35,11 +35,11 @@
             <td class="item-checkbox"><input type="checkbox" name="itemid[]" value="<?php echo $model->id;?>" /></td>
             <td class="align-center post-preivew-link">
                 <?php echo $model->id;?>
-                <div class="hidden quick-links"><?php echo $model->previewLink;?></div>
+                <div class="hide quick-links"><?php echo $model->previewLink;?></div>
             </td>
             <td class="post-quick-edit">
                 <?php echo $model->editLink;?>
-                <form class="form-inline hidden state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
+                <form class="form-inline hide state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
                     </label>

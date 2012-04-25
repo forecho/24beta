@@ -2,6 +2,7 @@
 
 
 /* custom */
+.hidden{display:none;}
 .align-right {text-align:right;}
 .align-left {text-align:left;}
 .align-center {text-align:center;}
@@ -79,4 +80,5 @@ td.column-label {width:150px; text-align:right;}
 .post-info tr td:first-child {width:150px; text-align:right; color:gray;}
 .post-info tr td:first-child label {color:gray;}
 
-
+/* filter keyword */
+#kwcontent {width:500px; height:200px;}
