@@ -105,7 +105,12 @@ class User extends CActiveRecord
 	
 	    return date($format, $this->create_time);
 	}
-	    
+
+	public function encryptPassword()
+	{
+	    $this->password = BetaBase::encryptPassword($this->password);
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -116,9 +121,9 @@ class User extends CActiveRecord
 	    return true;
 	}
 	
-	public function encryptPassword()
+	public function beforeDelete()
 	{
-	    $this->password = BetaBase::encryptPassword($this->password);
+	    throw new CException(t('user_not_allow_delete'));
 	}
 
 }

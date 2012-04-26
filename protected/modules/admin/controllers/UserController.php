@@ -32,7 +32,7 @@ class UserController extends AdminController
 	    $criteria->addCondition('create_time > ' . $time);
 	    $data = AdminUser::fetchList($criteria);
 	    
-	    $this->adminTitle = t('today_signup', 'admin');
+	    $this->adminTitle = t('today_signup_user', 'admin');
 	    
 	    $this->render('list', $data);
 	}
@@ -110,7 +110,7 @@ class UserController extends AdminController
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->state == AdminUser::STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
+	            'label' => t($model->state == AdminUser::STATE_DISABLED ? 'user_enabled' : 'user_disabled', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);

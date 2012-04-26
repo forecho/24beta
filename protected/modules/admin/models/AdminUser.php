@@ -4,7 +4,6 @@
  *
  * @property string $infoUrl
  * @property string $editurl
- * @property string $deleteUrl
  * @property string $verifyUrl
  * @property string $stateText;
  */
@@ -27,11 +26,6 @@ class AdminUser extends User
     public function getEditUrl()
     {
         return l(t('edit', 'admin'), url('admin/user/create', array('id'=>$this->id)));
-    }
-    
-    public function getDeleteUrl()
-    {
-        return l(t('delete', 'admin'), url('admin/user/delete', array('id'=>$this->id)));
     }
     
     public function getVerifyUrl()
