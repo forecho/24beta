@@ -25,13 +25,6 @@ class UserController extends AdminController
 	    $this->render('list', $data);
 	}
 	
-	public function actionMostActive()
-	{
-	    // @todo adminTitle
-	    $this->adminTitle = t('verify_user', 'admin');
-	    $this->render('list', $data);
-	}
-	
 	public function actionToday()
 	{
 	    $time = $_SERVER['REQUEST_TIME'] - 24*60*60;
@@ -40,6 +33,17 @@ class UserController extends AdminController
 	    $data = AdminUser::fetchList($criteria);
 	    
 	    $this->adminTitle = t('today_signup', 'admin');
+	    
+	    $this->render('list', $data);
+	}
+	
+	
+	public function actionList()
+	{
+	    $criteria = new CDbCriteria();
+	    $data = AdminUser::fetchList($criteria);
+	    
+	    $this->adminTitle = t('user_account_list', 'admin');
 	    
 	    $this->render('list', $data);
 	}
@@ -53,7 +57,7 @@ class UserController extends AdminController
 	    }
 	    else {
 	        $model = AdminUser::model()->findByPk($id);
-	        $this->adminTitle = t('edit_user', 'admin');
+	        $this->adminTitle = t('edit_user', 'admin') . ' - ' . $model->name;
 	    }
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminUser'])) {
@@ -76,11 +80,6 @@ class UserController extends AdminController
 	        'model' => $model,
 	        'userStates' => $userStates,
 	    ));
-	}
-	
-	public function actionEdit($id)
-	{
-	    $this->render('edit', array('model'=>$model));
 	}
 	
 	public function actionSearch()
@@ -140,22 +139,24 @@ class UserController extends AdminController
 	    }
 	    
 	    $user->password = '';
-	    $this->adminTitle = t('reset_user_passwd', 'admin');
+	    $this->adminTitle = t('reset_user_passwd', 'admin') . ' - ' . $user->name;
 	    $this->render('resetpwd', array('model'=>$user));
 	}
 
-    public function actionStatistics()
-    {
-        echo __METHOD__;
-    }
-
     public function actionCurrent()
     {
-        $userID = (int)user()->id;
+        $this->forward('info');
+    }
+    
+    public function actionInfo($id = 0)
+    {
+        $id = (int)$id;
+        $userID = ($id > 0) ? $id : (int)user()->id;
         $model = AdminUser::model()->findByPk($userID);
         if ($model === null)
             throw new CHttpException(500, t('user_is_not_exist', 'admin'));
         
+        $this->adminTitle = $model->name;
         $this->render('current', array('model' => $model));
     }
 }

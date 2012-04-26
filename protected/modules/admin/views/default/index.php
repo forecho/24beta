@@ -75,9 +75,8 @@
                         <li><?php echo l(t('search_user', 'admin'), url('admin/user/search'), array('target'=>'main'));?></li>
                         <li class="divider"></li>
                         <li class="nav-header"><?php echo t('statistics', 'admin');?></li>
-                        <!-- <li><?php echo l(t('most_active_users', 'admin'), url('admin/user/mostactive', array('day'=>14)), array('target'=>'main'));?></li> -->
-                        <li><?php echo l(t('today_signup', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
-                        <!-- <li><?php echo l(t('user_statistics', 'admin'), url('admin/user/statistics'), array('target'=>'main'));?></li> -->
+                        <li><?php echo l(t('today_signup_user', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('user_account_list', 'admin'), url('admin/user/list'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
                 <!--
@@ -152,7 +151,7 @@
         <li><?php echo l(t('latest_comment', 'admin'), url('admin/comment/latest'), array('target'=>'main'));?></li>
         <li class="nav-header"><?php echo t('user_manage', 'admin');?></li>
         <li><?php echo l(t('verify_user', 'admin'), url('admin/user/verify'), array('target'=>'main'));?></li>
-        <li><?php echo l(t('today_signup', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
+        <li><?php echo l(t('today_signup_user', 'admin'), url('admin/user/today'), array('target'=>'main'));?></li>
     </ul>
 </div>
 <div class="admin-container">
