@@ -95,7 +95,6 @@ var KEConfig = {
 		allowMediaUpload: true,
 		htmlTags: contentHtmlTags,
 		bodyClass: 'beta-ke-content beta-post-content',
-		uploadJson: 'javascript:void(0)',
 		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
 	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript',
 	        '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', '/',
