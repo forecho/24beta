@@ -1,14 +1,20 @@
 <?php
 class FilterKeywordController extends AdminController
 {
+    public function filters()
+    {
+        return array(
+            'ajaxOnly + edit',
+            'postOnly + edit',
+        );
+    }
+    
     public function actionList()
     {
-        $models = FilterKeyword::fetchAllArray();
+        $data = FilterKeyword::fetchAllArray();
         
         $this->adminTitle = t('filter_keyword_list', 'admin');
-        $this->render('list', array(
-            'models' => $models,
-        ));
+        $this->render('list', $data);
     }
     
     public static function saveFilterKeywords(array $params)
@@ -24,6 +30,28 @@ class FilterKeywordController extends AdminController
             }
         }
         return empty($names) ? true : $names;
+    }
+    
+    public function actionEdit($callback)
+    {
+        $id = request()->getPost('kwid');
+        $model = FilterKeyword::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404);
+        
+        $keyword = trim(request()->getPost('keyword'));
+        $replace = trim(request()->getPost('replace'));
+        
+        $model->keyword = $keyword;
+        $model->replace = $replace;
+        $result = $model->save();
+        $data = array(
+            'errno' => (int)!$result,
+            'message' => $model->getError('keyword') . $model->getError('replace'),
+        );
+        
+        BetaBase::jsonp($callback, $data);
+        exit(0);
     }
     
     public function actionCreate()
@@ -52,6 +80,7 @@ class FilterKeywordController extends AdminController
                     }
                     unset($model);
                 }
+                FilterKeyword::updateCacheFile();
             }
         }
         

@@ -1,4 +1,8 @@
 <h3><?php echo $this->adminTitle;?></h3>
+<div class="btn-toolbar">
+    <a href="<?php echo url('admin/filterkeyword/create');?>" class="btn btn-small"><?php echo t('create_filter_keyword', 'admin');?></a>
+    <a class="btn btn-small" href=''><?php echo t('reload_data', 'admin');?></a>
+</div>
 <table class="table table-striped table-bordered beta-config-table">
     <thead>
         <tr>
@@ -9,31 +13,27 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($models as $model):?>
-        <tr>
+        <?php foreach ($rows as $row):?>
+        <tr data-url="<?php echo url('admin/filterkeyword/edit');?>">
             <td class="align-center">
-                <input type="hidden" name="FilterKeyword[<?php echo $model['id'];?>]" value="<?php echo $model['id'];?>" />
-                <?php echo $model['id'];?>
+                <input type="hidden" name="kwid" value="<?php echo $row['id'];?>" />
+                <?php echo $row['id'];?>
             </td>
-            <td><input type="text" name="FilterKeyword[<?php echo $model['keyword'];?>]" value="<?php echo h($model['keyword']);?>" /></td>
-            <td><input type="text" name="FilterKeyword[<?php echo $model['replace'];?>]" value="<?php echo h($model['replace']);?>" /></td>
+            <td><input type="text" name="keyword" value="<?php echo h($row['keyword']);?>" /></td>
+            <td><input type="text" name="replace" value="<?php echo h($row['replace']);?>" /></td>
             <td>
-                <a href="javascript:void(0);" class="update-keyword">更新</a>
+                <button data-toggle="button" data-loading-text="<?php echo t('updating', 'admin');?>" data-error-text="<?php echo t('update_error', 'admin')?>" data-complete-text="<?php echo t('update_complete', 'admin');?>" class="update-keyword btn btn-mini"><?php echo t('update', 'admin');?></button>
             </td>
         </tr>
         <?php endforeach;?>
     </tbody>
 </table>
-<form action="" method="post" class="form-horizontal">
-<fieldset>
-    <div class="form-actions">
-        <a href="<?php echo url('admin/filterkeyword/create');?>" class="btn"><?php echo t('create_filter_keyword', 'admin');?></a>
-    </div>
-</fieldset>
-</form>
+<?php if ($pages):?>
+<div class="beta-pages"><?php $this->widget('CLinkPager', array('pages'=>$pages, 'htmlOptions'=>array('class'=>'pagination')));?></div>
+<?php endif;?>
 
 <script type="text/javascript">
 $(function(){
-	
+	$(document).on('click', '.update-keyword', BetaAdmin.updateFilterKeywordRow);
 });
 </script>

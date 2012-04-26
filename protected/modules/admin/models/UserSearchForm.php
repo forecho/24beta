@@ -33,19 +33,19 @@ class UserSearchForm extends CFormModel
     {
         $criteria = new CDbCriteria();
         if ($this->userid)
-            $criteria->addColumnCondition(array('id'=>$this->userid));
+            $criteria->addColumnCondition(array('t.id'=>$this->userid));
         
         if ($this->email) {
             if ($this->emailFuzzy)
-                $criteria->addSearchCondition('email', $this->email);
+                $criteria->addSearchCondition('t.email', $this->email);
             else
-                $criteria->addColumnCondition(array('email'=>$this->email));
+                $criteria->addColumnCondition(array('t.email'=>$this->email));
         }
         if ($this->name) {
             if ($this->nameFuzzy)
-                $criteria->addSearchCondition('name', $this->name);
+                $criteria->addSearchCondition('t.name', $this->name);
             else
-                $criteria->addColumnCondition(array('name'=>$this->name));
+                $criteria->addColumnCondition(array('t.name'=>$this->name));
         }
          
         $data = $criteria->condition ? AdminUser::fetchList($criteria) : null;

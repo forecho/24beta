@@ -98,7 +98,7 @@ class User extends CActiveRecord
 		);
 	}
 	
-	public function getCreateTimeText($format = null)
+	public function getCreateTime($format = null)
 	{
 	    if  (null === $format)
 	        $format = param('formatShortDateTime');

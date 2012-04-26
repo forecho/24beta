@@ -52,15 +52,37 @@ class FilterKeyword extends CActiveRecord
 		);
 	}
 
-    public static function fetchAllArray()
+    public static function fetchAllArray($limit=20)
     {
+        $limit =(int)$limit;
+        
+        $cmd = app()->getDb()->createCommand()
+            ->select('count(*)')
+            ->from(TABLE_FILTER_KEYWORD);
+        $count = (int)$cmd->queryScalar();
+        if ($count == 0)
+            return array();
+        
         $cmd = app()->getDb()->createCommand()
             ->from(TABLE_FILTER_KEYWORD)
             ->order('id asc');
+        if ($limit > 0)
+            $cmd->limit($limit);
+        
+        $pages = new CPagination($count);
+        $pages->setPageSize($limit);
+        
+        $page = $pages->getCurrentPage();
+        $offset = $page * $limit;
+        if ($offset >= 0)
+            $cmd->offset($offset);
         
         $rows = $cmd->queryAll();
         
-        return $rows;
+        return array(
+            'rows' => $rows,
+            'pages' => $pages,
+        );
     }
     
     public static function updateCacheFile()

@@ -14,7 +14,7 @@
     <?php else:?>
     <button class="btn btn-small btn-danger" id="batch-trash" data-src="<?php echo url('admin/post/multiTrash');?>"><?php echo t('trash_post', 'admin');?></button>
     <?php endif;?>
-    <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
+    <a class="btn btn-small btn-success" href=''><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-list-table table-post-list">
     <thead>

@@ -63,7 +63,7 @@ class AdminUser extends User
          
         if ($sort) {
             $sort  = new CSort(__CLASS__);
-            $sort->defaultOrder = 'id desc';
+            $sort->defaultOrder = 't.id desc';
             $sort->applyOrder($criteria);
         }
          

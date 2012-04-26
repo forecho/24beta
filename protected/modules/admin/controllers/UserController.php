@@ -22,7 +22,7 @@ class UserController extends AdminController
 	    $data = AdminUser::fetchList($criteria);
 	     
 	    $this->adminTitle = t('verify_user', 'admin');
-	    $this->render('list_no_verify', $data);
+	    $this->render('list', $data);
 	}
 	
 	public function actionMostActive()

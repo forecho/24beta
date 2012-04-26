@@ -1,8 +1,11 @@
 @CHARSET "UTF-8";
 
+/* pages */
+.pagination .selected a{background-color:#f5f5f5;}
+.pagination .selected a{color:#999999;cursor:default;}
+.pagination .hidden span,.pagination .hidden a,.pagination .hidden a:hover{color:#999999;background-color:transparent;cursor:default;visibility:visible;}
 
 /* custom */
-.hidden{display:none;}
 .align-right {text-align:right;}
 .align-left {text-align:left;}
 .align-center {text-align:center;}

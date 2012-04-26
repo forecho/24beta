@@ -5,7 +5,7 @@
     <button class="btn btn-small btn-primary" id="batch-verify"><?php echo t('setrecommend', 'admin');?></button>
     <button class="btn btn-small btn-primary" id="batch-reject"><?php echo t('sethottest', 'admin');?></button>
     <button class="btn btn-small btn-danger" id="batch-delete"><?php echo t('delete', 'admin');?></button>
-    <button class="btn btn-small btn-success" id="beta-reload-current"><?php echo t('reload_data', 'admin');?></button>
+    <a class="btn btn-small btn-success" href=''><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>

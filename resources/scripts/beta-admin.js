@@ -22,10 +22,6 @@ $(function(){
 		tip.html('请求完成.').delay(5000).fadeOut('slow');
 	});
 	
-	$(document).on('click', '#beta-reload-current', function(event){
-		window.location.reload();
-	});
-	
 	$('[rel=tooltip]').tooltip();
 });
 
@@ -453,6 +449,40 @@ var BetaAdmin = {
 		});
 		jqXhr.fail(function(){
 			tthis.button('error');
+		});
+		jqXhr.always(function(){
+			setTimeout(function(){
+				tthis.button('reset');
+				tthis.button('toggle');
+			}, 1000);
+		});
+	},
+	updateFilterKeywordRow: function(event){
+		event.preventDefault();
+		var tthis = $(this);
+		var tr = tthis.parents('tr');
+		var url = tr.attr('data-url');
+		if (url.length == 0) return false;
+		
+		var data = tr.find('input').serialize();
+		var jqXhr = $.ajax({
+			url: url,
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: data,
+			beforeSend: function(){
+				tthis.button('loading');
+			}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				tthis.button('complete');
+			else
+				tthis.button('error');
+		});
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('请求错误.');
 		});
 		jqXhr.always(function(){
 			setTimeout(function(){

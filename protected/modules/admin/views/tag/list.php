@@ -3,6 +3,7 @@
     <button class="btn btn-small">全选</button>
     <button class="btn btn-small">反选</button>
     <button class="btn btn-small btn-danger">删除</button>
+    <a class="btn btn-small btn-success" href=''><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
     <thead>
