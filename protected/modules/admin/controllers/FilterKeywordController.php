@@ -44,7 +44,7 @@ class FilterKeywordController extends AdminController
         
         $model->keyword = $keyword;
         $model->replace = $replace;
-        $result = $model->save();
+        $result = $model->save() && FilterKeyword::updateCacheFile();
         $data = array(
             'errno' => (int)!$result,
             'message' => $model->getError('keyword') . $model->getError('replace'),
