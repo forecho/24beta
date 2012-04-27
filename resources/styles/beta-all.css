@@ -139,8 +139,8 @@ pre code{padding:0;background-color:transparent;}
 /* post summary list */
 .beta-post-item {border:1px solid #BFBFBF; margin:0 0 10px;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
-.beta-post-item h1 {font-size:18px; font-family:微软雅黑; line-height:22px;}
-.beta-post-item h1 strong {color:darkred;}
+.beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
+.beta-post-item dt strong {color:darkred;}
 .beta-post-item .beta-post-summary {margin:10px 0px; overflow:hidden; line-height:24px;}
 .beta-post-item .beta-post-toolbar {font-size:12px; line-height:24px; height:24px; padding:0 10px; background:#CFCFCF; border-top:1px solid #cccccc;}
 .beta-post-item .beta-post-toolbar a {margin-right:10px;}

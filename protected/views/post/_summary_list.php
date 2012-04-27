@@ -1,6 +1,6 @@
 <?php foreach ((array)$posts as $model):?>
 <dl class="beta-post-item beta-radius3px">
-    <dt><h1><?php echo $model->titleLink;?></h1></dt>
+    <dt><?php echo $model->titleLink;?></dt>
     <dd class="beta-post-extra"><span>
         <?php echo t('post_author_time', 'main', array('{author}'=>$model->authorName, '{time}'=>$model->createTime));?>&nbsp;&nbsp;&nbsp;&nbsp;
     </span></dd>
