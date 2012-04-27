@@ -157,20 +157,37 @@ class AdminPost extends Post
 
     public function getStateLabel()
     {
-        static $labels = null;
-        if ($labels === null)
-            $labels = self::stateLabels();
-
         $classes = array(
-            self::STATE_DISABLED => '',
+            self::STATE_DISABLED => 'label-inverse',
             self::STATE_REJECTED => 'label-important',
-            self::STATE_NOT_VERIFY => 'label-info',
-            self::STATE_TRASH => 'label-warning',
+        );
+        
+        $labels = array(
+            self::STATE_DISABLED => t('post_state_marker_disabled', 'admin'),
+            self::STATE_REJECTED => t('post_state_marker_rejected', 'admin'),
         );
         
         $html = '';
         if (array_key_exists($this->state, $classes))
-            $html = '<span class="label ' . $classes[$this->state] . '">' . $labels[$this->state] . '</span>';
+            $html = '<span class="label label-small ' . $classes[$this->state] . '">' . $labels[$this->state] . '</span>';
+        
+        return $html;
+    }
+    
+    public function getExtraStateLabels()
+    {
+        $html = '';
+        if ($this->recommend == BETA_YES)
+            $html .= '<span class="label label-small label-success">' . t('post_marker_recommend', 'admin') . '</span>';
+        
+        if ($this->hottest)
+            $html .= '<span class="label label-small label-important">' . t('post_marker_hottest', 'admin') . '</span>';
+        
+        if ($this->homeshow)
+            $html .= '<span class="label label-small label-info">' . t('post_marker_homeshow', 'admin') . '</span>';
+        
+        if ($this->istop)
+            $html .= '<span class="label label-small label-info">' . t('post_marker_top', 'admin') . '</span>';
         
         return $html;
     }

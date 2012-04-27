@@ -190,6 +190,7 @@ class PostController extends AdminController
 	        throw new CHttpException(404, t('post_is_not_exist', 'admin'));
 	     
         $model->attributes = $_POST['AdminPost'];
+        // @todo 暂时没用，做快速发表时会用到
         if ($model->getIsNewRecord())
 	        $model->post_type = AdminPost::TYPE_POST;
         

@@ -338,7 +338,7 @@ var BetaAdmin = {
 		});
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
+				window.location.reload();
 			});
 		}),
 		jqXhr.fail(function(){
@@ -367,7 +367,7 @@ var BetaAdmin = {
 		});
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
+				window.location.reload();
 			});
 		}),
 		jqXhr.fail(function(){

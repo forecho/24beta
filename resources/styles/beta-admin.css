@@ -5,6 +5,11 @@
 .pagination .selected a{color:#999999;cursor:default;}
 .pagination .hidden span,.pagination .hidden a,.pagination .hidden a:hover{color:#999999;background-color:transparent;cursor:default;visibility:visible;}
 
+/* label */
+.label.label-small {padding:0 1px; margin:0 1px 1px;}
+
+select.select-mini {width:auto;height:auto;line-height:auto;}
+
 /* custom */
 .align-right {text-align:right;}
 .align-left {text-align:left;}

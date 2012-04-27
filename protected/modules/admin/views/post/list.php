@@ -38,11 +38,8 @@
                 <div class="hide quick-links"><?php echo $model->previewLink;?></div>
             </td>
             <td class="post-quick-edit">
-                <?php echo $model->getStateLabel() . '&nbsp;' . $model->editLink;?>
+                <?php echo $model->getStateLabel() . $model->editLink . $model->getExtraStateLabels();?>
                 <form class="form-inline hide state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
-                    <label class="checkbox">
-                        <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
-                    </label>
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
                     </label>
@@ -57,6 +54,9 @@
                     </label>
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'disable_comment');?><?php echo t('disable_comment');?>
+                    </label>
+                    <label class="checkbox">
+                        <?php echo CHtml::activeDropDownList($model, 'state', AdminPost::stateLabels(), array('class'=>'select-mini'));?>
                     </label>
                     <button data-toggle="button" data-loading-text="<?php echo t('updating', 'admin');?>" data-error-text="<?php echo t('update_error', 'admin')?>" data-complete-text="<?php echo t('update_complete', 'admin');?>" class="btn-update-state btn btn-mini"><?php echo t('update', 'admin');?></button>
                 </form>
