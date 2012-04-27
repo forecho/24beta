@@ -45,7 +45,7 @@ class SpecialController extends AdminController
         if ($model === null)
             throw new CHttpException(500);
          
-        $model->state = abs($model->state - AdminSpecial::STATE_ENABLED);
+        $model->state = ($model->state == AdminSpecial::STATE_ENABLED) ? AdminSpecial::STATE_DISABLED : AdminSpecial::STATE_ENABLED;
         if ($model->state == AdminSpecial::STATE_ENABLED) {
             $model->create_time = $_SERVER['REQUEST_TIME'];
             $attributes = array('state', 'create_time');
@@ -59,7 +59,7 @@ class SpecialController extends AdminController
         else {
             $data = array(
                 'errno' => BETA_NO,
-                'label' => t($model->state == AdminSpecial::STATE_ENABLED ? 'special_disabled' : 'special_enabled', 'admin')
+                'label' => t($model->state == AdminSpecial::STATE_ENABLED ? 'special_enabled' : 'special_disabled', 'admin')
             );
             BetaBase::jsonp($callback, $data);
         }

@@ -61,7 +61,7 @@ var BetaAdmin = {
 				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	trashPost: function(event){
@@ -85,7 +85,7 @@ var BetaAdmin = {
 				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	deleteComment: function(event) {
@@ -108,7 +108,7 @@ var BetaAdmin = {
 				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	deleteMultiComments: function(event) {
@@ -140,7 +140,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	verifyMultiComments: function(event) {
@@ -169,7 +169,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	recommendMultiComments: function(event) {
@@ -198,7 +198,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	hottestMultiComments: function(event) {
@@ -227,7 +227,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	ajaxSetBooleanColumn: function(event) {
@@ -241,13 +241,15 @@ var BetaAdmin = {
 		    beforeSend: function(){}
 		});
 		jqXhr.done(function(data){
-			if (data.errno == BETA_NO)
+			if (data.errno == BETA_NO) {
 			    tthis.text(data.label);
+				tthis.parents('tr').find('.row-state').text(data.label).toggleClass('label-important label-success');
+			}
 			else
 				BetaAdmin.showAjaxMessage('发生错误.');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	deleteMultiPosts: function(event) {
@@ -279,7 +281,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	trashMultiPosts: function(event) {
@@ -311,7 +313,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	recommendMultiPosts: function(event) {
@@ -340,7 +342,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	hottestMultiPosts: function(event) {
@@ -369,7 +371,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	verifyMultiPosts: function(event) {
@@ -398,7 +400,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	rejectMultiPosts: function(event) {
@@ -427,7 +429,7 @@ var BetaAdmin = {
 			});
 		}),
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	quickUpdate: function(event){
@@ -482,13 +484,71 @@ var BetaAdmin = {
 				tthis.button('error');
 		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('请求错误.');
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 		jqXhr.always(function(){
 			setTimeout(function(){
 				tthis.button('reset');
 				tthis.button('toggle');
 			}, 1000);
+		});
+	},
+	enabledMultiUsers: function(event){
+		event.preventDefault();
+
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').find('.row-state').toggleClass('label-important label-success').text(data.label);
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('request error.');
+		});
+	},
+	forbiddenMultiUsers: function(event){
+		event.preventDefault();
+
+		var checkboxs = $('input:checked');
+		if (checkboxs.length == 0) return;
+		
+		var commentIds = [];
+		checkboxs.each(function(index, element){
+			commentIds.push($(element).val());
+		});
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+			url: $(this).attr('data-src'),
+			dataType: 'jsonp',
+			type: 'post',
+			cache: false,
+			data: $.param({ids:commentIds}),
+			beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').find('.row-state').toggleClass('label-important label-success').text(data.label);
+			});
+		}),
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('request error.');
 		});
 	}
 };

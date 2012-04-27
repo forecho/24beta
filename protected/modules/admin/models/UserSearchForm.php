@@ -8,11 +8,12 @@ class UserSearchForm extends CFormModel
     public $createIp;
     public $emailFuzzy;
     public $nameFuzzy;
+    public $state;
     
     public function rules()
     {
         return array(
-            array('userid', 'numerical', 'integerOnly'=>true),
+            array('userid, state', 'numerical', 'integerOnly'=>true),
             array('email, name', 'filter', 'filter'=>'trim'),
             array('emailFuzzy, nameFuzzy', 'in', 'range'=>array(BETA_YES, BETA_NO)),
         );
@@ -26,12 +27,14 @@ class UserSearchForm extends CFormModel
             'name' => t('user_name'),
             'createTime' => t('create_time'),
             'createIp' => t('create_ip'),
+            'state' => t('user_state'),
         );
     }
     
     public function search()
     {
         $criteria = new CDbCriteria();
+        $criteria->addColumnCondition(array('t.state' => $this->state));
         if ($this->userid)
             $criteria->addColumnCondition(array('t.id'=>$this->userid));
         

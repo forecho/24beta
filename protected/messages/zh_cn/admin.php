@@ -39,6 +39,7 @@ return array(
     'statistics' => '统计',
     'latest' => '最新',
     'logout_control_center' => '退出登录',
+    'orderid_sort_tip' => '排序提示：数字越大，排的越靠前',
 
     'update' => '更新',
     'updating' => '更新中...',
@@ -131,7 +132,9 @@ return array(
     'user_statistics' => '用户统计',
     'user_create_success' => '{name} 保存成功',
     'user_disabled' => '禁用',
+    'user_forbidden' => '禁用',
     'user_enabled' => '启用',
+    'user_unverify' => '未审核',
     'reset_password' => '重置密码',
     'operation' => '操作',
 
@@ -178,6 +181,11 @@ return array(
     'cannel_homeshow_post' => '取消首页显示',
     'attachment' => '附件',
     'avg_score' => '平均分',
+    'post_state_enabled' => '上线',
+    'post_state_disabled' => '隐藏',
+    'post_state_rejected' => '拒绝',
+    'post_state_not_verify' => '未审核',
+    'post_state_trash' => '回收站',
 
     'category_is_not_exist' => '该分类不存在',
     'topic_is_not_exist' => '该主题不存在',

@@ -26,6 +26,17 @@ class AdminPost extends Post
         return parent::model($className);
     }
     
+    public static function stateLabels()
+    {
+        return array(
+            self::STATE_ENABLED => t('post_state_enabled', 'admin'),
+            self::STATE_DISABLED => t('post_state_disabled', 'admin'),
+            self::STATE_REJECTED => t('post_state_rejected', 'admin'),
+            self::STATE_NOT_VERIFY => t('post_state_not_verify', 'admin'),
+            self::STATE_TRASH => t('post_state_trash', 'admin'),
+        );
+    }
+    
     public function relations()
     {
         return parent::relations() + array(
@@ -142,6 +153,26 @@ class AdminPost extends Post
     public function getPreviewLink()
     {
         return l(t('post_preivew', 'admin'), $this->getUrl(), array('target'=>'_blank'));
+    }
+
+    public function getStateLabel()
+    {
+        static $labels = null;
+        if ($labels === null)
+            $labels = self::stateLabels();
+
+        $classes = array(
+            self::STATE_DISABLED => '',
+            self::STATE_REJECTED => 'label-important',
+            self::STATE_NOT_VERIFY => 'label-info',
+            self::STATE_TRASH => 'label-warning',
+        );
+        
+        $html = '';
+        if (array_key_exists($this->state, $classes))
+            $html = '<span class="label ' . $classes[$this->state] . '">' . $labels[$this->state] . '</span>';
+        
+        return $html;
     }
 }
 

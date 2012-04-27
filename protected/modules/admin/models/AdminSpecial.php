@@ -1,4 +1,12 @@
 <?php
+/**
+ * AdminSpecial
+ * @author chendong
+ * @property string $editUrl
+ * @property string $editLink
+ * @property string $stateLink
+ * @property string $deleteLink
+ */
 class AdminSpecial extends Special
 {
     /**
@@ -9,14 +17,6 @@ class AdminSpecial extends Special
     {
         return parent::model($className);
     }
-    
-    public function getStateBadgeHtml()
-    {
-        $class = $this->state ? 'badge-success' : 'badget-error';
-        $html = sprintf('<span class="badge %s">%s</span>', $class, $this->state);
-        return $html;
-    }
-    
 
     public function getEditUrl()
     {
@@ -30,8 +30,9 @@ class AdminSpecial extends Special
     
     public function getStateLink()
     {
-        $text = t($this->state ? 'special_disabled' : 'special_enabled', 'admin');
-        return l($text, url('admin/special/setstate', array('id'=>$this->id)), array('class'=>'set-state'));
+        $text = t($this->state == self::STATE_ENABLED ? 'special_enabled' : 'special_disabled', 'admin');
+        $class = $this->state == self::STATE_ENABLED ? 'row-state label label-success' : 'row-state label label-important';
+        return l($text, url('admin/special/setstate', array('id'=>$this->id)), array('class'=>$class));
     }
     
     public function getDeleteLink()

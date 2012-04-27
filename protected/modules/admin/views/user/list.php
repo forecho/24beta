@@ -2,8 +2,8 @@
 <div class="btn-toolbar">
     <button class="btn btn-small" id="select-all"><?php echo t('select_all', 'admin');?></button>
     <button class="btn btn-small" id="reverse-select"><?php echo t('reverse_select', 'admin');?></button>
-    <button class="btn btn-small btn-primary" id="batch-verify"><?php echo t('user_enabled', 'admin');?></button>
-    <button class="btn btn-small btn-primary" id="batch-reject"><?php echo t('user_disabled', 'admin');?></button>
+    <button class="btn btn-small btn-primary" id="batch-verify" data-src="<?php echo url('admin/user/multiVerify');?>"><?php echo t('user_enabled', 'admin');?></button>
+    <button class="btn btn-small btn-danger" id="batch-reject" data-src="<?php echo url('admin/user/multiForbidden');?>"><?php echo t('user_disabled', 'admin');?></button>
     <a class="btn btn-small btn-success" href=''><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-list-table">
@@ -28,14 +28,7 @@
             <td class="span1 align-center"><?php echo $model->stateText;?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
             <td>
-                <div class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('operation', 'admin');?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><?php echo $model->editUrl;?></li>
-                        <li><?php echo $model->verifyUrl;?></li>
-                        <li><?php echo $model->resetPasswordUrl;?></li>
-                    </ul>
-                </div>
+                <?php echo $model->editUrl;?>
             </td>
         </tr>
         <?php endforeach;?>
@@ -48,10 +41,11 @@
 
 <script type="text/javascript">
 $(function(){
-	$(document).on('click', '.set-verify', BetaAdmin.ajaxSetBooleanColumn);
-
+	$(document).on('click', '.row-state', BetaAdmin.ajaxSetBooleanColumn);
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
+	$(document).on('click', '#batch-verify', BetaAdmin.enabledMultiUsers);
+	$(document).on('click', '#batch-reject', BetaAdmin.forbiddenMultiUsers);
 
 });
 </script>

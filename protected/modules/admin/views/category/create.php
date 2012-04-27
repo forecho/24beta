@@ -19,6 +19,7 @@
         <?php echo CHtml::activeLabel($model, 'orderid', array('class'=>'control-label'));?>
         <div class="controls">
             <?php echo CHtml::activeTextField($model, 'orderid', array('class'=>'input-mini'));?>
+            <span class="help-info"><?php echo t('orderid_sort_tip', 'admin');?></span>
             <?php if($model->hasErrors('orderid')):?><p class="help-block"><?php echo $model->getError('orderid');?></p><?php endif;?>
         </div>
     </div>

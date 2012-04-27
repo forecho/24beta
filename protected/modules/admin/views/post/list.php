@@ -38,7 +38,7 @@
                 <div class="hide quick-links"><?php echo $model->previewLink;?></div>
             </td>
             <td class="post-quick-edit">
-                <?php echo $model->editLink;?>
+                <?php echo $model->getStateLabel() . '&nbsp;' . $model->editLink;?>
                 <form class="form-inline hide state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
@@ -94,6 +94,8 @@ $(function(){
 	$(document).on('click', '#batch-delete, #batch-trash', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
 	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiPosts);
 	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiPosts);
+	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiPosts);
+	$(document).on('click', '#batch-reject', BetaAdmin.rejectMultiPosts);
 	
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);

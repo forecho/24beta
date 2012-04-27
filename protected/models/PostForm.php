@@ -66,7 +66,7 @@ class PostForm extends CFormModel
     
     public function state()
     {
-        return user()->checkAccess('chief_editor') ? Post::STATE_ENABLED : Post::STATE_DISABLED;
+        return user()->checkAccess('chief_editor') ? Post::STATE_ENABLED : Post::STATE_NOT_VERIFY;
     }
     
     public function homeshow()

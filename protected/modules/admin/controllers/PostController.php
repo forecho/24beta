@@ -26,7 +26,7 @@ class PostController extends AdminController
 	    if ($id === 0) {
 	        $model = new AdminPost();
 	        $model->homeshow = user()->checkAccess('create_post_in_home') ? BETA_YES : BETA_NO;
-	        $model->state = BETA_YES;
+	        $model->state = user()->checkAccess('editor') ? AdminPost::STATE_ENABLED : AdminPost::STATE_NOT_VERIFY;
 	        $this->adminTitle = t('create_post');
 	    }
 	    elseif ($id > 0) {
@@ -111,7 +111,7 @@ class PostController extends AdminController
 	public function actionVerify()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('t.state'=>AdminPost::STATE_DISABLED));
+	    $criteria->addColumnCondition(array('t.state'=>AdminPost::STATE_NOT_VERIFY));
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->adminTitle = t('noverify_post_list_table', 'admin');

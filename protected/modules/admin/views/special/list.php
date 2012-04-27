@@ -16,10 +16,9 @@
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->nameLink;?></td>
             <td><?php echo $model->token;?></td>
-            <td class="align-center"><?php echo $model->getStateBadgeHtml();?></td>
+            <td class="align-center"><?php echo $model->stateLink;?></td>
             <td>
                 <?php echo $model->editLink;?>
-                <?php echo $model->stateLink;?>
                 <?php echo $model->deleteLink;?>
             </td>
         </tr>
@@ -33,6 +32,6 @@
 <script type="text/javascript">
 $(function(){
 	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
-	$(document).on('click', '.set-state', BetaAdmin.ajaxSetBooleanColumn);
+	$(document).on('click', '.row-state', BetaAdmin.ajaxSetBooleanColumn);
 });
 </script>
