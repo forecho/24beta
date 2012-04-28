@@ -1,5 +1,5 @@
 <?php
-class FilterKeywordController extends AdminController
+class KeywordController extends AdminController
 {
     public function filters()
     {
