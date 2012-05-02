@@ -30,7 +30,7 @@ class CategoryController extends Controller
     
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->setPageSize(param('postCountOfPage'));
+        $pages->setPageSize(param('postCountOfTitleListPage'));
         $pages->applyLimit($criteria);
         $posts = Post::model()->findAll($criteria);
     

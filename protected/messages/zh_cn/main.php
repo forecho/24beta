@@ -141,7 +141,7 @@ return array(
     'hottest_posts' => '热门排行',
     'latest_posts' => '最新发布',
     'relate_posts' => '相关文章',
-    'no_posts' => '当前暂无文章',
+    'no_posts' => '暂无文章',
     'recommend_posts' => '编辑推荐',
     'recommend_comments' => '网友精彩点评',
         
