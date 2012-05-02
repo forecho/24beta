@@ -107,8 +107,8 @@
                         <li><?php echo l(t('display_ui', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_DISPLAY_UI)), array('target'=>'main'));?></li>
                         <li class="divider"></li>
                         <li class="nav-header"><?php echo t('filter_keyword_manage', 'admin');?></li>
-                        <li><?php echo l(t('multi_create_filter_keyword', 'admin'), url('admin/filterkeyword/create'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('filter_keyword_list', 'admin'), url('admin/filterkeyword/list'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('multi_create_filter_keyword', 'admin'), url('admin/keyword/create'), array('target'=>'main'));?></li>
+                        <li><?php echo l(t('filter_keyword_list', 'admin'), url('admin/keyword/list'), array('target'=>'main'));?></li>
                         <!--
                         <li class="nav-header"><?php echo t('sns_config_params', 'admin');?></li>
                         <li><?php echo l(t('sns_interface', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_SNS_INTERFACE)), array('target'=>'main'));?></li>
@@ -119,15 +119,6 @@
                         <li class="nav-header"><?php echo t('custom_config_params', 'admin');?></li>
                         <li><?php echo l(t('custom_config_params', 'admin'), url('admin/config/view', array('categoryid'=>AdminConfig::CATEGORY_CUSTOM)), array('target'=>'main'));?></li>
                         <li><?php echo l(t('create_custom_param', 'admin'), url('admin/config/create'), array('target'=>'main'));?></li>
-                    </ul>
-                </li>
-                <li class="divider-vertical"></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo t('system_about', 'admin')?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><?php echo l(t('about_us', 'admin'), url('admin/static/intro'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('our_team', 'admin'), url('admin/static/team'), array('target'=>'main'));?></li>
-                        <li><?php echo l(t('provision', 'admin'), url('admin/static/provision'), array('target'=>'main'));?></li>
                     </ul>
                 </li>
             </ul>

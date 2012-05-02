@@ -27,7 +27,7 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-small btn-primary"><?php echo t('submit', 'admin');?></button>
-            <a class="btn btn-small" href="<?php echo url('admin/filterkeyword/list');?>"><?php echo t('return_list_page', 'admin');?></a>
+            <a class="btn btn-small" href="<?php echo url('admin/keyword/list');?>"><?php echo t('return_list_page', 'admin');?></a>
         </div>
     </fieldset>
 </form>

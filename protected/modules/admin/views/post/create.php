@@ -35,9 +35,6 @@
         <label class="control-label"><?php echo t('options', 'admin');?></label>
         <div class="controls">
             <label class="checkbox inline">
-                <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('state_show', 'admin');?>
-            </label>
-            <label class="checkbox inline">
                 <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
             </label>
             <label class="checkbox inline" rel="tooltip" title="<?php echo t('set_hot_post_tip', 'admin');?>">

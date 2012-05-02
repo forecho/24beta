@@ -6,9 +6,9 @@
 .pagination .hidden span,.pagination .hidden a,.pagination .hidden a:hover{color:#999999;background-color:transparent;cursor:default;visibility:visible;}
 
 /* label */
-.label.label-small {padding:0 1px; margin:0 1px 1px;}
+.label.label-small {padding:0 1px; margin:0 1px 1px; font-weight:normal; font-size:12px;}
 
-select.select-mini {width:auto;height:auto;line-height:auto;}
+select.select-mini {width:auto;height:auto;line-height:auto; padding:0;}
 
 /* custom */
 .align-right {text-align:right;}

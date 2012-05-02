@@ -1,6 +1,6 @@
 <h3><?php echo $this->adminTitle;?></h3>
 <div class="btn-toolbar">
-    <a href="<?php echo url('admin/filterkeyword/create');?>" class="btn btn-small"><?php echo t('create_filter_keyword', 'admin');?></a>
+    <a href="<?php echo url('admin/keyword/create');?>" class="btn btn-small"><?php echo t('create_filter_keyword', 'admin');?></a>
     <a class="btn btn-small" href=''><?php echo t('reload_data', 'admin');?></a>
 </div>
 <table class="table table-striped table-bordered beta-config-table">
@@ -9,12 +9,12 @@
             <th class="span1 align-center">ID</th>
             <th class="span3"><?php echo t('filter_keyword');?></th>
             <th class="span3"><?php echo t('filter_replace');?></th>
-            <th><a href="<?php echo url('admin/filterkeyword/create');?>" class="label label-important"><?php echo t('create_filter_keyword', 'admin');?></a></th>
+            <th><a href="<?php echo url('admin/keyword/create');?>" class="label label-important"><?php echo t('create_filter_keyword', 'admin');?></a></th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($rows as $row):?>
-        <tr data-url="<?php echo url('admin/filterkeyword/edit');?>">
+        <tr data-url="<?php echo url('admin/keyword/edit');?>">
             <td class="align-center">
                 <input type="hidden" name="kwid" value="<?php echo $row['id'];?>" />
                 <?php echo $row['id'];?>
