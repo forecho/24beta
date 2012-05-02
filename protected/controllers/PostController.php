@@ -143,4 +143,8 @@ class PostController extends Controller
         ));
     }
     
+    public function actionGoto($id)
+    {
+        $this->redirect(url('post/show', array('id'=>$id)));
+    }
 }
