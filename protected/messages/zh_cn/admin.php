@@ -212,7 +212,6 @@ return array(
     'custome_config_params' => '自定义参数',
     'system_config_params' => '系统功能',
     'system_site' => '网站设置',
-    'system_rewrite' => 'URL伪表态',
     'system_cache' => '缓存设置',
     'system_attachments' => '附件设置',
 

@@ -31,7 +31,7 @@ return array(
     // 每页显示的评论数量
     'commentCountOfPage' => 20,
     // 每页显示的热门评论数量
-    'hotCommentCountOfPage' => 20,
+    'hotCommentCountOfPage' => 15,
     // 支持数达到多少才认为是热门评论
     'upNumsOfCommentIsHot' => 10,
     // 评论内容最短长度
@@ -65,11 +65,11 @@ return array(
     /*
      * 前台相关参数
      */
-    // 默认评论是否需要审核
+    // 默认评论是否需要审核, 1直接显示，0需要审核
     'defaultNewCommentState' => 1,
     // 默认发布的文章是否直接显示在首页
     'defaultPostShowHomePage' => 1,
-    
+    // 概述列表方式下概述内容最大长度
     'subSummaryLen' => 300,
     
     // 简述中可以使用的html标签

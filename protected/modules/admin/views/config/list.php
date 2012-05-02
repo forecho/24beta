@@ -24,7 +24,7 @@
                 <span class="cgray f12px"><?php echo $model['config_name'];?></span>
             </td>
             <td><?php echo h($model['config_value']);?></td>
-            <td><?php echo nl2br($model['config_description']);?></td>
+            <td><?php echo nl2br($model['desc']);?></td>
             <td>&nbsp;</td>
         </tr>
         <?php endforeach;?>
