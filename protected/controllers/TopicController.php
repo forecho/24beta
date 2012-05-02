@@ -6,7 +6,7 @@ class TopicController extends Controller
         $id = (int)$id;
         $topic = Topic::model()->findByPk($id);
         if ($topic === null)
-            throw new CHttpException(404, t('topic_is_not_found'));
+            throw new CHttpException(403, t('topic_is_not_found'));
         
         $data = self::fetchTopicPosts($id);
         $data['topic'] = $topic;

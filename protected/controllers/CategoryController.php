@@ -6,7 +6,7 @@ class CategoryController extends Controller
         $id = (int)$id;
         $category = Category::model()->findByPk($id);
         if ($category === null)
-            throw new CHttpException(404, t('category_is_not_found'));
+            throw new CHttpException(403, t('category_is_not_found'));
         
         $data = self::fetchCategoryPosts($id);
         $data['category'] = $category;

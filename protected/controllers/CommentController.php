@@ -6,7 +6,7 @@ class CommentController extends Controller
         $postid = (int)$postid;
         $post = Post::model()->findByPk($postid, 'state != :state', array(':state'=>Post::POST_DISABLED));
         if (null === $post)
-            throw new CHttpException(404, t('post_is_not_found'));
+            throw new CHttpException(403, t('post_is_not_found'));
         
         $comments = Comment::fetchList($postid, $page);
         
@@ -20,7 +20,7 @@ class CommentController extends Controller
         $postid = (int)$postid;
         $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::STATE_DISABLED));
         if (null === $post)
-            throw new CHttpException(404, t('post_is_not_found'));
+            throw new CHttpException(403, t('post_is_not_found'));
         
         $comments = Comment::fetchHotList($postid, $page);
         
