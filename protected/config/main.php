@@ -115,7 +115,6 @@ return array(
             'rules' => array(
                 'page/<page:\d+>' => 'site/index',
                 '' => 'site/index',
-                '<id:\d+>' => 'post/goto',
                 'archivers/<id:\d+>' => 'post/show',
                 '<_a:(login|signup|logout)>' => 'site/<_a>',
                 '<_c:(category|topic)>/<id:\d+>/page/<page:\d+>' => '<_c>/posts',
