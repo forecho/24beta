@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('desc')) echo 'error';?>">
-        <label class="control-label"><?php echo t('desc');?></label>
+        <label class="control-label"><?php echo t('special_desc');?></label>
         <div class="controls">
             <?php echo CHtml::activeTextArea($model, 'desc', array('id'=>'special-desc'));?>
             <?php if ($model->hasErrors('desc')):?><p class="help-block"><?php echo $model->getError('desc');?></p><?php endif;?>

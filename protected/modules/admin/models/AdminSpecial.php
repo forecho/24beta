@@ -64,9 +64,6 @@ class AdminSpecial extends Special
         
         $data['models'] = self::model()->findAll($criteria);
         
-        if (empty($data['models']))
-            $data = array();
-        
         return $data;
     }
     
