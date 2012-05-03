@@ -1,5 +1,8 @@
 <?php
 return array(
+    'site_home' => '首页',
+    'nav_topic' => '主题',
+    'nav_contribute' => '投稿',
     'guest_name' => '匿名人士',
     'post_is_not_found' => '此文章不存在',
     'topic_is_not_found' => '主题不存在',
