@@ -79,6 +79,9 @@ return array(
     'edit_category' => '编辑分类',
     'category_list_table' => '分类列表',
     'category_statistics' => '分类统计',
+    'show_in_main_nav_menu' => '在网站导航中显示',
+    'category_show' => '显示',
+    'category_hide' => '隐藏',
 
     /* create post */
     'create_post' => '发表文章',

@@ -8,11 +8,15 @@
  * @property string $name
  * @property integer $post_nums
  * @property integer $orderid
+ * @property integer $state
  * @property string $postsUrl
  * @property string $postsLink
  */
 class Category extends CActiveRecord
 {
+    const STATE_SHOW_IN_NAV_MENU = 1;
+    const STATE_NOT_SHOW_IN_NAV_MENU = 0;
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Category the static model class
@@ -40,7 +44,7 @@ class Category extends CActiveRecord
 		return array(
 	        array('name', 'required'),
 	        array('name', 'unique'),
-	        array('post_nums, orderid', 'numerical', 'integerOnly'=>true),
+	        array('post_nums, orderid, state', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 	        array('name', 'filter', 'filter'=>'strip_tags'),
 		);
@@ -69,6 +73,7 @@ class Category extends CActiveRecord
 			'name' => t('category_name'),
 			'post_nums' => t('post_nums'),
 			'orderid' => t('orderid'),
+	        'state' => t('state'),
 		);
 	}
     
@@ -105,7 +110,8 @@ class Category extends CActiveRecord
     
     public function getPostsLink($target = '_blank')
     {
-        return l($this->name, $this->getPostsUrl(), array('target'=>$target));
+        $optionsHtml = empty($target) ? null : array('target'=>$target);
+        return l($this->name, $this->getPostsUrl(), $optionsHtml);
     }
     
     protected function beforeSave()
@@ -114,6 +120,8 @@ class Category extends CActiveRecord
             $this->orderid = (int)$this->orderid;
             $this->post_nums = 0;
         }
+        
+        $this->state = $this->state ? self::STATE_SHOW_IN_NAV_MENU : self::STATE_NOT_SHOW_IN_NAV_MENU;
         
         return true;
     }

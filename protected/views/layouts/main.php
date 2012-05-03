@@ -18,6 +18,7 @@
     <div class="beta-nav">
         <ul class="channel-nav fleft">
             <li><a href="<?php echo app()->homeUrl;?>">首页</a></li>
+            <?php $this->widget('BetaCategoryMenu');?>
             <li><a href="<?php echo aurl('topic/list');?>">主题</a></li>
             <li><a href="<?php echo aurl('post/create');?>">投稿</a></li>
         </ul>

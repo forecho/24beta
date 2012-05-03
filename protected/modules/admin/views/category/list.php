@@ -21,6 +21,7 @@
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span5"><?php echo $sort->link('name');?></th>
             <th class="span1 align-center"><?php echo $sort->link('post_nums');?></th>
+            <th class="span1 align-center"><?php echo $sort->link('state');?></th>
             <th><a class="label label-important" href="<?php echo url('admin/category/create');?>"><?php echo t('create_category', 'admin');?></a></th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
             <td class="item-orderid"><input type="text" name="<?php echo sprintf('itemid[%d]', $model->id);?>" value="<?php echo $model->orderid;?>" class="input-mini" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->postsLink;?></td>
+            <td class="align-center"><?php echo $model->stateHtml;?></td>
             <td class="align-center"><?php echo $model->post_nums;?></td>
             <td>
                 <?php echo l(t('edit', 'admin'), url('admin/category/create', array('id'=>$model->id)));?>

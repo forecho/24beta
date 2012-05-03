@@ -19,4 +19,17 @@ class AdminCategory extends Category
     {
         return l($this->name, url('admin/post/latest', array('cid'=>$this->id)));
     }
+
+    public function getStateHtml()
+    {
+        $class = 'label';
+        $text = t('category_hide', 'admin');
+        if ($this->state == self::STATE_SHOW_IN_NAV_MENU) {
+            $class .= ' label-success';
+            $text = t('category_show', 'admin');
+        }
+        
+        $html = '<span class="' . $class . '">' . $text . '</span>';
+        return $html;
+    }
 }

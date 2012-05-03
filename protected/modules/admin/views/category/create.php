@@ -23,6 +23,15 @@
             <?php if($model->hasErrors('orderid')):?><p class="help-block"><?php echo $model->getError('orderid');?></p><?php endif;?>
         </div>
     </div>
+    <div class="control-group <?php if($model->hasErrors('state')) echo 'error';?>">
+        <?php echo CHtml::activeLabel($model, 'state', array('class'=>'control-label'));?>
+        <div class="controls">
+            <label class="checkbox">
+            <?php echo CHtml::activeCheckBox($model, 'state');?><?php echo t('show_in_main_nav_menu', 'admin');?>
+            </label>
+            <?php if($model->hasErrors('state')):?><p class="help-block"><?php echo $model->getError('state');?></p><?php endif;?>
+        </div>
+    </div>
     <div class="form-actions">
         <input type="submit" value="<?php echo t('submit', 'admin');?>" class="btn btn-primary" />
         <a class="btn" href="<?php echo url('admin/category/list');?>"><?php echo t('return_list_page', 'admin');?></a>
