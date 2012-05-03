@@ -32,11 +32,11 @@ var BetaAdmin = {
 		}
 	},
 	selectAll: function(event){
-		var checked = ($(':checkbox:not(:checked)').length > 0) ? true : false;
-		$(':checkbox').attr('checked', checked);
+		var checked = ($('.item-checkbox :checkbox:not(:checked)').length > 0) ? true : false;
+		$('.item-checkbox :checkbox').attr('checked', checked);
 	},
 	reverseSelect: function(event) {
-		$(':checkbox').each(function(index, element){
+		$('.item-checkbox :checkbox').each(function(index, element){
 			$(element).attr('checked', !$(element).attr('checked'));
 		});
 	},
