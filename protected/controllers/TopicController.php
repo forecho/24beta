@@ -12,9 +12,8 @@ class TopicController extends Controller
         $data['topic'] = $topic;
         
         $this->setSiteTitle(t('topic_posts', 'main', array('{name}'=>$topic->name)));
-        // @todo 关键字的描述没有指定
-        $this->setPageKeyWords(null);
-        $this->setPageDescription(null);
+        $this->setPageKeyWords($topic->name);
+        $this->setPageDescription(t('topic_posts_page_description', 'main', array('{name}' => $topic->name)));
         
         cs()->registerMetaTag('all', 'robots');
         $this->render('posts', $data);

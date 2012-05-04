@@ -12,9 +12,8 @@ class CategoryController extends Controller
         $data['category'] = $category;
         
         $this->setSiteTitle(t('category_posts', 'main', array('{name}'=>$category->name)));
-        // @todo 关键字的描述没有指定
-        $this->setPageKeyWords(null);
-        $this->setPageDescription(null);
+        $this->setPageKeyWords($category->name);
+        $this->setPageDescription(t('category_posts_page_description', 'main', array('{name}' => $category->name)));
         
         cs()->registerMetaTag('all', 'robots');
         $this->render('posts', $data);

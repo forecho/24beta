@@ -5,6 +5,12 @@ class TagController extends Controller
     {
         $tag = urldecode($name);
         
+        $this->setSiteTitle(t('tag_posts', 'main', array('{name}'=>$tag)));
+        // @todo 关键字的描述没有指定
+        $this->setPageKeyWords($tag);
+        $this->setPageDescription(t('tag_posts_page_description', 'main', array('{name}' => $tag)));
+        cs()->registerMetaTag('all', 'robots');
+        
         $cmd = app()->getDb()->createCommand()
             ->select('p.id')
             ->from(TABLE_TAG . ' t')
@@ -32,8 +38,8 @@ class TagController extends Controller
         $pages->applyLimit($criteria);
         $posts = Post::model()->findAll($criteria);
         
-        
         $this->render('posts', array(
+            'tagname' => $tag,
             'posts' => $posts,
             'pages' => $pages,
         ));

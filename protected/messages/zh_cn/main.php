@@ -112,6 +112,8 @@ return array(
 
     /* Tag model */
     'tag_name' => '标签名称',
+    'tag_posts' => '标签：{name}',
+    'tag_posts_page_description' => '与{name}标签相关的文章',
 
     /*
      * model Comment attributeLabels
@@ -206,9 +208,11 @@ return array(
     /* topic */
     'all_topic_list' => '所有主题列表',
     'topic_posts' => '专题：{name}',
+    'topic_posts_page_description' => '与{name}专题相关的文章',
 
     /* category */
     'category_posts' => '分类：{name}',
+    'category_posts_page_description' => '与{name}分类相关的文章',
 
     /* BetaHottestPosts */
     'special_token_is_null' => 'token不能为空',

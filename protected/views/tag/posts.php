@@ -1,6 +1,6 @@
 <div class="beta-content">
     <div class="beta-block beta-radius3px">
-        <h2><?php echo t('category_posts', 'main', array('{name}'=>$category->name));?></h2>
+        <h2><?php echo t('tag_posts', 'main', array('{name}'=>$tagname));?></h2>
         <ul class="beta-block-content beta-post-list unstyled">
             <?php if (count($posts) == 0):?>
             <li class="beta-no-content-tip"><?php echo t('no_posts');?></li>
