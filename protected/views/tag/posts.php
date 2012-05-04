@@ -6,7 +6,7 @@
             <li class="beta-no-content-tip"><?php echo t('no_posts');?></li>
             <?php endif;?>
             <?php foreach ((array)$posts as $model):?>
-            <li><?php echo $model->titleLink;?><span class="cgray">(<?php echo $model->visit_nums;?>)</span></li>
+            <li><?php echo $model->titleLink;?>&nbsp;<span class="cgray">(<?php echo $model->shortDate;?>)</span></li>
             <?php endforeach;?>
             <div class="clear"></div>
         </ul>

@@ -34,7 +34,7 @@
  * @property string $contributor_site
  * @property string $contributor_email
  * @property string $filterContent
- * @property string $crateTime
+ * @property string $createTime
  * @property string $authorName
  * @property string $contributorName
  * @property string $contributorLink
@@ -236,6 +236,13 @@ class Post extends CActiveRecord
 	        $format = param('formatShortDateTime');
 	
 	    return date($format, $this->create_time);
+	}
+	
+	public function getShortDate()
+	{
+	    $format = param('formatShortDate');
+	    
+	    return $this->getCreateTime($format);
 	}
 	
 	public function getAuthorName()

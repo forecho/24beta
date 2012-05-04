@@ -59,6 +59,7 @@ return array(
     'formatDateTime' => 'Y-m-d H:i:s',
     'formatShortDateTime' => 'Y-m-d H:i',
     'formatDate' => 'Y-m-d',
+    'formatShortDate' => 'm-d',
     'formatTime' => 'H:i:s',
     'formatShortTime' => 'H:i',
     

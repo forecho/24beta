@@ -22,7 +22,7 @@ class TopicController extends Controller
     private static function fetchTopicPosts($id)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums');
+        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
         $criteria->order = 't.istop desc, t.create_time desc';
         $criteria->addColumnCondition(array('t.topic_id' => $id))
             ->addCondition('t.state = :state');
