@@ -26,7 +26,7 @@ class TagController extends Controller
         }
         
         $criteria = new CDbCriteria();
-        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums');
+        $criteria->select = array('t.id', 't.title', 't.visit_nums', 't.comment_nums', 't.create_time');
         $criteria->order = 't.istop, t.create_time desc, t.id desc';
         $criteria->addInCondition('t.id', $ids)
             ->addCondition('t.state = :state');
