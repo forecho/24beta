@@ -59,8 +59,8 @@ class PostForm extends CFormModel
         $post->user_id = user()->id;
         $post->user_name = user()->name;
         $post->homeshow = $this->homeshow();
-        $post->save();
-        $this->afterSave($post);
+        if ($post->save())
+            $this->afterSave($post);
         return $post;
     }
     

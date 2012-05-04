@@ -3,6 +3,7 @@ define('BETA_YES', 1);
 define('BETA_NO', 0);
 
 define('TABLE_POST', '{{post}}');
+define('TABLE_POST_CONTENT', '{{post_content}}');
 define('TABLE_COMMENT', '{{comment}}');
 define('TABLE_CATEGORY', '{{category}}');
 define('TABLE_CONFIG', '{{config}}');
