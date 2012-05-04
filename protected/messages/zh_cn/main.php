@@ -158,6 +158,7 @@ return array(
      * layout
      */
     'return_top' => '返回顶部 ^',
+    'return_site_home' => '返回网站首页',
 
     /*
      * post show
@@ -199,6 +200,8 @@ return array(
     'post_contributor_email' => '您的邮箱',
     'you_do_not_have_enough_permissions' => '您没有上传文件的权限',
     'post_upload_temp_pictures' => '刚刚上传的图片',
+    'continue_contribute' => '再投递一篇',
+    'view_contribute_post' => '查看刚才投递的文章',
 
     /* topic */
     'all_topic_list' => '所有主题列表',
