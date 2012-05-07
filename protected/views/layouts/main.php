@@ -27,10 +27,9 @@
         </ul>
         <div class="clear"></div>
     </div>
-        <div class="beta-entry">
-            <?php echo $content;?>
-        </div>
-    
+    <div class="beta-entry">
+        <?php echo $content;?>
+    </div>
 </div>
 <?php echo param('footer_before_html');?>
 <div class="beta-footer">

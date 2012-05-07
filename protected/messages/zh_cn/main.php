@@ -234,6 +234,9 @@ return array(
     /* site */
     'site_announce' => '除非特别注明，本站所有文章均不代表本站观点。报道中出现的商标属于其合法持有人。交流时请遵守理性，宽容，换位思考的原则。',
     'site_content_share_announce' => '除非特别声明，本站所有内容遵守<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/" target="_blank">CC Creative Commons License.</a>',
+        
+    /* error page */
+    'site_page_error_tip' => '<h2>该页无法显示</h2><p>出现这个问题，也许是因为您访问了不正确的链接地址，但更可能是由于我们对程序做出了更新，没有即时通知您所造成的。</p>',
 );
 
 

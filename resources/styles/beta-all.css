@@ -305,7 +305,9 @@ body.beta-ke-content {padding:5px;}
 /* topic/posts */
 .beta-post-title-item li {margin:10px;}
 
-
-
+/* error page */
+.beta-error {color:gray;}
+.beta-error .error-icon {font-size:200px; color:#BFBFBF; margin-right:20px; line-height:300px; font-weight:bold;}
+.beta-error .error-detail {padding-top:40px; line-height:24px;}
 
 

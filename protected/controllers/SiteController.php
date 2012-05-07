@@ -117,11 +117,6 @@ class SiteController extends Controller
         $this->redirect(app()->homeUrl);
     }
     
-    public function actionError()
-    {
-        $error = app()->errorHandler;
-    }
-    
     private static function fetchLatestPosts()
     {
         $criteria = new CDbCriteria();
@@ -195,6 +190,16 @@ class SiteController extends Controller
         $auth->assign('admin','1');
         
 
+    }
+
+
+    public function actionError()
+    {
+        $error = app()->errorHandler->error;;
+        if ($error) {
+            $this->setPageTitle('Error ' . $error['code']);
+            $this->render('/system/error', $error);
+        }
     }
 }
 

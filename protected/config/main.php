@@ -61,6 +61,9 @@ return array(
                 ), */
             ),
         ),
+        'errorHandler' => array(
+            'errorAction' => 'site/error',
+        ),
         'user' => array(
             'allowAutoLogin' => true,
             'loginUrl' => array('site/login'),
