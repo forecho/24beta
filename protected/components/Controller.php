@@ -5,6 +5,8 @@
  */
 class Controller extends CController
 {
+    public $channel;
+     
 	public function actions()
 	{
 		return array(

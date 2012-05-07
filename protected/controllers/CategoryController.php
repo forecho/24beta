@@ -15,6 +15,7 @@ class CategoryController extends Controller
         $this->setPageKeyWords($category->name);
         $this->setPageDescription(t('category_posts_page_description', 'main', array('{name}' => $category->name)));
         
+        $this->channel = $id;
         cs()->registerMetaTag('all', 'robots');
         $this->render('posts', $data);
     }

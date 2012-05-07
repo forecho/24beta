@@ -3,6 +3,8 @@ class TopicController extends Controller
 {
     public function actionPosts($id)
     {
+        $this->channel = 'topic';
+        
         $id = (int)$id;
         $topic = Topic::model()->findByPk($id);
         if ($topic === null)
@@ -42,6 +44,8 @@ class TopicController extends Controller
 
     public function actionList()
     {
+        $this->channel = 'topic';
+        
         $criteria = new CDbCriteria();
         $criteria->order = 'orderid desc, post_nums desc, id asc';
         $topics = Topic::model()->findAll($criteria);

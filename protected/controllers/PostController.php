@@ -103,6 +103,8 @@ class PostController extends Controller
     
     public function actionCreate()
     {
+        $this->channel = 'contribute';
+        
         $form = new PostForm();
         if (request()->getIsPostRequest() && isset($_POST['PostForm'])) {
             $form->attributes = $_POST['PostForm'];
@@ -141,6 +143,8 @@ class PostController extends Controller
     
     public function actionSuccess()
     {
+        $this->channel = 'contribute';
+        
         $postid = user()->getFlash('success_post_id');
         if (empty($postid))
             $this->redirect(app()->homeUrl);

@@ -2,6 +2,7 @@
 class BetaCategoryMenu extends CWidget
 {
     public $showAll = false;
+    public $channel = 0;
     
     public function init()
     {
@@ -14,8 +15,10 @@ class BetaCategoryMenu extends CWidget
         if (empty($rows)) return ;
         
         foreach ($rows as $row) {
-            $url = aurl('category/posts', array('id'=>(int)$row['id']));
-            $html .= '<li>' . l($row['name'], $url) . '</li>';
+            $id = (int)$row['id'];
+            $url = aurl('category/posts', array('id'=>$id));
+            $htmlOptions = ($id == $this->channel) ? array('class'=>'active') : array();
+            $html .= '<li>' . l($row['name'], $url, $htmlOptions) . '</li>';
         }
         echo $html;
     }

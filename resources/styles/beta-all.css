@@ -128,12 +128,12 @@ pre code{padding:0;background-color:transparent;}
 .beta-header .beta-logo a {display:block; width:250px; height:100%; text-indent:-99999px;}
 
 /* header nav */
-.beta-nav {background:#EFEFEF; margin-bottom:15px; padding:0 20px; border-bottom:1px solid #DFDFDF;}
+.beta-nav {background:#EFEFEF; margin-bottom:15px; border-bottom:1px solid #DFDFDF;}
 .beta-nav ul, .beta-nav li {margin:0; list-style:none inside;}
 .beta-nav li {float:left;}
-.beta-nav li a {display:block; padding:8px 3px 6px; margin-right:10px;}
-.beta-nav a:link, .beta-nav a:hover, .beta-nav a:visited {text-decoration:none; colodr:#4F4F4F; text-shadow:1px 1px white;}
-.beta-nav a:hover {color:#5F5F5F;}
+.beta-nav li a {display:block; padding:3px 10px 2px; margin:5px;}
+.beta-nav a:link, .beta-nav a:visited {text-decoration:none; color:#4F4F4F;}
+.beta-nav a:hover, .beta-nav a.active:link, .beta-nav a.active:visited {text-decoration:none; color:white; background:#C70003;}
 .beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
 
 /* post summary list */

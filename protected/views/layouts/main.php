@@ -17,10 +17,10 @@
     </div>
     <div class="beta-nav">
         <ul class="channel-nav fleft">
-            <li><a href="<?php echo app()->homeUrl;?>"><?php echo t('site_home');?></a></li>
-            <?php $this->widget('BetaCategoryMenu');?>
-            <li><a href="<?php echo aurl('topic/list');?>"><?php echo t('nav_topic');?></a></li>
-            <li><a href="<?php echo aurl('post/create');?>"><?php echo t('nav_contribute');?></a></li>
+            <li><a <?php if (empty($this->channel)) echo 'class="active"';?> href="<?php echo app()->homeUrl;?>"><?php echo t('site_home');?></a></li>
+            <?php $this->widget('BetaCategoryMenu', array('channel'=>$this->channel));?>
+            <li><a href="<?php echo aurl('topic/list');?>" <?php if ($this->channel == 'topic') echo 'class="active"';?>><?php echo t('nav_topic');?></a></li>
+            <li><a href="<?php echo aurl('post/create');?>" <?php if ($this->channel == 'contribute') echo 'class="active"';?>><?php echo t('nav_contribute');?></a></li>
         </ul>
         <ul class="user-mini-bar fright">
             <?php echo $this->userMiniToolbar();?>
