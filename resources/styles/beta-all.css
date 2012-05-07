@@ -128,7 +128,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-header .beta-logo a {display:block; width:250px; height:100%; text-indent:-99999px;}
 
 /* header nav */
-.beta-nav {background:#EFEFEF; margin-bottom:10px; padding:0 20px; border-bottom:1px solid #DFDFDF;}
+.beta-nav {background:#EFEFEF; margin-bottom:15px; padding:0 20px; border-bottom:1px solid #DFDFDF;}
 .beta-nav ul, .beta-nav li {margin:0; list-style:none inside;}
 .beta-nav li {float:left;}
 .beta-nav li a {display:block; padding:8px 3px 6px; margin-right:10px;}
@@ -257,7 +257,7 @@ body.beta-ke-content {padding:5px;}
 .beta-pages ul.yiiPager .first,.beta-pages ul.yiiPager .last{display:none;}
 
 /* beta-hottest-posts */
-.beta-hottest-posts {margin:15px auto;}
+.beta-hottest-posts {margin:0 auto 15px;}
 .beta-hottest-posts a {display:block; position:relative; float:left; width:222px; height:130px; overflow:hidden;}
 .beta-hottest-posts a:link, .beta-hottest-posts a:hover, .beta-hottest-posts a:visited {text-decoration:none;}
 .beta-hottest-posts a:last-child {margin-right:0;}
