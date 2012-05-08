@@ -20,8 +20,8 @@
             <th class="span1 align-center"><?php echo $sort->link('orderid');?></th>
             <th class="span1 align-center"><?php echo $sort->link('id');?></th>
             <th class="span5"><?php echo $sort->link('name');?></th>
-            <th class="span1 align-center"><?php echo $sort->link('post_nums');?></th>
             <th class="span1 align-center"><?php echo $sort->link('state');?></th>
+            <th class="span1 align-center"><?php echo $sort->link('post_nums');?></th>
             <th><a class="label label-important" href="<?php echo url('admin/category/create');?>"><?php echo t('create_category', 'admin');?></a></th>
         </tr>
     </thead>
