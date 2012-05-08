@@ -439,11 +439,10 @@ class Post extends CActiveRecord
 	
 	protected function afterSave()
 	{
-	    $counters = array('post_nums' => 1);
-	    Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
-	    Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
-        
 	    if ($this->getIsNewRecord()) {
+	        $counters = array('post_nums' => 1);
+	        Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
+	        Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
 	        Tag::savePostTags($this->id, $this->tags);
 	    }
 	}
@@ -460,7 +459,6 @@ class Post extends CActiveRecord
 	    app()->db->createCommand()->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
 	    app()->db->createCommand()->delete('{{special2post}}', 'post_id = :pid', array(':pid'=>$this->id));
 	     
-	    // @todo 此处删除文章后对应的图片也应该删除
 	    $files = Upload::model()->findAllByAttributes(array('post_id'=>$this->id));
 	    foreach ($files as $file) $file->delete();
 	}
