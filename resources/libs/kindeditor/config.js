@@ -3,7 +3,7 @@ var summaryHtmlTags = {
     a: ['href', 'target', 'name'],
     embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
     img: ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height'],
-    p: ['.text-align'],
+    p: ['align', '.text-align'],
     'div,strong,b,sub,sup,em,i,u,strike': []
 };
 
