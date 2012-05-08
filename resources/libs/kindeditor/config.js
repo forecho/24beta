@@ -79,10 +79,10 @@ var KEConfig = {
 		allowMediaUpload: true,
 		htmlTags: summaryHtmlTags,
 		bodyClass: 'beta-ke-content beta-post-content',
-		items: ['undo', 'redo', '|', 'plainpaste', 'wordpaste', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'insertorderedlist',
+		items: ['source', '|', 'undo', 'redo', '|', 'plainpaste', 'wordpaste', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'insertorderedlist',
 	        'insertunorderedlist', 'bold', 'italic', 'underline', 'strikethrough',
 	        '|', 'image', 'flash', 'media', 'link', 'unlink',
-	        '|', 'selectall', 'clearhtml', 'removeformat', '|', 'source']
+	        '|', 'selectall', 'clearhtml', 'removeformat']
 	},
 	adminfull: {
 		height:450,
@@ -95,12 +95,12 @@ var KEConfig = {
 		allowMediaUpload: true,
 		htmlTags: contentHtmlTags,
 		bodyClass: 'beta-ke-content beta-post-content',
-		items: ['undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
-	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript',
-	        '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', '/',
+		items: ['source', '|', 'undo', 'redo', '|', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste',
+	        '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', '|', 'link', 'unlink', 'selectall', 'clearhtml', 'removeformat', 'quickformat',
+	        '/', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough',
 	        '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons',
-	        '|', 'map', 'code', 'pagebreak', '|', 'link', 'unlink', 'selectall', 'clearhtml', 'removeformat', 'quickformat',
-	        '|', 'fullscreen', 'preview', 'source']
+	        '|', 'map', 'code', 'pagebreak',
+	        '|', 'fullscreen', 'preview']
 
 	}
 };
