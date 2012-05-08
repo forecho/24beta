@@ -58,23 +58,14 @@
             <?php if ($model->hasErrors('thumbnail')):?><p class="help-block"><?php echo $model->getError('thumbnail');?></p><?php endif;?>
         </div>
     </div>
-    <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_category', 'admin');?></label>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('category_id') || $model->hasErrors('topic_id')) echo 'error';?>">
+        <label class="control-label"><?php echo t('post_category', 'admin') . '/' . t('post_topic', 'admin');?></label>
         <div class="controls">
             <?php echo CHtml::activeDropDownList($model, 'category_id', AdminCategory::listData(), array('empty'=>t('please_select_category', 'admin')));?>
-            <?php if ($model->hasErrors('category_id')):?><span class="help-inline"><?php echo $model->getError('category_id');?></span><?php endif;?>
-        </div>
-    </div>
-    <div class="control-group bottom10px <?php if ($model->hasErrors('tags')) echo 'error';?>">
-        <label class="control-label"><?php echo t('post_topic', 'admin');?></label>
-        <div class="controls">
             <?php echo CHtml::activeDropDownList($model, 'topic_id', AdminTopic::listData(), array('empty'=>t('please_select_topic', 'admin')));?>
-            <?php if ($model->hasErrors('topic_id')):?><span class="help-inline"><?php echo $model->getError('topic_id');?></span><?php endif;?>
-        </div>
-    </div>
-    <div class="control-group bottom10px">
-        <div class="controls">
             <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
+            <?php if (!$model->hasErrors('category_id')):?><span class="help-block"><?php echo $model->getError('category_id');?></span><?php endif;?>
+            <?php if ($model->hasErrors('topic_id')):?><span class="help-block"><?php echo $model->getError('topic_id');?></span><?php endif;?>
         </div>
     </div>
     <div class="control-group bottom10px <?php if ($model->hasErrors('summary')) echo 'error';?>">
