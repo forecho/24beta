@@ -39,7 +39,7 @@
             </td>
             <td class="post-quick-edit">
                 <?php echo $model->getStateLabel() . $model->editLink . $model->getExtraStateLabels();?>
-                <form class="form-inline hide state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
+                <form class="form-inline invisible state-update-block" method="post" action="<?php echo url('admin/post/quickUpdate', array('id'=>$model->id));?>">
                     <label class="checkbox">
                         <?php echo CHtml::activeCheckBox($model, 'homeshow');?><?php echo t('home_show', 'admin');?>
                     </label>
@@ -103,10 +103,12 @@ $(function(){
 	$(document).on('click', '.btn-update-state', BetaAdmin.quickUpdate);
 
 	$('table td.post-quick-edit').mouseenter(function(event){
-		$(this).find('.state-update-block').hide().delay(200).show(1);
+		$(this).find('.state-update-block').animate({'visibility':'hidden'},200, function(){
+			$(this).css('visibility', 'visible');
+		});
 	});
 	$('table td.post-quick-edit').mouseleave(function(event){
-		$(this).find('.state-update-block').stop(true, true).hide();
+		$(this).find('.state-update-block').stop(true, true).css('visibility', 'hidden');
 	});
 	$('table td.post-preivew-link').mouseenter(function(event){
 		$(this).find('.quick-links').hide().delay(150).show(1);
