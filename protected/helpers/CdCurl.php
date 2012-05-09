@@ -105,6 +105,15 @@ class CdCurl
             $this->user_agent = $agent;
     }
     
+    public function headers($headers)
+    {
+        if (!empty($headers)) {
+            $headers = (array)$headers;
+            $this->add_option(CURLOPT_HTTPHEADER, $headers);
+        }
+        return $this;
+    }
+    
     public final function revert()
     {
         $this->del_option();
@@ -140,7 +149,7 @@ class CdCurl
     
     public final function post($url, $data = null)
     {
-        $this->add_option(CURLOPT_POST, 'POST');
+        $this->add_option(CURLOPT_POST, true);
         if (null !== $data)
             $this->add_option(CURLOPT_POSTFIELDS, $data);
         return $this->exec($url);
@@ -200,7 +209,6 @@ class CdCurl
         $this->add_option(CURLOPT_FOLLOWLOCATION, $val);
         return $this;
     }
-
     
     public final function get_ch()
     {
@@ -208,3 +216,4 @@ class CdCurl
     }
     
 }
+

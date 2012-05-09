@@ -23,7 +23,7 @@ return array(
     'userRequiredEmailVerfiy' => false,
     // 敏感关键词被替换为
     'filterKeywordReplacement' => '文明用语',
-        
+
     // 每页显示的文章数量
     'postCountOfPage' => 12,
     // 标题显示列表每页显示的文章数量
