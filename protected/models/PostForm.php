@@ -57,7 +57,7 @@ class PostForm extends CFormModel
             $post->contributor = user()->name;
         $post->state = $this->state();
         $post->user_id = user()->id;
-        $post->user_name = user()->name;
+        $post->user_name = user()->getIsGuest() ? '' : user()->name;
         $post->homeshow = $this->homeshow();
         if ($post->save())
             $this->afterSave($post);
