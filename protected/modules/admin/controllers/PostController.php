@@ -38,11 +38,12 @@ class PostController extends AdminController
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminPost'])) {
 	        $model->attributes = $_POST['AdminPost'];
-            $model->user_id = user()->id;
-            $model->user_name = user()->name;
 	        // 此处如果以后有多种文章模型了，这一句可以去掉。
-	        if ($model->getIsNewRecord())
+	        if ($model->getIsNewRecord()) {
+	            $model->user_id = user()->id;
+	            $model->user_name = user()->name;
     	        $model->post_type = AdminPost::TYPE_POST;
+	        }
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
 	            user()->setFlash('save_post_result', t('save_post_success', 'admin', array('{title}'=>$model->title, '{url}'=>$model->url)));
@@ -192,10 +193,6 @@ class PostController extends AdminController
 	        throw new CHttpException(404, t('post_is_not_exist', 'admin'));
 	     
         $model->attributes = $_POST['AdminPost'];
-        // @todo 暂时没用，做快速发表时会用到
-        if ($model->getIsNewRecord())
-	        $model->post_type = AdminPost::TYPE_POST;
-        
         $attributes = array('state', 'hottest', 'recommend', 'istop', 'homeshow', 'disable_comment');
         $result = (int)$model->save(true, $attributes);
         
@@ -217,6 +214,7 @@ class PostController extends AdminController
 	    else
 	        $attributes = array('state');
 	    
+	    $model = self::updatePostEditor($model);
         $model->save(true, $attributes);
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
@@ -335,7 +333,13 @@ class PostController extends AdminController
 	        'create_time' => $_SERVER['REQUEST_TIME'],
 	    );
 	    foreach ($ids as $id) {
-	        $result = AdminPost::model()->updateByPk($id, $attributes);
+	        $model = AdminPost::model()->findByPk($id);
+	        if ($model === null) continue;
+	        
+	        $model->state = AdminPost::STATE_ENABLED;
+	        $model->create_time = $_SERVER['REQUEST_TIME'];
+	        $model = self::updatePostEditor($model);
+	        $result = $model->save(true, array('state', 'create_time'));
 	        if ($result)
 	            $successIds[] = $id;
 	        else
@@ -434,5 +438,14 @@ class PostController extends AdminController
 	    BetaBase::jsonp($callback, $data);
 	}
 
+	private static function updatePostEditor(AdminPost $model)
+	{
+	    if (empty($model->user_id) && $model->state == Post::STATE_ENABLED) {
+	        $model->user_id = user()->id;
+	        $model->user_name = user()->name;
+	    }
+	    
+	    return $model;
+	}
 	
 }
