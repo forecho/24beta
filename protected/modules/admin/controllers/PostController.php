@@ -193,7 +193,8 @@ class PostController extends AdminController
 	        throw new CHttpException(404, t('post_is_not_exist', 'admin'));
 	     
         $model->attributes = $_POST['AdminPost'];
-        $attributes = array('state', 'hottest', 'recommend', 'istop', 'homeshow', 'disable_comment');
+        $model = self::updatePostEditor($model);
+        $attributes = array('state', 'hottest', 'recommend', 'istop', 'homeshow', 'disable_comment', 'user_id', 'user_name');
         $result = (int)$model->save(true, $attributes);
         
         BetaBase::jsonp($callback, $result);
@@ -206,7 +207,7 @@ class PostController extends AdminController
 	    if ($model === null)
 	        throw new CHttpException(500);
 	    
-	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
+	    $model->state = ($model->state == AdminPost::STATE_NOT_VERIFY) ? AdminPost::STATE_ENABLED : AdminPost::STATE_NOT_VERIFY;
 	    if ($model->state == AdminPost::STATE_ENABLED) {
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
 	        $attributes = array('user_id', 'user_name', 'state', 'create_time');
