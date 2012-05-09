@@ -209,7 +209,7 @@ class PostController extends AdminController
 	    $model->state = abs($model->state - AdminPost::STATE_ENABLED);
 	    if ($model->state == AdminPost::STATE_ENABLED) {
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
-	        $attributes = array('state', 'create_time');
+	        $attributes = array('user_id', 'user_name', 'state', 'create_time');
 	    }
 	    else
 	        $attributes = array('state');
@@ -328,10 +328,7 @@ class PostController extends AdminController
 	    $ids = (array)request()->getPost('ids');
 	     
 	    $successIds = $failedIds = array();
-	    $attributes = array(
-	        'state' => AdminPost::STATE_ENABLED,
-	        'create_time' => $_SERVER['REQUEST_TIME'],
-	    );
+	    $attributes = array('user_id', 'user_name', 'state', 'create_time');
 	    foreach ($ids as $id) {
 	        $model = AdminPost::model()->findByPk($id);
 	        if ($model === null) continue;
@@ -339,7 +336,7 @@ class PostController extends AdminController
 	        $model->state = AdminPost::STATE_ENABLED;
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
 	        $model = self::updatePostEditor($model);
-	        $result = $model->save(true, array('state', 'create_time'));
+	        $result = $model->save(true, $attributes);
 	        if ($result)
 	            $successIds[] = $id;
 	        else
@@ -440,7 +437,7 @@ class PostController extends AdminController
 
 	private static function updatePostEditor(AdminPost $model)
 	{
-	    if (empty($model->user_id) && $model->state == Post::STATE_ENABLED) {
+	    if (empty($model->user_id) && $model->state == AdminPost::STATE_ENABLED) {
 	        $model->user_id = user()->id;
 	        $model->user_name = user()->name;
 	    }

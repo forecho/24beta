@@ -54,9 +54,9 @@ class PostForm extends CFormModel
         $post->post_type = Post::TYPE_POST;
         $post->contributor_id = (int)user()->id;
         if (empty($post->contributor))
-            $post->contributor = user()->name;
+            $post->contributor = user()->getIsGuest() ? '' : user()->name;
         $post->state = $this->state();
-        $post->user_id = user()->id;
+        $post->user_id = (int)user()->id;
         $post->user_name = user()->getIsGuest() ? '' : user()->name;
         $post->homeshow = $this->homeshow();
         if ($post->save())
