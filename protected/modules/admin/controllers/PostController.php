@@ -38,6 +38,8 @@ class PostController extends AdminController
 	    
 	    if (request()->getIsPostRequest() && isset($_POST['AdminPost'])) {
 	        $model->attributes = $_POST['AdminPost'];
+            $model->user_id = user()->id;
+            $model->user_name = user()->name;
 	        // 此处如果以后有多种文章模型了，这一句可以去掉。
 	        if ($model->getIsNewRecord())
     	        $model->post_type = AdminPost::TYPE_POST;
