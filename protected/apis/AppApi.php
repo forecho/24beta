@@ -54,8 +54,11 @@ class AppApi
      */
     public function setApiPath($path)
     {
-        if (file_exists(realpath($path)))
-            self::$_apiPath = rtrim($path, '\/') . DIRECTORY_SEPARATOR;
+        $path = rtrim($path, '\/') . DIRECTORY_SEPARATOR;
+        if (file_exists($path)) {
+            self::$_apiPath = $path;
+            set_include_path(get_include_path() . PATH_SEPARATOR . self::$_apiPath);
+        }
         else
             throw new ApiException("{$path}目录不存在", ApiError::API_PATH_NO_EXIST);
             
