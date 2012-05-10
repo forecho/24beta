@@ -197,12 +197,11 @@ class AppApi
      */
     private static function importClass($class)
     {
-        try {
-            require self::$_apiPath . ucfirst($class) . '.php';
-        }
-        catch (Exception $e) {
+        $filename = self::$_apiPath . ucfirst($class) . '.php';
+        if (file_exists($filename))
+            require($filename);
+        else
             throw new ApiException('$class 文件导入错误', ApiError::CLASS_FILE_NOT_EXIST);
-        }
     }
     
     /**
