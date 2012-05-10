@@ -97,8 +97,10 @@ class AppApi
         $result = call_user_func($this->parsekMethods());
         if (false === $result)
             throw new ApiException('$class->$method 执行错误', ApiError::CLASS_METHOD_EXECUTE_ERROR);
-        else
-            self::output($result, self::$_format);
+        else {
+            $data = array('error'=>0, 'data'=>$result);
+            self::output($data, self::$_format);
+        }
     }
     
     /**
@@ -273,21 +275,19 @@ class AppApi
     
     public function errorHandler($errno, $message, $file, $line)
     {
+        $data = array('error' => 1);
         if (isset($this->_params[debug]) && $this->_params[debug])
-            $error = array('errno'=>$errno, 'message'=>$error, 'line'=>$line, 'file'=>$file);
-        else
-            $error = 'ERROR';
-    	echo json_encode($error);
+            $data = array_merge($data, array('errno'=>$errno, 'message'=>$error, 'line'=>$line, 'file'=>$file));
+    	echo json_encode($data);
     	exit(0);
     }
     
     public function exceptionHandler($e)
     {
+        $data = array('error' => 1);
     	if (isset($this->_params['debug']) && $this->_params['debug'])
-    		$error = array('errno'=>$e->getCode(), 'message'=>$e->getMessage());
-    	else
-    		$error = 'ERROR';
-        echo json_encode($error);
+    		$data = array_merge($data, array('errno'=>$e->getCode(), 'message'=>$e->getMessage()));
+        echo json_encode($data);
     	exit(0);
     }
     
