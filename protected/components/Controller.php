@@ -20,7 +20,6 @@ class Controller extends CController
 		        'foreColor' => 0xFF0000,
 		        'padding' => 3,
 		        'testLimit' => 3,
-// 			    'fixedVerifyCode' => '1231',
 			),
 		);
 	}
