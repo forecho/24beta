@@ -29,10 +29,9 @@ class AppApi
     {
         $this->init();
     	
-        if (empty(self::$_apiPath))
-            $this->setApiPath(dirname(__FILE__));
-        
-        
+        if (empty($apiPath))
+            $apiPath = dirname(__FILE__);
+        $this->setApiPath($apiPath);
     }
     
     private function init()
