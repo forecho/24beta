@@ -82,6 +82,8 @@ var BetaComment = {
 		var msgtext = msg.find('.text');
 		form.after(msg);
 
+		form.find('input.beta-captcha').blur();
+
 		if (form.find('.beta-control-group.error').length > 0) {
 			msgtext.html($('.ajax-jsstr .ajax-rules-invalid').text());
 			msg.removeClass('alert-success').addClass('alert-error').show();
