@@ -19,7 +19,7 @@ class Controller extends CController
 				'minLength' => 4,
 		        'foreColor' => 0xFF0000,
 		        'padding' => 3,
-		        'testLimit' => 3,
+		        'testLimit' => 1,
 			),
 		);
 	}
