@@ -38,6 +38,7 @@ class FeedController extends Controller
         
         $this->renderPartial('rss', array(
             'rows' => $rows,
+            'categoryName' => $categoryName,
         ));
     }
     
@@ -60,6 +61,7 @@ class FeedController extends Controller
         
         $this->renderPartial('rss', array(
             'rows' => $rows,
+            'topicName' => $topicName,
         ));
     }
     

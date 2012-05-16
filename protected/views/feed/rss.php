@@ -10,7 +10,16 @@
 	>
 	
 <channel>
-	<title><?php echo app()->name;?></title>
+	<title>
+	<?php
+	    if ($categoryName)
+	        echo $categoryName . ' - ';
+	    elseif ($topicName)
+	        echo $topicName . ' - ';
+        
+	    echo app()->name;
+    ?>
+	</title>
 	<atom:link href="<?php echo aurl('feed/timeline');?>" rel="self" type="application/rss+xml" />
 	<link><?php echo abu('/');?></link>
 	<description><?php echo param('shortdesc');?></description>
