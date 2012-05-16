@@ -18,6 +18,10 @@ class TopicController extends Controller
         $this->setPageDescription(t('topic_posts_page_description', 'main', array('{name}' => $topic->name)));
         
         cs()->registerMetaTag('all', 'robots');
+        
+        $feedTitle = $topic->name . t('topic_feed');
+        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/topic', array('id'=>$id)), null, array('title'=>$feedTitle));
+        
         $this->render('posts', $data);
     }
     

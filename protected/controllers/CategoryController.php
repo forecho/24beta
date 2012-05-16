@@ -17,6 +17,10 @@ class CategoryController extends Controller
         
         $this->channel = $id;
         cs()->registerMetaTag('all', 'robots');
+        
+        $feedTitle = $category->name . t('category_feed');
+        cs()->registerLinkTag('alternate', 'application/rss+xml', aurl('feed/category', array('id'=>$id)), null, array('title'=>$feedTitle));
+        
         $this->render('posts', $data);
     }
     

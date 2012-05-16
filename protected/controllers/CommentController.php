@@ -1,10 +1,10 @@
 <?php
 class CommentController extends Controller
 {
-    public function actionList($postid, $page = 1)
+    public function actionList($pid, $page = 1)
     {
-        $postid = (int)$postid;
-        $post = Post::model()->findByPk($postid, 'state != :state', array(':state'=>Post::POST_DISABLED));
+        $postid = (int)$pid;
+        $post = Post::model()->findByPk($postid, 'state = :state', array(':state'=>Post::STATE_ENABLED));
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
         

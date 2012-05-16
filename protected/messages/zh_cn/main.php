@@ -227,6 +227,10 @@ return array(
     'please_agree_policy' => '请同意服务条款和协议',
     'please_input_your_nickname' => '请输入您的大名',
     'email_or_password_error' => '邮箱或密码错误',
+        
+    /* feed */
+    'category_feed' => ' 分类目录Feed',
+    'topic_feed' => ' 主题目录Feed',
 
     /* topic/list */
     'all_topics_description' => '所有主题列表',

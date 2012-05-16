@@ -1,9 +1,15 @@
 <?php
 class BetaBase
 {
+    const VERSION = '1.0';
+    
     const FILE_NO_EXIST = -1; // '目录不存在并且无法创建';
     const FILE_NO_WRITABLE = -2; // '目录不可写';
     
+    public static function powered()
+    {
+        return '24blog ' . self::VERSION;
+    }
     
     /**
      * 获取客户端IP地址
