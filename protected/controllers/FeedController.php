@@ -16,7 +16,10 @@ class FeedController extends Controller
         
         $rows = self::fetchPosts($cmd);
         
-        $this->renderPartial('rss', array('rows'=>$rows));
+        $this->renderPartial('rss', array(
+            'rows' => $rows,
+            'feedname' => app()->name,
+        ));
     }
     
     public function actionCategory($id)
@@ -36,9 +39,10 @@ class FeedController extends Controller
         
         $rows = self::fetchPosts($cmd);
         
+        $feedname = $categoryName . ' - ' . app()->name;
         $this->renderPartial('rss', array(
             'rows' => $rows,
-            'categoryName' => $categoryName,
+            'feedname' => $feedname,
         ));
     }
     
@@ -59,9 +63,10 @@ class FeedController extends Controller
         
         $rows = self::fetchPosts($cmd);
         
+        $feedname = $topicName . ' - ' . app()->name;
         $this->renderPartial('rss', array(
             'rows' => $rows,
-            'topicName' => $topicName,
+            'feedname' => $feedname,
         ));
     }
     
