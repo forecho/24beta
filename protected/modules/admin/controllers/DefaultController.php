@@ -30,6 +30,6 @@ class DefaultController extends AdminController
     public function actionTest()
     {
         $this->layout = 'test';
-        $this->render('welcome');
+        $this->render('/default/welcome');
     }
 }
