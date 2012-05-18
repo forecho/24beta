@@ -97,7 +97,6 @@ class Tag extends CActiveRecord
 	        if ($model === null) {
 	            $model = new Tag();
 	            $model->name = $v;
-	            $model->post_nums = 1;
 	            if ($model->save()) $count++;
 	        }
 	        
