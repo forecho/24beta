@@ -81,7 +81,6 @@ class Tag extends CActiveRecord
 	    return $tagsArray;
 	}
 	
-
 	public static function savePostTags($postid, $tags)
 	{
 	    $postid = (int)$postid;
