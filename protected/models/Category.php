@@ -14,9 +14,6 @@
  */
 class Category extends CActiveRecord
 {
-    const STATE_SHOW_IN_NAV_MENU = 1;
-    const STATE_NOT_SHOW_IN_NAV_MENU = 0;
-    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Category the static model class
@@ -121,7 +118,7 @@ class Category extends CActiveRecord
             $this->post_nums = 0;
         }
         
-        $this->state = $this->state ? self::STATE_SHOW_IN_NAV_MENU : self::STATE_NOT_SHOW_IN_NAV_MENU;
+        $this->state = $this->state ? CATEGORY_STATE_IN_NAV : CATEGORY_STATE_NOT_IN_NAV;
         
         return true;
     }

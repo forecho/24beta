@@ -26,7 +26,7 @@ class PostController extends AdminController
 	    if ($id === 0) {
 	        $model = new AdminPost();
 	        $model->homeshow = user()->checkAccess('create_post_in_home') ? BETA_YES : BETA_NO;
-	        $model->state = user()->checkAccess('editor') ? AdminPost::STATE_ENABLED : AdminPost::STATE_NOT_VERIFY;
+	        $model->state = user()->checkAccess('editor') ? POST_STATE_ENABLED : POST_STATE_NOT_VERIFY;
 	        $this->adminTitle = t('create_post');
 	    }
 	    elseif ($id > 0) {
@@ -42,7 +42,7 @@ class PostController extends AdminController
 	        if ($model->getIsNewRecord()) {
 	            $model->user_id = user()->id;
 	            $model->user_name = user()->name;
-    	        $model->post_type = AdminPost::TYPE_POST;
+    	        $model->post_type = POST_TYPE_POST;
 	        }
 	        if ($model->save()) {
 	            $this->afterPostSave($model);
@@ -114,7 +114,7 @@ class PostController extends AdminController
 	public function actionVerify()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('t.state'=>AdminPost::STATE_NOT_VERIFY));
+	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_NOT_VERIFY));
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->adminTitle = t('noverify_post_list_table', 'admin');
@@ -175,7 +175,7 @@ class PostController extends AdminController
 	public function actionTrash()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('state'=>AdminPost::STATE_TRASH));
+	    $criteria->addColumnCondition(array('t.state'=>POST_STATE_TRASH));
 	    $data = AdminPost::fetchList($criteria);
 	     
 	    $this->render('list', $data);
@@ -207,8 +207,8 @@ class PostController extends AdminController
 	    if ($model === null)
 	        throw new CHttpException(500);
 	    
-	    $model->state = ($model->state == AdminPost::STATE_NOT_VERIFY) ? AdminPost::STATE_ENABLED : AdminPost::STATE_NOT_VERIFY;
-	    if ($model->state == AdminPost::STATE_ENABLED) {
+	    $model->state = ($model->state == POST_STATE_NOT_VERIFY) ? POST_STATE_ENABLED : POST_STATE_NOT_VERIFY;
+	    if ($model->state == POST_STATE_ENABLED) {
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
 	        $attributes = array('user_id', 'user_name', 'state', 'create_time');
 	    }
@@ -222,7 +222,7 @@ class PostController extends AdminController
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->state == AdminPost::STATE_ENABLED ? 'sethide' : 'setshow', 'admin')
+	            'label' => t($model->state == POST_STATE_ENABLED ? 'sethide' : 'setshow', 'admin')
 	        );
 	        BetaBase::jsonp($callback, $data);
 	    }
@@ -334,7 +334,7 @@ class PostController extends AdminController
 	        $model = AdminPost::model()->findByPk($id);
 	        if ($model === null) continue;
 	        
-	        $model->state = AdminPost::STATE_ENABLED;
+	        $model->state = POST_STATE_ENABLED;
 	        $model->create_time = $_SERVER['REQUEST_TIME'];
 	        $model = self::updatePostEditor($model);
 	        $result = $model->save(true, $attributes);
@@ -361,7 +361,7 @@ class PostController extends AdminController
 	     
 	    $successIds = $failedIds = array();
 	    $attributes = array(
-	        'state' => AdminPost::STATE_REJECTED,
+	        'state' => POST_STATE_REJECTED,
 	    );
 	    foreach ($ids as $id) {
 	        $result = AdminPost::model()->updateByPk($id, $attributes);
@@ -388,7 +388,7 @@ class PostController extends AdminController
 	     
 	    $successIds = $failedIds = array();
 	    $attributes = array(
-    	    'state' => AdminPost::STATE_ENABLED,
+    	    'state' => POST_STATE_ENABLED,
     	    'recommend' => BETA_YES,
     	    'create_time' => $_SERVER['REQUEST_TIME'],
 	    );
@@ -421,7 +421,7 @@ class PostController extends AdminController
 	        if ($model === null) continue;
 	         
 	        $model->hottest = BETA_YES;
-	        $model->state = AdminPost::STATE_ENABLED;
+	        $model->state = POST_STATE_ENABLED;
 	         
 	        $result = $model->save(true, array('hottest', 'state'));
 	        if ($result)
@@ -438,7 +438,7 @@ class PostController extends AdminController
 
 	private static function updatePostEditor(AdminPost $model)
 	{
-	    if (empty($model->user_id) && $model->state == AdminPost::STATE_ENABLED) {
+	    if (empty($model->user_id) && $model->state == POST_STATE_ENABLED) {
 	        $model->user_id = user()->id;
 	        $model->user_name = user()->name;
 	    }

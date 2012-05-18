@@ -31,7 +31,7 @@ class BetaCategoryMenu extends CWidget
             ->order(array('orderid desc', 'id desc'));
         
         if (!$this->showAll)
-            $cmd->where('state = :showInNav', array(':showInNav' => Category::STATE_SHOW_IN_NAV_MENU));
+            $cmd->where('state = :showInNav', array(':showInNav' => CATEGORY_STATE_IN_NAV));
         
         $rows = $cmd->queryAll();
         return $rows;

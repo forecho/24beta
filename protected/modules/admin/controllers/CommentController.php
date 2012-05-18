@@ -89,7 +89,7 @@ class CommentController extends AdminController
 	    if ($model === null)
 	        throw new CHttpException(500);
 	
-	    $model->state = abs($model->state - AdminComment::STATE_ENABLED);
+	    $model->state = abs($model->state - COMMENT_STATE_ENABLED);
 	    $model->create_time = $_SERVER['REQUEST_TIME'];
 	    $model->save(true, array('state'));
 	    if ($model->hasErrors())
@@ -97,7 +97,7 @@ class CommentController extends AdminController
 	    else {
 	        $data = array(
 	            'errno' => BETA_NO,
-	            'label' => t($model->state == AdminComment::STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
+	            'label' => t($model->state == COMMENT_STATE_DISABLED ? 'setshow' : 'sethide', 'admin')
 	        );
 	        echo $callback . '(' . CJSON::encode($data) . ')';
 	        exit(0);
@@ -180,7 +180,7 @@ class CommentController extends AdminController
 	    
 	    $successIds = $failedIds = array();
 	    $attributes = array(
-	        'state' => AdminComment::STATE_ENABLED,
+	        'state' => COMMENT_STATE_ENABLED,
 	        'create_time' => $_SERVER['REQUEST_TIME'],
 	    );
 	    foreach ($ids as $id) {
@@ -209,7 +209,7 @@ class CommentController extends AdminController
 	    
 	    $successIds = $failedIds = array();
 	    $attributes = array(
-	        'state' => AdminComment::STATE_ENABLED,
+	        'state' => COMMENT_STATE_ENABLED,
 	        'recommend' => BETA_YES,
 	        'create_time' => $_SERVER['REQUEST_TIME'],
 	    );
@@ -242,7 +242,7 @@ class CommentController extends AdminController
 	        $model = AdminComment::model()->findByPk($id);
 	        if ($model === null) continue;
 	        
-	        $model->state = AdminComment::STATE_ENABLED;
+	        $model->state = COMMENT_STATE_ENABLED;
 	        $model->up_nums += param('upNumsOfCommentIsHot');
 	        
     	    $result = $model->save(true, array('state', 'up_nums'));

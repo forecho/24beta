@@ -30,8 +30,8 @@ class AdminSpecial extends Special
     
     public function getStateLink()
     {
-        $text = t($this->state == self::STATE_ENABLED ? 'special_enabled' : 'special_disabled', 'admin');
-        $class = $this->state == self::STATE_ENABLED ? 'row-state label label-success' : 'row-state label label-important';
+        $text = t($this->state == SPECIAL_STATE_ENABLED ? 'special_enabled' : 'special_disabled', 'admin');
+        $class = $this->state == SPECIAL_STATE_ENABLED ? 'row-state label label-success' : 'row-state label label-important';
         return l($text, url('admin/special/setstate', array('id'=>$this->id)), array('class'=>$class));
     }
     

@@ -12,7 +12,7 @@ class FeedController extends Controller
     public function actionTimeline()
     {
         $cmd = app()->getDb()->createCommand()
-            ->where('state = :enabled', array(':enabled'=>Post::STATE_ENABLED));
+            ->where('state = :enabled', array(':enabled'=>POST_STATE_ENABLED));
         
         $rows = self::fetchPosts($cmd);
         
@@ -35,7 +35,7 @@ class FeedController extends Controller
             throw new CHttpException(403, t('category_is_not_found'));
         
         $cmd = app()->getDb()->createCommand()
-            ->where(array('and', 'category_id = :cid', 'state = :enabled'), array(':cid' => $id, ':enabled'=>Post::STATE_ENABLED));
+            ->where(array('and', 'category_id = :cid', 'state = :enabled'), array(':cid' => $id, ':enabled'=>POST_STATE_ENABLED));
         
         $rows = self::fetchPosts($cmd);
         
@@ -59,7 +59,7 @@ class FeedController extends Controller
             throw new CHttpException(403, t('topic_is_not_found'));
         
         $cmd = app()->getDb()->createCommand()
-            ->where(array('and', 'topic_id = :tid', 'state = :enabled'), array(':tid' => $id, ':enabled'=>Post::STATE_ENABLED));
+            ->where(array('and', 'topic_id = :tid', 'state = :enabled'), array(':tid' => $id, ':enabled'=>POST_STATE_ENABLED));
         
         $rows = self::fetchPosts($cmd);
         

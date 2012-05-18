@@ -55,32 +55,14 @@
  */
 class Post extends CActiveRecord
 {
-    const STATE_TRASH = -99;
-    const STATE_REJECTED = -2;
-    const STATE_NOT_VERIFY = -1;
-    const STATE_DISABLED = 0;
-    const STATE_ENABLED = 1;
-    
-    /*
-     * post type
-     * 0 post
-     * 1 vote
-     * 2 album
-     * 3 goods
-     */
-    const TYPE_POST = 0;
-    const TYPE_VOTE = 1;
-    const TYPE_ALBUM = 2;
-    const TYPE_GOODS = 3;
-    
     public static function states()
     {
-        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_REJECTED, self::STATE_NOT_VERIFY, self::STATE_TRASH);
+        return array(POST_STATE_ENABLED, POST_STATE_DISABLED, POST_STATE_REJECTED, POST_STATE_NOT_VERIFY, POST_STATE_TRASH);
     }
     
     public static function types()
     {
-        return array(self::TYPE_POST, self::TYPE_ALBUM, self::TYPE_VOTE, self::TYPE_GOODS);
+        return array(POST_TYPE_POST, POST_TYPE_ALBUM, POST_TYPE_VOTE, POST_TYPE_GOODS);
     }
     
 	/**
@@ -132,26 +114,26 @@ class Post extends CActiveRecord
 		    'uploadCount' => array(self::STAT, 'Upload', 'post_id'),
 		    'picture' => array(self::HAS_MANY, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
-		        'params' => array(':filetype' => Upload::TYPE_PICTURE),
+		        'params' => array(':filetype' => UPLOAD_TYPE_PICTURE),
 		        'order' => 'id asc',
 		    ),
 		    'pictureCount' => array(self::STAT, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
-		        'params' => array(':filetype' => Upload::TYPE_PICTURE),
+		        'params' => array(':filetype' => UPLOAD_TYPE_PICTURE),
 		    ),
 		    'audio' => array(self::HAS_MANY, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
-		        'params' => array(':filetype' => Upload::TYPE_AUDIO),
+		        'params' => array(':filetype' => UPLOAD_TYPE_AUDIO),
 		        'order' => 'id asc',
 		    ),
 		    'video' => array(self::HAS_MANY, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
-		        'params' => array(':filetype' => Upload::TYPE_VIDEO),
+		        'params' => array(':filetype' => UPLOAD_TYPE_VIDEO),
 		        'order' => 'id asc',
 		    ),
 		    'downfile' => array(self::HAS_MANY, 'Upload', 'post_id',
 		        'condition' => 'file_type = :filetype',
-		        'params' => array(':filetype' => Upload::TYPE_FILE),
+		        'params' => array(':filetype' => UPLOAD_TYPE_FILE),
 		        'order' => 'id asc',
 		    ),
 		    
@@ -203,10 +185,10 @@ class Post extends CActiveRecord
                 'condition' => 't.homeshow = ' . BETA_YES,
             ),
             'rejected' => array(
-                'condition' => 't.state = ' . self::STATE_REJECTED,
+                'condition' => 't.state = ' . POST_STATE_REJECTED,
             ),
             'published' => array(
-                'condition' => 't.state = ' . self::STATE_ENABLED,
+                'condition' => 't.state = ' . POST_STATE_ENABLED,
             ),
             'hottest' => array(
                 'condition' => 't.hottest = ' . BETA_YES,
@@ -217,7 +199,7 @@ class Post extends CActiveRecord
                 'order' => 't.create_time desc',
             ),
             'recently' => array(
-                'condition' => 't.state = ' . self::STATE_ENABLED,
+                'condition' => 't.state = ' . POST_STATE_ENABLED,
                 'order' => 't.create_time desc',
                 'limit' => 10,
             ),
@@ -416,7 +398,7 @@ class Post extends CActiveRecord
 	    if ($this->getIsNewRecord())
 	        throw new CException('this is a new record');
 	    else {
-    	    $this->state = self::STATE_TRASH;
+    	    $this->state = POST_STATE_TRASH;
     	    $result = $this->save(true, array('state'));
     	    return $result;
 	    }
@@ -456,8 +438,8 @@ class Post extends CActiveRecord
 	    $comments = Comment::model()->findAllByAttributes(array('post_id'=>$this->id));
 	    foreach ($comments as $c) $c->delete();
 	     
-	    app()->db->createCommand()->delete('{{post2tag}}', 'post_id = :pid', array(':pid'=>$this->id));
-	    app()->db->createCommand()->delete('{{special2post}}', 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->db->createCommand()->delete(TABLE_POST_TAG, 'post_id = :pid', array(':pid'=>$this->id));
+	    app()->db->createCommand()->delete(TABLE_SPECIAL_POST, 'post_id = :pid', array(':pid'=>$this->id));
 	     
 	    $files = Upload::model()->findAllByAttributes(array('post_id'=>$this->id));
 	    foreach ($files as $file) $file->delete();

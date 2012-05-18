@@ -19,9 +19,6 @@
  */
 class Special extends CActiveRecord
 {
-    const STATE_ENABLED = 1;
-    const STATE_DISABLED = 0;
-    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Special the static model class
@@ -50,7 +47,7 @@ class Special extends CActiveRecord
 		    array('token, name', 'required'),
 		    array('token, name', 'unique'),
 			array('create_time, state', 'numerical', 'integerOnly'=>true),
-		    array('state', 'in', 'range'=>array(self::STATE_ENABLED, self::STATE_DISABLED)),
+		    array('state', 'in', 'range'=>array(SPECIAL_STATE_ENABLED, SPECIAL_STATE_DISABLED)),
 			array('token, name', 'length', 'max'=>100),
 			array('desc, thumbnail', 'length', 'max'=>250),
 			array('desc', 'safe'),
@@ -143,7 +140,7 @@ class Special extends CActiveRecord
 	    if ($criteria === null)
 	        $criteria = new CDbCriteria();
 	
-	    $criteria->addColumnCondition(array('t.state'=>self::STATE_ENABLED));
+	    $criteria->addColumnCondition(array('t.state'=>SPECIAL_STATE_ENABLED));
 	    $criteria->order = 'create_time desc';
 	    if ($pages) {
 	        $limit = ($criteria->limit <= 0) ? $defaultSize : $criteria->limit;
@@ -166,7 +163,7 @@ class Special extends CActiveRecord
     {
         if ($this->getIsNewRecord()) {
             $this->create_time = $_SERVER['REQUEST_TIME'];
-            $this->state = $this->state ? self::STATE_ENABLED : self::STATE_DISABLED;
+            $this->state = $this->state ? SPECIAL_STATE_ENABLED : SPECIAL_STATE_DISABLED;
             $this->token = strip_tags(trim($this->token));
             $this->name = strip_tags(trim($this->name));
         }

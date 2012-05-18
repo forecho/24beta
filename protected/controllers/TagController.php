@@ -30,7 +30,7 @@ class TagController extends Controller
         $criteria->order = 't.istop, t.create_time desc, t.id desc';
         $criteria->addInCondition('t.id', $ids)
             ->addCondition('t.state = :state');
-        $criteria->params += array(':state'=>Post::STATE_ENABLED);
+        $criteria->params += array(':state'=>POST_STATE_ENABLED);
         
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);

@@ -16,14 +16,9 @@
  */
 class User extends CActiveRecord
 {
-    const STATE_UNVERIFY = 0;
-    const STATE_ENABLED = 1;
-    const STATE_FORBIDDEN = -1;
-    
-
     public static function states()
     {
-        return array(self::STATE_ENABLED, self::STATE_UNVERIFY, self::STATE_FORBIDDEN);
+        return array(USER_STATE_ENABLED, USER_STATE_UNVERIFY, USER_STATE_FORBIDDEN);
     }
     
 	/**

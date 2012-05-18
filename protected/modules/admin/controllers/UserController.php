@@ -18,7 +18,7 @@ class UserController extends AdminController
 	public function actionVerify()
 	{
 	    $criteria = new CDbCriteria();
-	    $criteria->addColumnCondition(array('state'=>AdminUser::STATE_UNVERIFY));
+	    $criteria->addColumnCondition(array('state'=>USER_STATE_UNVERIFY));
 	    $data = AdminUser::fetchList($criteria);
 	     
 	    $this->adminTitle = t('verify_user', 'admin');
@@ -103,21 +103,21 @@ class UserController extends AdminController
 	    if ($model === null)
 	        throw new CHttpException(500);
 	     
-	    $model->state = ($model->state == AdminUser::STATE_ENABLED) ? AdminUser::STATE_FORBIDDEN : AdminUser::STATE_ENABLED;
+	    $model->state = ($model->state == USER_STATE_ENABLED) ? USER_STATE_FORBIDDEN : USER_STATE_ENABLED;
 	    $model->save(true, array('state'));
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
 	    else {
-	        if ($model->state == AdminUser::STATE_ENABLED)
+	        if ($model->state == USER_STATE_ENABLED)
 	            $text = 'user_enabled';
-	        elseif ($model->state == AdminUser::STATE_FORBIDDEN)
+	        elseif ($model->state == USER_STATE_FORBIDDEN)
     	        $text = 'user_forbidden';
 
 	        $data = array(
 	            'errno' => BETA_NO,
 	            'label' => t($text, 'admin')
 	        );
-	        echo $callback . '(' . CJSON::encode($data) . ')';
+	        BetaBase::jsonp($callback, $data);
 	        exit(0);
 	    }
 	}
@@ -177,7 +177,7 @@ class UserController extends AdminController
     
         $successIds = $failedIds = array();
         $attributes = array(
-            'state' => AdminUser::STATE_ENABLED,
+            'state' => USER_STATE_ENABLED,
         );
         foreach ($ids as $id) {
             $result = AdminUser::model()->updateByPk($id, $attributes);
@@ -205,7 +205,7 @@ class UserController extends AdminController
     
         $successIds = $failedIds = array();
         $attributes = array(
-            'state' => AdminUser::STATE_FORBIDDEN,
+            'state' => USER_STATE_FORBIDDEN,
         );
         foreach ($ids as $id) {
             $result = AdminUser::model()->updateByPk($id, $attributes);

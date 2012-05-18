@@ -19,20 +19,14 @@
  */
 class Upload extends CActiveRecord
 {
-    const TYPE_UNKNOWN = 0;
-    const TYPE_PICTURE = 1;
-    const TYPE_FILE = 2;
-    const TYPE_AUDIO = 3;
-    const TYPE_VIDEO = 4;
-    
     public static function typeLabels()
     {
         return array(
-            self::TYPE_PICTURE => t('file_type_picture'),
-            self::TYPE_FILE => t('file_type_file'),
-            self::TYPE_AUDIO => t('file_type_audio'),
-            self::TYPE_VIDEO => t('file_type_video'),
-            self::TYPE_UNKNOWN => t('file_type_unknown'),
+            UPLOAD_TYPE_PICTURE => t('file_type_picture'),
+            UPLOAD_TYPE_FILE => t('file_type_file'),
+            UPLOAD_TYPE_AUDIO => t('file_type_audio'),
+            UPLOAD_TYPE_VIDEO => t('file_type_video'),
+            UPLOAD_TYPE_UNKNOWN => t('file_type_unknown'),
         );
     }
     

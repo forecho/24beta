@@ -5,7 +5,7 @@ class UploadController extends Controller
     {
         if (request()->getIsPostRequest() && user()->checkAccess('upload_file')) {
             $upload = CUploadedFile::getInstanceByName('imgFile');
-            $this->uploadImage($upload, Upload::TYPE_PICTURE, 'images');
+            $this->uploadImage($upload, UPLOAD_TYPE_PICTURE, 'images');
         }
         else {
             $data = array(
@@ -17,7 +17,7 @@ class UploadController extends Controller
         }
     }
     
-    private function uploadImage(CUploadedFile $upload, $fileType = Upload::TYPE_UNKNOWN, $additional = 'images')
+    private function uploadImage(CUploadedFile $upload, $fileType = UPLOAD_TYPE_UNKNOWN, $additional = 'images')
     {
         $filename = BetaBase::uploadImage($upload, $additional);
         if ($filename === false || !$this->afterUploaded($upload, $filename['url'], $fileType)) {
@@ -36,7 +36,7 @@ class UploadController extends Controller
         exit(0);
     }
     
-    private function uploadFile(CUploadedFile $upload, $fileType = Upload::TYPE_UNKNOWN, $additional = 'files')
+    private function uploadFile(CUploadedFile $upload, $fileType = UPLOAD_TYPE_UNKNOWN, $additional = 'files')
     {
         $filename = BetaBase::uploadFile($upload, $additional);
         if ($filename === false || !$this->afterUploaded($upload, $filename['url'], $fileType)) {
@@ -55,7 +55,7 @@ class UploadController extends Controller
         exit(0);
     }
     
-    private function afterUploaded(CUploadedFile $upload, $fileUrl, $fileType = Upload::TYPE_UNKNOWN)
+    private function afterUploaded(CUploadedFile $upload, $fileUrl, $fileType = UPLOAD_TYPE_UNKNOWN)
     {
         $key = param('sess_post_create_token');
         $postCreatetoken = app()->session[$key];
