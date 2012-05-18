@@ -124,7 +124,7 @@ return array(
                 '<_c:(category|topic)>/<id:\d+>/page/<page:\d+>' => '<_c>/posts',
                 '<_c:(category|topic)>/<id:\d+>' => '<_c>/posts',
                 'topics' => 'topic/list',
-                'tag/<name:[\w\s\%\-\+]+>' => 'tag/posts',
+                'tag/<name:[\w\s\%\-\+\.]+>' => 'tag/posts',
                 'feed/category/<id:\d+>' => 'feed/category',
                 'feed/topic/<id:\d+>' => 'feed/topic',
             ),
