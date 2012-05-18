@@ -443,8 +443,8 @@ class Post extends CActiveRecord
 	        $counters = array('post_nums' => 1);
 	        Category::model()->updateCounters($counters, 'id = :cid', array(':cid'=>$this->category_id));
 	        Topic::model()->updateCounters($counters, 'id = :tid', array(':tid'=>$this->topic_id));
-	        Tag::savePostTags($this->id, $this->tags);
 	    }
+	    Tag::savePostTags($this->id, $this->tags);
 	}
 	
 	protected function afterDelete()

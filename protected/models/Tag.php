@@ -98,17 +98,22 @@ class Tag extends CActiveRecord
 	            $model = new Tag();
 	            $model->name = $v;
 	            $model->post_nums = 1;
-	            if ($model->save())
-	                $count++;
-	            else
-	                break;
+	            if ($model->save()) $count++;
 	        }
-	        else {
-	            $model->post_nums = $model->post_nums + 1;
-	            $model->save(true, array('post_nums'));
-	        }
-	        $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
-	        app()->getDb()->createCommand()->insert('{{post2tag}}', $columns);
+	        
+	        $row = app()->getDb()->createCommand()
+    	        ->select(TABLE_POST_TAG)
+    	        ->where(array('and', 'post_id = :postid', 'tag_id = :tagid', array(':postid'=>$postid, ':tagid'=>$model->id)))
+    	        ->queryScalar();
+	            
+            if ($row === false) {
+                $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
+                $count = app()->getDb()->createCommand()->insert('{{post2tag}}', $columns);
+                if ($count > 0) {
+	                $model->post_nums = $model->post_nums + 1;
+    	            $model->save(true, array('post_nums'));
+                }
+            }
 	        unset($model);
 	    }
 	    return $count;
