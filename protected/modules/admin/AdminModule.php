@@ -12,6 +12,8 @@ class AdminModule extends CWebModule
 			'admin.models.*',
 			'admin.components.*',
 		));
+		
+		app()->errorHandler->errorAction = 'admin/default/error';
 	}
 
 	public function beforeControllerAction($controller, $action)

@@ -18,6 +18,14 @@ class DefaultController extends AdminController
 	    ));
 	}
 
+	public function actionError()
+	{
+	    $error = app()->errorHandler->error;
+	    echo $error['code'] . '<br />';
+	    echo $error['message'] . '<br />';
+	}
+	
+	
     public function actionTest()
     {
         $this->layout = 'test';

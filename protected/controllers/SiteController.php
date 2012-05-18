@@ -195,7 +195,7 @@ class SiteController extends Controller
 
     public function actionError()
     {
-        $error = app()->errorHandler->error;;
+        $error = app()->errorHandler->error;
         if ($error) {
             $this->setPageTitle('Error ' . $error['code']);
             $this->render('/system/error', $error);
