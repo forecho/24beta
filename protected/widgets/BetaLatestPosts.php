@@ -77,7 +77,7 @@ class BetaLatestPosts extends CWidget
         if ($this->tid)
             $criteria->addColumnCondition(array('topic_id'=>$this->tid));
 
-        $criteria->addColumnCondition(array('t.state'=>Post::STATE_ENABLED));
+        $criteria->addColumnCondition(array('t.state'=>POST_STATE_ENABLED));
         
         $models = Post::model()->findAll($criteria);
         return (array)$models;

@@ -92,7 +92,7 @@ class BetaVisitTopPosts extends CWidget
         if ($this->tid)
             $criteria->addColumnCondition(array('topic_id'=>$this->tid));
         
-        $criteria->addColumnCondition(array('t.state'=>Post::STATE_ENABLED));
+        $criteria->addColumnCondition(array('t.state'=>POST_STATE_ENABLED));
         $criteria->params = array_merge($criteria->params, array(':createtime'=>$createtime));
         
         $models = Post::model()->findAll($criteria);
