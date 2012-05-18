@@ -22,7 +22,7 @@ class DefaultController extends AdminController
 	{
 	    $error = app()->errorHandler->error;
 	    if ($error) {
-	        $this->render('system/error', $error);
+	        $this->render('/system/error', $error);
 	    }
 	}
 	
