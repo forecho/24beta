@@ -104,7 +104,7 @@ class Tag extends CActiveRecord
 	        $row = app()->getDb()->createCommand()
 	            ->select('id')
     	        ->from(TABLE_POST_TAG)
-    	        ->where(array('and', 'post_id = :postid', 'tag_id = :tagid', array(':postid'=>$postid, ':tagid'=>$model->id)))
+    	        ->where(array('and', 'post_id = :postid', 'tag_id = :tagid'), array(':postid'=>$postid, ':tagid'=>$model->id))
     	        ->queryScalar();
 	            
             if ($row === false) {
