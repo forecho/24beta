@@ -21,8 +21,9 @@ class DefaultController extends AdminController
 	public function actionError()
 	{
 	    $error = app()->errorHandler->error;
-	    echo $error['code'] . '<br />';
-	    echo $error['message'] . '<br />';
+	    if ($error) {
+	        $this->render('system/error', $error);
+	    }
 	}
 	
 	

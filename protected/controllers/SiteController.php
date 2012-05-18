@@ -202,6 +202,9 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * baidu ping test
+     */
     public function actionPing()
     {
         $result = BetaBase::ping('贝塔资讯', 'http://www.waduanzi.com/', 'http://www.24beta.com/archives/406', 'http://www.24beta.com/');
