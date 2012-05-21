@@ -26,23 +26,14 @@
  */
 class Comment extends CActiveRecord
 {
-    const STATE_NOT_VERIFY = -1;
-    const STATE_DISABLED = 0;
-    const STATE_ENABLED = 1;
-    
-    const RATING_SUPPORT = 1;
-    const RATING_AGAINST = 2;
-    const RATING_REPORT= 3;
-    
-
     public static function states()
     {
-        return array(self::STATE_ENABLED, self::STATE_DISABLED, self::STATE_NOT_VERIFY);
+        return array(COMMENT_STATE_ENABLED, COMMENT_STATE_DISABLED, COMMENT_STATE_NOT_VERIFY);
     }
     
     public static function rateTypes()
     {
-        return array(self::RATING_SUPPORT, self::RATING_AGAINST, self::RATING_REPORT);
+        return array(COMMENT_RATING_SUPPORT, COMMENT_RATING_AGAINST, COMMENT_RATING_REPORT);
     }
     
 	/**
@@ -123,10 +114,10 @@ class Comment extends CActiveRecord
     	        'order' => 't.create_time desc',
 	        ),
 	        'noverify' => array(
-	            'condition' => 't.state = ' .  self::STATE_DISABLED,
+	            'condition' => 't.state = ' .  COMMENT_STATE_DISABLED,
 	        ),
     	    'published' => array(
-        	    'condition' => 't.state = ' .  self::STATE_ENABLED,
+        	    'condition' => 't.state = ' .  COMMENT_STATE_ENABLED,
         	    'order' => 't.create_time desc',
     	    ),
         );
@@ -168,7 +159,7 @@ class Comment extends CActiveRecord
 	    $criteria->offset = $offset;
 	    $criteria->addColumnCondition(array(
             'post_id' => $postid,
-            'state' => self::STATE_ENABLED,
+            'state' => COMMENT_STATE_ENABLED,
 	    ));
 	
 	    $comments = Comment::model()->findAll($criteria);
@@ -185,7 +176,7 @@ class Comment extends CActiveRecord
 	    $criteria->offset = $offset;
 	    $criteria->addColumnCondition(array(
 	            'post_id' => $postid,
-                'state' => self::STATE_ENABLED)
+                'state' => COMMENT_STATE_ENABLED)
             )
             ->addCondition('up_nums > ' . param('upNumsOfCommentIsHot'));
 	

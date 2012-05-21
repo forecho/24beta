@@ -32,7 +32,7 @@ class TopicController extends Controller
         $criteria->order = 't.istop desc, t.create_time desc';
         $criteria->addColumnCondition(array('t.topic_id' => $id))
             ->addCondition('t.state = :state');
-        $criteria->params += array(':state'=>Post::STATE_ENABLED);
+        $criteria->params += array(':state'=>POST_STATE_ENABLED);
     
         $count = Post::model()->count($criteria);
         $pages = new CPagination($count);

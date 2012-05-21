@@ -24,7 +24,7 @@ class AdminCategory extends Category
     {
         $class = 'label';
         $text = t('category_hide', 'admin');
-        if ($this->state == self::STATE_SHOW_IN_NAV_MENU) {
+        if ($this->state == CATEGORY_STATE_IN_NAV) {
             $class .= ' label-success';
             $text = t('category_show', 'admin');
         }

@@ -77,7 +77,7 @@ class BetaSpecialPosts extends CWidget
         $with['select'] = array('id', 'category_id', 'topic_id', 'title', 'create_time', 'comment_nums', 'digg_nums', 'visit_nums', 'state', 'thumbnail');
         $with['order'] = 'posts.create_time desc, posts.id desc';
         $with['limit'] = $this->count;
-        $condition = 'posts.state = ' . Post::STATE_DISABLED;
+        $condition = 'posts.state = ' . POST_STATE_DISABLED;
         if ($this->cid)
             $condition .= ' and posts.category_id = ' . $this->cid;
         if ($this->tid)

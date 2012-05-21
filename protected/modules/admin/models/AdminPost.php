@@ -29,11 +29,11 @@ class AdminPost extends Post
     public static function stateLabels()
     {
         return array(
-            self::STATE_ENABLED => t('post_state_enabled', 'admin'),
-            self::STATE_DISABLED => t('post_state_disabled', 'admin'),
-            self::STATE_REJECTED => t('post_state_rejected', 'admin'),
-            self::STATE_NOT_VERIFY => t('post_state_not_verify', 'admin'),
-            self::STATE_TRASH => t('post_state_trash', 'admin'),
+            POST_STATE_ENABLED => t('post_state_enabled', 'admin'),
+            POST_STATE_DISABLED => t('post_state_disabled', 'admin'),
+            POST_STATE_REJECTED => t('post_state_rejected', 'admin'),
+            POST_STATE_NOT_VERIFY => t('post_state_not_verify', 'admin'),
+            POST_STATE_TRASH => t('post_state_trash', 'admin'),
         );
     }
     
@@ -158,13 +158,13 @@ class AdminPost extends Post
     public function getStateLabel()
     {
         $classes = array(
-            self::STATE_DISABLED => 'label-inverse',
-            self::STATE_REJECTED => 'label-important',
+            POST_STATE_DISABLED => 'label-inverse',
+            POST_STATE_REJECTED => 'label-important',
         );
         
         $labels = array(
-            self::STATE_DISABLED => t('post_state_marker_disabled', 'admin'),
-            self::STATE_REJECTED => t('post_state_marker_rejected', 'admin'),
+            POST_STATE_DISABLED => t('post_state_marker_disabled', 'admin'),
+            POST_STATE_REJECTED => t('post_state_marker_rejected', 'admin'),
         );
         
         $html = '';

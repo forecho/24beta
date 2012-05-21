@@ -4,7 +4,7 @@ class CommentController extends Controller
     public function actionList($pid, $page = 1)
     {
         $postid = (int)$pid;
-        $post = Post::model()->findByPk($postid, 'state = :state', array(':state'=>Post::STATE_ENABLED));
+        $post = Post::model()->findByPk($postid, 'state = :state', array(':state'=>POST_STATE_ENABLED));
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
         
@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function actionHotlist($pid, $page = 1)
     {
         $postid = (int)$postid;
-        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>Post::STATE_DISABLED));
+        $post = Post::model()->findByPk($pid, 'state != :state', array(':state'=>POST_STATE_DISABLED));
         if (null === $post)
             throw new CHttpException(403, t('post_is_not_found'));
         

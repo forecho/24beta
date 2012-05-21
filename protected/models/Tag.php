@@ -81,7 +81,6 @@ class Tag extends CActiveRecord
 	    return $tagsArray;
 	}
 	
-
 	public static function savePostTags($postid, $tags)
 	{
 	    $postid = (int)$postid;
@@ -108,7 +107,7 @@ class Tag extends CActiveRecord
 	            
             if ($row === false) {
                 $columns = array('post_id'=>$postid, 'tag_id'=>$model->id);
-                $count = app()->getDb()->createCommand()->insert('{{post2tag}}', $columns);
+                $count = app()->getDb()->createCommand()->insert(TABLE_POST_TAG, $columns);
                 if ($count > 0) {
 	                $model->post_nums = $model->post_nums + 1;
     	            $model->save(true, array('post_nums'));
