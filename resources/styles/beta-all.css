@@ -308,6 +308,6 @@ body.beta-ke-content {padding:5px;}
 /* error page */
 .beta-error {color:gray;}
 .beta-error .error-icon {font-size:200px; color:#BFBFBF; margin-right:20px; line-height:300px; font-weight:bold;}
-.beta-error .error-detail {padding-top:40px; line-height:24px;}
+.beta-error .error-detail {padding:40px 40px 0 0; line-height:24px;}
 
 
