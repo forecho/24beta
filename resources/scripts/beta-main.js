@@ -1,5 +1,3 @@
-!function(a){"use strict";var b='[data-dismiss="alert"]',c=function(c){a(c).on("click",b,this.close)};c.prototype={constructor:c,close:function(b){function f(){e.remove(),e.trigger("closed")}var c=a(this),d=c.attr("data-target"),e;d||(d=c.attr("href"),d=d&&d.replace(/.*(?=#[^\s]*$)/,"")),e=a(d),e.trigger("close"),b&&b.preventDefault(),e.length||(e=c.hasClass("beta-alert")?c:c.parent()),e.removeClass("in"),a.support.transition&&e.hasClass("fade")?e.on(a.support.transition.end,f):f()}},a.fn.alert=function(b){return this.each(function(){var d=a(this),e=d.data("alert");e||d.data("alert",e=new c(this)),typeof b=="string"&&e[b].call(d)})},a.fn.alert.Constructor=c,a(function(){a("body").on("click.alert.data-api",b,c.prototype.close)})}(window.jQuery);
-
 var Beta24 = {
 	urlValidate: function(url) {
 		var pattern = /http:\/\/[\w-]*(\.[\w-]*)+/ig;
@@ -9,7 +7,7 @@ var Beta24 = {
 		var pattern = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/ig;
 		return pattern.test(email);
 	},
-	imageLazyLoad: function() {
+	imageLazyLoad: function(placeholder) {
 		for (i in arguments) {
 			if (arguments[i].is('img'))
 				arguments[i].lazyload({effect: 'fadeIn', threshold: 200});

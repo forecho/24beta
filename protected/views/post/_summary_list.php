@@ -22,6 +22,6 @@
 
 <script type="text/javascript">
 $(function(){
-	Beta24.imageLazyLoad($('.beta-post-summary img'));
+	Beta24.imageLazyLoad($('img.lazy'));
 });
 </script>

@@ -62,11 +62,8 @@
     <span class="ajax-has-joined"><?php echo t('you_have_joined');?></span>
 </div>
 
-<?php cs()->registerScriptFile(sbu('libs/jquery.lazyload.min.js'), CClientScript::POS_END);?>
-
 <script type="text/javascript">
 $(function(){
-	Beta24.imageLazyLoad($('.beta-post-detail .beta-post-content img.lazy'));
 	BetaPost.increaseVisitNums(<?php echo $post->id;?>, '<?php echo aurl('post/visit');?>');
 	$(document).on('click', '.beta-comment-rating', BetaComment.rating);
 	$(document).on('click', '.beta-comment-reply', BetaComment.reply);
