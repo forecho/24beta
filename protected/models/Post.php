@@ -404,6 +404,24 @@ class Post extends CActiveRecord
 	    }
 	}
 	
+	/**
+	 * 处理内容中的img标签
+	 * @param string $html html内容
+	 * @return string
+	 */
+	public static function processImgTag($html)
+	{
+	    $html = str_replace('/>', ' />', $html);
+	    
+	    $pattern = '/<.*?img.*?src="?(.+?)["\s]{1}?.*?>/is';
+	    if (param('enable_lazyload_img'))
+            $img = '<img src="' . sbu('images/grey.gif') . '" data-original="${1}" class="lazy" />';
+	    else
+            $img = '<img src="${1}" class="lazy" />';
+        $html = preg_replace($pattern, $img, $html);
+        return $html;
+	}
+	
 	protected function beforeSave()
 	{
 	    if ($this->getIsNewRecord()) {
@@ -453,6 +471,9 @@ class Post extends CActiveRecord
 	    }
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
+	    
+	    if (strpos(strtolower(param('summaryHtmlTags')), 'img') !== false)
+	        $this->summary = self::processImgTag($this->summary);
 	}
 
 }
