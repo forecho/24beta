@@ -33,6 +33,7 @@
  * @property string $contributor
  * @property string $contributor_site
  * @property string $contributor_email
+ * @property string $filterSummary
  * @property string $filterContent
  * @property string $createTime
  * @property string $authorName
@@ -206,10 +207,20 @@ class Post extends CActiveRecord
 	    );
 	}
 	
+	public function getFilterSummary()
+	{
+	    $html = $this->summary;
+	    if (strpos(strtolower(param('summaryHtmlTags')), 'img') !== false)
+	        $html = self::processImgTag($html);
+	    
+	    return $html;
+	}
 	public function getFilterContent()
 	{
 	    // @todo filter content
-	    return nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a><br>'));
+	    $html = nl2br(strip_tags($this->content, '<b><div><p><strong><img><i><a><br>'));
+// 	    $html = self::processImgTag($html);
+	    return $html;
 	}
 	
 	public function getCreateTime($format = null)
@@ -471,9 +482,6 @@ class Post extends CActiveRecord
 	    }
 	    else
 	        $this->summary = strip_tags($this->summary, param('summaryHtmlTags'));
-	    
-	    if (strpos(strtolower(param('summaryHtmlTags')), 'img') !== false)
-	        $this->summary = self::processImgTag($this->summary);
 	}
 
 }

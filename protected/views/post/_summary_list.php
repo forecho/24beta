@@ -6,7 +6,7 @@
     </span></dd>
     <dd class="beta-post-summary">
         <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div>
-        <div class="beta-post-content"><?php echo $model->summary;?></div>
+        <div class="beta-post-content"><?php echo $model->filterSummary;?></div>
     </dd>
     <dd class="beta-post-toolbar">
         <?php echo l(t('view_detail'), $model->url, array('target'=>'_blank'));?>
