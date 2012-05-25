@@ -424,7 +424,7 @@ class Post extends CActiveRecord
 	{
 	    $html = str_replace('/>', ' />', $html);
 	    
-	    $pattern = '/<.*?img.*?src="?(.+?)["\s]{1}?.*?>/is';
+	    $pattern = '/<img.*?src="?(.+?)["\s]{1}?.*?>/is';
 	    if (param('enable_lazyload_img'))
             $img = '<img src="' . sbu('images/grey.gif') . '" data-original="${1}" class="lazy" />';
 	    else
