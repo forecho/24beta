@@ -19,12 +19,12 @@
 <div class="beta-sidebar">
     <div class="beta-block">
         <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-8910209298510265";
-            /* beta_sidebar_336x280 */
-            google_ad_slot = "3421531773";
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
             google_ad_width = 336;
             google_ad_height = 280;
-        //-->
+            //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
@@ -32,12 +32,12 @@
     <?php $this->widget('BetaVisitTopPosts', array('allowEmpty'=>true, 'days'=>30));?>
     <div class="beta-block">
         <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-8910209298510265";
-            /* beta_sidebar_336x280 */
-            google_ad_slot = "3421531773";
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
             google_ad_width = 336;
             google_ad_height = 280;
-        //-->
+            //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
@@ -56,12 +56,12 @@
     <!-- editor recommend posts end -->
     <div class="beta-block">
         <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-8910209298510265";
-            /* beta_sidebar_336x280 */
-            google_ad_slot = "3421531773";
+            google_ad_client = "ca-pub-9725980429199769";
+            /* beta_336x280 */
+            google_ad_slot = "9661689878";
             google_ad_width = 336;
             google_ad_height = 280;
-        //-->
+            //-->
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
