@@ -25,7 +25,7 @@
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo l($model->email, $model->getInfoUrl());?></td>
             <td><?php echo $model->name;?></td>
-            <td class="span1 align-center"><?php echo $model->stateText;?></td>
+            <td class="span1 align-center"><?php echo $model->stateAjaxLink;?></td>
             <td class="align-center"><?php echo $model->createTime;?></td>
             <td>
                 <?php echo $model->editUrl;?>

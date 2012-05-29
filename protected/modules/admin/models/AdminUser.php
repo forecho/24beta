@@ -50,13 +50,23 @@ class AdminUser extends User
     
     public function getStateText()
     {
-        $url = url('admin/user/setVerify', array('id'=>$this->id));
         if ($this->state == USER_STATE_ENABLED)
-            $html = l(t('user_enabled', 'admin'), $url, array('class'=>'label label-success row-state'));
+            $html = '<span class="label label-success">' . t('user_enabled', 'admin') . '</span>';
 	    else
-	        $html = l(t('user_forbidden', 'admin'), $url, array('class'=>'label label-important row-state'));
+	        $html = $html = '<span class="label label-important">' . t('user_forbidden', 'admin') . '</span>';
 	    
 	    return $html;
+    }
+    
+    public function getStateAjaxLink()
+    {
+        $url = url('admin/user/setVerify', array('id'=>$this->id));
+        if ($this->state == USER_STATE_ENABLED)
+            $html = l('启用', $url, array('class'=>'label label-success row-state'));
+        else
+            $html = l('禁用', $url, array('class'=>'label label-important row-state'));
+         
+        return $html;
     }
     
     public static function fetchList($criteria = null, $sort = true, $pages = true)

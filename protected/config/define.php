@@ -61,3 +61,7 @@ define('UPLOAD_TYPE_VIDEO', 4);
 
 
 define('BAIDU_PING_URL', 'http://ping.baidu.com/ping/RPC2');
+
+
+
+
