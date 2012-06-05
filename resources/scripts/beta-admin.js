@@ -550,6 +550,30 @@ var BetaAdmin = {
 		jqXhr.fail(function(){
 			BetaAdmin.showAjaxMessage('request error.');
 		});
+	},
+	deleteSpecial: function(event){
+		event.preventDefault();
+
+		var confirm = window.confirm(event.data.onfirmText);
+	    if (!confirm) return ;
+		
+		var tthis = $(this);
+		var jqXhr = $.ajax({
+		    url: $(this).attr('href'),
+		    dataType: 'jsonp',
+		    type: 'post',
+		    cache: false,
+		    beforeSend: function(){}
+		});
+		jqXhr.done(function(data){
+			if (data.errno == 0)
+				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
+			else
+				BetaAdmin.showAjaxMessage('发生错误.');
+		});
+		jqXhr.fail(function(){
+			BetaAdmin.showAjaxMessage('request error.');
+		});
 	}
 };
 
