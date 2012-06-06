@@ -1,5 +1,5 @@
 <?php
-class CdCurl
+class CDCurl
 {
     private $_ch;
     private $_headers;
@@ -80,9 +80,9 @@ class CdCurl
     
     public final function basic_auth($username, $password)
     {
-         if ($username != null) {
-             curl_setopt($this->_ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-             curl_setopt($this->_ch, CURLOPT_USERPWD, "{$username}:{$password}");
+         if (!empty($username) {
+             $this->add_option(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+             $this->add_option(CURLOPT_USERPWD, "{$username}:{$password}");
          }
          return $this;
      }
@@ -150,8 +150,7 @@ class CdCurl
     public final function post($url, $data = null)
     {
         $this->add_option(CURLOPT_POST, true);
-        if (null !== $data)
-            $this->add_option(CURLOPT_POSTFIELDS, $data);
+        $this->add_option(CURLOPT_POSTFIELDS, $data);
         return $this->exec($url);
     }
     

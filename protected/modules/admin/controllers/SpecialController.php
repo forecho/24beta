@@ -64,4 +64,22 @@ class SpecialController extends AdminController
             BetaBase::jsonp($callback, $data);
         }
     }
+
+    public function actionSetDelete($id, $callback)
+    {
+        $id = (int)$id;
+        $model = AdminSpecial::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(500);
+    
+        if ($model->delete()) {
+            $data = array(
+                'errno' => BETA_NO,
+                'label' => t('delete_success', 'admin'),
+            );
+            BetaBase::jsonp($callback, $data);
+        }
+        else
+            throw new CHttpException(500);
+    }
 }
