@@ -176,7 +176,7 @@ class BetaBase
         $pingXml.= '</methodCall>';
         $pingXml = sprintf($pingXml, $sitename, $siteurl, $page, $rss);
         
-        $curl = new CdCurl();
+        $curl = new CDCurl();
         $curl->headers(array('content-type:text/xml'));
         $curl->post(BAIDU_PING_URL, $pingXml);
         $data = $curl->rawdata();

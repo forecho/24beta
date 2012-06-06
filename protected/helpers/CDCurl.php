@@ -1,5 +1,5 @@
 <?php
-class CdCurl
+class CDCurl
 {
     private $_ch;
     private $_headers;
@@ -150,8 +150,7 @@ class CdCurl
     public final function post($url, $data = null)
     {
         $this->add_option(CURLOPT_POST, true);
-        if (null !== $data)
-            $this->add_option(CURLOPT_POSTFIELDS, $data);
+        $this->add_option(CURLOPT_POSTFIELDS, $data);
         return $this->exec($url);
     }
     
