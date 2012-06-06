@@ -80,9 +80,9 @@ class CDCurl
     
     public final function basic_auth($username, $password)
     {
-         if ($username != null) {
-             curl_setopt($this->_ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-             curl_setopt($this->_ch, CURLOPT_USERPWD, "{$username}:{$password}");
+         if (!empty($username) {
+             $this->add_option(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+             $this->add_option(CURLOPT_USERPWD, "{$username}:{$password}");
          }
          return $this;
      }
