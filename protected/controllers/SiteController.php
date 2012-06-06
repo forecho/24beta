@@ -52,10 +52,10 @@ class SiteController extends Controller
         return $models;
     }
     
-    public function actionLogin()
+    public function actionLogin($url = '')
     {
         if (!user()->getIsGuest()) {
-            $returnUrl = strip_tags(trim($_GET['url']));
+            $returnUrl = strip_tags(trim($url));
             if (empty($returnUrl)) $returnUrl = aurl('user/default');
             request()->redirect($returnUrl);
             exit(0);
@@ -71,7 +71,7 @@ class SiteController extends Controller
                 $model->captcha = '';
         }
         else {
-            $returnUrl = strip_tags(trim($_GET['url']));
+            $returnUrl = strip_tags(trim($url));
             if (empty($returnUrl))
                 $returnUrl = request()->getUrlReferrer();
             if (empty($returnUrl))
