@@ -80,7 +80,7 @@ class CDCurl
     
     public final function basic_auth($username, $password)
     {
-         if (!empty($username) {
+         if (!empty($username)) {
              $this->add_option(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
              $this->add_option(CURLOPT_USERPWD, "{$username}:{$password}");
          }
@@ -99,19 +99,19 @@ class CDCurl
         return $this;
     }
     
+
+    public final function headers(array $headers)
+    {
+        if (!empty($headers) && is_array($var))
+            $this->add_option(CURLOPT_HTTPHEADER, $headers);
+    
+        return $this;
+    }
+    
     public function user_agent($agent)
     {
         if ($agent)
             $this->user_agent = $agent;
-    }
-    
-    public function headers($headers)
-    {
-        if (!empty($headers)) {
-            $headers = (array)$headers;
-            $this->add_option(CURLOPT_HTTPHEADER, $headers);
-        }
-        return $this;
     }
     
     public final function revert()
