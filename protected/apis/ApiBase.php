@@ -13,6 +13,11 @@ class ApiBase
     {
         unset($params['method'], $params['sig'], $params['apikey'], $params['format']);
         $this->_params = $params;
+        $this->init();
+    }
+    
+    public function init()
+    {
     }
     
     protected static function requirePost()
