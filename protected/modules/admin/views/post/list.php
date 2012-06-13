@@ -88,14 +88,11 @@
 
 <script type="text/javascript">
 $(function(){
-	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
-	$(document).on('click', '.set-trash, .set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.trashPost);
-
-	$(document).on('click', '#batch-delete, #batch-trash', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiPosts);
-	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiPosts);
-	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiPosts);
-	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiPosts);
-	$(document).on('click', '#batch-reject', BetaAdmin.rejectMultiPosts);
+	$(document).on('click', '.set-trash, .set-delete', {confirmText:confirmAlertText}, BetaAdmin.deleteRow);
+	$(document).on('click', '#batch-delete, #batch-trash', {confirmText:confirmAlertText}, BetaAdmin.deleteMultiRows);
+	$(document).on('click', '#batch-recommend, #batch-hottest', BetaAdmin.setMultiRowsMark);
+	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiRows);
+	$(document).on('click', '#batch-reject', {confirmText:confirmAlertText}, BetaAdmin.rejectMultiPosts);
 	
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);

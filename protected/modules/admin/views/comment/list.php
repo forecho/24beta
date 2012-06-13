@@ -49,14 +49,12 @@
 
 <script type="text/javascript">
 $(function(){
-	var deleteConfirmText = '<?php echo t('delete_confirm', 'admin');?>';
-	$(document).on('click', '.set-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteComment);
+	$(document).on('click', '.set-delete', {confirmText:confirmAlertText}, BetaAdmin.deleteRow);
 	$(document).on('click', '.set-verify, .set-recommend', BetaAdmin.ajaxSetBooleanColumn);
 	
-	$(document).on('click', '#batch-delete', {onfirmText:deleteConfirmText}, BetaAdmin.deleteMultiComments);
-	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiComments);
-	$(document).on('click', '#batch-recommend', BetaAdmin.recommendMultiComments);
-	$(document).on('click', '#batch-hottest', BetaAdmin.hottestMultiComments);
+	$(document).on('click', '#batch-delete', {confirmText:confirmAlertText}, BetaAdmin.deleteMultiRows);
+	$(document).on('click', '#batch-verify', BetaAdmin.verifyMultiRows);
+	$(document).on('click', '#batch-recommend, #batch-hottest', BetaAdmin.setMultiRowsMark);
 	
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);

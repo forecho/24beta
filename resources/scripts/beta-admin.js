@@ -9,19 +9,19 @@ $(function(){
 		tip.stop(true, true);
 		tip.html('发送数据中...').fadeIn('fast');
 	});
-	
+
 	$(document).ajaxSuccess(function(){
 		tip.html('请求成功.');
 	});
-	
+
 	$(document).ajaxError(function(){
 		tip.html('发生错误.');
 	});
-	
+
 	$(document).ajaxStop(function(){
 		tip.html('请求完成.').delay(5000).fadeOut('slow');
 	});
-	
+
 	$('[rel=tooltip]').tooltip();
 });
 
@@ -40,127 +40,55 @@ var BetaAdmin = {
 			$(element).attr('checked', !$(element).attr('checked'));
 		});
 	},
-	deletePost: function(event){
+	handleRow: function(event){
 		event.preventDefault();
 
-		var confirm = window.confirm(event.data.onfirmText);
-	    if (!confirm) return ;
-		
-		var tthis = $(this);
+		var tthis = $(event.target);
 		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			if (data.errno == 0)
-				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
-			else
-				BetaAdmin.showAjaxMessage('发生错误.');
-		});
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	trashPost: function(event){
-		event.preventDefault();
-		
-		var confirm = window.confirm(event.data.onfirmText);
-		if (!confirm) return ;
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('href'),
+			url: tthis.attr('href'),
 			dataType: 'jsonp',
 			type: 'post',
 			cache: false,
 			beforeSend: function(){}
 		});
-		jqXhr.done(function(data){
-			if (data.errno == 0)
-				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
-			else
-				BetaAdmin.showAjaxMessage('发生错误.');
-		});
 		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	deleteComment: function(event) {
-		event.preventDefault();
-		var confirm = window.confirm(event.data.onfirmText);
-	    if (!confirm) return ;
-		
-	    var tthis = $(this);
-		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			if (data.errno == 0)
-				tthis.parents('tr').remove();
-			else
-				BetaAdmin.showAjaxMessage('发生错误.');
-		});
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	deleteMultiComments: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var confirm = window.confirm(event.data.onfirmText);
-		if (!confirm) return ;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
+			BetaAdmin.showAjaxMessage('Request error.');
 		});
 
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
+		return jqXhr;
+	},
+	deleteRow: function(event){
+		event.preventDefault();
+		var confirm = window.confirm(event.data.confirmText);
+		if (!confirm) return ;
+
+		var jqXhr = BetaAdmin.handleRow(event);
 		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
+			if (data.errno == 0) {
+				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
+			}
+			else
+				BetaAdmin.showAjaxMessage('Occur error.');
 		});
 	},
-	verifyMultiComments: function(event) {
+	handleMultiRows: function(event) {
 		event.preventDefault();
-		
+
 		var checkboxs = $('input:checked');
 		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
+
+		var rowIds = [];
 		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
+			rowIds.push($(element).val());
 		});
-		
-		var tthis = $(this);
+
+		var tthis = $(event.target);
 		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
+			url: tthis.attr('data-src'),
 			dataType: 'jsonp',
 			type: 'post',
 			cache: false,
-			data: $.param({ids:commentIds}),
+			data: $.param({ids:rowIds}),
 			beforeSend: function(){}
 		});
 		jqXhr.done(function(data){
@@ -170,76 +98,44 @@ var BetaAdmin = {
 		}),
 		jqXhr.fail(function(){
 			BetaAdmin.showAjaxMessage('request error.');
+		});
+
+		return jqXhr;
+	},
+	deleteMultiRows: function(event) {
+		event.preventDefault();
+
+		var confirm = window.confirm(event.data.confirmText);
+		if (!confirm) return ;
+
+		var jqXhr = BetaAdmin.handleMultiRows(event);
+		jqXhr.done(function(data){
+			$.each(data.success, function(index, value){
+				$(':checkbox[value='+ value +']').parents('tr').remove();
+			});
 		});
 	},
-	recommendMultiComments: function(event) {
+	verifyMultiRows: function(event) {
 		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
+		var jqXhr = BetaAdmin.handleMultiRows(event);
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
 				$(':checkbox[value='+ value +']').parents('tr').remove();
 			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
-	hottestMultiComments: function(event) {
+	setMultiRowsMark: function(event) {
 		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
+		var jqXhr = BetaAdmin.handleMultiRows(event);
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
+				window.location.reload();
 			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	ajaxSetBooleanColumn: function(event) {
 		event.preventDefault();
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
+		var jqXhr = BetaAdmin.handleRow(event);
 		jqXhr.done(function(data){
 			if (data.errno == BETA_NO) {
 			    tthis.text(data.label);
@@ -248,193 +144,23 @@ var BetaAdmin = {
 			else
 				BetaAdmin.showAjaxMessage('发生错误.');
 		});
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	deleteMultiPosts: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var confirm = window.confirm(event.data.onfirmText);
-		if (!confirm) return ;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	trashMultiPosts: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var confirm = window.confirm(event.data.onfirmText);
-		if (!confirm) return ;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	recommendMultiPosts: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				window.location.reload();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	hottestMultiPosts: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				window.location.reload();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	verifyMultiPosts: function(event) {
-		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
 	},
 	rejectMultiPosts: function(event) {
 		event.preventDefault();
-		
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
+
+		var confirm = window.confirm(event.data.confirmText);
+		if (!confirm) return ;
+
+		var jqXhr = BetaAdmin.handleMultiRows(event);
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
 				$(':checkbox[value='+ value +']').parents('tr').remove();
 			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
 		});
 	},
 	quickUpdate: function(event){
 		event.preventDefault();
-		var tthis = $(this);
+		var tthis = $(event.target);
 		var form = tthis.parents('form');
 		var jqXhr = $.ajax({
 			url: form.attr('action'),
@@ -461,11 +187,11 @@ var BetaAdmin = {
 	},
 	updateFilterKeywordRow: function(event){
 		event.preventDefault();
-		var tthis = $(this);
+		var tthis = $(event.target);
 		var tr = tthis.parents('tr');
 		var url = tr.attr('data-url');
 		if (url.length == 0) return false;
-		
+
 		var data = tr.find('input').serialize();
 		var jqXhr = $.ajax({
 			url: url,
@@ -493,86 +219,13 @@ var BetaAdmin = {
 			}, 1000);
 		});
 	},
-	enabledMultiUsers: function(event){
+	switchMultiUserState: function(event){
 		event.preventDefault();
-
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
+		var jqXhr = BetaAdmin.handleMultiRows(event);
 		jqXhr.done(function(data){
 			$.each(data.success, function(index, value){
 				$(':checkbox[value='+ value +']').parents('tr').find('.row-state').toggleClass('label-important label-success').text(data.label);
 			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	forbiddenMultiUsers: function(event){
-		event.preventDefault();
-
-		var checkboxs = $('input:checked');
-		if (checkboxs.length == 0) return;
-		
-		var commentIds = [];
-		checkboxs.each(function(index, element){
-			commentIds.push($(element).val());
-		});
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-			url: $(this).attr('data-src'),
-			dataType: 'jsonp',
-			type: 'post',
-			cache: false,
-			data: $.param({ids:commentIds}),
-			beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').find('.row-state').toggleClass('label-important label-success').text(data.label);
-			});
-		}),
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
-		});
-	},
-	deleteSpecial: function(event){
-		event.preventDefault();
-
-		var confirm = window.confirm(event.data.onfirmText);
-	    if (!confirm) return ;
-		
-		var tthis = $(this);
-		var jqXhr = $.ajax({
-		    url: $(this).attr('href'),
-		    dataType: 'jsonp',
-		    type: 'post',
-		    cache: false,
-		    beforeSend: function(){}
-		});
-		jqXhr.done(function(data){
-			if (data.errno == 0)
-				tthis.parents('tr').fadeOut('fast', function(){$(this).remove();});
-			else
-				BetaAdmin.showAjaxMessage('发生错误.');
-		});
-		jqXhr.fail(function(){
-			BetaAdmin.showAjaxMessage('request error.');
 		});
 	}
 };

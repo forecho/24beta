@@ -44,8 +44,7 @@ $(function(){
 	$(document).on('click', '.row-state', BetaAdmin.ajaxSetBooleanColumn);
 	$(document).on('click', '#select-all', BetaAdmin.selectAll);
 	$(document).on('click', '#reverse-select', BetaAdmin.reverseSelect);
-	$(document).on('click', '#batch-verify', BetaAdmin.enabledMultiUsers);
-	$(document).on('click', '#batch-reject', BetaAdmin.forbiddenMultiUsers);
+	$(document).on('click', '#batch-verify, #batch-reject', BetaAdmin.switchMultiUserState);
 
 });
 </script>
