@@ -1,5 +1,5 @@
 <?php
-class CdImage
+class CDImage
 {
     const MERGE_TOP_RIGHT = 1;
     const MERGE_TOP_LEFT = 2;

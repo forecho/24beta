@@ -1,5 +1,5 @@
 <?php
-class CdPinyin
+class CDPinyin
 {
     private static $_dict = null;
     
