@@ -105,7 +105,7 @@ class BetaBase
         $path = self::makeUploadPath(param('uploadBasePath'), $additional);
         $file = self::makeUploadFileName(null);
         $filename = $path['path'] . $file;
-        $im = new CdImage();
+        $im = new CDImage();
         $im->load($upload->tempName);
         $result = $im->save($filename);
         $newFilename = $im->filename();
