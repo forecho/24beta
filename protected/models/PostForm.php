@@ -51,7 +51,7 @@ class PostForm extends CFormModel
     {
         $post = new Post();
         $post->attributes = $this->attributes;
-        $post->post_type = Post::TYPE_POST;
+        $post->post_type = POST_TYPE_POST;
         $post->contributor_id = (int)user()->id;
         if (empty($post->contributor))
             $post->contributor = user()->getIsGuest() ? '' : user()->name;
@@ -66,7 +66,7 @@ class PostForm extends CFormModel
     
     public function state()
     {
-        return user()->checkAccess('chief_editor') ? Post::STATE_ENABLED : Post::STATE_NOT_VERIFY;
+        return user()->checkAccess('chief_editor') ? POST_STATE_ENABLED : POST_STATE_NOT_VERIFY;
     }
     
     public function homeshow()
