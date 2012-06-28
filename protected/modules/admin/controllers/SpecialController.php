@@ -1,6 +1,14 @@
 <?php
 class SpecialController extends AdminController
 {
+    public function filters()
+    {
+        return array(
+            'ajaxOnly + setState, setDelete',
+            'postOnly + setState, setDelete',
+        );
+    }
+    
     public function actionCreate($id = 0)
     {
         $id = (int)$id;
@@ -55,7 +63,7 @@ class SpecialController extends AdminController
          
         $model->save(true, $attributes);
         if ($model->hasErrors())
-            throw new CHttpException(500, var_export(hasErrors, true));
+            throw new CHttpException(500, var_export($model->getErrors(), true));
         else {
             $data = array(
                 'errno' => BETA_NO,
@@ -80,6 +88,6 @@ class SpecialController extends AdminController
             BetaBase::jsonp($callback, $data);
         }
         else
-            throw new CHttpException(500);
+            throw new CHttpException(500, var_export($model->getErrors(), true));
     }
 }
