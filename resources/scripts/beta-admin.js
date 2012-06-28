@@ -140,8 +140,7 @@ var BetaAdmin = {
 		var jqXhr = BetaAdmin.handleRow(event);
 		jqXhr.done(function(data){
 			if (data.errno == BETA_NO) {
-			    tthis.text(data.label);
-				tthis.parents('tr').find('.row-state').text(data.label).toggleClass('label-important label-success');
+			    tthis.text(data.label).toggleClass('label-important label-success');
 			}
 			else
 				BetaAdmin.showAjaxMessage('发生错误.');
