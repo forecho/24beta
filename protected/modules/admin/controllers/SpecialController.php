@@ -55,7 +55,7 @@ class SpecialController extends AdminController
          
         $model->save(true, $attributes);
         if ($model->hasErrors())
-            throw new CHttpException(500);
+            throw new CHttpException(500, var_export(hasErrors, true));
         else {
             $data = array(
                 'errno' => BETA_NO,
