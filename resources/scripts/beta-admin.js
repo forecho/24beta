@@ -59,6 +59,7 @@ var BetaAdmin = {
 	},
 	deleteRow: function(event){
 		event.preventDefault();
+		var tthis = $(event.target);
 		var confirm = window.confirm(event.data.confirmText);
 		if (!confirm) return ;
 
@@ -135,6 +136,7 @@ var BetaAdmin = {
 	},
 	ajaxSetBooleanColumn: function(event) {
 		event.preventDefault();
+		var tthis = $(event.target);
 		var jqXhr = BetaAdmin.handleRow(event);
 		jqXhr.done(function(data){
 			if (data.errno == BETA_NO) {
