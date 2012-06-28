@@ -46,7 +46,7 @@ class SpecialController extends AdminController
             throw new CHttpException(500);
          
         $model->state = ($model->state == SPECIAL_STATE_ENABLED) ? SPECIAL_STATE_DISABLED : SPECIAL_STATE_ENABLED;
-        if ($model->state == AdminSpecial::STATE_ENABLED) {
+        if ($model->state == SPECIAL_STATE_ENABLED) {
             $model->create_time = $_SERVER['REQUEST_TIME'];
             $attributes = array('state', 'create_time');
         }
