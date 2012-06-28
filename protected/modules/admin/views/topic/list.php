@@ -27,7 +27,7 @@
     <tbody>
         <?php foreach ($models as $model):?>
         <tr>
-            <td class="item-orderid"><input type="text" name="itemid[]" value="<?php echo $model->orderid;?>" class="input-mini" /></td>
+            <td class="item-orderid"><input type="text" name="<?php echo sprintf('itemid[%d]', $model->id);?>" value="<?php echo $model->orderid;?>" class="input-mini" /></td>
             <td class="align-center"><?php echo $model->id;?></td>
             <td><?php echo $model->postsLink;?></td>
             <td class="align-center"><?php echo $model->post_nums;?></td>
