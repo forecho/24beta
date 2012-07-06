@@ -1,0 +1,29 @@
+## 欢迎下载使用24blog媒体博客软件。
+
+### 24blog v1.0 beta 版已经发布，欢迎大家测试并提供bug测试报告。
+### 如果有问题可以加入我们的QQ群(72101715)进行反馈。
+
+
+## 24Blog v1.0 测试版安装使用说明
+### 安装说明
+1. 点击<https://github.com/downloads/cdcchen/24beta/24blog-v1.0-vhost.zip>下载源码包
+
+2. 解压缩后，将24blog-v1.0-vhost目录内的文件全部上传到您的网站的根目录下面。
+
+3. 将docs目录下的24beta.sql导入到数据库中，sql文件会自动创建一个名字为cd_24beta的数据库，你也可以自己修改为其它的名字。
+
+4. 修改protected/data目录下的db.config.php文件中的数据库连接信息
+
+5. 修改以下三个目录的权限为777
+    - protected/runtime
+    - resources/assets
+    - uploads
+
+6. 安装结束。
+
+### 注意事项
+    - 管理员初始账号：admin@24beta.com 密码：123123
+    - 管理后台地址：http://xxx.com/index.php?r=admin
+
+### 其它问题
+    如果安装过程中遇到其它问题，请加入QQ群(72101715)向我们提供测试报告，帮助我们尽快修复bug，谢谢。
