@@ -1,4 +1,4 @@
-<div class="beta-alert beta-alert-message hide" id="beta-create-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text">您的大名会显示在评论处</span></div>
+<div class="alert beta-alert beta-alert-message hide" id="beta-create-message" data-dismiss="alert"><a class="close" href="javascript:void(0);">&times;</a><span class="text">您的大名会显示在评论处</span></div>
 <?php echo CHtml::form(aurl('post/comment'),  'post', array('class'=>'beta-form-horizontal beta-comment-form', 'id'=>'comment-form'));?>
 <?php echo CHtml::activeHiddenField($comment, 'post_id');?>
 <div class="beta-control-group stacked">
