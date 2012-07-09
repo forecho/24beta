@@ -151,7 +151,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-summary .beta-post-content p {margin:0;}
 .beta-post-content {overflow-x:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
-.beta-post-content img {margin:10px 0px; max-width:570px; overflow:hidden;}
+.beta-post-content img {margin:10px; max-width:560px; overflow:hidden;}
 .beta-post-content blockquote {padding: 10px; background:#EFEFEF; color:gray; font-size:14px; margin:15px 10px; -wekkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
 .beta-post-content blockquote p {font-size:14px;}
 .beta-post-content ul {margin:1px 0 15px 30px;}
