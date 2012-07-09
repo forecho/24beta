@@ -9,6 +9,11 @@ class FeedController extends Controller
         header('Content-Type:application/xml; charset=' . app()->charset);
     }
     
+    public function actionIndex()
+    {
+        $this->forward('timeline');
+    }
+    
     public function actionTimeline()
     {
         $cmd = app()->getDb()->createCommand()

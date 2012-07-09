@@ -8,9 +8,9 @@
 	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
 	>
-	
+
 <channel>
-	<title><?php echo $feedname;?></title>
+	<title><?php echo $feedname;?> - <?php echo param('shortdesc');?></title>
 	<atom:link href="<?php echo aurl('feed/timeline');?>" rel="self" type="application/rss+xml" />
 	<link><?php echo abu('/');?></link>
 	<description><?php echo param('shortdesc');?></description>
