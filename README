@@ -16,10 +16,21 @@
 
 5. 修改以下三个目录的权限为777
     - protected/runtime
+    - protected/data
     - resources/assets
     - uploads
 
 6. 安装结束。
+
+### 伪静态开启
+    如果是apache的话，在根目录下已经有.htaccess文件了，不需要再加重写规则，前提是你的apache允许网站使用.htaccess文件。
+    如果是nginx的话，将以下代码加入 server配置中
+
+    location / {
+        if (!-e $request_filename){ rewrite (.*) /index.php last;}
+    }
+
+    然后在后台打开伪静态开关。后台->设置->网站设置中，第9个参数，修改为path
 
 ### 注意事项
     - 管理员初始账号：admin@24beta.com 密码：123123
