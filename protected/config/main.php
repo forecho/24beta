@@ -44,9 +44,6 @@ return array(
         'admin' => array(
             'layout' => 'main',
         ),
-        'install' => array(
-            'layout' => 'main',
-        ),
     ),
     'preload' => array('log'),
     'components' => array(
