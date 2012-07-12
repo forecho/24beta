@@ -113,8 +113,8 @@ function checkServerVar()
     if(!empty($missing))
         return t('yii','$_SERVER does not have {vars}.',array('{vars}'=>implode(', ',$missing)));
 
-    if(realpath($_SERVER["SCRIPT_FILENAME"]) !== realpath(__FILE__))
-        return t('yii','$_SERVER["SCRIPT_FILENAME"] must be the same as the entry script file path.');
+//     if(realpath($_SERVER["SCRIPT_FILENAME"]) !== realpath(__FILE__))
+//         return t('yii','$_SERVER["SCRIPT_FILENAME"] must be the same as the entry script file path.');
 
     if(!isset($_SERVER["REQUEST_URI"]) && isset($_SERVER["QUERY_STRING"]))
         return t('yii','Either $_SERVER["REQUEST_URI"] or $_SERVER["QUERY_STRING"] must exist.');
