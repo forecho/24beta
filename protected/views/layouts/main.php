@@ -6,7 +6,6 @@
     <meta name="author" content="24beta.com" />
     <meta name="generator" content="<?php echo BetaBase::powered();?>" />
     <meta name="copyright" content="Copyright (c) 2009-2012 24beta.com All Rights Reserved." />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo aurl('feed/timeline');?>" />
     <link media="screen" rel="stylesheet" type="text/css" href="<?php echo tbu('styles/beta-all.css');?>" />
     <script type="text/javascript" src="<?php echo sbu('libs/jquery-1.7.2.min.js');?>"></script>
