@@ -137,7 +137,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-nav .user-mini-bar li a {margin-right:0; maring-left:4px;}
 
 /* post summary list */
-.beta-post-item {border:1px solid #BFBFBF; margin:0 0 10px;}
+.beta-post-item {border:1px solid #BFBFBF; margin:0 0 10px; position:relative;}
 .beta-post-item dt, .beta-post-item dd {padding:0 10px; margin:0;}
 .beta-post-item dt {font-size:18px; font-family:微软雅黑; line-height:22px; margin:12px 0;}
 .beta-post-item dt strong {color:darkred;}
@@ -147,6 +147,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-thank {font-size:12px; color:#555555;}
 .beta-post-extra {font-size:12px; margin-bottom:5px;}
 .beta-post-extra span {border-bottom:1px solid #CFCFCF; padding:0 0 3px; color:#555555; display:inline; font-size:12px;}
+.beta-post-item img.topic-icon {position:absolute; top:0; right:10px; height:80px; max-width:150px;}
 /* summary and content css */
 .beta-post-summary .beta-post-content p {margin:0;}
 .beta-post-content {overflow-x:hidden; width:100%; line-height:24px;}

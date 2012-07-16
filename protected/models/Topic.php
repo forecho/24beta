@@ -13,6 +13,7 @@
  * @property string $postsLink
  * @property string $iconUrl
  * @property string $iconHtml
+ * @property string $iconPostsLink
  */
 class Topic extends CActiveRecord
 {
@@ -132,7 +133,18 @@ class Topic extends CActiveRecord
 	    if (empty($this->icon))
 	        return '';
 	    else
-    	    return image($this->getIconUrl(), $this->name, array('topic-icon'));
+    	    return image($this->getIconUrl(), $this->name, array('class'=>'topic-icon', 'title'=>$this->name));
+	}
+	
+	public function getIconPostsLink($target='_blank')
+	{
+	    $html = '';
+	    $image = $this->getIconHtml();
+	    if (!empty($image))
+	        $html = l($image, $this->getPostsUrl(), array('title'=>$this->name, 'target'=>$target));
+	    
+	    return $html;
+	        
 	}
 	
 	protected function beforeSave()

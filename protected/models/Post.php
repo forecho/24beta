@@ -53,6 +53,7 @@
  * @property string $thumbnailUrl
  * @property string $categoryLink
  * @property string $topicLink
+ * @property string $summaryContainImage
  */
 class Post extends CActiveRecord
 {
@@ -404,6 +405,21 @@ class Post extends CActiveRecord
 	    return t('post_show_extra', 'main', array('{author}'=>$this->authorName, '{time}'=>$this->createTime, '{visit}'=>$this->visit_nums, '{digg}'=>$this->digg_nums));
 	}
 
+	public function getSummaryContainImage()
+	{
+	    $pos = strpos($this->getFilterSummary(), '<img');
+	    return $post !== false;
+	}
+	
+	public function getTopicIconHtml()
+	{
+	    $html = '';
+	    if ((bool)param('post_list_show_topic_icon') === true && $this->topic !== null)
+	        $html = $this->topic->getIconPostsLink();
+	    
+	    return $html;
+	}
+	
 	public function trash()
 	{
 	    if ($this->getIsNewRecord())
