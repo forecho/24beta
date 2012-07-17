@@ -132,6 +132,20 @@
             <?php if ($model->hasErrors('contributor_email')):?><p class="help-block"><?php echo $model->getError('contributor_email');?></p><?php endif;?>
         </div>
     </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('visit_nums')) echo 'error';?>">
+        <label class="control-label"><?php echo t('visit_nums');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeTextField($model, 'visit_nums', array('class'=>'span6'));?>
+            <?php if ($model->hasErrors('visit_nums')):?><p class="help-block"><?php echo $model->getError('visit_nums');?></p><?php endif;?>
+        </div>
+    </div>
+    <div class="control-group bottom10px <?php if ($model->hasErrors('digg_nums')) echo 'error';?>">
+        <label class="control-label"><?php echo t('digg_nums');?></label>
+        <div class="controls">
+            <?php echo CHtml::activeTextField($model, 'digg_nums', array('class'=>'span6'));?>
+            <?php if ($model->hasErrors('digg_nums')):?><p class="help-block"><?php echo $model->getError('digg_nums');?></p><?php endif;?>
+        </div>
+    </div>
     <div class="form-actions">
         <?php echo CHtml::submitButton(t('submit_post', 'admin'), array('class'=>'btn btn-primary'));?>
     </div>

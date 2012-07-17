@@ -456,6 +456,10 @@ class Post extends CActiveRecord
 	        $this->create_time = $_SERVER['REQUEST_TIME'];
 	        $this->create_ip = request()->getUserHostAddress();
 	        $this->source = strip_tags(trim($this->source));
+	        $visitNumsMin = (int)param('visit_nums_init_min');
+	        $visitNumsMax = (int)param('visit_nums_init_max');
+	        if ($this->visit_nums == 0 && $visitNumsMax > 0 && $visitNumsMax > $visitNumsMin)
+	            $this->visit_nums = mt_rand($visitNumsMin, $visitNumsMax);
 	    }
 	    if ($this->tags) {
     	    $tags = join(',', Tag::filterTagsArray($this->tags));
