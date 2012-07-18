@@ -14,6 +14,7 @@ define('TABLE_TOPIC', '{{topic}}');
 define('TABLE_UPLOAD', '{{upload}}');
 define('TABLE_USER', '{{user}}');
 define('TABLE_FILTER_KEYWORD', '{{filter_keyword}}');
+define('TABLE_LINK', '{{link}}');
 
 /* category state */
 define('CATEGORY_STATE_IN_NAV', 1);

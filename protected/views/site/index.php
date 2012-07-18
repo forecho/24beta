@@ -78,6 +78,9 @@
     </div>
     <?php endif;?>
     <!-- recommend comments end -->
+    <!-- friend links start -->
+    <?php $this->widget('BetaLinks');?>
+    <!-- friend links end -->
 </div>
 <div class="clear"></div>
 

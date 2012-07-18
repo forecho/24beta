@@ -115,6 +115,15 @@ return array(
     'tag_posts' => '标签：{name}',
     'tag_posts_page_description' => '与{name}标签相关的文章',
 
+    /* link model */
+    'link_name' => '链接名称',
+    'link_url' => '链接地址',
+    'link_logo' => '链接LOGO',
+    'link_desc' => '链接描述',
+
+    'friend_links' => '友情链接',
+    'no_friend_links' => '暂无友情链接',
+
     /*
      * model Comment attributeLabels
      */
