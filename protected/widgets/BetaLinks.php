@@ -47,12 +47,12 @@ class BetaLinks extends CWidget
         
     public function run()
     {
-//         if (app()->getCache()) {
-//             $models = app()->getCache()->get('cache_friend_links');
-//             if ($models === false)
-//                 $models = $this->fetchModels();
-//         }
-//         else
+        if (app()->getCache()) {
+            $models = app()->getCache()->get('cache_friend_links');
+            if ($models === false)
+                $models = $this->fetchModels();
+        }
+        else
             $models = $this->fetchModels();
         
         if (empty($models) && !$this->allowEmpty) return ;
