@@ -6,7 +6,7 @@
             <?php if ($post->category) echo $post->categoryLink;?>
             <?php if ($post->topic) echo $post->topicLink;?>
         </span></div>
-        <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div>
+        <?php if ($post->contributor):?><div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$post->contributorLink));?></div><?php endif;?>
         <div class="beta-post-content"><?php echo $post->content;?></div>
         
         <?php if ($post->tags):?>

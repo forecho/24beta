@@ -5,7 +5,7 @@
         <?php echo t('post_author_time', 'main', array('{author}'=>$model->authorName, '{time}'=>$model->createTime));?>&nbsp;&nbsp;&nbsp;&nbsp;
     </span></dd>
     <dd class="beta-post-summary">
-        <div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div>
+        <?php if ($model->contributor):?><div class="beta-thank"><?php echo t('thanks_contribute', 'main', array('{contributor}'=>$model->contributorLink));?></div><?php endif;?>
         <div class="beta-post-content"><?php echo $model->topicIconHtml;?><?php echo $model->filterSummary;?></div>
     </dd>
     <dd class="beta-post-toolbar">
