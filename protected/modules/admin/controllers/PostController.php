@@ -105,6 +105,8 @@ class PostController extends AdminController
 	        $criteria->addColumnCondition(array('topic_id'=>$tid));
 	    }
 	    
+	    $criteria->addCondition('t.state != ' . POST_STATE_TRASH);
+	    
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->adminTitle = $title;
