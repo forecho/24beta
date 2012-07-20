@@ -178,7 +178,7 @@ class Comment extends CActiveRecord
 	            'post_id' => $postid,
                 'state' => COMMENT_STATE_ENABLED)
             )
-            ->addCondition('up_nums > ' . param('upNumsOfCommentIsHot'));
+            ->addCondition('up_nums >= ' . param('upNumsOfCommentIsHot'));
 	
 	    $comments = Comment::model()->findAll($criteria);
 	    return $comments;

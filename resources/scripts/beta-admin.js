@@ -92,11 +92,6 @@ var BetaAdmin = {
 			data: $.param({ids:rowIds}),
 			beforeSend: function(){}
 		});
-		jqXhr.done(function(data){
-			$.each(data.success, function(index, value){
-				$(':checkbox[value='+ value +']').parents('tr').remove();
-			});
-		}),
 		jqXhr.fail(function(){
 			BetaAdmin.showAjaxMessage('request error.');
 		});
