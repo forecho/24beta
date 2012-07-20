@@ -394,10 +394,11 @@ class Post extends CActiveRecord
 	
 	public function getTopicLink($target = '_blank')
 	{
-	    if ($this->topic)
-	        return $this->topic->getPostsLink($target);
-	    else
-	        return '';
+	    $html = '';
+	    if ($this->topic_id > 0 && $this->topic)
+	        $html = $this->topic->getPostsLink($target);
+	    
+	    return $html;
 	}
 	
 	public function getShowExtraInfo()
@@ -414,7 +415,7 @@ class Post extends CActiveRecord
 	public function getTopicIconHtml()
 	{
 	    $html = '';
-	    if ((bool)param('post_list_show_topic_icon') === true && $this->topic !== null)
+	    if ($this->topic_id > 0 && (bool)param('post_list_show_topic_icon') === true && $this->topic !== null)
 	        $html = $this->topic->getIconPostsLink();
 	    
 	    return $html;

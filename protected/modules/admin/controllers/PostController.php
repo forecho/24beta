@@ -106,7 +106,6 @@ class PostController extends AdminController
 	    }
 	    
 	    $criteria->addCondition('t.state != ' . POST_STATE_TRASH);
-	    
 	    $data = AdminPost::fetchList($criteria);
 	    
 	    $this->adminTitle = $title;
