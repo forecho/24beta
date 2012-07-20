@@ -38,7 +38,7 @@ class AdminComment extends Comment
          
         if ($sort) {
             $sort  = new CSort(__CLASS__);
-            $sort->defaultOrder = 't.create_time desc';
+            $sort->defaultOrder = 't.id desc';
             $sort->applyOrder($criteria);
         }
          

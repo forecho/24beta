@@ -111,8 +111,8 @@ class CommentController extends AdminController
 	    if ($model === null)
 	        throw new CHttpException(500);
 	
+	    $model->state = COMMENT_STATE_ENABLED;
 	    $model->recommend = abs($model->recommend - BETA_YES);
-	    $model->create_time = $_SERVER['REQUEST_TIME'];
 	    $model->save(true, array('recommend', 'create_time'));
 	    if ($model->hasErrors())
 	        throw new CHttpException(500);
@@ -211,7 +211,6 @@ class CommentController extends AdminController
 	    $attributes = array(
 	        'state' => COMMENT_STATE_ENABLED,
 	        'recommend' => BETA_YES,
-	        'create_time' => $_SERVER['REQUEST_TIME'],
 	    );
 	    foreach ($ids as $id) {
     	    $result =Comment::model()->updateByPk($id, $attributes);
