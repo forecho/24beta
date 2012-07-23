@@ -150,7 +150,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-item img.topic-icon {position:absolute; top:0; right:10px; height:80px; max-width:150px;}
 /* summary and content css */
 .beta-post-summary .beta-post-content p {margin:0;}
-.beta-post-content {overflow-x:hidden; width:100%; line-height:24px;}
+.beta-post-content {word-wrap:break-word; overflow-x:hidden; width:100%; line-height:24px;}
 .beta-post-content p, .beta-post-content div {line-height:inherit;}
 .beta-post-content img {margin:10px; max-width:560px; overflow:hidden;}
 .beta-post-content blockquote {padding: 10px; background:#EFEFEF; color:#555; font-size:14px; margin:15px 10px; -wekkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
@@ -178,7 +178,7 @@ pre code{padding:0;background-color:transparent;}
 .beta-post-show {border:1px solid #BFBFBF; overflow:hidden;}
 .beta-post-detail {overflow:hidden; padding:10px;}
 .beta-post-detail h1 {font-family:微软雅黑;font-size:20px; text-align:center; line-height:26px;}
-.beta-post-detail .beta-post-content {margin:10px 0;}
+.beta-post-detail .beta-post-content {margin:10px 0; word-wrap:break-word; overflow:hidden;}
 .beta-post-detail .beta-post-tags, .beta-post-detail .beta-post-source {font-size:12px; margin-bottom:5px; width:100%; word-break:break-all; overflow:auto;}
 .beta-post-detail .beta-post-tags a, .beta-post-detail .beta-post-source a {margin-left:5px; font-size:12px!important;}
 .beta-post-detail .beta-post-source a {line-height:16px;}
